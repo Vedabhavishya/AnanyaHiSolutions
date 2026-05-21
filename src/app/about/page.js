@@ -139,44 +139,24 @@ export default function AboutPage() {
       {/* 3. Who We Are Intro Section */}
       <section className="section">
         <div className="container">
-          <div className="about-grid">
-            <div className="about-intro-text">
+          <div className="about-story-grid">
+            <div className="about-story-visual">
+              <img
+                src="/about-collaboration.png"
+                alt="Stylized business professionals collaborating"
+                className="about-story-image"
+              />
+            </div>
+
+            <div className="about-story-text">
               <h3>Who We Are</h3>
               <h2>Delivering Premium Digital Experiences Worldwide</h2>
               <p>
-                Founded on the principles of innovation and engineering excellence, Ananya Hi Solutions is a full-service digital transformation agency. We partner with ambitious startups and established companies to design, develop, and scale modern web products.
+                Founded in 2013, Ananya Hi Solutions has evolved into one of Hyderabad's most trusted digital transformation partners. Our journey began with a simple vision: to help businesses harness the power of digital technology to achieve extraordinary growth. Today, we're proud to be a team of 50+ passionate professionals including certified digital marketers, experienced web designers, skilled developers, creative content specialists, and strategic consultants. Each team member brings specialized expertise and unwavering commitment to client success. Our core values drive everything we do: Innovation in every solution, Transparency in all communications, Excellence in execution, and Partnership in relationships. We don't just work for our clients; we work with them as strategic partners invested in their success.
               </p>
               <p>
-                From customized corporate websites built on Next.js to comprehensive search engine marketing campaigns, our certified specialists ensure your business stands out and delivers measurable return on investment.
+                Over the years, we've successfully delivered 500+ projects, helping businesses across India and internationally to establish powerful digital presence, generate quality leads, and scale their operations. Our client retention rate of 95% speaks to the lasting relationships we build and the consistent value we deliver.
               </p>
-            </div>
-            
-            <div className="about-intro-visual">
-              <div className="about-visual-box">
-                <div className="about-visual-feature">
-                  <div className="about-visual-icon">🏆</div>
-                  <div className="about-visual-info">
-                    <h4>Experienced Team</h4>
-                    <p>10+ years of building enterprise custom software and web solutions.</p>
-                  </div>
-                </div>
-                
-                <div className="about-visual-feature">
-                  <div className="about-visual-icon">🚀</div>
-                  <div className="about-visual-info">
-                    <h4>Tailored Execution</h4>
-                    <p>We craft customized structures designed to fit your unique requirements.</p>
-                  </div>
-                </div>
-                
-                <div className="about-visual-feature">
-                  <div className="about-visual-icon">📊</div>
-                  <div className="about-visual-info">
-                    <h4>Data-Driven Outcomes</h4>
-                    <p>Continuous monitoring, optimization, and transparent reporting metrics.</p>
-                  </div>
-                </div>
-              </div>
             </div>
           </div>
         </div>

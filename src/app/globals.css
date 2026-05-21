@@ -1438,6 +1438,52 @@ button {
   align-items: center;
 }
 
+.about-story-grid {
+  display: grid;
+  grid-template-columns: 0.95fr 1.05fr;
+  gap: 60px;
+  align-items: center;
+}
+
+.about-story-visual {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.about-story-image {
+  width: 100%;
+  max-width: 520px;
+  height: auto;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  border: 1px solid rgba(15, 117, 188, 0.08);
+}
+
+.about-story-text {
+  text-align: justify;
+}
+
+.about-story-text h3 {
+  font-size: 1.5rem;
+  color: var(--primary-blue);
+  margin-bottom: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.about-story-text h2 {
+  font-size: 2.5rem;
+  margin-bottom: 24px;
+}
+
+.about-story-text p {
+  color: var(--secondary-slate);
+  margin-bottom: 20px;
+  font-size: 1.1rem;
+  line-height: 1.7;
+}
+
 .about-intro-text h3 {
   font-size: 1.5rem;
   color: var(--primary-blue);
@@ -1594,6 +1640,13 @@ button {
   .about-grid {
     grid-template-columns: 1fr;
     gap: 40px;
+  }
+  .about-story-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  .about-story-text {
+    text-align: justify;
   }
   .about-mission-grid {
     grid-template-columns: 1fr;

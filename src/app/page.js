@@ -195,16 +195,16 @@ export default function Home() {
 
   // Tools State
   const tools = [
-    { name: "Google Analytics", color: "#f9ab00", desc: "User Traffic Auditing" },
-    { name: "Google Search Console", color: "#4285f4", desc: "SEO Indexing Control" },
-    { name: "Google Ads", color: "#1a73e8", desc: "Targeted Paid Traffic" },
-    { name: "Bing Webmaster", color: "#008060", desc: "Search Engine Presence" },
-    { name: "Facebook Ads", color: "#1877f2", desc: "Social Media Campaigns" },
-    { name: "SE Ranking", color: "#2e72f6", desc: "Rank Tracking & Audits" },
-    { name: "Canva", color: "#00c4cc", desc: "Branded Creative Graphics" },
-    { name: "Hootsuite", color: "#000000", desc: "Social Scheduler Panel" },
-    { name: "Grammarly", color: "#11a683", desc: "Flawless Copywriting Checks" },
-    { name: "Moz", color: "#00b4e5", desc: "Domain Authority & SEO" },
+    { name: "Google Analytics", color: "#f9ab00", desc: "User Traffic Auditing", logo: "/tools/google-analytics.png" },
+    { name: "Google Search Console", color: "#4285f4", desc: "SEO Indexing Control", logo: "/tools/google-search-console.png" },
+    { name: "Google Ads", color: "#1a73e8", desc: "Targeted Paid Traffic", logo: "/tools/google-ads.png" },
+    { name: "Bing Webmaster", color: "#008060", desc: "Search Engine Presence", logo: "/tools/bing-webmaster.png" },
+    { name: "Facebook Ads", color: "#1877f2", desc: "Social Media Campaigns", logo: "/tools/facebook-ads.png" },
+    { name: "SE Ranking", color: "#2e72f6", desc: "Rank Tracking & Audits", logo: "/tools/se-ranking.png" },
+    { name: "Canva", color: "#00c4cc", desc: "Branded Creative Graphics", logo: "/tools/canva.png" },
+    { name: "Hootsuite", color: "#000000", desc: "Social Scheduler Panel", logo: "/tools/hootsuite.png" },
+    { name: "Grammarly", color: "#11a683", desc: "Flawless Copywriting Checks", logo: "/tools/grammarly.png" },
+    { name: "Moz", color: "#00b4e5", desc: "Domain Authority & SEO", logo: "/tools/moz.png" },
   ];
 
   // Reviews State
@@ -493,19 +493,18 @@ export default function Home() {
       <section id="tools" className="section section-bg-alt">
         <div className="container">
           <div className="section-header">
-            <h2>Core Technology Stack</h2>
-            <p>We leverage industry-leading tools to provide robust tracking, high designs, and superior execution speeds.</p>
+            <h2>Tools We Use</h2>
+            <p>We leverage industry-leading software and platforms to deliver high performance, precise analytics, and beautiful design.</p>
           </div>
 
           <div className="tools-grid">
             {tools.map((tool, idx) => (
-              <div key={idx} className="tool-card" title={tool.desc}>
-                <div className="flex flex-col items-center gap-2">
-                  {/* Styled Badge instead of placeholder image */}
-                  <span className="text-3xl" style={{ filter: "grayscale(20%)" }}>🛠️</span>
-                  <span className="font-bold text-sm tracking-tight" style={{ color: tool.color }}>{tool.name}</span>
-                  <span className="text-[10px] text-slate-400 font-medium text-center uppercase tracking-wider">{tool.desc}</span>
-                </div>
+              <div key={idx} className="tool-card" title={`${tool.name} - ${tool.desc}`}>
+                <img
+                  src={tool.logo}
+                  alt={tool.name}
+                  className="tool-logo-img"
+                />
               </div>
             ))}
           </div>

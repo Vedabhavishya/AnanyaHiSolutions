@@ -631,7 +631,8 @@ button {
   box-shadow: var(--shadow-md);
 }
 
-.process-step:hover .process-node {
+.process-step:hover .process-node,
+.process-step.active .process-node {
   border-color: var(--primary-blue);
   color: var(--primary-blue);
   transform: scale(1.15);
@@ -652,7 +653,8 @@ button {
   transition: var(--transition-normal);
 }
 
-.process-step:hover .process-icon {
+.process-step:hover .process-icon,
+.process-step.active .process-icon {
   background: rgba(15, 117, 188, 0.1);
   color: var(--primary-blue);
   transform: translateY(-5px);
@@ -672,7 +674,8 @@ button {
   transition: var(--transition-normal);
 }
 
-.process-step:hover .process-step-num {
+.process-step:hover .process-step-num,
+.process-step.active .process-step-num {
   color: rgba(15, 117, 188, 0.12);
   transform: translateX(-50%) translateY(-5px);
 }

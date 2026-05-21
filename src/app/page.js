@@ -453,7 +453,7 @@ export default function Home() {
           </div>
 
           {/* Interactive Curvy Wave Container */}
-          <div className="process-container hidden md:block">
+          <div className="process-container">
             {/* SVG Curvy wave path matching Image 2 */}
             <svg className="process-svg-container" width="1200" height="450" viewBox="0 0 1200 450">
               <path
@@ -483,31 +483,6 @@ export default function Home() {
                 </div>
                 <div className="process-icon">{step.icon}</div>
                 <h4 className="process-step-title">{step.title}</h4>
-              </div>
-            ))}
-          </div>
-
-          {/* Interactive Steps Details panel */}
-          <div className="max-w-[700px] mx-auto mt-12 bg-slate-50 border border-slate-200 rounded-2xl p-8 shadow-md text-center transition-all duration-300">
-            <span className="inline-block bg-blue-50 text-blue-600 font-bold px-4 py-1.5 rounded-full text-xs uppercase tracking-wide mb-3">
-              Step 0{processSteps[activeStep].num} Details
-            </span>
-            <h3 className="text-2xl font-bold text-slate-800 mb-3">{processSteps[activeStep].title}</h3>
-            <p className="text-slate-600 leading-relaxed text-[16px]">{processSteps[activeStep].detail}</p>
-          </div>
-
-          {/* Mobile view of Process steps */}
-          <div className="md:hidden flex flex-col gap-6 mt-8">
-            {processSteps.map((step) => (
-              <div key={step.num} className="flex gap-4 p-5 bg-slate-50 rounded-xl border border-slate-200 shadow-sm">
-                <div className="w-12 h-12 rounded-full bg-slate-800 text-white font-bold flex items-center justify-center text-lg shrink-0">
-                  {step.num}
-                </div>
-                <div>
-                  <div className="text-2xl mb-1">{step.icon}</div>
-                  <h4 className="text-lg font-bold text-slate-900 mb-1">{step.title}</h4>
-                  <p className="text-sm text-slate-600 leading-relaxed">{step.detail}</p>
-                </div>
               </div>
             ))}
           </div>

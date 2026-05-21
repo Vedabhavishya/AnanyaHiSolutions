@@ -5,61 +5,17 @@ import React, { useState, useEffect, useRef } from "react";
 // Crisp Inline SVG Logo Component
 function Logo({ className = "", light = false }) {
   return (
-    <svg
-      className={`nav-logo-svg ${className}`}
-      width="190"
-      height="50"
-      viewBox="0 0 190 50"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <text
-        x="0"
-        y="30"
-        fontFamily="var(--font-headings)"
-        fontWeight="800"
-        fontSize="24"
-        fill={light ? "#ffffff" : "#0f75bc"}
-      >
-        Ananya
-      </text>
-      <text
-        x="88"
-        y="30"
-        fontFamily="var(--font-headings)"
-        fontWeight="800"
-        fontSize="24"
-        fill={light ? "#9ab4c4" : "#64849c"}
-      >
-        Hi
-      </text>
-      <text
-        x="42"
-        y="45"
-        fontFamily="var(--font-sans)"
-        fontWeight="500"
-        fontSize="12"
-        letterSpacing="1"
-        fill={light ? "#f58220" : "#0f75bc"}
-      >
-        solutions
-      </text>
-      {/* Two ascending modern arrows pointing up-right representing solutions & progress */}
-      <path
-        d="M135 15 L145 15 L145 25 M145 15 L132 28"
-        stroke={light ? "#ffffff" : "#0f75bc"}
-        strokeWidth="2.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-      <path
-        d="M142 8 L152 8 L152 18 M152 8 L139 21"
-        stroke={light ? "#f58220" : "#f58220"}
-        strokeWidth="2.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
+    <img
+      src="/logo.png"
+      alt="Ananya Hi Solutions"
+      className={`nav-logo-img ${className}`}
+      style={{
+        height: "42px",
+        width: "auto",
+        objectFit: "contain",
+        display: "block"
+      }}
+    />
   );
 }
 

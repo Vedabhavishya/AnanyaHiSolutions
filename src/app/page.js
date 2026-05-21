@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect, useRef } from "react";
+import Link from "next/link";
 
 // Crisp Inline SVG Logo Component
 function Logo({ className = "", light = false }) {
@@ -334,7 +335,7 @@ export default function Home() {
           {/* Desktop Nav Links */}
           <ul className="nav-links">
             <li><a href="#home" className="nav-link active">Home</a></li>
-            <li><a href="#about" className="nav-link">About</a></li>
+            <li><Link href="/about" className="nav-link">About</Link></li>
             <li><a href="#services" className="nav-link">Services</a></li>
             <li><a href="#careers" className="nav-link">Careers</a></li>
             <li><a href="#blog" className="nav-link">Blog</a></li>
@@ -359,7 +360,7 @@ export default function Home() {
         {mobileMenuOpen && (
           <div className="fixed inset-0 top-[70px] bg-white z-[999] flex flex-col p-6 gap-6 shadow-lg md:hidden animate-slide-in">
             <a href="#home" onClick={() => setMobileMenuOpen(false)} className="text-xl font-bold border-b pb-2">Home</a>
-            <a href="#about" onClick={() => setMobileMenuOpen(false)} className="text-xl font-bold border-b pb-2">About</a>
+            <Link href="/about" onClick={() => setMobileMenuOpen(false)} className="text-xl font-bold border-b pb-2">About</Link>
             <a href="#services" onClick={() => setMobileMenuOpen(false)} className="text-xl font-bold border-b pb-2">Services</a>
             <a href="#careers" onClick={() => setMobileMenuOpen(false)} className="text-xl font-bold border-b pb-2">Careers</a>
             <a href="#blog" onClick={() => setMobileMenuOpen(false)} className="text-xl font-bold border-b pb-2">Blog</a>
@@ -629,7 +630,7 @@ export default function Home() {
             <h4>Quick Links</h4>
             <ul className="footer-links">
               <li><a href="#home">Home</a></li>
-              <li><a href="#about">About Us</a></li>
+              <li><Link href="/about">About Us</Link></li>
               <li><a href="#careers">Careers</a></li>
               <li><a href="#pricing">Payment Terms</a></li>
               <li><a href="#blog">News</a></li>

@@ -158,38 +158,38 @@ export default function Home() {
     },
   ];
 
-  // Digital Marketing Process State
+  // Client Onboarding Process State
   const [activeStep, setActiveStep] = useState(0);
   const processSteps = [
     {
       num: 1,
-      title: "Analyze Business Landscape",
-      detail: "We conduct exhaustive marketplace audits, keyword research, and competitor benchmark evaluations to establish a firm, data-driven foundation.",
+      title: "Discovery & Analysis",
+      detail: "We kick off our collaboration with a thorough discovery phase, analyzing your business landscape, defining requirements, and mapping key project goals.",
       icon: "🔍",
     },
     {
       num: 2,
-      title: "Build Smart Strategies",
-      detail: "Our team drafts a custom marketing blueprint, allocating budgets, highlighting priority channels, and setting concrete KPIs for ROI growth.",
+      title: "Strategy & Planning",
+      detail: "Our technical architects and strategists design a custom project blueprint, selecting optimal frameworks, database layouts, and project milestones.",
       icon: "📋",
     },
     {
       num: 3,
-      title: "Create Compelling Content",
-      detail: "Our creative designers and copywriting masters produce jaw-dropping visual assets, high-engagement videos, and persuasive marketing copy.",
-      icon: "✍️",
+      title: "Design & Development",
+      detail: "Our creative designers and Next.js developers bring the vision to life, building responsive interfaces and robust backend integration with premium visuals.",
+      icon: "💻",
     },
     {
       num: 4,
-      title: "Derive Meaningful Insights",
-      detail: "We continuously monitor traffic funnels, conduct dynamic A/B test variations, and inspect heatmaps to extract concrete user behavioral insights.",
-      icon: "📊",
+      title: "Testing & Optimization",
+      detail: "We run exhaustive multi-device tests, optimize SEO tags, inspect load times, and implement security protocols to guarantee flawless launch status.",
+      icon: "🛡️",
     },
     {
       num: 5,
-      title: "Enrich Customer Experiences",
-      detail: "Through smart retargeting, personalization flows, and post-purchase follow-ups, we turn standard visitors into lifelong brand evangelists.",
-      icon: "🤝",
+      title: "Launch & Support",
+      detail: "We deploy the systems to your cloud environments, organize onboarding training, and provide ongoing updates to fuel your startup's growth.",
+      icon: "🚀",
     },
   ];
 
@@ -448,8 +448,8 @@ export default function Home() {
       <section id="process" className="process-section">
         <div className="container">
           <div className="section-header">
-            <h2>Our Marketing Process</h2>
-            <p>A comprehensive, cyclic marketing framework designed to extract maximum value at each step.</p>
+            <h2>Client Onboarding Process</h2>
+            <p>A structured, collaborative onboarding journey designed to deliver tailored digital solutions with maximum precision.</p>
           </div>
 
           {/* Interactive Curvy Wave Container */}
@@ -465,7 +465,7 @@ export default function Home() {
               <g className="process-paper-plane">
                 <path
                   d="M1.94 13.91L29.6 1.15c.67-.3 1.45.2 1.34.93L26.68 28.5a.69.69 0 0 1-1.12.44L16.48 21.6 11.23 27a.5.5 0 0 1-.85-.35v-5.62l15.3-15.82c.16-.16-.06-.41-.26-.27L6.87 18.9 1.14 14.65a.69.69 0 0 1 .8-1.14z"
-                  fill="var(--accent-orange)"
+                  fill="var(--primary-blue)"
                 />
               </g>
             </svg>
@@ -489,7 +489,7 @@ export default function Home() {
 
           {/* Interactive Steps Details panel */}
           <div className="max-w-[700px] mx-auto mt-12 bg-slate-50 border border-slate-200 rounded-2xl p-8 shadow-md text-center transition-all duration-300">
-            <span className="inline-block bg-orange-100 text-orange-600 font-bold px-4 py-1.5 rounded-full text-xs uppercase tracking-wide mb-3">
+            <span className="inline-block bg-blue-50 text-blue-600 font-bold px-4 py-1.5 rounded-full text-xs uppercase tracking-wide mb-3">
               Step 0{processSteps[activeStep].num} Details
             </span>
             <h3 className="text-2xl font-bold text-slate-800 mb-3">{processSteps[activeStep].title}</h3>

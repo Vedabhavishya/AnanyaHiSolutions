@@ -243,24 +243,24 @@ export default function Home() {
   const [activeFaq, setActiveFaq] = useState(0);
   const faqs = [
     {
-      q: "What digital services does Ananya Hi Solutions specialize in?",
-      a: "We specialize in end-to-end digital transformation packages, including high-performance Web Design (using frameworks like Next.js), result-driven Digital Marketing (SEO, Google Ads, SMM), native and cross-platform Mobile Applications, secure eCommerce Solutions, professional Video Production, and robust customized Software Development.",
+      q: "What services does Ananya Hi Solutions provide in Hyderabad?",
+      a: "Ananya Hi Solutions offers comprehensive digital services including website design and development, digital marketing (SEO, PPC, social media), mobile application development, e-commerce solutions, video production, and custom software development. We provide end-to-end digital transformation solutions for businesses of all sizes.",
     },
     {
-      q: "How long does it typically take to deploy a custom business website?",
-      a: "Depending entirely on the functional requirements, complexity of features, and review cycles, a professional custom website can take between 2 to 6 weeks. We use an agile development process, allowing you to track visual progress at each step.",
+      q: "How does Ananya Hi Solutions ensure quality in digital marketing campaigns?",
+      a: "We employ data-driven strategies with continuous monitoring and optimization. Our certified digital marketing experts use advanced analytics, A/B testing, and industry-leading tools to track KPIs, measure ROI, and refine campaigns for maximum performance. We provide transparent monthly reports showing measurable results.",
     },
     {
-      q: "Do you offer post-launch maintenance, hosting, and support?",
-      a: "Absolutely! We provide comprehensive monthly support, server maintenance, core updates, search ranking tracking, security updates, and performance tuning packages to ensure your platform runs flawlessly around the clock.",
+      q: "What makes Ananya Hi Solutions different from other digital agencies in Hyderabad?",
+      a: "Our key differentiators include 10+ years of proven experience, a team of certified experts, integrated service offerings under one roof, customized solutions rather than templates, transparent pricing, dedicated account management, and a proven track record of delivering measurable ROI for clients across diverse industries.",
     },
     {
-      q: "How do you measure and report the performance of digital marketing campaigns?",
-      a: "We believe in total transparency. We integrate tracking suites (Google Analytics, Search Console, etc.) and deliver robust, simplified monthly analytical dashboards showing organic impressions, click-through rates, active leads, and overall marketing ROI.",
+      q: "How long does it typically take to complete a website design project?",
+      a: "Project timelines vary based on complexity and requirements. A standard business website takes 4-6 weeks, while complex e-commerce platforms or custom web applications may take 8-12 weeks. We provide detailed project timelines during consultation and maintain regular communication throughout the development process.",
     },
     {
-      q: "Can you help migrate our legacy applications to modern Next.js structures?",
-      a: "Yes! We specialize in modernizing outdated architectures. Migrating platforms to Next.js ensures outstanding SEO indexing, lightning-fast PageSpeed load scores, robust security boundaries, and premium, smooth user experiences.",
+      q: "What industries does Ananya Hi Solutions specialize in serving?",
+      a: "We have extensive experience serving diverse industries including e-commerce, healthcare, education, real estate, manufacturing, finance, technology startups, hospitality, and professional services. Our adaptable approach allows us to understand unique industry challenges and deliver tailored solutions that drive results in any sector.",
     },
   ];
 
@@ -325,7 +325,7 @@ export default function Home() {
   return (
     <div className="flex flex-col min-h-screen">
       {/* 1. Header & Navigation Bar */}
-      <header className={`navbar ${isScrolled ? "scrolled" : "glass"}`}>
+      <header className={`navbar ${isScrolled ? "scrolled" : ""}`}>
         <div className="navbar-container">
           <a href="#home" className="flex items-center">
             <Logo />

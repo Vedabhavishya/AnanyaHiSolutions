@@ -200,16 +200,17 @@ button {
   right: 0;
   z-index: 1000;
   padding: 16px 5%;
+  background: var(--white);
+  box-shadow: var(--shadow-sm);
+  border-bottom: 1px solid rgba(15, 117, 188, 0.08);
   transition: var(--transition-normal);
 }
 
 .navbar.scrolled {
   padding: 10px 5%;
-  background: rgba(255, 255, 255, 0.85);
-  backdrop-filter: blur(15px);
-  -webkit-backdrop-filter: blur(15px);
+  background: var(--white);
   box-shadow: var(--shadow-md);
-  border-bottom: 1px solid rgba(15, 117, 188, 0.05);
+  border-bottom: 1px solid rgba(15, 117, 188, 0.08);
 }
 
 .navbar-container {

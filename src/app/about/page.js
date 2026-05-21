@@ -141,11 +141,125 @@ export default function AboutPage() {
         <div className="container">
           <div className="about-story-grid">
             <div className="about-story-visual">
-              <img
-                src="/about-collaboration.png"
-                alt="Stylized business professionals collaborating"
-                className="about-story-image"
-              />
+              <div 
+                className="corporate-animation-canvas"
+                title="Click to replay animation"
+                onClick={() => {
+                  const el = document.getElementById("corpAnimGroup");
+                  if (el) {
+                    el.style.animation = 'none';
+                    el.offsetHeight; /* trigger reflow */
+                    el.style.animation = null;
+                  }
+                  const lines = document.querySelectorAll(".animate-chart-line, .animate-bar");
+                  lines.forEach(line => {
+                    const origAnim = line.style.animation;
+                    line.style.animation = 'none';
+                    line.offsetHeight;
+                    line.style.animation = null;
+                  });
+                }}
+              >
+                {/* SVG canvas representing corporate collaboration */}
+                <svg width="100%" height="100%" viewBox="0 0 520 400" xmlns="http://www.w3.org/2000/svg">
+                  {/* Subtle office background grid */}
+                  <g className="corporate-grid-bg">
+                    <line x1="40" y1="0" x2="40" y2="400" />
+                    <line x1="120" y1="0" x2="120" y2="400" />
+                    <line x1="200" y1="0" x2="200" y2="400" />
+                    <line x1="280" y1="0" x2="280" y2="400" />
+                    <line x1="360" y1="0" x2="360" y2="400" />
+                    <line x1="440" y1="0" x2="440" y2="400" />
+                    
+                    <line x1="0" y1="60" x2="520" y2="60" />
+                    <line x1="0" y1="140" x2="520" y2="140" />
+                    <line x1="0" y1="220" x2="520" y2="220" />
+                    <line x1="0" y1="300" x2="520" y2="300" />
+                  </g>
+
+                  {/* Wrapper group rising from the bottom */}
+                  <g id="corpAnimGroup" className="animate-office-rise">
+                    
+                    {/* Desk Surface (Solid Crimson Red Accent) */}
+                    <rect x="30" y="320" width="460" height="12" rx="4" fill="#a81a2f" />
+                    
+                    {/* Laptop on the Desk (User 1 side) */}
+                    <path d="M 60,320 L 150,320 L 160,314 L 50,314 Z" fill="#2d2d2d" />
+                    <rect x="70" y="260" width="70" height="50" rx="3" fill="#1e1e1e" />
+                    {/* Glowing screen representing design and code */}
+                    <rect x="74" y="264" width="62" height="42" fill="#fee2e2" className="animate-glow" />
+                    {/* Lines of code on screen */}
+                    <line x1="80" y1="270" x2="110" y2="270" stroke="#a81a2f" strokeWidth="2" />
+                    <line x1="80" y1="276" x2="120" y2="276" stroke="#2d2d2d" strokeWidth="2" />
+                    <line x1="80" y1="282" x2="95" y2="282" stroke="#a81a2f" strokeWidth="2" />
+                    <line x1="80" y1="288" x2="105" y2="288" stroke="#2d2d2d" strokeWidth="2" strokeLinecap="round" />
+
+                    {/* Desk Divider/Board (User 2 Side / Analytics) */}
+                    <rect x="250" y="160" width="220" height="140" rx="6" fill="#f8fafc" stroke="#e2e8f0" strokeWidth="2" />
+                    
+                    {/* Bar Charts (Crimson Red & Charcoal Black) */}
+                    <rect x="280" y="220" width="18" height="60" rx="2" fill="#2d2d2d" className="animate-bar" style={{ transformOrigin: '0px 280px' }} />
+                    <rect x="310" y="190" width="18" height="90" rx="2" fill="#a81a2f" className="animate-bar" style={{ transformOrigin: '0px 280px' }} />
+                    <rect x="340" y="240" width="18" height="40" rx="2" fill="#2d2d2d" className="animate-bar" style={{ transformOrigin: '0px 280px' }} />
+                    
+                    {/* Analytics Line chart representing growth */}
+                    <path 
+                      d="M 280,210 Q 320,150 370,180 T 450,110" 
+                      fill="none" 
+                      stroke="#a81a2f" 
+                      strokeWidth="3.5" 
+                      strokeLinecap="round"
+                      className="animate-chart-line"
+                    />
+                    
+                    {/* Hotspot pulses on the line chart (Red ring) */}
+                    <circle cx="370" cy="180" r="4" fill="#a81a2f" />
+                    <circle cx="370" cy="180" r="4" fill="none" stroke="#a81a2f" strokeWidth="1.5" className="animate-ring" />
+
+                    <circle cx="450" cy="110" r="4" fill="#a81a2f" />
+                    <circle cx="450" cy="110" r="4" fill="none" stroke="#a81a2f" strokeWidth="1.5" className="animate-ring" />
+
+                    {/* Character 1 (Typing on Left - Animate Nodding) */}
+                    <g className="animate-char-nod">
+                      {/* Body */}
+                      <path d="M 60,370 C 60,330 90,300 120,300 C 150,300 180,330 180,370 Z" fill="#2d2d2d" />
+                      {/* Crimson Red Collar */}
+                      <path d="M 105,300 L 120,312 L 135,300 Z" fill="#a81a2f" />
+                      {/* Head */}
+                      <circle cx="120" cy="255" r="22" fill="#ffffff" stroke="#2d2d2d" strokeWidth="3" />
+                      {/* Hair/Glasses */}
+                      <path d="M 98,250 C 98,230 142,230 142,250" fill="none" stroke="#2d2d2d" strokeWidth="4" strokeLinecap="round" />
+                      <rect x="105" y="248" width="12" height="10" rx="2" fill="none" stroke="#2d2d2d" strokeWidth="2" />
+                      <rect x="123" y="248" width="12" height="10" rx="2" fill="none" stroke="#2d2d2d" strokeWidth="2" />
+                      <line x1="117" y1="253" x2="123" y2="253" stroke="#2d2d2d" strokeWidth="2" />
+                    </g>
+
+                    {/* Character 2 (Reviewing data on Right - Animate Gesturing) */}
+                    <g className="animate-char-gesture">
+                      {/* Body */}
+                      <path d="M 340,370 C 340,330 370,300 400,300 C 430,300 460,330 460,370 Z" fill="#2d2d2d" />
+                      {/* Crimson Red Shirt detail */}
+                      <path d="M 390,300 L 400,315 L 410,300 Z" fill="#a81a2f" />
+                      {/* Head */}
+                      <circle cx="400" cy="255" r="22" fill="#ffffff" stroke="#2d2d2d" strokeWidth="3" />
+                      {/* Hair / stylized look */}
+                      <path d="M 378,252 C 378,230 422,230 422,252" fill="none" stroke="#a81a2f" strokeWidth="4" strokeLinecap="round" />
+                      <circle cx="392" cy="254" r="2.5" fill="#2d2d2d" />
+                      <circle cx="408" cy="254" r="2.5" fill="#2d2d2d" />
+                    </g>
+                    
+                    {/* Connecting digital wave cable (Charcoal/Red link) */}
+                    <path 
+                      d="M 142,280 C 200,240 220,310 278,260" 
+                      fill="none" 
+                      stroke="#a81a2f" 
+                      strokeWidth="2.5" 
+                      strokeLinecap="round" 
+                      strokeDasharray="4 4"
+                    />
+                  </g>
+                </svg>
+              </div>
             </div>
 
             <div className="about-story-text">

@@ -195,16 +195,16 @@ export default function Home() {
 
   // Tools State
   const tools = [
-    { name: "Google Analytics", color: "#f9ab00", desc: "User Traffic Auditing", logo: "/tools/google-analytics.png" },
-    { name: "Google Search Console", color: "#4285f4", desc: "SEO Indexing Control", logo: "/tools/google-search-console.png" },
-    { name: "Google Ads", color: "#1a73e8", desc: "Targeted Paid Traffic", logo: "/tools/google-ads.png" },
-    { name: "Bing Webmaster", color: "#008060", desc: "Search Engine Presence", logo: "/tools/bing-webmaster.png" },
-    { name: "Facebook Ads", color: "#1877f2", desc: "Social Media Campaigns", logo: "/tools/facebook-ads.png" },
-    { name: "SE Ranking", color: "#2e72f6", desc: "Rank Tracking & Audits", logo: "/tools/se-ranking.png" },
-    { name: "Canva", color: "#00c4cc", desc: "Branded Creative Graphics", logo: "/tools/canva.png" },
-    { name: "Hootsuite", color: "#000000", desc: "Social Scheduler Panel", logo: "/tools/hootsuite.png" },
-    { name: "Grammarly", color: "#11a683", desc: "Flawless Copywriting Checks", logo: "/tools/grammarly.png" },
-    { name: "Moz", color: "#00b4e5", desc: "Domain Authority & SEO", logo: "/tools/moz.png" },
+    { name: "Google Analytics", logo: "/tools/google-analytics.svg", desc: "User Traffic Auditing" },
+    { name: "Google Search Console", logo: "/tools/google-search-console.svg", desc: "SEO Indexing Control" },
+    { name: "Google Ads", logo: "/tools/google-ads.svg", desc: "Targeted Paid Traffic" },
+    { name: "Bing Webmaster", logo: "/tools/bing-webmaster.svg", desc: "Search Engine Presence" },
+    { name: "Facebook Ads", logo: "/tools/facebook-ads.svg", desc: "Social Media Campaigns" },
+    { name: "SE Ranking", logo: "/tools/se-ranking.svg", desc: "Rank Tracking & Audits" },
+    { name: "Canva", logo: "/tools/canva.svg", desc: "Branded Creative Graphics" },
+    { name: "Hootsuite", logo: "/tools/hootsuite.svg", desc: "Social Scheduler Panel" },
+    { name: "Grammarly", logo: "/tools/grammarly.svg", desc: "Flawless Copywriting Checks" },
+    { name: "Moz", logo: "/tools/moz.svg", desc: "Domain Authority & SEO" },
   ];
 
   // Reviews State
@@ -493,18 +493,14 @@ export default function Home() {
       <section id="tools" className="section section-bg-alt">
         <div className="container">
           <div className="section-header">
-            <h2>Tools We Use</h2>
-            <p>We leverage industry-leading software and platforms to deliver high performance, precise analytics, and beautiful design.</p>
+            <h2>Core Technology Stack</h2>
+            <p>We leverage industry-leading tools to provide robust tracking, high designs, and superior execution speeds.</p>
           </div>
 
           <div className="tools-grid">
             {tools.map((tool, idx) => (
               <div key={idx} className="tool-card" title={`${tool.name} - ${tool.desc}`}>
-                <img
-                  src={tool.logo}
-                  alt={tool.name}
-                  className="tool-logo-img"
-                />
+                <img src={tool.logo} alt={tool.name} className="tool-logo-img" />
               </div>
             ))}
           </div>
@@ -582,111 +578,39 @@ export default function Home() {
       <section id="worldwide" className="worldwide-section">
         <div className="container">
           <div className="section-header">
-            <h2>735+ Projects Delivered Worldwide</h2>
-            <p>Providing cutting-edge digital agency support across multiple continents from our tech hubs.</p>
+            <h2>Project delivere worldwide</h2>
+            <p>Delivering high-performance digital solutions globally from our headquarters in Hyderabad.</p>
           </div>
 
-          <div className="map-container">
-            {/* Detailed responsive SVG World Map matching Image 4 */}
-            <svg className="map-svg" viewBox="0 0 1000 500" xmlns="http://www.w3.org/2000/svg">
-              {/* Simplified world outlines using dotted circles */}
-              <circle cx="200" cy="150" r="4" fill="#d1d5db" />
-              <circle cx="210" cy="160" r="4" fill="#d1d5db" />
-              <circle cx="220" cy="140" r="4" fill="#d1d5db" />
-              <circle cx="230" cy="170" r="4" fill="#d1d5db" />
-              <circle cx="240" cy="180" r="4" fill="#d1d5db" />
-              <circle cx="190" cy="130" r="4" fill="#d1d5db" />
-              <circle cx="180" cy="145" r="4" fill="#d1d5db" />
-              
-              {/* North America area dots */}
-              <g fill="#e2e8f0" opacity="0.9">
-                <circle cx="100" cy="120" r="3" /> <circle cx="120" cy="110" r="3" /> <circle cx="140" cy="130" r="3" />
-                <circle cx="110" cy="150" r="3" /> <circle cx="130" cy="160" r="3" /> <circle cx="150" cy="140" r="3" />
-                <circle cx="160" cy="170" r="3" /> <circle cx="180" cy="190" r="3" /> <circle cx="170" cy="180" r="3" />
-              </g>
-              
-              {/* South America area dots */}
-              <g fill="#e2e8f0" opacity="0.9">
-                <circle cx="280" cy="320" r="3" /> <circle cx="290" cy="340" r="3" /> <circle cx="310" cy="380" r="3" />
-                <circle cx="320" cy="400" r="3" /> <circle cx="330" cy="420" r="3" /> <circle cx="300" cy="360" r="3" />
-              </g>
+          <div className="map-container" style={{ position: 'relative' }}>
+            <img 
+              src="/world-map.svg?v=3" 
+              alt="World Map" 
+              className="map-svg" 
+              style={{ width: '100%', height: 'auto', display: 'block', opacity: 1 }} 
+            />
 
-              {/* Europe & Africa area dots */}
-              <g fill="#e2e8f0" opacity="0.9">
-                <circle cx="480" cy="120" r="3" /> <circle cx="500" cy="110" r="3" /> <circle cx="520" cy="130" r="3" />
-                <circle cx="510" cy="150" r="3" /> <circle cx="490" cy="140" r="3" /> <circle cx="470" cy="160" r="3" />
-                <circle cx="500" cy="220" r="3" /> <circle cx="510" cy="250" r="3" /> <circle cx="520" cy="280" r="3" />
-                <circle cx="530" cy="320" r="3" /> <circle cx="540" cy="360" r="3" /> <circle cx="550" cy="380" r="3" />
-              </g>
-
-              {/* Asia & Australia area dots */}
-              <g fill="#e2e8f0" opacity="0.9">
-                <circle cx="650" cy="120" r="3" /> <circle cx="670" cy="140" r="3" /> <circle cx="690" cy="130" r="3" />
-                <circle cx="710" cy="150" r="3" /> <circle cx="730" cy="160" r="3" /> <circle cx="700" cy="170" r="3" />
-                <circle cx="760" cy="220" r="3" /> <circle cx="780" cy="250" r="3" /> <circle cx="800" cy="280" r="3" />
-                <circle cx="820" cy="360" r="3" /> <circle cx="840" cy="380" r="3" /> <circle cx="850" cy="400" r="3" />
-              </g>
-
-              {/* Dotted outlines representation grid */}
-              <path d="M50 250 L950 250" stroke="#f1f5f9" strokeWidth="1" strokeDasharray="5 5" />
-              <path d="M500 50 L500 450" stroke="#f1f5f9" strokeWidth="1" strokeDasharray="5 5" />
-
-              {/* Pulsing connection curves from Hyderabad to active clients globally */}
-              {/* Hyderabad: cx="675", cy="210" */}
-              {/* San Francisco: cx="150", cy="140" */}
-              <path className="map-connection-line" d="M 675,210 Q 400,80 150,140" />
-              {/* Sydney: cx="840", cy="380" */}
-              <path className="map-connection-line" d="M 675,210 Q 770,280 840,380" />
-              {/* London: cx="500", cy="110" */}
-              <path className="map-connection-line" d="M 675,210 Q 580,120 500,110" />
-              {/* Dubai: cx="585", cy="190" */}
-              <path className="map-connection-line" d="M 675,210 Q 630,180 585,190" />
-              {/* Singapore: cx="730", cy="260" */}
-              <path className="map-connection-line" d="M 675,210 Q 700,240 730,260" />
-              {/* Cape Town: cx="540", cy="360" */}
-              <path className="map-connection-line" d="M 675,210 Q 590,300 540,360" />
-              {/* New York: cx="180", cy="190" */}
-              <path className="map-connection-line" d="M 675,210 Q 420,130 180,190" />
-
-              {/* Pulsing Client hotspots */}
-              <g className="map-pin" transform="translate(150, 140)">
-                <circle cx="0" cy="0" r="15" className="map-pin-pulse" />
-                <circle cx="0" cy="0" r="5" className="map-pin-core" />
-              </g>
-              <g className="map-pin" transform="translate(840, 380)">
-                <circle cx="0" cy="0" r="15" className="map-pin-pulse" />
-                <circle cx="0" cy="0" r="5" className="map-pin-core" />
-              </g>
-              <g className="map-pin" transform="translate(500, 110)">
-                <circle cx="0" cy="0" r="15" className="map-pin-pulse" />
-                <circle cx="0" cy="0" r="5" className="map-pin-core" />
-              </g>
-              <g className="map-pin" transform="translate(585, 190)">
-                <circle cx="0" cy="0" r="15" className="map-pin-pulse" />
-                <circle cx="0" cy="0" r="5" className="map-pin-core" />
-              </g>
-              <g className="map-pin" transform="translate(730, 260)">
-                <circle cx="0" cy="0" r="15" className="map-pin-pulse" />
-                <circle cx="0" cy="0" r="5" className="map-pin-core" />
-              </g>
-              <g className="map-pin" transform="translate(540, 360)">
-                <circle cx="0" cy="0" r="15" className="map-pin-pulse" />
-                <circle cx="0" cy="0" r="5" className="map-pin-core" />
-              </g>
-              <g className="map-pin" transform="translate(180, 190)">
-                <circle cx="0" cy="0" r="15" className="map-pin-pulse" />
-                <circle cx="0" cy="0" r="5" className="map-pin-core" />
-              </g>
-
-              {/* Headquarters Node - Hyderabad (Pulsing tech blue glow) */}
-              <g className="map-pin" transform="translate(675, 210)">
+            {/* Headquarters Node - Hyderabad (Pulsing tech blue glow) */}
+            <div 
+              className="map-pin" 
+              style={{ 
+                position: 'absolute', 
+                left: '73.24%', 
+                top: '53.07%', 
+                transform: 'translate(-50%, -50%)',
+                zIndex: 10
+              }}
+            >
+              <svg width="60" height="60" viewBox="-30 -30 60 60" style={{ overflow: 'visible', display: 'block' }} xmlns="http://www.w3.org/2000/svg">
                 <circle cx="0" cy="0" r="25" className="map-pin-pulse-blue" />
                 <circle cx="0" cy="0" r="8" className="map-pin-core-blue" />
                 {/* Visual Label */}
-                <rect x="12" y="-12" width="105" height="24" rx="4" fill="var(--dark-deep)" opacity="0.9" />
-                <text x="18" y="4" fill="#ffffff" fontFamily="var(--font-sans)" fontWeight="700" fontSize="10">HEADQUARTERS</text>
-              </g>
-            </svg>
+                <g transform="translate(12, -12)">
+                  <rect x="0" y="0" width="82" height="24" rx="4" fill="var(--dark-deep)" opacity="0.9" />
+                  <text x="6" y="16" fill="#ffffff" fontFamily="var(--font-sans)" fontWeight="700" fontSize="10">HYDERABAD</text>
+                </g>
+              </svg>
+            </div>
           </div>
         </div>
       </section>

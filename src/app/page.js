@@ -1,0 +1,936 @@
+"use client";
+
+import React, { useState, useEffect, useRef } from "react";
+
+// Crisp Inline SVG Logo Component
+function Logo({ className = "", light = false }) {
+  return (
+    <svg
+      className={`nav-logo-svg ${className}`}
+      width="190"
+      height="50"
+      viewBox="0 0 190 50"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <text
+        x="0"
+        y="30"
+        fontFamily="var(--font-headings)"
+        fontWeight="800"
+        fontSize="24"
+        fill={light ? "#ffffff" : "#0f75bc"}
+      >
+        Ananya
+      </text>
+      <text
+        x="88"
+        y="30"
+        fontFamily="var(--font-headings)"
+        fontWeight="800"
+        fontSize="24"
+        fill={light ? "#9ab4c4" : "#64849c"}
+      >
+        Hi
+      </text>
+      <text
+        x="42"
+        y="45"
+        fontFamily="var(--font-sans)"
+        fontWeight="500"
+        fontSize="12"
+        letterSpacing="1"
+        fill={light ? "#f58220" : "#0f75bc"}
+      >
+        solutions
+      </text>
+      {/* Two ascending modern arrows pointing up-right representing solutions & progress */}
+      <path
+        d="M135 15 L145 15 L145 25 M145 15 L132 28"
+        stroke={light ? "#ffffff" : "#0f75bc"}
+        strokeWidth="2.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M142 8 L152 8 L152 18 M152 8 L139 21"
+        stroke={light ? "#f58220" : "#f58220"}
+        strokeWidth="2.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
+export default function Home() {
+  // Navigation & Scroll State
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  // Hero Carousel State
+  const [activeSlide, setActiveSlide] = useState(0);
+  const carouselSlides = [
+    {
+      title: "We Elevate Your <span>Digital Presence</span>",
+      desc: "Empowering businesses through cutting-edge web design, software solutions, and result-oriented digital marketing strategies that guarantee measurable success.",
+      bg: "linear-gradient(135deg, rgba(5, 46, 71, 0.95) 0%, rgba(15, 117, 188, 0.6) 100%)",
+      btn1: "Explore Services",
+      btn2: "Choose Package",
+    },
+    {
+      title: "Crafting High-Performance <span>Mobile Apps</span>",
+      desc: "Stunning, scalable, and intuitive mobile solutions tailored for iOS and Android platforms to keep your customers engaged and ahead of competitors.",
+      bg: "linear-gradient(135deg, rgba(5, 46, 71, 0.95) 0%, rgba(100, 132, 156, 0.7) 100%)",
+      btn1: "Get a Quote",
+      btn2: "View Portfolio",
+    },
+    {
+      title: "Scale Your Sales with <span>eCommerce</span>",
+      desc: "Turn your retail business into a global digital powerhouse with robust shopping carts, high conversion optimizations, and seamless checkout pipelines.",
+      bg: "linear-gradient(135deg, rgba(7, 60, 90, 0.95) 0%, rgba(245, 130, 32, 0.5) 100%)",
+      btn1: "Start Selling",
+      btn2: "Learn More",
+    },
+    {
+      title: "Next-Gen <span>Software Solutions</span>",
+      desc: "Enterprise-grade custom software architectures engineered with modern frameworks to streamline your operations and maximize productivity.",
+      bg: "linear-gradient(135deg, rgba(5, 46, 71, 0.95) 0%, rgba(15, 117, 188, 0.7) 100%)",
+      btn1: "Consult Experts",
+      btn2: "Tech Stack",
+    },
+    {
+      title: "Dominate Search with <span>Digital Marketing</span>",
+      desc: "Result-driven SEO, Google Ads, and high-impact social media campaigns meticulously tuned to supercharge your ROI and online authority.",
+      bg: "linear-gradient(135deg, rgba(7, 60, 90, 0.95) 0%, rgba(245, 130, 32, 0.65) 100%)",
+      btn1: "Boost Rankings",
+      btn2: "Contact Us",
+    },
+  ];
+
+  // Auto scroll carousel
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setActiveSlide((prev) => (prev + 1) % carouselSlides.length);
+    }, 6000);
+    return () => clearInterval(timer);
+  }, [carouselSlides.length]);
+
+  // Handle scroll event for Header
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 50) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  // Services State
+  const services = [
+    {
+      id: "web-design",
+      title: "Web Design",
+      desc: "Stunning, fully responsive, and highly interactive user interfaces crafted to capture your brand essence and convert visitors into loyal customers.",
+      icon: (
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <rect x="2" y="3" width="20" height="14" rx="2" ry="2" />
+          <line x1="8" y1="21" x2="16" y2="21" />
+          <line x1="12" y1="17" x2="12" y2="21" />
+        </svg>
+      ),
+    },
+    {
+      id: "digital-marketing",
+      title: "Digital Marketing",
+      desc: "Meticulous SEO growth hacking, social media marketing, PPC Google Ads management, and high-converting funnel optimizations designed to multiply revenue.",
+      icon: (
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M23 6l-9.5 9.5-5-5L1 18" />
+          <path d="M17 6h6v6" />
+        </svg>
+      ),
+    },
+    {
+      id: "mobile-app",
+      title: "Mobile Application",
+      desc: "Premium native and cross-platform (Flutter/React Native) mobile apps that deliver fluid performances, outstanding designs, and smooth navigation.",
+      icon: (
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <rect x="5" y="2" width="14" height="20" rx="2" ry="2" />
+          <line x1="12" y1="18" x2="12.01" y2="18" />
+        </svg>
+      ),
+    },
+    {
+      id: "ecommerce-app",
+      title: "eCommerce Application",
+      desc: "Secure, high-traffic multi-vendor storefronts optimized for blazing-fast performance, inventory control, and seamless checkout integrations.",
+      icon: (
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <circle cx="9" cy="21" r="1" />
+          <circle cx="20" cy="21" r="1" />
+          <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6" />
+        </svg>
+      ),
+    },
+    {
+      id: "video-production",
+      title: "Video Production",
+      desc: "Breathtaking visual storytelling, cinematic company promotions, viral commercial spots, and explanatory 3D animation packages.",
+      icon: (
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <polygon points="23 7 16 12 23 17 23 7" />
+          <rect x="1" y="5" width="15" height="14" rx="2" ry="2" />
+        </svg>
+      ),
+    },
+    {
+      id: "software-dev",
+      title: "Software Development",
+      desc: "Highly robust customized enterprise resource planners (ERPs), customer managers (CRMs), API layers, and intelligent backend automations.",
+      icon: (
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <polyline points="16 18 22 12 16 6" />
+          <polyline points="8 6 2 12 8 18" />
+          <line x1="12" y1="4" x2="12" y2="20" />
+        </svg>
+      ),
+    },
+  ];
+
+  // Digital Marketing Process State
+  const [activeStep, setActiveStep] = useState(0);
+  const processSteps = [
+    {
+      num: 1,
+      title: "Analyze Business Landscape",
+      detail: "We conduct exhaustive marketplace audits, keyword research, and competitor benchmark evaluations to establish a firm, data-driven foundation.",
+      icon: "🔍",
+    },
+    {
+      num: 2,
+      title: "Build Smart Strategies",
+      detail: "Our team drafts a custom marketing blueprint, allocating budgets, highlighting priority channels, and setting concrete KPIs for ROI growth.",
+      icon: "📋",
+    },
+    {
+      num: 3,
+      title: "Create Compelling Content",
+      detail: "Our creative designers and copywriting masters produce jaw-dropping visual assets, high-engagement videos, and persuasive marketing copy.",
+      icon: "✍️",
+    },
+    {
+      num: 4,
+      title: "Derive Meaningful Insights",
+      detail: "We continuously monitor traffic funnels, conduct dynamic A/B test variations, and inspect heatmaps to extract concrete user behavioral insights.",
+      icon: "📊",
+    },
+    {
+      num: 5,
+      title: "Enrich Customer Experiences",
+      detail: "Through smart retargeting, personalization flows, and post-purchase follow-ups, we turn standard visitors into lifelong brand evangelists.",
+      icon: "🤝",
+    },
+  ];
+
+  // Tools State
+  const tools = [
+    { name: "Google Analytics", color: "#f9ab00", desc: "User Traffic Auditing" },
+    { name: "Google Search Console", color: "#4285f4", desc: "SEO Indexing Control" },
+    { name: "Google Ads", color: "#1a73e8", desc: "Targeted Paid Traffic" },
+    { name: "Bing Webmaster", color: "#008060", desc: "Search Engine Presence" },
+    { name: "Facebook Ads", color: "#1877f2", desc: "Social Media Campaigns" },
+    { name: "SE Ranking", color: "#2e72f6", desc: "Rank Tracking & Audits" },
+    { name: "Canva", color: "#00c4cc", desc: "Branded Creative Graphics" },
+    { name: "Hootsuite", color: "#000000", desc: "Social Scheduler Panel" },
+    { name: "Grammarly", color: "#11a683", desc: "Flawless Copywriting Checks" },
+    { name: "Moz", color: "#00b4e5", desc: "Domain Authority & SEO" },
+  ];
+
+  // Reviews State
+  const reviews = [
+    {
+      name: "Rajesh Kumar",
+      role: "Founder, TechVibe Solutions",
+      stars: 5,
+      text: "Ananya Hi Solutions completely transformed our legacy platform. Their web design is outstanding, sleek, and loading speeds have drastically improved, which immediately raised our conversion rates by 42%!",
+      initials: "RK",
+    },
+    {
+      name: "Sarah D'Souza",
+      role: "Global Marketing Director, Elevate Retail",
+      stars: 5,
+      text: "The search rankings speak for themselves. Their digital marketing gurus boosted our organic visibility by 150% in under three months! A highly communicative and reliable partner.",
+      initials: "SD",
+    },
+    {
+      name: "Vignesh Rao",
+      role: "CTO, QuickCart Logistics",
+      stars: 5,
+      text: "Their mobile app development is pure art. They created a highly responsive shopping interface using Next.js APIs that our clients absolutely love. Extremely clean code structures.",
+      initials: "VR",
+    },
+    {
+      name: "Priyanka Sharma",
+      role: "Brand Director, MedLife Systems",
+      stars: 5,
+      text: "From complete UI/UX wireframing to custom software integration, the crew at Ananya Hi Solutions proved to be technical giants. Highly professional, responsive, and creative.",
+      initials: "PS",
+    },
+  ];
+
+  // FAQ State
+  const [activeFaq, setActiveFaq] = useState(0);
+  const faqs = [
+    {
+      q: "What digital services does Ananya Hi Solutions specialize in?",
+      a: "We specialize in end-to-end digital transformation packages, including high-performance Web Design (using frameworks like Next.js), result-driven Digital Marketing (SEO, Google Ads, SMM), native and cross-platform Mobile Applications, secure eCommerce Solutions, professional Video Production, and robust customized Software Development.",
+    },
+    {
+      q: "How long does it typically take to deploy a custom business website?",
+      a: "Depending entirely on the functional requirements, complexity of features, and review cycles, a professional custom website can take between 2 to 6 weeks. We use an agile development process, allowing you to track visual progress at each step.",
+    },
+    {
+      q: "Do you offer post-launch maintenance, hosting, and support?",
+      a: "Absolutely! We provide comprehensive monthly support, server maintenance, core updates, search ranking tracking, security updates, and performance tuning packages to ensure your platform runs flawlessly around the clock.",
+    },
+    {
+      q: "How do you measure and report the performance of digital marketing campaigns?",
+      a: "We believe in total transparency. We integrate tracking suites (Google Analytics, Search Console, etc.) and deliver robust, simplified monthly analytical dashboards showing organic impressions, click-through rates, active leads, and overall marketing ROI.",
+    },
+    {
+      q: "Can you help migrate our legacy applications to modern Next.js structures?",
+      a: "Yes! We specialize in modernizing outdated architectures. Migrating platforms to Next.js ensures outstanding SEO indexing, lightning-fast PageSpeed load scores, robust security boundaries, and premium, smooth user experiences.",
+    },
+  ];
+
+  // Chat Widget State
+  const [chatOpen, setChatOpen] = useState(false);
+  const [chatMessage, setChatMessage] = useState("");
+  const [chatHistory, setChatHistory] = useState([
+    { sender: "bot", text: "Hello! Welcome to Ananya Hi Solutions. I am Ananya, your digital assistant. How can I help you grow your business today?" },
+  ]);
+  const messagesEndRef = useRef(null);
+
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
+
+  useEffect(() => {
+    scrollToBottom();
+  }, [chatHistory, chatOpen]);
+
+  const handleSendChat = (e) => {
+    e.preventDefault();
+    if (!chatMessage.trim()) return;
+
+    const userMsg = chatMessage;
+    setChatHistory((prev) => [...prev, { sender: "user", text: userMsg }]);
+    setChatMessage("");
+
+    // Simulate intelligent helper responses
+    setTimeout(() => {
+      let reply = "Thank you for reaching out! I've logged your request. Our digital consultants will contact you at info@ananyahisolutions.com shortly, or you can ring us at (+91) 76739-35353.";
+      
+      const lower = userMsg.toLowerCase();
+      if (lower.includes("price") || lower.includes("cost") || lower.includes("package") || lower.includes("quote")) {
+        reply = "We offer tailor-made pricing! Our basic web design packages start from very competitive rates, and customized software packages depend on features. Please drop your email or WhatsApp number and I will have a custom quote dispatched to you instantly!";
+      } else if (lower.includes("service") || lower.includes("web") || lower.includes("marketing") || lower.includes("app")) {
+        reply = "We specialize in Web Design, Digital Marketing, Mobile Apps, eCommerce solutions, Software Development, and Video Production. Which specific solution are you looking to implement first?";
+      } else if (lower.includes("job") || lower.includes("career") || lower.includes("hire") || lower.includes("work")) {
+        reply = "We are always on the hunt for passionate developers, SEO wizards, and content creators! Please email your updated CV to info@ananyahisolutions.com and our HR team will review it.";
+      } else if (lower.includes("hello") || lower.includes("hi") || lower.includes("hey")) {
+        reply = "Hi there! I am thrilled to assist you. Tell me, are we looking to develop a beautiful website, optimize your SEO, or build custom software?";
+      }
+
+      setChatHistory((prev) => [...prev, { sender: "bot", text: reply }]);
+    }, 1000);
+  };
+
+  const handleSuggestionClick = (text) => {
+    setChatHistory((prev) => [...prev, { sender: "user", text: text }]);
+    setTimeout(() => {
+      let reply = "";
+      if (text.includes("Web Design")) {
+        reply = "Our web designs are engineered with Next.js for maximum performance, premium visual aesthetics, responsive views, and seamless search engine crawling. Would you like a free UI audit of your current site?";
+      } else if (text.includes("Marketing")) {
+        reply = "Our Digital Marketing covers Google Search, social media retargeting, and full-funnel content design. We focus purely on conversion rates and ROI. Do you have a monthly budget in mind?";
+      } else if (text.includes("Contact info")) {
+        reply = "You can visit our headquarters at: 401 Sravya Vatika, Greenlands, Begumpet, Hyderabad, Telangana-500016. Alternatively, call us at (+91) 76739-35353 or email info@ananyahisolutions.com.";
+      }
+      setChatHistory((prev) => [...prev, { sender: "bot", text: reply }]);
+    }, 1000);
+  };
+
+  return (
+    <div className="flex flex-col min-h-screen">
+      {/* 1. Header & Navigation Bar */}
+      <header className={`navbar ${isScrolled ? "scrolled" : "glass"}`}>
+        <div className="navbar-container">
+          <a href="#home" className="flex items-center">
+            <Logo />
+          </a>
+
+          {/* Desktop Nav Links */}
+          <ul className="nav-links">
+            <li><a href="#home" className="nav-link active">Home</a></li>
+            <li><a href="#about" className="nav-link">About</a></li>
+            <li><a href="#services" className="nav-link">Services</a></li>
+            <li><a href="#careers" className="nav-link">Careers</a></li>
+            <li><a href="#blog" className="nav-link">Blog</a></li>
+            <li><a href="#contact" className="nav-link">Contact us</a></li>
+          </ul>
+
+          <div className="nav-cta">
+            <a href="#pricing" className="btn btn-primary">Choose Package</a>
+          </div>
+
+          {/* Mobile Menu Icon Toggle */}
+          <button
+            className="mobile-menu-btn"
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            aria-label="Toggle menu"
+          >
+            {mobileMenuOpen ? "✕" : "☰"}
+          </button>
+        </div>
+
+        {/* Mobile Menu Overlay */}
+        {mobileMenuOpen && (
+          <div className="fixed inset-0 top-[70px] bg-white z-[999] flex flex-col p-6 gap-6 shadow-lg md:hidden animate-slide-in">
+            <a href="#home" onClick={() => setMobileMenuOpen(false)} className="text-xl font-bold border-b pb-2">Home</a>
+            <a href="#about" onClick={() => setMobileMenuOpen(false)} className="text-xl font-bold border-b pb-2">About</a>
+            <a href="#services" onClick={() => setMobileMenuOpen(false)} className="text-xl font-bold border-b pb-2">Services</a>
+            <a href="#careers" onClick={() => setMobileMenuOpen(false)} className="text-xl font-bold border-b pb-2">Careers</a>
+            <a href="#blog" onClick={() => setMobileMenuOpen(false)} className="text-xl font-bold border-b pb-2">Blog</a>
+            <a href="#contact" onClick={() => setMobileMenuOpen(false)} className="text-xl font-bold border-b pb-2">Contact us</a>
+            <a href="#pricing" onClick={() => setMobileMenuOpen(false)} className="btn btn-accent text-center mt-4">Choose Package</a>
+          </div>
+        )}
+      </header>
+
+      {/* 2. Hero Carousel Banners */}
+      <section id="home" className="hero-carousel">
+        {carouselSlides.map((slide, index) => (
+          <div
+            key={index}
+            className={`carousel-slide ${index === activeSlide ? "active" : ""}`}
+            style={{ background: slide.bg }}
+          >
+            <div className="carousel-overlay"></div>
+            <div className="carousel-content">
+              <h1
+                className="carousel-title"
+                dangerouslySetInnerHTML={{ __html: slide.title }}
+              />
+              <p className="carousel-desc">{slide.desc}</p>
+              <div className="carousel-buttons">
+                <a href="#services" className="btn btn-accent">{slide.btn1}</a>
+                <a href="#pricing" className="btn btn-outline" style={{ color: "#fff", borderColor: "#fff" }}>{slide.btn2}</a>
+              </div>
+            </div>
+          </div>
+        ))}
+
+        {/* Controls */}
+        <button
+          className="carousel-nav-btn carousel-prev"
+          onClick={() => setActiveSlide((prev) => (prev === 0 ? carouselSlides.length - 1 : prev - 1))}
+          aria-label="Previous Slide"
+        >
+          ‹
+        </button>
+        <button
+          className="carousel-nav-btn carousel-next"
+          onClick={() => setActiveSlide((prev) => (prev + 1) % carouselSlides.length)}
+          aria-label="Next Slide"
+        >
+          ›
+        </button>
+
+        {/* Indicators */}
+        <div className="carousel-dots">
+          {carouselSlides.map((_, index) => (
+            <button
+              key={index}
+              className={`carousel-dot ${index === activeSlide ? "active" : ""}`}
+              onClick={() => setActiveSlide(index)}
+              aria-label={`Go to slide ${index + 1}`}
+            />
+          ))}
+        </div>
+      </section>
+
+      {/* 3. Services Provided as Cards */}
+      <section id="services" className="section section-bg-alt">
+        <div className="container">
+          <div className="section-header">
+            <h2>Our Core Services</h2>
+            <p>We deliver cutting-edge digital experiences engineered to skyrocket efficiency and brand value.</p>
+          </div>
+
+          <div className="services-grid">
+            {services.map((item) => (
+              <div key={item.id} className="service-card glass">
+                <div className="service-icon-wrapper">{item.icon}</div>
+                <h3 className="service-title">{item.title}</h3>
+                <p className="service-desc">{item.desc}</p>
+                <a href={`#contact?service=${item.id}`} className="service-learn-more">
+                  Learn More <span>→</span>
+                </a>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 4. Client Onboarding Process Section (Curvy SVG Path) */}
+      <section id="process" className="process-section">
+        <div className="container">
+          <div className="section-header">
+            <h2>Our Marketing Process</h2>
+            <p>A comprehensive, cyclic marketing framework designed to extract maximum value at each step.</p>
+          </div>
+
+          {/* Interactive Curvy Wave Container */}
+          <div className="process-container hidden md:block">
+            {/* SVG Curvy wave path matching Image 2 */}
+            <svg className="process-svg-container" width="1200" height="450" viewBox="0 0 1200 450">
+              <path
+                id="wavePath"
+                className="process-svg-path"
+                d="M 60,240 C 200,320 280,100 370,120 C 470,140 540,360 635,320 C 720,285 780,100 890,140 C 980,170 1020,330 1140,230"
+              />
+              {/* Paper Plane Flying along path */}
+              <g className="process-paper-plane">
+                <path
+                  d="M1.94 13.91L29.6 1.15c.67-.3 1.45.2 1.34.93L26.68 28.5a.69.69 0 0 1-1.12.44L16.48 21.6 11.23 27a.5.5 0 0 1-.85-.35v-5.62l15.3-15.82c.16-.16-.06-.41-.26-.27L6.87 18.9 1.14 14.65a.69.69 0 0 1 .8-1.14z"
+                  fill="var(--accent-orange)"
+                />
+              </g>
+            </svg>
+
+            {/* Interactive Steps positioned dynamically */}
+            {processSteps.map((step, idx) => (
+              <div
+                key={step.num}
+                className={`process-step process-step-${step.num} ${idx === activeStep ? "active" : ""}`}
+                onMouseEnter={() => setActiveStep(idx)}
+              >
+                <span className="process-step-num">0{step.num}</span>
+                <div className="process-node">
+                  {step.num}
+                </div>
+                <div className="process-icon">{step.icon}</div>
+                <h4 className="process-step-title">{step.title}</h4>
+              </div>
+            ))}
+          </div>
+
+          {/* Interactive Steps Details panel */}
+          <div className="max-w-[700px] mx-auto mt-12 bg-slate-50 border border-slate-200 rounded-2xl p-8 shadow-md text-center transition-all duration-300">
+            <span className="inline-block bg-orange-100 text-orange-600 font-bold px-4 py-1.5 rounded-full text-xs uppercase tracking-wide mb-3">
+              Step 0{processSteps[activeStep].num} Details
+            </span>
+            <h3 className="text-2xl font-bold text-slate-800 mb-3">{processSteps[activeStep].title}</h3>
+            <p className="text-slate-600 leading-relaxed text-[16px]">{processSteps[activeStep].detail}</p>
+          </div>
+
+          {/* Mobile view of Process steps */}
+          <div className="md:hidden flex flex-col gap-6 mt-8">
+            {processSteps.map((step) => (
+              <div key={step.num} className="flex gap-4 p-5 bg-slate-50 rounded-xl border border-slate-200 shadow-sm">
+                <div className="w-12 h-12 rounded-full bg-slate-800 text-white font-bold flex items-center justify-center text-lg shrink-0">
+                  {step.num}
+                </div>
+                <div>
+                  <div className="text-2xl mb-1">{step.icon}</div>
+                  <h4 className="text-lg font-bold text-slate-900 mb-1">{step.title}</h4>
+                  <p className="text-sm text-slate-600 leading-relaxed">{step.detail}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 5. Tools We Use Section (Marquee / Grid) */}
+      <section id="tools" className="section section-bg-alt">
+        <div className="container">
+          <div className="section-header">
+            <h2>Core Technology Stack</h2>
+            <p>We leverage industry-leading tools to provide robust tracking, high designs, and superior execution speeds.</p>
+          </div>
+
+          <div className="tools-grid">
+            {tools.map((tool, idx) => (
+              <div key={idx} className="tool-card" title={tool.desc}>
+                <div className="flex flex-col items-center gap-2">
+                  {/* Styled Badge instead of placeholder image */}
+                  <span className="text-3xl" style={{ filter: "grayscale(20%)" }}>🛠️</span>
+                  <span className="font-bold text-sm tracking-tight" style={{ color: tool.color }}>{tool.name}</span>
+                  <span className="text-[10px] text-slate-400 font-medium text-center uppercase tracking-wider">{tool.desc}</span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 6. Review cards */}
+      <section id="reviews" className="section">
+        <div className="container">
+          <div className="section-header">
+            <h2>Success Stories</h2>
+            <p>Hear what business owners and technology directors are saying about partnerships with our agency.</p>
+          </div>
+
+          <div className="reviews-grid">
+            {reviews.map((rev, idx) => (
+              <div key={idx} className="review-card">
+                <div className="review-stars">
+                  {Array.from({ length: rev.stars }).map((_, i) => (
+                    <span key={i}>★</span>
+                  ))}
+                </div>
+                <p className="review-text">"{rev.text}"</p>
+                <div className="review-author">
+                  <div className="review-avatar">
+                    {rev.initials}
+                  </div>
+                  <div className="review-info">
+                    <h4>{rev.name}</h4>
+                    <p>{rev.role}</p>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 7. Frequently Asked Questions (FAQ) */}
+      <section id="faq" className="section section-bg-alt">
+        <div className="container">
+          <div className="section-header">
+            <h2>Have Questions?</h2>
+            <p>Get quick, comprehensive answers about how we design, market, and develop your custom solutions.</p>
+          </div>
+
+          <div className="faq-container">
+            {faqs.map((faq, idx) => (
+              <div
+                key={idx}
+                className={`faq-item ${idx === activeFaq ? "active" : ""}`}
+              >
+                <button
+                  className="faq-question"
+                  onClick={() => setActiveFaq(idx === activeFaq ? -1 : idx)}
+                >
+                  <span>{faq.q}</span>
+                  <span className="faq-toggle-icon">+</span>
+                </button>
+                <div
+                  className="faq-answer"
+                  style={{ maxHeight: idx === activeFaq ? "250px" : "0" }}
+                >
+                  <div className="faq-answer-content">
+                    <p>{faq.a}</p>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 8. Worldwide Delivery Map Section */}
+      <section id="worldwide" className="worldwide-section">
+        <div className="container">
+          <div className="section-header">
+            <h2>735+ Projects Delivered Worldwide</h2>
+            <p>Providing cutting-edge digital agency support across multiple continents from our tech hubs.</p>
+          </div>
+
+          <div className="map-container">
+            {/* Detailed responsive SVG World Map matching Image 4 */}
+            <svg className="map-svg" viewBox="0 0 1000 500" xmlns="http://www.w3.org/2000/svg">
+              {/* Simplified world outlines using dotted circles */}
+              <circle cx="200" cy="150" r="4" fill="#d1d5db" />
+              <circle cx="210" cy="160" r="4" fill="#d1d5db" />
+              <circle cx="220" cy="140" r="4" fill="#d1d5db" />
+              <circle cx="230" cy="170" r="4" fill="#d1d5db" />
+              <circle cx="240" cy="180" r="4" fill="#d1d5db" />
+              <circle cx="190" cy="130" r="4" fill="#d1d5db" />
+              <circle cx="180" cy="145" r="4" fill="#d1d5db" />
+              
+              {/* North America area dots */}
+              <g fill="#e2e8f0" opacity="0.9">
+                <circle cx="100" cy="120" r="3" /> <circle cx="120" cy="110" r="3" /> <circle cx="140" cy="130" r="3" />
+                <circle cx="110" cy="150" r="3" /> <circle cx="130" cy="160" r="3" /> <circle cx="150" cy="140" r="3" />
+                <circle cx="160" cy="170" r="3" /> <circle cx="180" cy="190" r="3" /> <circle cx="170" cy="180" r="3" />
+              </g>
+              
+              {/* South America area dots */}
+              <g fill="#e2e8f0" opacity="0.9">
+                <circle cx="280" cy="320" r="3" /> <circle cx="290" cy="340" r="3" /> <circle cx="310" cy="380" r="3" />
+                <circle cx="320" cy="400" r="3" /> <circle cx="330" cy="420" r="3" /> <circle cx="300" cy="360" r="3" />
+              </g>
+
+              {/* Europe & Africa area dots */}
+              <g fill="#e2e8f0" opacity="0.9">
+                <circle cx="480" cy="120" r="3" /> <circle cx="500" cy="110" r="3" /> <circle cx="520" cy="130" r="3" />
+                <circle cx="510" cy="150" r="3" /> <circle cx="490" cy="140" r="3" /> <circle cx="470" cy="160" r="3" />
+                <circle cx="500" cy="220" r="3" /> <circle cx="510" cy="250" r="3" /> <circle cx="520" cy="280" r="3" />
+                <circle cx="530" cy="320" r="3" /> <circle cx="540" cy="360" r="3" /> <circle cx="550" cy="380" r="3" />
+              </g>
+
+              {/* Asia & Australia area dots */}
+              <g fill="#e2e8f0" opacity="0.9">
+                <circle cx="650" cy="120" r="3" /> <circle cx="670" cy="140" r="3" /> <circle cx="690" cy="130" r="3" />
+                <circle cx="710" cy="150" r="3" /> <circle cx="730" cy="160" r="3" /> <circle cx="700" cy="170" r="3" />
+                <circle cx="760" cy="220" r="3" /> <circle cx="780" cy="250" r="3" /> <circle cx="800" cy="280" r="3" />
+                <circle cx="820" cy="360" r="3" /> <circle cx="840" cy="380" r="3" /> <circle cx="850" cy="400" r="3" />
+              </g>
+
+              {/* Dotted outlines representation grid */}
+              <path d="M50 250 L950 250" stroke="#f1f5f9" strokeWidth="1" strokeDasharray="5 5" />
+              <path d="M500 50 L500 450" stroke="#f1f5f9" strokeWidth="1" strokeDasharray="5 5" />
+
+              {/* Pulsing connection curves from Hyderabad to active clients globally */}
+              {/* Hyderabad: cx="675", cy="210" */}
+              {/* San Francisco: cx="150", cy="140" */}
+              <path className="map-connection-line" d="M 675,210 Q 400,80 150,140" />
+              {/* Sydney: cx="840", cy="380" */}
+              <path className="map-connection-line" d="M 675,210 Q 770,280 840,380" />
+              {/* London: cx="500", cy="110" */}
+              <path className="map-connection-line" d="M 675,210 Q 580,120 500,110" />
+              {/* Dubai: cx="585", cy="190" */}
+              <path className="map-connection-line" d="M 675,210 Q 630,180 585,190" />
+              {/* Singapore: cx="730", cy="260" */}
+              <path className="map-connection-line" d="M 675,210 Q 700,240 730,260" />
+              {/* Cape Town: cx="540", cy="360" */}
+              <path className="map-connection-line" d="M 675,210 Q 590,300 540,360" />
+              {/* New York: cx="180", cy="190" */}
+              <path className="map-connection-line" d="M 675,210 Q 420,130 180,190" />
+
+              {/* Pulsing Client hotspots */}
+              <g className="map-pin" transform="translate(150, 140)">
+                <circle cx="0" cy="0" r="15" className="map-pin-pulse" />
+                <circle cx="0" cy="0" r="5" className="map-pin-core" />
+              </g>
+              <g className="map-pin" transform="translate(840, 380)">
+                <circle cx="0" cy="0" r="15" className="map-pin-pulse" />
+                <circle cx="0" cy="0" r="5" className="map-pin-core" />
+              </g>
+              <g className="map-pin" transform="translate(500, 110)">
+                <circle cx="0" cy="0" r="15" className="map-pin-pulse" />
+                <circle cx="0" cy="0" r="5" className="map-pin-core" />
+              </g>
+              <g className="map-pin" transform="translate(585, 190)">
+                <circle cx="0" cy="0" r="15" className="map-pin-pulse" />
+                <circle cx="0" cy="0" r="5" className="map-pin-core" />
+              </g>
+              <g className="map-pin" transform="translate(730, 260)">
+                <circle cx="0" cy="0" r="15" className="map-pin-pulse" />
+                <circle cx="0" cy="0" r="5" className="map-pin-core" />
+              </g>
+              <g className="map-pin" transform="translate(540, 360)">
+                <circle cx="0" cy="0" r="15" className="map-pin-pulse" />
+                <circle cx="0" cy="0" r="5" className="map-pin-core" />
+              </g>
+              <g className="map-pin" transform="translate(180, 190)">
+                <circle cx="0" cy="0" r="15" className="map-pin-pulse" />
+                <circle cx="0" cy="0" r="5" className="map-pin-core" />
+              </g>
+
+              {/* Headquarters Node - Hyderabad (Pulsing tech blue glow) */}
+              <g className="map-pin" transform="translate(675, 210)">
+                <circle cx="0" cy="0" r="25" className="map-pin-pulse-blue" />
+                <circle cx="0" cy="0" r="8" className="map-pin-core-blue" />
+                {/* Visual Label */}
+                <rect x="12" y="-12" width="105" height="24" rx="4" fill="var(--dark-deep)" opacity="0.9" />
+                <text x="18" y="4" fill="#ffffff" fontFamily="var(--font-sans)" fontWeight="700" fontSize="10">HEADQUARTERS</text>
+              </g>
+            </svg>
+          </div>
+        </div>
+      </section>
+
+      {/* 9. Footer (Matching Image 5) */}
+      <footer id="contact" className="footer">
+        <div className="footer-container">
+          <div className="footer-brand">
+            <Logo light={true} className="footer-logo-svg" />
+            <p className="footer-desc mt-4">
+              We are a professional Web Design & Digital Marketing agency in Hyderabad, delivering creative solutions that help businesses grow online.
+            </p>
+          </div>
+
+          <div className="footer-column">
+            <h4>Quick Links</h4>
+            <ul className="footer-links">
+              <li><a href="#home">Home</a></li>
+              <li><a href="#about">About Us</a></li>
+              <li><a href="#careers">Careers</a></li>
+              <li><a href="#pricing">Payment Terms</a></li>
+              <li><a href="#blog">News</a></li>
+              <li><a href="#contact">Contact</a></li>
+            </ul>
+          </div>
+
+          <div className="footer-column">
+            <h4>Our Services</h4>
+            <ul className="footer-links">
+              <li><a href="#services?id=web-design">Website Design</a></li>
+              <li><a href="#services?id=digital-marketing">Digital Marketing</a></li>
+              <li><a href="#services?id=mobile-app">Mobile Application</a></li>
+              <li><a href="#services?id=ecommerce-app">eCommerce Application</a></li>
+              <li><a href="#services?id=video-production">Video Production</a></li>
+              <li><a href="#services?id=software-dev">Software Development</a></li>
+            </ul>
+          </div>
+
+          <div className="footer-column">
+            <h4>Contact Us</h4>
+            <ul className="footer-contact">
+              <li className="footer-contact-item">
+                <span className="footer-contact-icon">📍</span>
+                <span>401 Sravya Vatika, Greenlands,<br />Begumpet, Hyderabad, Telangana-500016</span>
+              </li>
+              <li className="footer-contact-item">
+                <span className="footer-contact-icon">📞</span>
+                <span>(+91) 76739-35353</span>
+              </li>
+              <li className="footer-contact-item">
+                <span className="footer-contact-icon">✉️</span>
+                <span>info@ananyahisolutions.com</span>
+              </li>
+            </ul>
+
+            {/* Social Icons */}
+            <div className="footer-socials">
+              <a href="https://facebook.com" className="footer-social-link" aria-label="Facebook">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
+                </svg>
+              </a>
+              <a href="https://instagram.com" className="footer-social-link" aria-label="Instagram">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+                  <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+                  <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+                </svg>
+              </a>
+              <a href="https://linkedin.com" className="footer-social-link" aria-label="LinkedIn">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+                  <rect x="2" y="9" width="4" height="12" />
+                  <circle cx="4" cy="4" r="2" />
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <hr className="footer-divider" />
+
+        <div className="footer-bottom">
+          <p>© 2025 Ananya Hi Solutions. All Rights Reserved.</p>
+        </div>
+      </footer>
+
+      {/* 10. Interactive Chat Widget ("Hi, I'm Ananya 👋") */}
+      <div className="chat-widget-container">
+        {/* Closed speech bubble helper */}
+        {!chatOpen && (
+          <div className="chat-bubble" onClick={() => setChatOpen(true)}>
+            <span>Hi, I'm Ananya 👋</span>
+          </div>
+        )}
+
+        {/* Chat window panel */}
+        <div className={`chat-box ${chatOpen ? "open" : ""}`}>
+          <div className="chat-header">
+            <div className="chat-header-user">
+              <div className="chat-header-avatar flex items-center justify-center font-bold text-slate-800 text-[20px]">
+                👩‍💻
+              </div>
+              <div className="chat-header-info">
+                <h4>Ananya</h4>
+                <p>Online | Digital Assistant</p>
+              </div>
+            </div>
+            <button
+              className="chat-header-close"
+              onClick={() => setChatOpen(false)}
+              aria-label="Close chat"
+            >
+              ✕
+            </button>
+          </div>
+
+          <div className="chat-messages">
+            {chatHistory.map((msg, index) => (
+              <div
+                key={index}
+                className={`chat-msg ${
+                  msg.sender === "bot" ? "chat-msg-received" : "chat-msg-sent"
+                }`}
+              >
+                {msg.text}
+              </div>
+            ))}
+            <div ref={messagesEndRef} />
+          </div>
+
+          {/* Quick Click Suggestions */}
+          <div className="flex flex-wrap gap-2 p-3 bg-white border-t border-slate-100">
+            <button
+              onClick={() => handleSuggestionClick("Tell me about Web Design")}
+              className="text-xs bg-slate-100 hover:bg-primary-blue hover:text-white transition-all text-slate-700 px-3 py-1.5 rounded-full font-medium"
+            >
+              🌐 Web Design
+            </button>
+            <button
+              onClick={() => handleSuggestionClick("Tell me about Digital Marketing")}
+              className="text-xs bg-slate-100 hover:bg-primary-blue hover:text-white transition-all text-slate-700 px-3 py-1.5 rounded-full font-medium"
+            >
+              📈 Marketing
+            </button>
+            <button
+              onClick={() => handleSuggestionClick("Show Contact info")}
+              className="text-xs bg-slate-100 hover:bg-primary-blue hover:text-white transition-all text-slate-700 px-3 py-1.5 rounded-full font-medium"
+            >
+              📞 Contact details
+            </button>
+          </div>
+
+          <form onSubmit={handleSendChat} className="chat-footer">
+            <input
+              type="text"
+              placeholder="Ask me something..."
+              className="chat-input"
+              value={chatMessage}
+              onChange={(e) => setChatMessage(e.target.value)}
+            />
+            <button type="submit" className="chat-send-btn" aria-label="Send message">
+              ➤
+            </button>
+          </form>
+        </div>
+
+        {/* Trigger Button with Ananya Logo Badge */}
+        <div className="chat-trigger" onClick={() => setChatOpen(!chatOpen)}>
+          <div className="w-full h-full flex items-center justify-center text-3xl">
+            👩‍💻
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}

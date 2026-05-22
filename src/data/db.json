@@ -96,5 +96,19 @@
       "date": "May 20, 2026",
       "author": "Certified SEO Specialists"
     }
+  ],
+  "applications": [
+    {
+      "id": "app-1779436626271",
+      "jobId": "job-1",
+      "jobTitle": "Senior Next.js Developer",
+      "candidateName": "Veda Bhavishya Gudivaka",
+      "candidateEmail": "vedabhavishya.gudivaka@gmail.com",
+      "candidatePhone": "9951484472",
+      "coverLetter": "Hi",
+      "resumeFileName": "GudivakaVedaBhavishya_Resume.pdf",
+      "resumeSize": 47323,
+      "appliedAt": "2026-05-22T07:57:06.271Z"
+    }
   ]
 }

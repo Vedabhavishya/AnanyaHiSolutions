@@ -227,7 +227,7 @@ function ApplyFormContent() {
                 </p>
                 <div style={{ display: "flex", gap: "16px", justifyContent: "center" }}>
                   <Link href="/careers" style={{ padding: "12px 24px", borderRadius: "6px", background: "#0f75bc", color: "#ffffff", fontWeight: "700", fontSize: "14px", textDecoration: "none" }}>
-                    ← Open Careers
+                    Job Listings
                   </Link>
                   <Link href="/" style={{ padding: "12px 24px", borderRadius: "6px", border: "1.5px solid rgba(15, 117, 188, 0.15)", color: "#475569", fontWeight: "600", fontSize: "14px", textDecoration: "none" }}>
                     Return Home

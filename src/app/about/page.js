@@ -114,7 +114,7 @@ export default function AboutPage() {
             <li><Link href="/#services" className="nav-link">Services</Link></li>
             <li><Link href="/#careers" className="nav-link">Careers</Link></li>
             <li><Link href="/#blog" className="nav-link">Blog</Link></li>
-            <li><Link href="/#contact" className="nav-link">Contact us</Link></li>
+            <li><Link href="/contact" className="nav-link">Contact us</Link></li>
           </ul>
 
           <div className="nav-cta">
@@ -139,7 +139,7 @@ export default function AboutPage() {
             <Link href="/#services" onClick={() => setMobileMenuOpen(false)} className="text-xl font-bold border-b pb-2">Services</Link>
             <Link href="/#careers" onClick={() => setMobileMenuOpen(false)} className="text-xl font-bold border-b pb-2">Careers</Link>
             <Link href="/#blog" onClick={() => setMobileMenuOpen(false)} className="text-xl font-bold border-b pb-2">Blog</Link>
-            <Link href="/#contact" onClick={() => setMobileMenuOpen(false)} className="text-xl font-bold border-b pb-2">Contact us</Link>
+            <Link href="/contact" onClick={() => setMobileMenuOpen(false)} className="text-xl font-bold border-b pb-2">Contact us</Link>
             <Link href="/#pricing" onClick={() => setMobileMenuOpen(false)} className="btn btn-accent text-center mt-4">Choose Package</Link>
           </div>
         )}
@@ -626,7 +626,7 @@ export default function AboutPage() {
               <li><Link href="/#careers">Careers</Link></li>
               <li><Link href="/#pricing">Payment Terms</Link></li>
               <li><Link href="/#blog">News</Link></li>
-              <li><Link href="/#contact">Contact</Link></li>
+              <li><Link href="/contact">Contact</Link></li>
             </ul>
           </div>
 

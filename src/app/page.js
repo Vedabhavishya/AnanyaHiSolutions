@@ -339,7 +339,7 @@ export default function Home() {
             <li><a href="#services" className="nav-link">Services</a></li>
             <li><a href="#careers" className="nav-link">Careers</a></li>
             <li><a href="#blog" className="nav-link">Blog</a></li>
-            <li><a href="#contact" className="nav-link">Contact us</a></li>
+            <li><Link href="/contact" className="nav-link">Contact us</Link></li>
           </ul>
 
           <div className="nav-cta">
@@ -364,7 +364,7 @@ export default function Home() {
             <a href="#services" onClick={() => setMobileMenuOpen(false)} className="text-xl font-bold border-b pb-2">Services</a>
             <a href="#careers" onClick={() => setMobileMenuOpen(false)} className="text-xl font-bold border-b pb-2">Careers</a>
             <a href="#blog" onClick={() => setMobileMenuOpen(false)} className="text-xl font-bold border-b pb-2">Blog</a>
-            <a href="#contact" onClick={() => setMobileMenuOpen(false)} className="text-xl font-bold border-b pb-2">Contact us</a>
+            <Link href="/contact" onClick={() => setMobileMenuOpen(false)} className="text-xl font-bold border-b pb-2">Contact us</Link>
             <a href="#pricing" onClick={() => setMobileMenuOpen(false)} className="btn btn-accent text-center mt-4">Choose Package</a>
           </div>
         )}
@@ -436,9 +436,9 @@ export default function Home() {
                 <div className="service-icon-wrapper">{item.icon}</div>
                 <h3 className="service-title">{item.title}</h3>
                 <p className="service-desc">{item.desc}</p>
-                <a href={`#contact?service=${item.id}`} className="service-learn-more">
+                <Link href={`/contact?service=${item.id}`} className="service-learn-more">
                   Learn More <span>→</span>
-                </a>
+                </Link>
               </div>
             ))}
           </div>
@@ -634,7 +634,7 @@ export default function Home() {
               <li><a href="#careers">Careers</a></li>
               <li><a href="#pricing">Payment Terms</a></li>
               <li><a href="#blog">News</a></li>
-              <li><a href="#contact">Contact</a></li>
+              <li><Link href="/contact">Contact</Link></li>
             </ul>
           </div>
 

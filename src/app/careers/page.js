@@ -25,19 +25,9 @@ export default function CareersPage() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [jobs, setJobs] = useState([]);
 
-  // Modals and Apply states
+  // Details Modal state
   const [selectedJob, setSelectedJob] = useState(null);
-  const [showApplyModal, setShowApplyModal] = useState(false);
-  const [applySuccess, setApplySuccess] = useState(false);
-  const [applyLoading, setApplyLoading] = useState(false);
-
-  // Application fields
-  const [applicantName, setApplicantName] = useState("");
-  const [applicantEmail, setApplicantEmail] = useState("");
-  const [applicantPhone, setApplicantPhone] = useState("");
-  const [applicantPortfolio, setApplicantPortfolio] = useState("");
-  const [applicantMessage, setApplicantMessage] = useState("");
-  const [resumeName, setResumeName] = useState("");
+  const [showDetailsModal, setShowDetailsModal] = useState(false);
 
   // Chat Widget State
   const [chatOpen, setChatOpen] = useState(false);
@@ -158,64 +148,93 @@ export default function CareersPage() {
         )}
       </header>
 
-      {/* 2. Hero Section */}
-      <section className="contact-hero" style={{ background: "radial-gradient(circle at 50% 50%, #052e47 0%, #031825 100%)" }}>
-        <div className="contact-hero-content container animate-slide-in">
+      {/* 2. Stunning Banner at the Starting */}
+      <section className="contact-hero" style={{ background: "linear-gradient(135deg, #052e47 0%, #031825 50%, #0c4a6e 100%)", position: "relative" }}>
+        <div className="absolute inset-0 opacity-10 bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:16px_16px]"></div>
+        <div className="contact-hero-content container animate-slide-in relative z-10">
+          <span className="text-accent-orange font-bold tracking-widest text-sm uppercase block mb-3">Work with Experts</span>
           <h1>Careers at <span>Ananya</span></h1>
           <p>
-            Join our Begumpet, Hyderabad team and engineer advanced digital architectures for global clients.
+            Join our tech innovation squad in Hyderabad and shape the future of digital enterprise products worldwide.
           </p>
         </div>
       </section>
 
-      {/* 3. Job Listings Grid (DYNAMIC FROM DATABASE) */}
-      <section className="section section-bg-alt" style={{ flex: 1 }}>
+      {/* 3. Welcome to our Careers Page Section */}
+      <section className="section bg-white text-center py-16" style={{ borderBottom: "1px solid #f1f5f9" }}>
+        <div className="container max-w-4xl mx-auto px-6">
+          <h2 className="text-3xl font-extrabold text-slate-800 mb-6 tracking-tight">Welcome to our Careers Page</h2>
+          <div className="w-16 h-1 bg-primary-blue mx-auto mb-6 rounded"></div>
+          <p className="text-slate-600 text-lg leading-relaxed max-w-3xl mx-auto">
+            At Ananya Hi Solutions, we don't just build websites; we design powerful architectures and digital solutions that empower global businesses to grow. We believe in nurturing talent, pushing technical limits, and fostering an environment of creative freedom and professional growth. Whether you are a code enthusiast, a design virtuoso, or a strategic digital marketer, you will find a collaborative team that supports your journey here. Explore our active vacancies below and find your true calling!
+          </p>
+        </div>
+      </section>
+
+      {/* 4. Current Job Openings Section */}
+      <section className="section section-bg-alt py-20" style={{ flex: 1 }}>
         <div className="container">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-extrabold text-white tracking-tight">Current Job Openings</h2>
+            <p className="text-slate-400 mt-2">Explore our high-impact active roles. Find a match and apply today!</p>
+          </div>
+
           <div className="careers-grid">
             {jobs.length === 0 ? (
-              <div className="text-center py-10 w-full col-span-full">
+              <div className="text-center py-12 w-full col-span-full">
                 <p className="text-slate-400 italic">No job openings are currently published. Check back later!</p>
               </div>
             ) : (
               jobs.map((job) => (
-                <div key={job.id} className="job-card-frontend" style={{ minHeight: "240px" }}>
-                  <div className="job-card-frontend-header">
-                    <h3 className="job-card-frontend-title">{job.title}</h3>
-                    <div className="job-card-frontend-badges">
-                      <span className="badge-frontend dept">{job.department}</span>
-                      <span className="badge-frontend type">{job.type}</span>
+                <div key={job.id} className="job-card-frontend flex flex-col justify-between" style={{ minHeight: "360px", background: "rgba(255,255,255,0.03)", borderRadius: "12px", border: "1px solid rgba(255,255,255,0.08)", padding: "28px" }}>
+                  {/* Card TOP: displays Job Role, Qualifications, Experience, and Location */}
+                  <div className="job-card-top-content">
+                    <div className="flex justify-between items-start gap-4 mb-4">
+                      <h3 className="job-card-frontend-title text-xl font-bold text-white leading-snug">{job.title}</h3>
+                      <span className="badge-frontend dept whitespace-nowrap" style={{ fontSize: "10px", textTransform: "uppercase" }}>{job.department}</span>
                     </div>
-                  </div>
-                  
-                  <div className="job-card-frontend-meta">
-                    <div className="meta-item-frontend">
-                      <span>📍</span> <span>{job.location}</span>
-                    </div>
-                    <div className="meta-item-frontend">
-                      <span>💼</span> <span>{job.experience}</span>
+
+                    {/* Metadata indicators */}
+                    <div className="job-card-meta-list flex flex-col gap-2.5 my-5 text-sm text-slate-300">
+                      <div className="flex items-center gap-2">
+                        <span className="text-base text-primary-blue">🎓</span>
+                        <span><strong>Qualifications:</strong> {job.qualifications || "Any Bachelor's / Technical Degree"}</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <span className="text-base text-primary-blue">💼</span>
+                        <span><strong>Experience:</strong> {job.experience}</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <span className="text-base text-primary-blue">📍</span>
+                        <span><strong>Location:</strong> {job.location}</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <span className="text-base text-primary-blue">⏱️</span>
+                        <span><strong>Job Type:</strong> {job.type}</span>
+                      </div>
                     </div>
                   </div>
 
-                  <p className="job-card-frontend-desc">
-                    {job.description.length > 150 ? `${job.description.slice(0, 150)}...` : job.description}
-                  </p>
-
-                  <button
-                    onClick={() => {
-                      setSelectedJob(job);
-                      setShowApplyModal(true);
-                      setApplySuccess(false);
-                      setResumeName("");
-                      setApplicantName("");
-                      setApplicantEmail("");
-                      setApplicantPhone("");
-                      setApplicantPortfolio("");
-                      setApplicantMessage("");
-                    }}
-                    className="job-card-frontend-btn"
-                  >
-                    View Details & Apply
-                  </button>
+                  {/* Card BOTTOM: CTA trigger */}
+                  <div className="job-card-bottom-actions mt-4">
+                    <button
+                      onClick={() => {
+                        setSelectedJob(job);
+                        setShowDetailsModal(true);
+                      }}
+                      className="job-card-frontend-btn hover:scale-105 active:scale-95 transition-all w-full text-center font-bold text-sm tracking-wide"
+                      style={{
+                        padding: "12px",
+                        borderRadius: "8px",
+                        border: "1.5px solid rgba(15, 117, 188, 0.6)",
+                        background: "rgba(15, 117, 188, 0.05)",
+                        color: "#fff",
+                        cursor: "pointer"
+                      }}
+                    >
+                      Get More Details
+                    </button>
+                  </div>
                 </div>
               ))
             )}
@@ -223,7 +242,7 @@ export default function CareersPage() {
         </div>
       </section>
 
-      {/* 4. Footer */}
+      {/* 5. Footer */}
       <footer className="footer">
         <div className="footer-container">
           <div className="footer-brand">
@@ -305,150 +324,59 @@ export default function CareersPage() {
         </div>
       </footer>
 
-      {/* 5. Apply Job Modal Overlay */}
-      {showApplyModal && selectedJob && (
-        <div className="frontend-modal-overlay animate-fade-in" onClick={() => setShowApplyModal(false)}>
-          <div className="frontend-modal-card animate-slide-up" onClick={(e) => e.stopPropagation()}>
-            <div className="frontend-modal-header">
-              <h3>Apply for Position</h3>
-              <button className="frontend-modal-close" onClick={() => setShowApplyModal(false)}>✕</button>
+      {/* 6. Job Details Modal Overlay */}
+      {showDetailsModal && selectedJob && (
+        <div className="frontend-modal-overlay animate-fade-in" onClick={() => setShowDetailsModal(false)} style={{ display: "flex", alignItems: "center", justifyContent: "center", position: "fixed", inset: 0, background: "rgba(0,0,0,0.85)", zIndex: 1000, padding: "20px" }}>
+          <div className="frontend-modal-card animate-slide-up" onClick={(e) => e.stopPropagation()} style={{ background: "#061522", border: "1px solid rgba(255,255,255,0.1)", borderRadius: "16px", maxWidth: "650px", width: "100%", maxHeight: "90vh", overflowY: "auto", padding: "30px", boxShadow: "0 25px 50px -12px rgba(0,0,0,0.5)" }}>
+            <div className="frontend-modal-header flex justify-between items-center mb-6 pb-4" style={{ borderBottom: "1px solid rgba(255,255,255,0.08)" }}>
+              <h3 className="text-2xl font-bold text-white">{selectedJob.title} Details</h3>
+              <button className="frontend-modal-close text-white hover:text-red-500 font-bold text-xl" onClick={() => setShowDetailsModal(false)} style={{ background: "none", border: "none", cursor: "pointer" }}>✕</button>
             </div>
             
-            <div className="frontend-modal-body">
-              {applySuccess ? (
-                <div className="apply-success-message-box">
-                  <div className="apply-success-icon">✓</div>
-                  <h4>Application Staged!</h4>
-                  <p>
-                    Thank you for applying, {applicantName}! Our Begumpet recruitment crew will review your credentials and contact you at {applicantEmail} within 2-3 business days.
-                  </p>
-                  <button onClick={() => setShowApplyModal(false)} className="apply-submit-btn w-full">
-                    Close Window
-                  </button>
-                </div>
-              ) : (
-                <>
-                  <div className="apply-job-header-info">
-                    <h4>{selectedJob.title}</h4>
-                    <p>Department: {selectedJob.department} | Location: {selectedJob.location} | Type: {selectedJob.type}</p>
-                  </div>
-                  
-                  <div className="job-details-group">
-                    <h5>Role Description</h5>
-                    <p className="text-sm text-slate-300 leading-relaxed mb-6">{selectedJob.description}</p>
-                    
-                    {selectedJob.requirements && selectedJob.requirements.length > 0 && (
-                      <>
-                        <h5>Candidate Requirements</h5>
-                        <ul className="job-requirements-list">
-                          {selectedJob.requirements.map((req, idx) => (
-                            <li key={idx}>{req}</li>
-                          ))}
-                        </ul>
-                      </>
-                    )}
-                  </div>
-                  
-                  <form
-                    onSubmit={(e) => {
-                      e.preventDefault();
-                      setApplyLoading(true);
-                      setTimeout(() => {
-                        setApplyLoading(false);
-                        setApplySuccess(true);
-                      }, 1200);
-                    }}
-                    className="apply-form"
-                  >
-                    <div className="apply-form-group">
-                      <label htmlFor="appl-name">Full Name</label>
-                      <input
-                        id="appl-name"
-                        type="text"
-                        value={applicantName}
-                        onChange={(e) => setApplicantName(e.target.value)}
-                        placeholder="Enter your full name"
-                        required
-                      />
-                    </div>
-                    
-                    <div className="apply-form-group">
-                      <label htmlFor="appl-email">Email Address</label>
-                      <input
-                        id="appl-email"
-                        type="email"
-                        value={applicantEmail}
-                        onChange={(e) => setApplicantEmail(e.target.value)}
-                        placeholder="name@example.com"
-                        required
-                      />
-                    </div>
-                    
-                    <div className="apply-form-group">
-                      <label htmlFor="appl-phone">Phone / WhatsApp Number</label>
-                      <input
-                        id="appl-phone"
-                        type="tel"
-                        value={applicantPhone}
-                        onChange={(e) => setApplicantPhone(e.target.value)}
-                        placeholder="+91 XXXXX-XXXXX"
-                        required
-                      />
-                    </div>
-
-                    <div className="apply-form-group">
-                      <label htmlFor="appl-portfolio">Portfolio URL (Optional)</label>
-                      <input
-                        id="appl-portfolio"
-                        type="url"
-                        value={applicantPortfolio}
-                        onChange={(e) => setApplicantPortfolio(e.target.value)}
-                        placeholder="https://github.com/yourusername"
-                      />
-                    </div>
-                    
-                    <div className="apply-form-group">
-                      <label>Upload Resume / CV (PDF/Word)</label>
-                      <div className="file-input-wrapper">
-                        <input
-                          type="file"
-                          accept=".pdf,.doc,.docx"
-                          required
-                          onChange={(e) => {
-                            if (e.target.files && e.target.files[0]) {
-                              setResumeName(e.target.files[0].name);
-                            }
-                          }}
-                        />
-                        <span className="file-input-label">
-                          {resumeName ? `📄 ${resumeName}` : "📁 Upload PDF or Word Document"}
-                        </span>
-                      </div>
-                    </div>
-                    
-                    <div className="apply-form-group">
-                      <label htmlFor="appl-msg">Cover Letter / Message</label>
-                      <textarea
-                        id="appl-msg"
-                        value={applicantMessage}
-                        onChange={(e) => setApplicantMessage(e.target.value)}
-                        placeholder="Why do you want to join Ananya Hi Solutions? Tell us about your background..."
-                        rows="3"
-                      ></textarea>
-                    </div>
-                    
-                    <button type="submit" className="apply-submit-btn" disabled={applyLoading}>
-                      {applyLoading ? "Submitting application..." : "Submit Application"}
-                    </button>
-                  </form>
-                </>
-              )}
+            <div className="frontend-modal-body text-slate-300">
+              <div className="apply-job-header-info mb-6 p-4 rounded-lg" style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.05)" }}>
+                <p className="text-sm"><strong>Department:</strong> {selectedJob.department} | <strong>Location:</strong> {selectedJob.location}</p>
+                <p className="text-sm mt-1"><strong>Experience:</strong> {selectedJob.experience} | <strong>Qualifications:</strong> {selectedJob.qualifications || "B.Tech/MCA/MBA or equivalent"}</p>
+              </div>
+              
+              <div className="job-details-group">
+                <h4 className="text-white font-bold text-base mb-2">Role Overview</h4>
+                <p className="text-sm text-slate-300 leading-relaxed mb-6">{selectedJob.description}</p>
+                
+                {selectedJob.requirements && selectedJob.requirements.length > 0 && (
+                  <>
+                    <h4 className="text-white font-bold text-base mb-3">Key Candidate Requirements</h4>
+                    <ul className="job-requirements-list list-disc pl-5 flex flex-col gap-2 mb-6" style={{ fontSize: "14px", color: "#cbd5e1" }}>
+                      {selectedJob.requirements.map((req, idx) => (
+                        <li key={idx} className="leading-relaxed">{req}</li>
+                      ))}
+                    </ul>
+                  </>
+                )}
+              </div>
+              
+              <div className="flex gap-4 mt-8 pt-4" style={{ borderTop: "1px solid rgba(255,255,255,0.08)" }}>
+                <button
+                  onClick={() => setShowDetailsModal(false)}
+                  className="px-6 py-3 rounded-lg font-bold text-sm tracking-wide transition-all border border-slate-600 hover:bg-slate-800 text-white"
+                  style={{ flex: 1, cursor: "pointer", background: "transparent" }}
+                >
+                  Cancel
+                </button>
+                <Link
+                  href={`/careers/apply?jobId=${selectedJob.id}`}
+                  className="px-6 py-3 rounded-lg font-bold text-sm tracking-wide text-center text-white bg-primary-blue hover:bg-blue-600 shadow-md hover:shadow-lg transition-all"
+                  style={{ flex: 2, textDecoration: "none" }}
+                >
+                  Apply Now
+                </Link>
+              </div>
             </div>
           </div>
         </div>
       )}
 
-      {/* 6. Interactive Chat Widget */}
+      {/* 7. Interactive Chat Widget */}
       <div className="chat-widget-container">
         {!chatOpen && (
           <div className="chat-bubble" onClick={() => setChatOpen(true)}>

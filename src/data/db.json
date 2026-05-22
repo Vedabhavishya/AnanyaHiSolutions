@@ -35,9 +35,48 @@
       "title": "Software Development",
       "desc": "Highly robust customized enterprise resource planners (ERPs), customer managers (CRMs), API layers, and intelligent backend automations.",
       "iconName": "code"
+    },
+    {
+      "id": "aeo",
+      "title": "AEO",
+      "desc": "bgjusiushuhiuhshv",
+      "iconName": "globe"
     }
   ],
-  "jobs": [],
+  "jobs": [
+    {
+      "id": "job-1",
+      "title": "Senior Next.js Developer",
+      "department": "Engineering",
+      "location": "Begumpet, Hyderabad (On-site)",
+      "experience": "3-5 Years",
+      "qualifications": "B.Tech in CSE, MCA, or equivalent technical degree",
+      "type": "Full-Time",
+      "description": "We are seeking a Senior Next.js Developer to join our core development team. You will lead the engineering of highly interactive, blazing-fast web applications, e-commerce storefronts, and customized headless dashboards for our international clients.",
+      "requirements": [
+        "Strong experience with React, Next.js (App Router), and TypeScript.",
+        "Proficiency in state management, TailwindCSS, and custom responsive animations.",
+        "Experience optimizing Next.js Core Web Vitals and SSR/SSG caching strategies.",
+        "Excellent communication and team leadership capabilities."
+      ]
+    },
+    {
+      "id": "job-2",
+      "title": "Digital Marketing Specialist",
+      "department": "Marketing",
+      "location": "Begumpet, Hyderabad (On-site)",
+      "experience": "2-4 Years",
+      "qualifications": "MBA in Marketing, Bachelor's in Business, or related degree",
+      "type": "Full-Time",
+      "description": "Join our marketing powerhouse as a Lead Strategist! You will design, execute, and monitor high-converting Google Ads (PPC), Facebook Blueprint marketing funnels, and organic search engine growth campaigns for top-tier Indian and global brands.",
+      "requirements": [
+        "Proven experience managing monthly ad spends of 5L+ INR.",
+        "Certified in Google Ads Search/Display and Facebook Blueprint.",
+        "Deep expertise in Google Analytics (GA4), heatmaps, and landing page conversions.",
+        "Stellar writing skills for copywriting and marketing copy."
+      ]
+    }
+  ],
   "blogs": [
     {
       "id": "post-1",

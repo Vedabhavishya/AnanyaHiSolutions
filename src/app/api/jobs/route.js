@@ -13,7 +13,7 @@ export async function POST(request) {
 
   try {
     const body = await request.json();
-    const { title, department, location, experience, type, description, requirements } = body;
+    const { title, department, location, experience, qualifications, type, description, requirements } = body;
 
     if (!title || !department || !location || !experience || !type || !description) {
       return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
@@ -33,6 +33,7 @@ export async function POST(request) {
       department,
       location,
       experience,
+      qualifications: qualifications || "",
       type,
       description,
       requirements: Array.isArray(requirements) ? requirements : []
@@ -56,7 +57,7 @@ export async function PUT(request) {
 
   try {
     const body = await request.json();
-    const { id, title, department, location, experience, type, description, requirements } = body;
+    const { id, title, department, location, experience, qualifications, type, description, requirements } = body;
 
     if (!id || !title || !department || !location || !experience || !type || !description) {
       return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
@@ -75,6 +76,7 @@ export async function PUT(request) {
       department,
       location,
       experience,
+      qualifications: qualifications || "",
       type,
       description,
       requirements: Array.isArray(requirements) ? requirements : []

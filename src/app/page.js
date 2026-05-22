@@ -301,7 +301,7 @@ export default function Home() {
       } else if (lower.includes("service") || lower.includes("web") || lower.includes("marketing") || lower.includes("app")) {
         reply = "We specialize in Web Design, Digital Marketing, Mobile Apps, eCommerce solutions, Software Development, and Video Production. Which specific solution are you looking to implement first?";
       } else if (lower.includes("job") || lower.includes("career") || lower.includes("hire") || lower.includes("work")) {
-        reply = "We are always on the hunt for passionate developers, SEO wizards, and content creators! Please email your updated CV to info@ananyahisolutions.com and our HR team will review it.";
+        reply = "We are always on the hunt for passionate developers, SEO wizards, and content creators! Please email your updated CV to vedabhavishya.gudivaka@gmail.com and our HR team will review it.";
       } else if (lower.includes("hello") || lower.includes("hi") || lower.includes("hey")) {
         reply = "Hi there! I am thrilled to assist you. Tell me, are we looking to develop a beautiful website, optimize your SEO, or build custom software?";
       }

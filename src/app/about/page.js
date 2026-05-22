@@ -46,24 +46,24 @@ export default function AboutPage() {
   const [activeFaq, setActiveFaq] = useState(0);
   const faqs = [
     {
-      q: "What services does Ananya Hi Solutions provide in Hyderabad?",
-      a: "Ananya Hi Solutions offers comprehensive digital services including website design and development, digital marketing (SEO, PPC, social media), mobile application development, e-commerce solutions, video production, and custom software development. We provide end-to-end digital transformation solutions for businesses of all sizes.",
+      q: "What is the experience level of Ananya Hi Solutions team?",
+      a: "Our team comprises 50+ professionals with an average experience of 7+ years in their respective fields. This includes Google Ads certified specialists, Facebook Blueprint certified marketers, certified web developers, UX/UI designers, and project managers. Our leadership team brings over 15 years of combined digital industry experience.",
     },
     {
-      q: "How does Ananya Hi Solutions ensure quality in digital marketing campaigns?",
-      a: "We employ data-driven strategies with continuous monitoring and optimization. Our certified digital marketing experts use advanced analytics, A/B testing, and industry-leading tools to track KPIs, measure ROI, and refine campaigns for maximum performance. We provide transparent monthly reports showing measurable results.",
+      q: "How does Ananya Hi Solutions maintain quality standards?",
+      a: "We follow industry-best practices and international quality standards including ISO-compliant processes, agile methodology for project management, code review protocols, multi-stage quality assurance testing, and continuous team training. Every project undergoes rigorous quality checks before delivery.",
     },
     {
-      q: "What makes Ananya Hi Solutions different from other digital agencies in Hyderabad?",
-      a: "Our key differentiators include 10+ years of proven experience, a team of certified experts, integrated service offerings under one roof, customized solutions rather than templates, transparent pricing, dedicated account management, and a proven track record of delivering measurable ROI for clients across diverse industries.",
+      q: "What certifications does your team hold?",
+      a: "Our team holds multiple industry certifications including Google Ads Certification, Google Analytics Certification, Facebook Blueprint Certification, HubSpot Inbound Marketing Certification, AWS Cloud Practitioner, and various programming and design certifications. We invest continuously in team development to stay current with evolving technologies.",
     },
     {
-      q: "How long does it typically take to complete a website design project?",
-      a: "Project timelines vary based on complexity and requirements. A standard business website takes 4-6 weeks, while complex e-commerce platforms or custom web applications may take 8-12 weeks. We provide detailed project timelines during consultation and maintain regular communication throughout the development process.",
+      q: "How does Ananya Hi Solutions approach client relationships?",
+      a: "We believe in building long-term partnerships, not just transactional relationships. Each client receives dedicated account management, transparent communication, regular progress updates, strategic consultation, and post-project support. We measure our success by your business growth and satisfaction.",
     },
     {
-      q: "What industries does Ananya Hi Solutions specialize in serving?",
-      a: "We have extensive experience serving diverse industries including e-commerce, healthcare, education, real estate, manufacturing, finance, technology startups, hospitality, and professional services. Our adaptable approach allows us to understand unique industry challenges and deliver tailored solutions that drive results in any sector.",
+      q: "What is Ananya Hi Solutions' company culture and work philosophy?",
+      a: "Our culture centers on continuous innovation, collaborative teamwork, client-centric thinking, and results-driven execution. We foster a learning environment where creativity thrives, encourage open communication, embrace challenges as opportunities, and celebrate both team and client successes.",
     },
   ];
 
@@ -139,7 +139,7 @@ export default function AboutPage() {
             <li><Link href="/#services" className="nav-link">Services</Link></li>
             <li><Link href="/#careers" className="nav-link">Careers</Link></li>
             <li><Link href="/#blog" className="nav-link">Blog</Link></li>
-            <li><Link href="/#contact" className="nav-link">Contact us</Link></li>
+            <li><Link href="/contact" className="nav-link">Contact us</Link></li>
           </ul>
 
           <div className="nav-cta">
@@ -164,7 +164,7 @@ export default function AboutPage() {
             <Link href="/#services" onClick={() => setMobileMenuOpen(false)} className="text-xl font-bold border-b pb-2">Services</Link>
             <Link href="/#careers" onClick={() => setMobileMenuOpen(false)} className="text-xl font-bold border-b pb-2">Careers</Link>
             <Link href="/#blog" onClick={() => setMobileMenuOpen(false)} className="text-xl font-bold border-b pb-2">Blog</Link>
-            <Link href="/#contact" onClick={() => setMobileMenuOpen(false)} className="text-xl font-bold border-b pb-2">Contact us</Link>
+            <Link href="/contact" onClick={() => setMobileMenuOpen(false)} className="text-xl font-bold border-b pb-2">Contact us</Link>
             <Link href="/#pricing" onClick={() => setMobileMenuOpen(false)} className="btn btn-accent text-center mt-4">Choose Package</Link>
           </div>
         )}
@@ -607,8 +607,8 @@ export default function AboutPage() {
       <section id="faq" className="section section-bg-alt">
         <div className="container">
           <div className="section-header">
-            <h2>Have Questions?</h2>
-            <p>Get quick, comprehensive answers about how we design, market, and develop your custom solutions.</p>
+            <h2>Frequently Asked Questions</h2>
+            <p>Get answers to common queries about our team, standards, and work philosophy.</p>
           </div>
 
           <div className="faq-container">
@@ -656,7 +656,7 @@ export default function AboutPage() {
               <li><Link href="/#careers">Careers</Link></li>
               <li><Link href="/#pricing">Payment Terms</Link></li>
               <li><Link href="/#blog">News</Link></li>
-              <li><Link href="/#contact">Contact</Link></li>
+              <li><Link href="/contact">Contact</Link></li>
             </ul>
           </div>
 

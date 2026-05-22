@@ -42,6 +42,31 @@ export default function AboutPage() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
+  // FAQ State
+  const [activeFaq, setActiveFaq] = useState(0);
+  const faqs = [
+    {
+      q: "What is the experience level of Ananya Hi Solutions team?",
+      a: "Our team comprises 50+ professionals with an average experience of 7+ years in their respective fields. This includes Google Ads certified specialists, Facebook Blueprint certified marketers, certified web developers, UX/UI designers, and project managers. Our leadership team brings over 15 years of combined digital industry experience.",
+    },
+    {
+      q: "How does Ananya Hi Solutions maintain quality standards?",
+      a: "We follow industry-best practices and international quality standards including ISO-compliant processes, agile methodology for project management, code review protocols, multi-stage quality assurance testing, and continuous team training. Every project undergoes rigorous quality checks before delivery.",
+    },
+    {
+      q: "What certifications does your team hold?",
+      a: "Our team holds multiple industry certifications including Google Ads Certification, Google Analytics Certification, Facebook Blueprint Certification, HubSpot Inbound Marketing Certification, AWS Cloud Practitioner, and various programming and design certifications. We invest continuously in team development to stay current with evolving technologies.",
+    },
+    {
+      q: "How does Ananya Hi Solutions approach client relationships?",
+      a: "We believe in building long-term partnerships, not just transactional relationships. Each client receives dedicated account management, transparent communication, regular progress updates, strategic consultation, and post-project support. We measure our success by your business growth and satisfaction.",
+    },
+    {
+      q: "What is Ananya Hi Solutions' company culture and work philosophy?",
+      a: "Our culture centers on continuous innovation, collaborative teamwork, client-centric thinking, and results-driven execution. We foster a learning environment where creativity thrives, encourage open communication, embrace challenges as opportunities, and celebrate both team and client successes.",
+    },
+  ];
+
 
 
   // Handle scroll event for Header
@@ -578,32 +603,37 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* 5. Statistics Showcase Section */}
-      <section className="section">
+      {/* 5. Frequently Asked Questions (FAQ) */}
+      <section id="faq" className="section section-bg-alt">
         <div className="container">
           <div className="section-header">
-            <h2>By The Numbers</h2>
-            <p>A proven track record of helping businesses reach their audience and scale operations.</p>
+            <h2>Frequently Asked Questions</h2>
+            <p>Get answers to common queries about our team, standards, and work philosophy.</p>
           </div>
 
-          <div className="about-stats-grid">
-            <div className="about-stat-card">
-              <div className="about-stat-number">10+</div>
-              <div className="about-stat-label">Years of Experience</div>
-              <div className="about-stat-desc">Providing premium digital design and development services.</div>
-            </div>
-
-            <div className="about-stat-card">
-              <div className="about-stat-number">500+</div>
-              <div className="about-stat-label">Projects Completed</div>
-              <div className="about-stat-desc">Delivering beautiful high-conversion sites and systems globally.</div>
-            </div>
-
-            <div className="about-stat-card">
-              <div className="about-stat-number">98%</div>
-              <div className="about-stat-label">Client Retention</div>
-              <div className="about-stat-desc">Building long-term partnerships through stellar support.</div>
-            </div>
+          <div className="faq-container">
+            {faqs.map((faq, idx) => (
+              <div
+                key={idx}
+                className={`faq-item ${idx === activeFaq ? "active" : ""}`}
+              >
+                <button
+                  className="faq-question"
+                  onClick={() => setActiveFaq(idx === activeFaq ? -1 : idx)}
+                >
+                  <span>{faq.q}</span>
+                  <span className="faq-toggle-icon">+</span>
+                </button>
+                <div
+                  className="faq-answer"
+                  style={{ maxHeight: idx === activeFaq ? "250px" : "0" }}
+                >
+                  <div className="faq-answer-content">
+                    <p>{faq.a}</p>
+                  </div>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>

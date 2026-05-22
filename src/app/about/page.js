@@ -42,6 +42,31 @@ export default function AboutPage() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
+  // FAQ State
+  const [activeFaq, setActiveFaq] = useState(0);
+  const faqs = [
+    {
+      q: "What services does Ananya Hi Solutions provide in Hyderabad?",
+      a: "Ananya Hi Solutions offers comprehensive digital services including website design and development, digital marketing (SEO, PPC, social media), mobile application development, e-commerce solutions, video production, and custom software development. We provide end-to-end digital transformation solutions for businesses of all sizes.",
+    },
+    {
+      q: "How does Ananya Hi Solutions ensure quality in digital marketing campaigns?",
+      a: "We employ data-driven strategies with continuous monitoring and optimization. Our certified digital marketing experts use advanced analytics, A/B testing, and industry-leading tools to track KPIs, measure ROI, and refine campaigns for maximum performance. We provide transparent monthly reports showing measurable results.",
+    },
+    {
+      q: "What makes Ananya Hi Solutions different from other digital agencies in Hyderabad?",
+      a: "Our key differentiators include 10+ years of proven experience, a team of certified experts, integrated service offerings under one roof, customized solutions rather than templates, transparent pricing, dedicated account management, and a proven track record of delivering measurable ROI for clients across diverse industries.",
+    },
+    {
+      q: "How long does it typically take to complete a website design project?",
+      a: "Project timelines vary based on complexity and requirements. A standard business website takes 4-6 weeks, while complex e-commerce platforms or custom web applications may take 8-12 weeks. We provide detailed project timelines during consultation and maintain regular communication throughout the development process.",
+    },
+    {
+      q: "What industries does Ananya Hi Solutions specialize in serving?",
+      a: "We have extensive experience serving diverse industries including e-commerce, healthcare, education, real estate, manufacturing, finance, technology startups, hospitality, and professional services. Our adaptable approach allows us to understand unique industry challenges and deliver tailored solutions that drive results in any sector.",
+    },
+  ];
+
 
 
   // Handle scroll event for Header
@@ -578,32 +603,37 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* 5. Statistics Showcase Section */}
-      <section className="section">
+      {/* 5. Frequently Asked Questions (FAQ) */}
+      <section id="faq" className="section section-bg-alt">
         <div className="container">
           <div className="section-header">
-            <h2>By The Numbers</h2>
-            <p>A proven track record of helping businesses reach their audience and scale operations.</p>
+            <h2>Have Questions?</h2>
+            <p>Get quick, comprehensive answers about how we design, market, and develop your custom solutions.</p>
           </div>
 
-          <div className="about-stats-grid">
-            <div className="about-stat-card">
-              <div className="about-stat-number">10+</div>
-              <div className="about-stat-label">Years of Experience</div>
-              <div className="about-stat-desc">Providing premium digital design and development services.</div>
-            </div>
-
-            <div className="about-stat-card">
-              <div className="about-stat-number">500+</div>
-              <div className="about-stat-label">Projects Completed</div>
-              <div className="about-stat-desc">Delivering beautiful high-conversion sites and systems globally.</div>
-            </div>
-
-            <div className="about-stat-card">
-              <div className="about-stat-number">98%</div>
-              <div className="about-stat-label">Client Retention</div>
-              <div className="about-stat-desc">Building long-term partnerships through stellar support.</div>
-            </div>
+          <div className="faq-container">
+            {faqs.map((faq, idx) => (
+              <div
+                key={idx}
+                className={`faq-item ${idx === activeFaq ? "active" : ""}`}
+              >
+                <button
+                  className="faq-question"
+                  onClick={() => setActiveFaq(idx === activeFaq ? -1 : idx)}
+                >
+                  <span>{faq.q}</span>
+                  <span className="faq-toggle-icon">+</span>
+                </button>
+                <div
+                  className="faq-answer"
+                  style={{ maxHeight: idx === activeFaq ? "250px" : "0" }}
+                >
+                  <div className="faq-answer-content">
+                    <p>{faq.a}</p>
+                  </div>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>

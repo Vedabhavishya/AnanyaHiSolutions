@@ -1,0 +1,107 @@
+{
+  "services": [
+    {
+      "id": "web-design",
+      "title": "Web Design",
+      "desc": "Stunning, fully responsive, and highly interactive user interfaces crafted to capture your brand essence and convert visitors into loyal customers.",
+      "iconName": "globe"
+    },
+    {
+      "id": "digital-marketing",
+      "title": "Digital Marketing",
+      "desc": "Meticulous SEO growth hacking, social media marketing, PPC Google Ads management, and high-converting funnel optimizations designed to multiply revenue.",
+      "iconName": "trending-up"
+    },
+    {
+      "id": "mobile-app",
+      "title": "Mobile Application",
+      "desc": "Premium native and cross-platform (Flutter/React Native) mobile apps that deliver fluid performances, outstanding designs, and smooth navigation.",
+      "iconName": "smartphone"
+    },
+    {
+      "id": "ecommerce-app",
+      "title": "eCommerce Application",
+      "desc": "Secure, high-traffic multi-vendor storefronts optimized for blazing-fast performance, inventory control, and seamless checkout integrations.",
+      "iconName": "shopping-cart"
+    },
+    {
+      "id": "video-production",
+      "title": "Video Production",
+      "desc": "Breathtaking visual storytelling, cinematic company promotions, viral commercial spots, and explanatory 3D animation packages.",
+      "iconName": "video"
+    },
+    {
+      "id": "software-dev",
+      "title": "Software Development",
+      "desc": "Highly robust customized enterprise resource planners (ERPs), customer managers (CRMs), API layers, and intelligent backend automations.",
+      "iconName": "code"
+    }
+  ],
+  "jobs": [
+    {
+      "id": "job-1",
+      "title": "Senior Next.js Developer",
+      "department": "Engineering",
+      "location": "Begumpet, Hyderabad (On-site)",
+      "experience": "3-5 Years",
+      "type": "Full-Time",
+      "description": "We are seeking a Senior Next.js Developer to join our core development team. You will lead the engineering of highly interactive, blazing-fast web applications, e-commerce storefronts, and customized headless dashboards for our international clients.",
+      "requirements": [
+        "Strong experience with React, Next.js (App Router), and TypeScript.",
+        "Proficiency in state management, TailwindCSS, and custom responsive animations.",
+        "Experience optimizing Next.js Core Web Vitals and SSR/SSG caching strategies.",
+        "Excellent communication and team leadership capabilities."
+      ]
+    },
+    {
+      "id": "job-2",
+      "title": "Digital Marketing Strategist",
+      "department": "Marketing",
+      "location": "Begumpet, Hyderabad (On-site)",
+      "experience": "2-4 Years",
+      "type": "Full-Time",
+      "description": "Join our marketing powerhouse as a Lead Strategist! You will design, execute, and monitor high-converting Google Ads (PPC), Facebook Blueprint marketing funnels, and organic search engine growth campaigns for top-tier Indian and global brands.",
+      "requirements": [
+        "Proven experience managing monthly ad spends of 5L+ INR.",
+        "Certified in Google Ads Search/Display and Facebook Blueprint.",
+        "Deep expertise in Google Analytics (GA4), heatmaps, and landing page conversions.",
+        "Stellar writing skills for copywriting and marketing copy."
+      ]
+    },
+    {
+      "id": "job-3",
+      "title": "UI/UX & Brand Designer",
+      "department": "Design",
+      "location": "Begumpet, Hyderabad (On-site)",
+      "experience": "2-3 Years",
+      "type": "Full-Time",
+      "description": "Are you passionate about breathtaking visuals and fluid micro-interactions? We are seeking a creative UI/UX designer to craft outstanding prototypes, design systems, and visual elements using Figma and Adobe Creative Suite.",
+      "requirements": [
+        "An outstanding portfolio showcasing web and mobile application prototypes.",
+        "Expert knowledge of Figma components, auto-layouts, and design systems.",
+        "Basic understanding of SVG animations and front-end layout limits.",
+        "Strong understanding of visual hierarchy, elegant typography, and color harmony."
+      ]
+    }
+  ],
+  "blogs": [
+    {
+      "id": "post-1",
+      "title": "Why Next.js is the Uncontested Future of Enterprise Web Development",
+      "summary": "Discover why global corporations and agile startups are standardizing their web architecture on Next.js to achieve exceptional SEO results and lightning-fast speeds.",
+      "content": "Next.js has evolved from a simple server-rendering framework to a robust, all-in-one web engineering platform. In 2026, user experience and speed dictate business success online. Headless architectures powered by Next.js and Tailwind CSS allow enterprise platforms to load in milliseconds while serving highly dynamic, database-driven contents. We discuss how companies switching to Next.js see average conversion bumps of 25% due to reduced bounce rates.",
+      "category": "Technology",
+      "date": "May 18, 2026",
+      "author": "Ananya Solutions Technical Team"
+    },
+    {
+      "id": "post-2",
+      "title": "5 SEO Growth Hacks Every Hyderabad Business Needs to Implement Today",
+      "summary": "Local searches in Hyderabad are growing by 150% year-on-year. Learn how to rank #1 on Google Maps and organic listings with modern search optimization secrets.",
+      "content": "Local SEO is the highest ROI marketing strategy available today. By building highly structured geo-targeted pages, optimizing your Google Business Profile with rich reviews and updates, and using Schema markup, your business can intercept high-intent buyers looking for your services. We breakdown the specific keyword strategies and performance optimizations that helped our clients increase organic leads by 300%.",
+      "category": "Digital Marketing",
+      "date": "May 20, 2026",
+      "author": "Certified SEO Specialists"
+    }
+  ]
+}

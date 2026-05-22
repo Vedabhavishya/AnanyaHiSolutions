@@ -20,6 +20,58 @@ function Logo({ className = "", light = false }) {
   );
 }
 
+// Service Icon SVG Mapper Helper
+function renderServiceIcon(iconName) {
+  switch (iconName) {
+    case "globe":
+    default:
+      return (
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <rect x="2" y="3" width="20" height="14" rx="2" ry="2" />
+          <line x1="8" y1="21" x2="16" y2="21" />
+          <line x1="12" y1="17" x2="12" y2="21" />
+        </svg>
+      );
+    case "trending-up":
+      return (
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M23 6l-9.5 9.5-5-5L1 18" />
+          <path d="M17 6h6v6" />
+        </svg>
+      );
+    case "smartphone":
+      return (
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <rect x="5" y="2" width="14" height="20" rx="2" ry="2" />
+          <line x1="12" y1="18" x2="12.01" y2="18" />
+        </svg>
+      );
+    case "shopping-cart":
+      return (
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <circle cx="9" cy="21" r="1" />
+          <circle cx="20" cy="21" r="1" />
+          <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6" />
+        </svg>
+      );
+    case "video":
+      return (
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <polygon points="23 7 16 12 23 17 23 7" />
+          <rect x="1" y="5" width="15" height="14" rx="2" ry="2" />
+        </svg>
+      );
+    case "code":
+      return (
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <polyline points="16 18 22 12 16 6" />
+          <polyline points="8 6 2 12 8 18" />
+          <line x1="12" y1="4" x2="12" y2="20" />
+        </svg>
+      );
+  }
+}
+
 export default function Home() {
   // Navigation & Scroll State
   const [isScrolled, setIsScrolled] = useState(false);
@@ -86,78 +138,60 @@ export default function Home() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Services State
-  const services = [
-    {
-      id: "web-design",
-      title: "Web Design",
-      desc: "Stunning, fully responsive, and highly interactive user interfaces crafted to capture your brand essence and convert visitors into loyal customers.",
-      icon: (
-        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-          <rect x="2" y="3" width="20" height="14" rx="2" ry="2" />
-          <line x1="8" y1="21" x2="16" y2="21" />
-          <line x1="12" y1="17" x2="12" y2="21" />
-        </svg>
-      ),
-    },
-    {
-      id: "digital-marketing",
-      title: "Digital Marketing",
-      desc: "Meticulous SEO growth hacking, social media marketing, PPC Google Ads management, and high-converting funnel optimizations designed to multiply revenue.",
-      icon: (
-        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-          <path d="M23 6l-9.5 9.5-5-5L1 18" />
-          <path d="M17 6h6v6" />
-        </svg>
-      ),
-    },
-    {
-      id: "mobile-app",
-      title: "Mobile Application",
-      desc: "Premium native and cross-platform (Flutter/React Native) mobile apps that deliver fluid performances, outstanding designs, and smooth navigation.",
-      icon: (
-        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-          <rect x="5" y="2" width="14" height="20" rx="2" ry="2" />
-          <line x1="12" y1="18" x2="12.01" y2="18" />
-        </svg>
-      ),
-    },
-    {
-      id: "ecommerce-app",
-      title: "eCommerce Application",
-      desc: "Secure, high-traffic multi-vendor storefronts optimized for blazing-fast performance, inventory control, and seamless checkout integrations.",
-      icon: (
-        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-          <circle cx="9" cy="21" r="1" />
-          <circle cx="20" cy="21" r="1" />
-          <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6" />
-        </svg>
-      ),
-    },
-    {
-      id: "video-production",
-      title: "Video Production",
-      desc: "Breathtaking visual storytelling, cinematic company promotions, viral commercial spots, and explanatory 3D animation packages.",
-      icon: (
-        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-          <polygon points="23 7 16 12 23 17 23 7" />
-          <rect x="1" y="5" width="15" height="14" rx="2" ry="2" />
-        </svg>
-      ),
-    },
-    {
-      id: "software-dev",
-      title: "Software Development",
-      desc: "Highly robust customized enterprise resource planners (ERPs), customer managers (CRMs), API layers, and intelligent backend automations.",
-      icon: (
-        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-          <polyline points="16 18 22 12 16 6" />
-          <polyline points="8 6 2 12 8 18" />
-          <line x1="12" y1="4" x2="12" y2="20" />
-        </svg>
-      ),
-    },
-  ];
+  // ----------------------------------------------------
+  // DYNAMIC FETCH STATES
+  // ----------------------------------------------------
+  const [services, setServices] = useState([]);
+  const [jobs, setJobs] = useState([]);
+  const [blogs, setBlogs] = useState([]);
+
+  // Frontend Careers Modals states
+  const [selectedJob, setSelectedJob] = useState(null);
+  const [showApplyModal, setShowApplyModal] = useState(false);
+  const [applySuccess, setApplySuccess] = useState(false);
+  const [applyLoading, setApplyLoading] = useState(false);
+
+  // Application fields
+  const [applicantName, setApplicantName] = useState("");
+  const [applicantEmail, setApplicantEmail] = useState("");
+  const [applicantPhone, setApplicantPhone] = useState("");
+  const [applicantPortfolio, setApplicantPortfolio] = useState("");
+  const [applicantMessage, setApplicantMessage] = useState("");
+  const [resumeName, setResumeName] = useState("");
+
+  // Frontend Blogs Modals states
+  const [selectedBlog, setSelectedBlog] = useState(null);
+  const [showBlogModal, setShowBlogModal] = useState(false);
+
+  // Fetch dynamic content on mount
+  useEffect(() => {
+    const fetchHomepageData = async () => {
+      try {
+        const [resServices, resJobs, resBlogs] = await Promise.all([
+          fetch("/api/services"),
+          fetch("/api/jobs"),
+          fetch("/api/blogs")
+        ]);
+
+        if (resServices.ok) {
+          const dataServices = await resServices.json();
+          setServices(dataServices);
+        }
+        if (resJobs.ok) {
+          const dataJobs = await resJobs.json();
+          setJobs(dataJobs);
+        }
+        if (resBlogs.ok) {
+          const dataBlogs = await resBlogs.json();
+          setBlogs(dataBlogs);
+        }
+      } catch (err) {
+        console.error("Failed to load dynamic database components:", err);
+      }
+    };
+
+    fetchHomepageData();
+  }, []);
 
   // Client Onboarding Process State
   const [activeStep, setActiveStep] = useState(0);
@@ -422,7 +456,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 3. Services Provided as Cards */}
+      {/* 3. Services Provided as Cards (DYNAMIC FROM DATABASE) */}
       <section id="services" className="section section-bg-alt">
         <div className="container">
           <div className="section-header">
@@ -431,16 +465,25 @@ export default function Home() {
           </div>
 
           <div className="services-grid">
-            {services.map((item) => (
-              <div key={item.id} className="service-card glass">
-                <div className="service-icon-wrapper">{item.icon}</div>
-                <h3 className="service-title">{item.title}</h3>
-                <p className="service-desc">{item.desc}</p>
-                <Link href={`/contact?service=${item.id}`} className="service-learn-more">
-                  Learn More <span>→</span>
-                </Link>
+            {services.length === 0 ? (
+              <div className="text-center py-8 col-span-full">
+                <span className="spinner-dashboard"></span>
+                <p className="text-slate-400 mt-4">Connecting with databases...</p>
               </div>
-            ))}
+            ) : (
+              services.map((item) => (
+                <div key={item.id} className="service-card glass">
+                  <div className="service-icon-wrapper">
+                    {renderServiceIcon(item.iconName)}
+                  </div>
+                  <h3 className="service-title">{item.title}</h3>
+                  <p className="service-desc">{item.desc}</p>
+                  <Link href={`/contact?service=${item.id}`} className="service-learn-more">
+                    Learn More <span>→</span>
+                  </Link>
+                </div>
+              ))
+            )}
           </div>
         </div>
       </section>
@@ -540,7 +583,116 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 7. Frequently Asked Questions (FAQ) */}
+      {/* 7. DYNAMIC CAREERS / JOBS SECTION */}
+      <section id="careers" className="careers-section section">
+        <div className="container">
+          <div className="section-header">
+            <h2>Careers at Ananya</h2>
+            <p>Join our Begumpet, Hyderabad team and engineer advanced digital architectures for global clients.</p>
+          </div>
+
+          <div className="careers-grid">
+            {jobs.length === 0 ? (
+              <div className="text-center py-10 w-full col-span-full">
+                <p className="text-slate-400 italic">No job openings are currently published. Check back later!</p>
+              </div>
+            ) : (
+              jobs.map((job) => (
+                <div key={job.id} className="job-card-frontend">
+                  <div className="job-card-frontend-header">
+                    <h3 className="job-card-frontend-title">{job.title}</h3>
+                    <div className="job-card-frontend-badges">
+                      <span className="badge-frontend dept">{job.department}</span>
+                      <span className="badge-frontend type">{job.type}</span>
+                    </div>
+                  </div>
+                  
+                  <div className="job-card-frontend-meta">
+                    <div className="meta-item-frontend">
+                      <span>📍</span> <span>{job.location}</span>
+                    </div>
+                    <div className="meta-item-frontend">
+                      <span>💼</span> <span>{job.experience}</span>
+                    </div>
+                  </div>
+
+                  <p className="job-card-frontend-desc">
+                    {job.description.length > 150 ? `${job.description.slice(0, 150)}...` : job.description}
+                  </p>
+
+                  <button
+                    onClick={() => {
+                      setSelectedJob(job);
+                      setShowApplyModal(true);
+                      setApplySuccess(false);
+                      setResumeName("");
+                      setApplicantName("");
+                      setApplicantEmail("");
+                      setApplicantPhone("");
+                      setApplicantPortfolio("");
+                      setApplicantMessage("");
+                    }}
+                    className="job-card-frontend-btn"
+                  >
+                    View Details & Apply
+                  </button>
+                </div>
+              ))
+            )}
+          </div>
+        </div>
+      </section>
+
+      {/* 8. DYNAMIC BLOG / NEWS SECTION */}
+      <section id="blog" className="blog-section section">
+        <div className="container">
+          <div className="section-header">
+            <h2>Insights & Tech Updates</h2>
+            <p>Explore high-fidelity web design guidelines, local SEO insights, and enterprise software engineering tips.</p>
+          </div>
+
+          <div className="blog-grid">
+            {blogs.length === 0 ? (
+              <div className="text-center py-10 w-full col-span-full">
+                <p className="text-slate-400 italic">No news updates have been published yet. Stay tuned!</p>
+              </div>
+            ) : (
+              blogs.map((post) => (
+                <div key={post.id} className="blog-card-frontend">
+                  <div className="blog-card-img-wrapper">
+                    <div className="blog-card-img-placeholder"></div>
+                    <span className="blog-card-img-text">{post.category ? post.category.slice(0, 3) : "AHS"}</span>
+                    <span className="blog-card-img-badge">{post.category || "News"}</span>
+                  </div>
+                  
+                  <div className="blog-card-frontend-content">
+                    <div>
+                      <div className="blog-card-frontend-meta">
+                        <span>📅 {post.date}</span>
+                        <span>✍️ {post.author || "Ananya Team"}</span>
+                      </div>
+                      <h3 className="blog-card-frontend-title">{post.title}</h3>
+                      <p className="blog-card-frontend-summary">{post.summary}</p>
+                    </div>
+                    
+                    <button
+                      onClick={() => {
+                        setSelectedBlog(post);
+                        setShowBlogModal(true);
+                      }}
+                      className="blog-card-frontend-link cursor-pointer bg-transparent border-none text-left p-0"
+                    >
+                      Read Full Article <span>→</span>
+                    </button>
+                  </div>
+                </div>
+              ))
+            )}
+          </div>
+        </div>
+      </section>
+
+      {/* 9. Frequently Asked Questions (FAQ) */}
       <section id="faq" className="section section-bg-alt">
         <div className="container">
           <div className="section-header">
@@ -575,7 +727,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 8. Worldwide Delivery Map Section */}
+      {/* 10. Worldwide Delivery Map Section */}
       <section id="worldwide" className="worldwide-section">
         <div className="container">
           <div className="section-header">
@@ -616,7 +768,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 9. Footer (Matching Image 5) */}
+      {/* 11. Footer (Matching Image 5) */}
       <footer id="contact" className="footer">
         <div className="footer-container">
           <div className="footer-brand">
@@ -699,7 +851,7 @@ export default function Home() {
         </div>
       </footer>
 
-      {/* 10. Interactive Chat Widget ("Hi, I'm Ananya 👋") */}
+      {/* 12. Interactive Chat Widget ("Hi, I'm Ananya 👋") */}
       <div className="chat-widget-container">
         {/* Closed speech bubble helper */}
         {!chatOpen && (
@@ -786,6 +938,195 @@ export default function Home() {
           </div>
         </div>
       </div>
+
+      {/* ----------------------------------------------------
+         FRONTEND POPUP PORTALS / MODALS
+         ---------------------------------------------------- */}
+
+      {/* 13. Careers Apply Modal Overlay */}
+      {showApplyModal && selectedJob && (
+        <div className="frontend-modal-overlay animate-fade-in" onClick={() => setShowApplyModal(false)}>
+          <div className="frontend-modal-card animate-slide-up" onClick={(e) => e.stopPropagation()}>
+            <div className="frontend-modal-header">
+              <h3>Apply for {selectedJob.title}</h3>
+              <button className="frontend-modal-close" onClick={() => setShowApplyModal(false)}>✕</button>
+            </div>
+            
+            <div className="frontend-modal-body">
+              {applySuccess ? (
+                <div className="apply-success-overlay">
+                  <div className="success-badge-icon">✓</div>
+                  <h3>Application Submitted!</h3>
+                  <p>
+                    Thank you for applying, {applicantName}! Our Begumpet recruitment crew will review your credentials and contact you at {applicantEmail} within 2-3 business days.
+                  </p>
+                  <button onClick={() => setShowApplyModal(false)} className="apply-submit-btn w-full">
+                    Close Window
+                  </button>
+                </div>
+              ) : (
+                <>
+                  <div className="apply-job-header-info">
+                    <h4>{selectedJob.title}</h4>
+                    <p>Department: {selectedJob.department} | Location: {selectedJob.location} | Type: {selectedJob.type}</p>
+                  </div>
+                  
+                  <div className="job-details-group">
+                    <h5>Role Description</h5>
+                    <p className="text-sm text-slate-300 leading-relaxed mb-6">{selectedJob.description}</p>
+                    
+                    {selectedJob.requirements && selectedJob.requirements.length > 0 && (
+                      <>
+                        <h5>Candidate Requirements</h5>
+                        <ul className="job-requirements-list">
+                          {selectedJob.requirements.map((req, idx) => (
+                            <li key={idx}>{req}</li>
+                          ))}
+                        </ul>
+                      </>
+                    )}
+                  </div>
+                  
+                  <form
+                    onSubmit={(e) => {
+                      e.preventDefault();
+                      setApplyLoading(true);
+                      setTimeout(() => {
+                        setApplyLoading(false);
+                        setApplySuccess(true);
+                      }, 1200);
+                    }}
+                    className="apply-form"
+                  >
+                    <div className="apply-form-group">
+                      <label htmlFor="appl-name">Full Name</label>
+                      <input
+                        id="appl-name"
+                        type="text"
+                        value={applicantName}
+                        onChange={(e) => setApplicantName(e.target.value)}
+                        placeholder="Enter your full name"
+                        required
+                      />
+                    </div>
+                    
+                    <div className="apply-form-group">
+                      <label htmlFor="appl-email">Email Address</label>
+                      <input
+                        id="appl-email"
+                        type="email"
+                        value={applicantEmail}
+                        onChange={(e) => setApplicantEmail(e.target.value)}
+                        placeholder="name@example.com"
+                        required
+                      />
+                    </div>
+                    
+                    <div className="apply-form-group">
+                      <label htmlFor="appl-phone">Phone / WhatsApp Number</label>
+                      <input
+                        id="appl-phone"
+                        type="tel"
+                        value={applicantPhone}
+                        onChange={(e) => setApplicantPhone(e.target.value)}
+                        placeholder="+91 XXXXX-XXXXX"
+                        required
+                      />
+                    </div>
+
+                    <div className="apply-form-group">
+                      <label htmlFor="appl-portfolio">Portfolio URL (Optional)</label>
+                      <input
+                        id="appl-portfolio"
+                        type="url"
+                        value={applicantPortfolio}
+                        onChange={(e) => setApplicantPortfolio(e.target.value)}
+                        placeholder="https://github.com/yourusername"
+                      />
+                    </div>
+                    
+                    <div className="apply-form-group">
+                      <label>Upload Resume / CV (PDF/Word)</label>
+                      <div className="file-input-wrapper">
+                        <input
+                          type="file"
+                          accept=".pdf,.doc,.docx"
+                          required
+                          onChange={(e) => {
+                            if (e.target.files && e.target.files[0]) {
+                              setResumeName(e.target.files[0].name);
+                            }
+                          }}
+                        />
+                        <span className="file-input-label">
+                          {resumeName ? `📄 ${resumeName}` : "📁 Upload PDF or Word Document"}
+                        </span>
+                      </div>
+                    </div>
+                    
+                    <div className="apply-form-group">
+                      <label htmlFor="appl-msg">Cover Letter / Message</label>
+                      <textarea
+                        id="appl-msg"
+                        value={applicantMessage}
+                        onChange={(e) => setApplicantMessage(e.target.value)}
+                        placeholder="Why do you want to join Ananya Hi Solutions? Tell us about your background..."
+                        rows="3"
+                      ></textarea>
+                    </div>
+                    
+                    <button type="submit" className="apply-submit-btn" disabled={applyLoading}>
+                      {applyLoading ? "Submitting application..." : "Submit Application"}
+                    </button>
+                  </form>
+                </>
+              )}
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* 14. Blog News Article Modal Overlay */}
+      {showBlogModal && selectedBlog && (
+        <div className="frontend-modal-overlay animate-fade-in" onClick={() => setShowBlogModal(false)}>
+          <div className="frontend-modal-card animate-slide-up" onClick={(e) => e.stopPropagation()}>
+            <div className="frontend-modal-header">
+              <h3>Article Insights</h3>
+              <button className="frontend-modal-close" onClick={() => setShowBlogModal(false)}>✕</button>
+            </div>
+            
+            <div className="frontend-modal-body">
+              <article className="blog-modal-article">
+                <h2>{selectedBlog.title}</h2>
+                
+                <div className="blog-modal-meta">
+                  <span className="blog-modal-category">{selectedBlog.category || "General"}</span>
+                  <span>📅 Published: {selectedBlog.date}</span>
+                  <span>✍️ Author: {selectedBlog.author || "Ananya Solutions Team"}</span>
+                </div>
+                
+                <div className="blog-modal-content">
+                  {selectedBlog.content}
+                </div>
+              </article>
+              
+              <div className="mt-8 pt-6 border-t border-slate-800 flex flex-col gap-4">
+                <p className="text-sm text-slate-400">
+                  Looking to implement these exact tech secrets or SEO growth strategies in your own company? Let's consult!
+                </p>
+                <Link
+                  href="/contact"
+                  onClick={() => setShowBlogModal(false)}
+                  className="btn btn-accent text-center w-full"
+                  style={{ textDecoration: 'none' }}
+                >
+                  ✉️ Book a Free Strategy Session
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

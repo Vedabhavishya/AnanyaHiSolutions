@@ -362,22 +362,22 @@ export default function Home() {
       {/* 1. Header & Navigation Bar */}
       <header className={`navbar ${isScrolled ? "scrolled" : ""}`}>
         <div className="navbar-container">
-          <a href="#home" className="flex items-center">
+          <Link href="/" className="flex items-center">
             <Logo />
-          </a>
+          </Link>
 
           {/* Desktop Nav Links */}
           <ul className="nav-links">
-            <li><a href="#home" className="nav-link active">Home</a></li>
+            <li><Link href="/" className="nav-link active">Home</Link></li>
             <li><Link href="/about" className="nav-link">About</Link></li>
-            <li><a href="#services" className="nav-link">Services</a></li>
-            <li><a href="#careers" className="nav-link">Careers</a></li>
-            <li><a href="#blog" className="nav-link">Blog</a></li>
+            <li><Link href="/services" className="nav-link">Services</Link></li>
+            <li><Link href="/careers" className="nav-link">Careers</Link></li>
+            <li><Link href="/blog" className="nav-link">Blog</Link></li>
             <li><Link href="/contact" className="nav-link">Contact us</Link></li>
           </ul>
 
           <div className="nav-cta">
-            <a href="#pricing" className="btn btn-primary">Choose Package</a>
+            <Link href="/contact" className="btn btn-primary">Choose Package</Link>
           </div>
 
           {/* Mobile Menu Icon Toggle */}
@@ -393,13 +393,13 @@ export default function Home() {
         {/* Mobile Menu Overlay */}
         {mobileMenuOpen && (
           <div className="fixed inset-0 top-[70px] bg-white z-[999] flex flex-col p-6 gap-6 shadow-lg md:hidden animate-slide-in">
-            <a href="#home" onClick={() => setMobileMenuOpen(false)} className="text-xl font-bold border-b pb-2">Home</a>
+            <Link href="/" onClick={() => setMobileMenuOpen(false)} className="text-xl font-bold border-b pb-2">Home</Link>
             <Link href="/about" onClick={() => setMobileMenuOpen(false)} className="text-xl font-bold border-b pb-2">About</Link>
-            <a href="#services" onClick={() => setMobileMenuOpen(false)} className="text-xl font-bold border-b pb-2">Services</a>
-            <a href="#careers" onClick={() => setMobileMenuOpen(false)} className="text-xl font-bold border-b pb-2">Careers</a>
-            <a href="#blog" onClick={() => setMobileMenuOpen(false)} className="text-xl font-bold border-b pb-2">Blog</a>
+            <Link href="/services" onClick={() => setMobileMenuOpen(false)} className="text-xl font-bold border-b pb-2">Services</Link>
+            <Link href="/careers" onClick={() => setMobileMenuOpen(false)} className="text-xl font-bold border-b pb-2">Careers</Link>
+            <Link href="/blog" onClick={() => setMobileMenuOpen(false)} className="text-xl font-bold border-b pb-2">Blog</Link>
             <Link href="/contact" onClick={() => setMobileMenuOpen(false)} className="text-xl font-bold border-b pb-2">Contact us</Link>
-            <a href="#pricing" onClick={() => setMobileMenuOpen(false)} className="btn btn-accent text-center mt-4">Choose Package</a>
+            <Link href="/contact" onClick={() => setMobileMenuOpen(false)} className="btn btn-accent text-center mt-4">Choose Package</Link>
           </div>
         )}
       </header>
@@ -420,8 +420,8 @@ export default function Home() {
               />
               <p className="carousel-desc">{slide.desc}</p>
               <div className="carousel-buttons">
-                <a href="#services" className="btn btn-accent">{slide.btn1}</a>
-                <a href="#pricing" className="btn btn-outline" style={{ color: "#fff", borderColor: "#fff" }}>{slide.btn2}</a>
+                <Link href="/services" className="btn btn-accent">{slide.btn1}</Link>
+                <Link href="/contact" className="btn btn-outline" style={{ color: "#fff", borderColor: "#fff" }}>{slide.btn2}</Link>
               </div>
             </div>
           </div>
@@ -781,11 +781,11 @@ export default function Home() {
           <div className="footer-column">
             <h4>Quick Links</h4>
             <ul className="footer-links">
-              <li><a href="#home">Home</a></li>
+              <li><Link href="/">Home</Link></li>
               <li><Link href="/about">About Us</Link></li>
-              <li><a href="#careers">Careers</a></li>
-              <li><a href="#pricing">Payment Terms</a></li>
-              <li><a href="#blog">News</a></li>
+              <li><Link href="/careers">Careers</Link></li>
+              <li><Link href="/contact">Payment Terms</Link></li>
+              <li><Link href="/blog">News</Link></li>
               <li><Link href="/contact">Contact</Link></li>
             </ul>
           </div>
@@ -793,12 +793,12 @@ export default function Home() {
           <div className="footer-column">
             <h4>Our Services</h4>
             <ul className="footer-links">
-              <li><a href="#services?id=web-design">Website Design</a></li>
-              <li><a href="#services?id=digital-marketing">Digital Marketing</a></li>
-              <li><a href="#services?id=mobile-app">Mobile Application</a></li>
-              <li><a href="#services?id=ecommerce-app">eCommerce Application</a></li>
-              <li><a href="#services?id=video-production">Video Production</a></li>
-              <li><a href="#services?id=software-dev">Software Development</a></li>
+              <li><Link href="/services">Website Design</Link></li>
+              <li><Link href="/services">Digital Marketing</Link></li>
+              <li><Link href="/services">Mobile Application</Link></li>
+              <li><Link href="/services">eCommerce Application</Link></li>
+              <li><Link href="/services">Video Production</Link></li>
+              <li><Link href="/services">Software Development</Link></li>
             </ul>
           </div>
 

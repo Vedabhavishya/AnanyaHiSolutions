@@ -37,53 +37,7 @@
       "iconName": "code"
     }
   ],
-  "jobs": [
-    {
-      "id": "job-1",
-      "title": "Senior Next.js Developer",
-      "department": "Engineering",
-      "location": "Begumpet, Hyderabad (On-site)",
-      "experience": "3-5 Years",
-      "type": "Full-Time",
-      "description": "We are seeking a Senior Next.js Developer to join our core development team. You will lead the engineering of highly interactive, blazing-fast web applications, e-commerce storefronts, and customized headless dashboards for our international clients.",
-      "requirements": [
-        "Strong experience with React, Next.js (App Router), and TypeScript.",
-        "Proficiency in state management, TailwindCSS, and custom responsive animations.",
-        "Experience optimizing Next.js Core Web Vitals and SSR/SSG caching strategies.",
-        "Excellent communication and team leadership capabilities."
-      ]
-    },
-    {
-      "id": "job-2",
-      "title": "Digital Marketing Strategist",
-      "department": "Marketing",
-      "location": "Begumpet, Hyderabad (On-site)",
-      "experience": "2-4 Years",
-      "type": "Full-Time",
-      "description": "Join our marketing powerhouse as a Lead Strategist! You will design, execute, and monitor high-converting Google Ads (PPC), Facebook Blueprint marketing funnels, and organic search engine growth campaigns for top-tier Indian and global brands.",
-      "requirements": [
-        "Proven experience managing monthly ad spends of 5L+ INR.",
-        "Certified in Google Ads Search/Display and Facebook Blueprint.",
-        "Deep expertise in Google Analytics (GA4), heatmaps, and landing page conversions.",
-        "Stellar writing skills for copywriting and marketing copy."
-      ]
-    },
-    {
-      "id": "job-3",
-      "title": "UI/UX & Brand Designer",
-      "department": "Design",
-      "location": "Begumpet, Hyderabad (On-site)",
-      "experience": "2-3 Years",
-      "type": "Full-Time",
-      "description": "Are you passionate about breathtaking visuals and fluid micro-interactions? We are seeking a creative UI/UX designer to craft outstanding prototypes, design systems, and visual elements using Figma and Adobe Creative Suite.",
-      "requirements": [
-        "An outstanding portfolio showcasing web and mobile application prototypes.",
-        "Expert knowledge of Figma components, auto-layouts, and design systems.",
-        "Basic understanding of SVG animations and front-end layout limits.",
-        "Strong understanding of visual hierarchy, elegant typography, and color harmony."
-      ]
-    }
-  ],
+  "jobs": [],
   "blogs": [
     {
       "id": "post-1",

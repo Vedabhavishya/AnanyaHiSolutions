@@ -1,0 +1,536 @@
+"use client";
+
+import React, { useState, useEffect, useRef } from "react";
+import Link from "next/link";
+
+// Crisp Inline SVG Logo Component
+function Logo({ className = "", light = false }) {
+  return (
+    <img
+      src="/logo.png"
+      alt="Ananya Hi Solutions"
+      className={`nav-logo-img ${className}`}
+      style={{
+        height: "42px",
+        width: "auto",
+        objectFit: "contain",
+        display: "block"
+      }}
+    />
+  );
+}
+
+export default function CareersPage() {
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [jobs, setJobs] = useState([]);
+
+  // Modals and Apply states
+  const [selectedJob, setSelectedJob] = useState(null);
+  const [showApplyModal, setShowApplyModal] = useState(false);
+  const [applySuccess, setApplySuccess] = useState(false);
+  const [applyLoading, setApplyLoading] = useState(false);
+
+  // Application fields
+  const [applicantName, setApplicantName] = useState("");
+  const [applicantEmail, setApplicantEmail] = useState("");
+  const [applicantPhone, setApplicantPhone] = useState("");
+  const [applicantPortfolio, setApplicantPortfolio] = useState("");
+  const [applicantMessage, setApplicantMessage] = useState("");
+  const [resumeName, setResumeName] = useState("");
+
+  // Chat Widget State
+  const [chatOpen, setChatOpen] = useState(false);
+  const [chatMessage, setChatMessage] = useState("");
+  const [chatHistory, setChatHistory] = useState([
+    { sender: "bot", text: "Hello! Welcome to Ananya Hi Solutions. I am Ananya, your digital assistant. How can I help you find your dream job today?" },
+  ]);
+  const messagesEndRef = useRef(null);
+
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
+
+  useEffect(() => {
+    scrollToBottom();
+  }, [chatHistory, chatOpen]);
+
+  // Handle scroll event for Header
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 50) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  // Fetch jobs on mount
+  useEffect(() => {
+    const fetchJobs = async () => {
+      try {
+        const res = await fetch("/api/jobs");
+        if (res.ok) {
+          const data = await res.json();
+          setJobs(data);
+        }
+      } catch (err) {
+        console.error("Failed to load jobs:", err);
+      }
+    };
+    fetchJobs();
+  }, []);
+
+  const handleSendChat = (e) => {
+    e.preventDefault();
+    if (!chatMessage.trim()) return;
+
+    const userMsg = chatMessage;
+    setChatHistory((prev) => [...prev, { sender: "user", text: userMsg }]);
+    setChatMessage("");
+
+    setTimeout(() => {
+      let reply = "Thank you for reaching out! I've logged your request. Our digital consultants will contact you at info@ananyahisolutions.com shortly, or you can ring us at (+91) 76739-35353.";
+      
+      const lower = userMsg.toLowerCase();
+      if (lower.includes("price") || lower.includes("cost") || lower.includes("package") || lower.includes("quote")) {
+        reply = "We offer tailor-made pricing! Our basic web design packages start from very competitive rates. Drop your contact details right here in our message form and we will email a brochure immediately.";
+      } else if (lower.includes("service") || lower.includes("web") || lower.includes("marketing") || lower.includes("app")) {
+        reply = "We specialize in Web Design, Digital Marketing, Mobile Apps, eCommerce solutions, Software Development, and Video Production. You can fill out the form on this page to request a detailed call!";
+      } else if (lower.includes("location") || lower.includes("address") || lower.includes("office")) {
+        reply = "We are located at: 401 Sravya Vatika, Greenlands, Begumpet, Hyderabad, Telangana-500016. Clicking the location card above will open Google Maps directly!";
+      }
+      setChatHistory((prev) => [...prev, { sender: "bot", text: reply }]);
+    }, 1000);
+  };
+
+  const handleSuggestionClick = (msg) => {
+    setChatMessage(msg);
+  };
+
+  return (
+    <div className="flex flex-col min-h-screen">
+      {/* 1. Header & Navigation Bar */}
+      <header className={`navbar ${isScrolled ? "scrolled" : ""}`}>
+        <div className="navbar-container">
+          <Link href="/" className="flex items-center">
+            <Logo />
+          </Link>
+
+          {/* Desktop Nav Links */}
+          <ul className="nav-links">
+            <li><Link href="/" className="nav-link">Home</Link></li>
+            <li><Link href="/about" className="nav-link">About</Link></li>
+            <li><Link href="/services" className="nav-link">Services</Link></li>
+            <li><Link href="/careers" className="nav-link active">Careers</Link></li>
+            <li><Link href="/blog" className="nav-link">Blog</Link></li>
+            <li><Link href="/contact" className="nav-link">Contact us</Link></li>
+          </ul>
+
+          <div className="nav-cta">
+            <Link href="/contact" className="btn btn-primary">Choose Package</Link>
+          </div>
+
+          {/* Mobile Menu Icon Toggle */}
+          <button
+            className="mobile-menu-btn"
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            aria-label="Toggle menu"
+          >
+            {mobileMenuOpen ? "✕" : "☰"}
+          </button>
+        </div>
+
+        {/* Mobile Menu Overlay */}
+        {mobileMenuOpen && (
+          <div className="fixed inset-0 top-[70px] bg-white z-[999] flex flex-col p-6 gap-6 shadow-lg md:hidden animate-slide-in">
+            <Link href="/" onClick={() => setMobileMenuOpen(false)} className="text-xl font-bold border-b pb-2">Home</Link>
+            <Link href="/about" onClick={() => setMobileMenuOpen(false)} className="text-xl font-bold border-b pb-2">About</Link>
+            <Link href="/services" onClick={() => setMobileMenuOpen(false)} className="text-xl font-bold border-b pb-2">Services</Link>
+            <Link href="/careers" onClick={() => setMobileMenuOpen(false)} className="text-xl font-bold border-b pb-2">Careers</Link>
+            <Link href="/blog" onClick={() => setMobileMenuOpen(false)} className="text-xl font-bold border-b pb-2">Blog</Link>
+            <Link href="/contact" onClick={() => setMobileMenuOpen(false)} className="text-xl font-bold border-b pb-2">Contact us</Link>
+            <Link href="/contact" onClick={() => setMobileMenuOpen(false)} className="btn btn-accent text-center mt-4">Choose Package</Link>
+          </div>
+        )}
+      </header>
+
+      {/* 2. Hero Section */}
+      <section className="contact-hero" style={{ background: "radial-gradient(circle at 50% 50%, #052e47 0%, #031825 100%)" }}>
+        <div className="contact-hero-content container animate-slide-in">
+          <h1>Careers at <span>Ananya</span></h1>
+          <p>
+            Join our Begumpet, Hyderabad team and engineer advanced digital architectures for global clients.
+          </p>
+        </div>
+      </section>
+
+      {/* 3. Job Listings Grid (DYNAMIC FROM DATABASE) */}
+      <section className="section section-bg-alt" style={{ flex: 1 }}>
+        <div className="container">
+          <div className="careers-grid">
+            {jobs.length === 0 ? (
+              <div className="text-center py-10 w-full col-span-full">
+                <p className="text-slate-400 italic">No job openings are currently published. Check back later!</p>
+              </div>
+            ) : (
+              jobs.map((job) => (
+                <div key={job.id} className="job-card-frontend" style={{ minHeight: "240px" }}>
+                  <div className="job-card-frontend-header">
+                    <h3 className="job-card-frontend-title">{job.title}</h3>
+                    <div className="job-card-frontend-badges">
+                      <span className="badge-frontend dept">{job.department}</span>
+                      <span className="badge-frontend type">{job.type}</span>
+                    </div>
+                  </div>
+                  
+                  <div className="job-card-frontend-meta">
+                    <div className="meta-item-frontend">
+                      <span>📍</span> <span>{job.location}</span>
+                    </div>
+                    <div className="meta-item-frontend">
+                      <span>💼</span> <span>{job.experience}</span>
+                    </div>
+                  </div>
+
+                  <p className="job-card-frontend-desc">
+                    {job.description.length > 150 ? `${job.description.slice(0, 150)}...` : job.description}
+                  </p>
+
+                  <button
+                    onClick={() => {
+                      setSelectedJob(job);
+                      setShowApplyModal(true);
+                      setApplySuccess(false);
+                      setResumeName("");
+                      setApplicantName("");
+                      setApplicantEmail("");
+                      setApplicantPhone("");
+                      setApplicantPortfolio("");
+                      setApplicantMessage("");
+                    }}
+                    className="job-card-frontend-btn"
+                  >
+                    View Details & Apply
+                  </button>
+                </div>
+              ))
+            )}
+          </div>
+        </div>
+      </section>
+
+      {/* 4. Footer */}
+      <footer className="footer">
+        <div className="footer-container">
+          <div className="footer-brand">
+            <Logo light={true} className="footer-logo-svg" />
+            <p className="footer-desc mt-4">
+              We are a professional Web Design & Digital Marketing agency in Hyderabad, delivering creative solutions that help businesses grow online.
+            </p>
+          </div>
+
+          <div className="footer-column">
+            <h4>Quick Links</h4>
+            <ul className="footer-links">
+              <li><Link href="/">Home</Link></li>
+              <li><Link href="/about">About Us</Link></li>
+              <li><Link href="/careers">Careers</Link></li>
+              <li><Link href="/contact">Payment Terms</Link></li>
+              <li><Link href="/blog">News</Link></li>
+              <li><Link href="/contact">Contact</Link></li>
+            </ul>
+          </div>
+
+          <div className="footer-column">
+            <h4>Our Services</h4>
+            <ul className="footer-links">
+              <li><Link href="/services">Website Design</Link></li>
+              <li><Link href="/services">Digital Marketing</Link></li>
+              <li><Link href="/services">Mobile Application</Link></li>
+              <li><Link href="/services">eCommerce Application</Link></li>
+              <li><Link href="/services">Video Production</Link></li>
+              <li><Link href="/services">Software Development</Link></li>
+            </ul>
+          </div>
+
+          <div className="footer-column">
+            <h4>Contact Us</h4>
+            <ul className="footer-contact">
+              <li className="footer-contact-item">
+                <span className="footer-contact-icon">📍</span>
+                <span>401 Sravya Vatika, Greenlands,<br />Begumpet, Hyderabad, Telangana-500016</span>
+              </li>
+              <li className="footer-contact-item">
+                <span className="footer-contact-icon">📞</span>
+                <span>(+91) 76739-35353</span>
+              </li>
+              <li className="footer-contact-item">
+                <span className="footer-contact-icon">✉️</span>
+                <span>info@ananyahisolutions.com</span>
+              </li>
+            </ul>
+
+            <div className="footer-socials">
+              <a href="https://facebook.com" className="footer-social-link" aria-label="Facebook">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
+                </svg>
+              </a>
+              <a href="https://instagram.com" className="footer-social-link" aria-label="Instagram">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+                  <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+                  <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+                </svg>
+              </a>
+              <a href="https://linkedin.com" className="footer-social-link" aria-label="LinkedIn">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+                  <rect x="2" y="9" width="4" height="12" />
+                  <circle cx="4" cy="4" r="2" />
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <hr className="footer-divider" />
+
+        <div className="footer-bottom">
+          <p>© 2025 Ananya Hi Solutions. All Rights Reserved.</p>
+        </div>
+      </footer>
+
+      {/* 5. Apply Job Modal Overlay */}
+      {showApplyModal && selectedJob && (
+        <div className="frontend-modal-overlay animate-fade-in" onClick={() => setShowApplyModal(false)}>
+          <div className="frontend-modal-card animate-slide-up" onClick={(e) => e.stopPropagation()}>
+            <div className="frontend-modal-header">
+              <h3>Apply for Position</h3>
+              <button className="frontend-modal-close" onClick={() => setShowApplyModal(false)}>✕</button>
+            </div>
+            
+            <div className="frontend-modal-body">
+              {applySuccess ? (
+                <div className="apply-success-message-box">
+                  <div className="apply-success-icon">✓</div>
+                  <h4>Application Staged!</h4>
+                  <p>
+                    Thank you for applying, {applicantName}! Our Begumpet recruitment crew will review your credentials and contact you at {applicantEmail} within 2-3 business days.
+                  </p>
+                  <button onClick={() => setShowApplyModal(false)} className="apply-submit-btn w-full">
+                    Close Window
+                  </button>
+                </div>
+              ) : (
+                <>
+                  <div className="apply-job-header-info">
+                    <h4>{selectedJob.title}</h4>
+                    <p>Department: {selectedJob.department} | Location: {selectedJob.location} | Type: {selectedJob.type}</p>
+                  </div>
+                  
+                  <div className="job-details-group">
+                    <h5>Role Description</h5>
+                    <p className="text-sm text-slate-300 leading-relaxed mb-6">{selectedJob.description}</p>
+                    
+                    {selectedJob.requirements && selectedJob.requirements.length > 0 && (
+                      <>
+                        <h5>Candidate Requirements</h5>
+                        <ul className="job-requirements-list">
+                          {selectedJob.requirements.map((req, idx) => (
+                            <li key={idx}>{req}</li>
+                          ))}
+                        </ul>
+                      </>
+                    )}
+                  </div>
+                  
+                  <form
+                    onSubmit={(e) => {
+                      e.preventDefault();
+                      setApplyLoading(true);
+                      setTimeout(() => {
+                        setApplyLoading(false);
+                        setApplySuccess(true);
+                      }, 1200);
+                    }}
+                    className="apply-form"
+                  >
+                    <div className="apply-form-group">
+                      <label htmlFor="appl-name">Full Name</label>
+                      <input
+                        id="appl-name"
+                        type="text"
+                        value={applicantName}
+                        onChange={(e) => setApplicantName(e.target.value)}
+                        placeholder="Enter your full name"
+                        required
+                      />
+                    </div>
+                    
+                    <div className="apply-form-group">
+                      <label htmlFor="appl-email">Email Address</label>
+                      <input
+                        id="appl-email"
+                        type="email"
+                        value={applicantEmail}
+                        onChange={(e) => setApplicantEmail(e.target.value)}
+                        placeholder="name@example.com"
+                        required
+                      />
+                    </div>
+                    
+                    <div className="apply-form-group">
+                      <label htmlFor="appl-phone">Phone / WhatsApp Number</label>
+                      <input
+                        id="appl-phone"
+                        type="tel"
+                        value={applicantPhone}
+                        onChange={(e) => setApplicantPhone(e.target.value)}
+                        placeholder="+91 XXXXX-XXXXX"
+                        required
+                      />
+                    </div>
+
+                    <div className="apply-form-group">
+                      <label htmlFor="appl-portfolio">Portfolio URL (Optional)</label>
+                      <input
+                        id="appl-portfolio"
+                        type="url"
+                        value={applicantPortfolio}
+                        onChange={(e) => setApplicantPortfolio(e.target.value)}
+                        placeholder="https://github.com/yourusername"
+                      />
+                    </div>
+                    
+                    <div className="apply-form-group">
+                      <label>Upload Resume / CV (PDF/Word)</label>
+                      <div className="file-input-wrapper">
+                        <input
+                          type="file"
+                          accept=".pdf,.doc,.docx"
+                          required
+                          onChange={(e) => {
+                            if (e.target.files && e.target.files[0]) {
+                              setResumeName(e.target.files[0].name);
+                            }
+                          }}
+                        />
+                        <span className="file-input-label">
+                          {resumeName ? `📄 ${resumeName}` : "📁 Upload PDF or Word Document"}
+                        </span>
+                      </div>
+                    </div>
+                    
+                    <div className="apply-form-group">
+                      <label htmlFor="appl-msg">Cover Letter / Message</label>
+                      <textarea
+                        id="appl-msg"
+                        value={applicantMessage}
+                        onChange={(e) => setApplicantMessage(e.target.value)}
+                        placeholder="Why do you want to join Ananya Hi Solutions? Tell us about your background..."
+                        rows="3"
+                      ></textarea>
+                    </div>
+                    
+                    <button type="submit" className="apply-submit-btn" disabled={applyLoading}>
+                      {applyLoading ? "Submitting application..." : "Submit Application"}
+                    </button>
+                  </form>
+                </>
+              )}
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* 6. Interactive Chat Widget */}
+      <div className="chat-widget-container">
+        {!chatOpen && (
+          <div className="chat-bubble" onClick={() => setChatOpen(true)}>
+            <span>Hi, I'm Ananya 👋</span>
+          </div>
+        )}
+
+        <div className={`chat-box ${chatOpen ? "open" : ""}`}>
+          <div className="chat-header">
+            <div className="chat-header-user">
+              <div className="chat-header-avatar flex items-center justify-center font-bold text-slate-800 text-[20px]">
+                👩‍💻
+              </div>
+              <div className="chat-header-info">
+                <h4>Ananya</h4>
+                <p>Online | Digital Assistant</p>
+              </div>
+            </div>
+            <button
+              className="chat-header-close"
+              onClick={() => setChatOpen(false)}
+              aria-label="Close chat"
+            >
+              ✕
+            </button>
+          </div>
+
+          <div className="chat-messages">
+            {chatHistory.map((msg, index) => (
+              <div
+                key={index}
+                className={`chat-msg ${
+                  msg.sender === "bot" ? "chat-msg-received" : "chat-msg-sent"
+                }`}
+              >
+                {msg.text}
+              </div>
+            ))}
+            <div ref={messagesEndRef} />
+          </div>
+
+          <div className="flex flex-wrap gap-2 p-3 bg-white border-t border-slate-100">
+            <button
+              onClick={() => handleSuggestionClick("Tell me about Web Design")}
+              className="text-xs bg-slate-100 hover:bg-primary-blue hover:text-white transition-all text-slate-700 px-3 py-1.5 rounded-full font-medium"
+            >
+              🌐 Web Design
+            </button>
+            <button
+              onClick={() => handleSuggestionClick("Tell me about Digital Marketing")}
+              className="text-xs bg-slate-100 hover:bg-primary-blue hover:text-white transition-all text-slate-700 px-3 py-1.5 rounded-full font-medium"
+            >
+              📈 Marketing
+            </button>
+            <button
+              onClick={() => handleSuggestionClick("Show Office location")}
+              className="text-xs bg-slate-100 hover:bg-primary-blue hover:text-white transition-all text-slate-700 px-3 py-1.5 rounded-full font-medium"
+            >
+              📍 Office location
+            </button>
+          </div>
+
+          <form onSubmit={handleSendChat} className="chat-footer">
+            <input
+              type="text"
+              placeholder="Ask me something..."
+              className="chat-input"
+              value={chatMessage}
+              onChange={(e) => setChatMessage(e.target.value)}
+            />
+            <button type="submit" className="chat-send-btn" aria-label="Send message">
+              ➤
+            </button>
+          </form>
+        </div>
+
+        <div className="chat-trigger" onClick={() => setChatOpen(!chatOpen)}>
+          <div className="w-full h-full flex items-center justify-center text-3xl">
+            👩‍💻
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}

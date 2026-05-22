@@ -149,8 +149,8 @@ export default function CareersPage() {
       </header>
 
       {/* 2. Stunning Banner at the Starting */}
-      <section className="contact-hero" style={{ background: "linear-gradient(135deg, #052e47 0%, #031825 50%, #0c4a6e 100%)", position: "relative" }}>
-        <div className="absolute inset-0 opacity-10 bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:16px_16px]"></div>
+      <section className="contact-hero" style={{ position: "relative" }}>
+        <div className="absolute inset-0 opacity-10 bg-[radial-gradient(var(--primary-blue)_1px,transparent_1px)] [background-size:16px_16px]"></div>
         <div className="contact-hero-content container animate-slide-in relative z-10">
           <span className="text-accent-orange font-bold tracking-widest text-sm uppercase block mb-3">Work with Experts</span>
           <h1>Careers at <span>Ananya</span></h1>
@@ -172,17 +172,17 @@ export default function CareersPage() {
       </section>
 
       {/* 4. Current Job Openings Section */}
-      <section className="careers-section section py-20" style={{ flex: 1, backgroundColor: "#031825", background: "radial-gradient(circle at 50% 50%, #052e47 0%, #031825 100%)" }}>
+      <section className="careers-section section py-20" style={{ flex: 1 }}>
         <div className="container">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-extrabold text-white tracking-tight">Current Job Openings</h2>
-            <p className="text-slate-400 mt-2">Explore our high-impact active roles. Find a match and apply today!</p>
+            <h2 className="text-3xl font-extrabold text-slate-800 tracking-tight">Current Job Openings</h2>
+            <p className="text-slate-600 mt-2">Explore our high-impact active roles. Find a match and apply today!</p>
           </div>
 
           <div className="careers-grid">
             {jobs.length === 0 ? (
               <div className="text-center py-12 w-full col-span-full">
-                <p className="text-slate-400 italic">No job openings are currently published. Check back later!</p>
+                <p className="text-slate-600 italic">No job openings are currently published. Check back later!</p>
               </div>
             ) : (
               jobs.map((job) => (
@@ -190,25 +190,25 @@ export default function CareersPage() {
                   {/* Card TOP: displays Job Role, Qualifications, Experience, and Location */}
                   <div className="job-card-top-content">
                     <div className="flex justify-between items-start gap-4 mb-4" style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: "16px", marginBottom: "16px" }}>
-                      <h3 className="job-card-frontend-title" style={{ color: "#ffffff", fontSize: "20px", fontWeight: "700" }}>{job.title}</h3>
+                      <h3 className="job-card-frontend-title" style={{ color: "var(--dark-deep)", fontSize: "20px", fontWeight: "700" }}>{job.title}</h3>
                       <span className="badge-frontend dept whitespace-nowrap" style={{ fontSize: "10px", textTransform: "uppercase" }}>{job.department}</span>
                     </div>
 
                     {/* Metadata indicators */}
                     <div className="job-card-frontend-meta" style={{ display: "flex", flexDirection: "column", gap: "10px", margin: "20px 0", fontSize: "13.5px" }}>
-                      <div className="meta-item-frontend" style={{ display: "flex", alignItems: "center", gap: "8px", color: "#cbd5e1" }}>
+                      <div className="meta-item-frontend" style={{ display: "flex", alignItems: "center", gap: "8px", color: "#475569" }}>
                         <span style={{ fontSize: "16px", color: "var(--primary-blue)" }}>🎓</span>
                         <span><strong>Qualifications:</strong> {job.qualifications || "Any Bachelor's / Technical Degree"}</span>
                       </div>
-                      <div className="meta-item-frontend" style={{ display: "flex", alignItems: "center", gap: "8px", color: "#cbd5e1" }}>
+                      <div className="meta-item-frontend" style={{ display: "flex", alignItems: "center", gap: "8px", color: "#475569" }}>
                         <span style={{ fontSize: "16px", color: "var(--primary-blue)" }}>💼</span>
                         <span><strong>Experience:</strong> {job.experience}</span>
                       </div>
-                      <div className="meta-item-frontend" style={{ display: "flex", alignItems: "center", gap: "8px", color: "#cbd5e1" }}>
+                      <div className="meta-item-frontend" style={{ display: "flex", alignItems: "center", gap: "8px", color: "#475569" }}>
                         <span style={{ fontSize: "16px", color: "var(--primary-blue)" }}>📍</span>
                         <span><strong>Location:</strong> {job.location}</span>
                       </div>
-                      <div className="meta-item-frontend" style={{ display: "flex", alignItems: "center", gap: "8px", color: "#cbd5e1" }}>
+                      <div className="meta-item-frontend" style={{ display: "flex", alignItems: "center", gap: "8px", color: "#475569" }}>
                         <span style={{ fontSize: "16px", color: "var(--primary-blue)" }}>⏱️</span>
                         <span><strong>Job Type:</strong> {job.type}</span>
                       </div>
@@ -319,44 +319,44 @@ export default function CareersPage() {
       {/* 6. Job Details Modal Overlay */}
       {showDetailsModal && selectedJob && (
         <div className="frontend-modal-overlay animate-fade-in" onClick={() => setShowDetailsModal(false)} style={{ zIndex: 99999 }}>
-          <div className="frontend-modal-card animate-slide-up" onClick={(e) => e.stopPropagation()} style={{ background: "#081d2c" }}>
+          <div className="frontend-modal-card animate-slide-up" onClick={(e) => e.stopPropagation()}>
             <div className="frontend-modal-header">
-              <h3 style={{ margin: 0, fontSize: "20px", fontWeight: "700", color: "#ffffff" }}>{selectedJob.title} Details</h3>
+              <h3 style={{ margin: 0, fontSize: "20px", fontWeight: "700" }}>{selectedJob.title} Details</h3>
               <button className="frontend-modal-close" onClick={() => setShowDetailsModal(false)} aria-label="Close details">✕</button>
             </div>
             
             <div className="frontend-modal-body">
-              <div className="apply-job-header-info" style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.06)", padding: "20px", borderRadius: "8px", marginBottom: "24px" }}>
-                <p style={{ margin: 0, fontSize: "14px", color: "#94a3b8" }}><strong>Department:</strong> {selectedJob.department} | <strong>Location:</strong> {selectedJob.location}</p>
-                <p style={{ margin: "6px 0 0 0", fontSize: "14px", color: "#94a3b8" }}><strong>Experience:</strong> {selectedJob.experience} | <strong>Qualifications:</strong> {selectedJob.qualifications || "B.Tech/MCA/MBA or equivalent"}</p>
+              <div className="apply-job-header-info" style={{ background: "var(--light-gray)", border: "1px solid rgba(15, 117, 188, 0.08)", padding: "20px", borderRadius: "8px", marginBottom: "24px" }}>
+                <p style={{ margin: 0, fontSize: "14px", color: "#475569" }}><strong>Department:</strong> {selectedJob.department} | <strong>Location:</strong> {selectedJob.location}</p>
+                <p style={{ margin: "6px 0 0 0", fontSize: "14px", color: "#475569" }}><strong>Experience:</strong> {selectedJob.experience} | <strong>Qualifications:</strong> {selectedJob.qualifications || "B.Tech/MCA/MBA or equivalent"}</p>
               </div>
               
               <div className="job-details-group">
-                <h5 style={{ color: "#ffffff", fontWeight: "700", fontSize: "15px", marginBottom: "10px", textTransform: "uppercase", letterSpacing: "0.05em" }}>Role Overview</h5>
-                <p style={{ color: "#cbd5e1", fontSize: "14.5px", lineHeight: "1.6", marginBottom: "24px" }}>{selectedJob.description}</p>
+                <h5 style={{ fontWeight: "700", fontSize: "15px", marginBottom: "10px", textTransform: "uppercase", letterSpacing: "0.05em" }}>Role Overview</h5>
+                <p style={{ fontSize: "14.5px", lineHeight: "1.6", marginBottom: "24px" }}>{selectedJob.description}</p>
                 
                 {selectedJob.requirements && selectedJob.requirements.length > 0 && (
                   <>
-                    <h5 style={{ color: "#ffffff", fontWeight: "700", fontSize: "15px", marginBottom: "12px", textTransform: "uppercase", letterSpacing: "0.05em" }}>Key Candidate Requirements</h5>
+                    <h5 style={{ fontWeight: "700", fontSize: "15px", marginBottom: "12px", textTransform: "uppercase", letterSpacing: "0.05em" }}>Key Candidate Requirements</h5>
                     <ul className="job-requirements-list" style={{ marginBottom: "24px" }}>
                       {selectedJob.requirements.map((req, idx) => (
-                        <li key={idx}>{req}</li>
+                        <li key={idx} style={{ color: "#334155" }}>{req}</li>
                       ))}
                     </ul>
                   </>
                 )}
               </div>
               
-              <div style={{ display: "flex", gap: "16px", marginTop: "28px", paddingTop: "20px", borderTop: "1px solid rgba(255,255,255,0.08)" }}>
+              <div style={{ display: "flex", gap: "16px", marginTop: "28px", paddingTop: "20px", borderTop: "1px solid rgba(15, 117, 188, 0.08)" }}>
                 <button
                   onClick={() => setShowDetailsModal(false)}
                   style={{
                     flex: 1,
                     padding: "12px 20px",
                     borderRadius: "6px",
-                    border: "1.5px solid rgba(255, 255, 255, 0.15)",
+                    border: "1.5px solid rgba(15, 117, 188, 0.15)",
                     background: "transparent",
-                    color: "#94a3b8",
+                    color: "#475569",
                     fontWeight: "700",
                     fontSize: "14px",
                     cursor: "pointer",

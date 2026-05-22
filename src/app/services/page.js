@@ -197,7 +197,7 @@ export default function ServicesPage() {
       </header>
 
       {/* 2. Hero Section */}
-      <section className="contact-hero" style={{ background: "radial-gradient(circle at 50% 50%, #052e47 0%, #031825 100%)" }}>
+      <section className="contact-hero">
         <div className="contact-hero-content container animate-slide-in">
           <h1>Our Professional <span>Services</span></h1>
           <p>
@@ -207,17 +207,17 @@ export default function ServicesPage() {
       </section>
 
       {/* 3. Services Provided as Cards (DYNAMIC FROM DATABASE) */}
-      <section className="section section-bg-alt" style={{ flex: 1 }}>
+      <section className="section" style={{ flex: 1, backgroundColor: "#ffffff" }}>
         <div className="container">
           <div className="services-grid">
             {services.length === 0 ? (
               <div className="text-center py-8 col-span-full">
-                <span className="spinner-dashboard"></span>
-                <p className="text-slate-400 mt-4">Connecting with databases...</p>
+                <span className="spinner-dashboard" style={{ borderColor: "var(--primary-blue)" }}></span>
+                <p className="text-slate-600 mt-4">Connecting with databases...</p>
               </div>
             ) : (
               services.map((item) => (
-                <div key={item.id} className="service-card glass" style={{ minHeight: "260px" }}>
+                <div key={item.id} className="service-card" style={{ minHeight: "260px", background: "#ffffff", border: "1.5px solid rgba(15, 117, 188, 0.12)", boxShadow: "0 10px 30px -5px rgba(15, 117, 188, 0.05)" }}>
                   <div className="service-icon-wrapper">
                     {renderServiceIcon(item.iconName)}
                   </div>

@@ -584,7 +584,7 @@ export default function Home() {
       </section>
 
       {/* 7. DYNAMIC CAREERS / JOBS SECTION */}
-      <section id="careers" className="careers-section section" style={{ backgroundColor: "#031825", background: "radial-gradient(circle at 50% 50%, #052e47 0%, #031825 100%)" }}>
+      <section id="careers" className="careers-section section" style={{ backgroundColor: "var(--light-gray)", background: "var(--light-gray)" }}>
         <div className="container">
           <div className="section-header">
             <h2>Careers at Ananya</h2>

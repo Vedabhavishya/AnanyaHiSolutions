@@ -1386,11 +1386,12 @@ button {
    ========================================== */
 .about-hero {
   padding: 180px 5% 120px 5%;
-  background: linear-gradient(135deg, var(--dark-deep) 0%, var(--primary-blue) 100%);
-  color: var(--white);
+  background: var(--light-gray);
+  color: var(--dark-deep);
   text-align: center;
   position: relative;
   overflow: hidden;
+  border-bottom: 1px solid rgba(15, 117, 188, 0.08);
 }
 
 .about-hero::after {
@@ -1400,7 +1401,7 @@ button {
   left: 0;
   right: 0;
   bottom: 0;
-  background: radial-gradient(circle at 70% 30%, rgba(245, 130, 32, 0.15) 0%, transparent 50%);
+  background: radial-gradient(circle at 70% 30%, rgba(15, 117, 188, 0.05) 0%, transparent 60%);
   pointer-events: none;
 }
 
@@ -1412,7 +1413,7 @@ button {
 }
 
 .about-hero h1 {
-  color: var(--white);
+  color: var(--dark-deep);
   font-size: 3.5rem;
   margin-bottom: 20px;
   font-weight: 800;
@@ -1420,12 +1421,12 @@ button {
 }
 
 .about-hero h1 span {
-  color: var(--accent-orange);
+  color: var(--primary-blue);
 }
 
 .about-hero p {
   font-size: 1.25rem;
-  color: rgba(255, 255, 255, 0.9);
+  color: var(--secondary-slate);
   line-height: 1.6;
   max-width: 750px;
   margin: 0 auto;
@@ -2258,11 +2259,12 @@ button {
    ========================================================================== */
 .contact-hero {
   padding: 180px 5% 120px 5%;
-  background: linear-gradient(135deg, var(--dark-deep) 0%, var(--primary-blue) 100%);
-  color: var(--white);
+  background: var(--light-gray);
+  color: var(--dark-deep);
   text-align: center;
   position: relative;
   overflow: hidden;
+  border-bottom: 1px solid rgba(15, 117, 188, 0.08);
 }
 
 .contact-hero::after {
@@ -2272,7 +2274,7 @@ button {
   left: 0;
   right: 0;
   bottom: 0;
-  background: radial-gradient(circle at 70% 30%, rgba(245, 130, 32, 0.15) 0%, transparent 50%);
+  background: radial-gradient(circle at 70% 30%, rgba(15, 117, 188, 0.05) 0%, transparent 60%);
   pointer-events: none;
 }
 
@@ -2284,7 +2286,7 @@ button {
 }
 
 .contact-hero h1 {
-  color: var(--white);
+  color: var(--dark-deep);
   font-size: 3.5rem;
   margin-bottom: 20px;
   font-weight: 800;
@@ -2292,12 +2294,12 @@ button {
 }
 
 .contact-hero h1 span {
-  color: var(--accent-orange);
+  color: var(--primary-blue);
 }
 
 .contact-hero p {
   font-size: 1.25rem;
-  color: rgba(255, 255, 255, 0.9);
+  color: var(--secondary-slate);
   line-height: 1.6;
   max-width: 750px;
   margin: 0 auto;
@@ -2685,7 +2687,8 @@ button {
 /* Stay Connected Section */
 .stay-connected-section {
   padding: 80px 5%;
-  background: linear-gradient(135deg, var(--dark-blue) 0%, var(--primary-blue) 100%);
+  background: var(--white);
+  border-top: 1px solid rgba(15, 117, 188, 0.08);
   text-align: center;
   position: relative;
   overflow: hidden;
@@ -2699,7 +2702,7 @@ button {
   width: 220px;
   height: 220px;
   border-radius: var(--radius-full);
-  background: radial-gradient(circle, rgba(255,255,255,0.06) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(15, 117, 188, 0.04) 0%, transparent 70%);
   pointer-events: none;
 }
 
@@ -2711,7 +2714,7 @@ button {
   width: 280px;
   height: 280px;
   border-radius: var(--radius-full);
-  background: radial-gradient(circle, rgba(255,255,255,0.06) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(15, 117, 188, 0.04) 0%, transparent 70%);
   pointer-events: none;
 }
 
@@ -2723,7 +2726,7 @@ button {
 }
 
 .stay-connected-inner h2 {
-  color: var(--white);
+  color: var(--dark-deep);
   font-size: 2.5rem;
   font-weight: 800;
   margin-bottom: 14px;
@@ -2735,7 +2738,7 @@ button {
 }
 
 .stay-connected-inner p {
-  color: rgba(255, 255, 255, 0.82);
+  color: var(--secondary-slate);
   font-size: 1.1rem;
   margin-bottom: 40px;
   line-height: 1.6;
@@ -2752,21 +2755,21 @@ button {
   width: 64px;
   height: 64px;
   border-radius: var(--radius-full);
-  background: rgba(255, 255, 255, 0.15);
-  color: var(--white);
+  background: var(--light-gray);
+  color: var(--primary-blue);
   display: flex;
   align-items: center;
   justify-content: center;
   transition: var(--transition-normal);
-  border: 1.5px solid rgba(255, 255, 255, 0.2);
+  border: 1.5px solid rgba(15, 117, 188, 0.15);
   backdrop-filter: blur(4px);
 }
 
 .sc-icon-link:hover {
-  background: var(--white);
-  color: var(--primary-blue);
+  background: var(--primary-blue);
+  color: var(--white);
   transform: translateY(-6px);
-  box-shadow: 0 12px 28px rgba(0,0,0,0.2);
+  box-shadow: 0 12px 28px rgba(15, 117, 188, 0.2);
   border-color: transparent;
 }
 
@@ -3899,8 +3902,8 @@ button {
 /* Careers Section */
 .careers-section {
   padding: 100px 5%;
-  background-color: #031825;
-  background: radial-gradient(circle at 50% 50%, #052e47 0%, #031825 100%);
+  background-color: var(--light-gray);
+  background: var(--light-gray);
   position: relative;
   overflow: hidden;
 }
@@ -3913,7 +3916,7 @@ button {
   width: 500px;
   height: 500px;
   border-radius: var(--radius-full);
-  background: radial-gradient(circle, rgba(15, 117, 188, 0.15) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(15, 117, 188, 0.05) 0%, transparent 70%);
   pointer-events: none;
 }
 
@@ -3925,13 +3928,11 @@ button {
 }
 
 .job-card-frontend {
-  background: rgba(8, 29, 44, 0.95);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1.5px solid rgba(15, 117, 188, 0.25);
+  background: #ffffff;
+  border: 1.5px solid rgba(15, 117, 188, 0.12);
   border-radius: var(--radius-md);
   padding: 30px;
-  box-shadow: 0 15px 35px -5px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 10px 30px -5px rgba(15, 117, 188, 0.05);
   transition: var(--transition-normal);
   display: flex;
   flex-direction: column;
@@ -3941,9 +3942,9 @@ button {
 
 .job-card-frontend:hover {
   transform: translateY(-6px);
-  background: rgba(12, 40, 60, 0.98);
-  border-color: rgba(15, 117, 188, 0.5);
-  box-shadow: 0 20px 40px -10px rgba(15, 117, 188, 0.4);
+  background: #ffffff;
+  border-color: var(--primary-blue);
+  box-shadow: 0 20px 40px -10px rgba(15, 117, 188, 0.15);
 }
 
 .job-card-frontend-header {
@@ -3956,7 +3957,7 @@ button {
 .job-card-frontend-title {
   font-family: var(--font-headings);
   font-size: 20px;
-  color: #ffffff;
+  color: var(--dark-deep);
   font-weight: 700;
 }
 
@@ -3975,13 +3976,13 @@ button {
 }
 
 .badge-frontend.dept {
-  background: rgba(16, 185, 129, 0.12);
-  color: #34d399;
+  background: rgba(16, 185, 129, 0.08);
+  color: #059669;
 }
 
 .badge-frontend.type {
-  background: rgba(245, 130, 32, 0.12);
-  color: #fb923c;
+  background: rgba(245, 130, 32, 0.08);
+  color: #ea580c;
 }
 
 .job-card-frontend-meta {
@@ -3990,7 +3991,7 @@ button {
   gap: 8px;
   margin-bottom: 20px;
   font-size: 13px;
-  color: #cbd5e1;
+  color: #475569;
 }
 
 .meta-item-frontend {
@@ -4001,7 +4002,7 @@ button {
 
 .job-card-frontend-desc {
   font-size: 14px;
-  color: #cbd5e1;
+  color: #475569;
   line-height: 1.6;
   margin-bottom: 24px;
   flex-grow: 1;
@@ -4031,7 +4032,7 @@ button {
 /* Blog Frontend Section */
 .blog-section {
   padding: 100px 5%;
-  background: #030d14;
+  background: var(--white);
   position: relative;
   overflow: hidden;
 }
@@ -4044,11 +4045,11 @@ button {
 }
 
 .blog-card-frontend {
-  background: rgba(255, 255, 255, 0.02);
-  border: 1px solid rgba(255, 255, 255, 0.04);
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
   border-radius: var(--radius-md);
   overflow: hidden;
-  box-shadow: 0 15px 35px -5px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.04);
   transition: var(--transition-normal);
   display: flex;
   flex-direction: column;
@@ -4057,9 +4058,9 @@ button {
 
 .blog-card-frontend:hover {
   transform: translateY(-6px);
-  background: rgba(255, 255, 255, 0.03);
+  background: #ffffff;
   border-color: rgba(245, 130, 32, 0.25);
-  box-shadow: 0 20px 40px -10px rgba(245, 130, 32, 0.15);
+  box-shadow: 0 20px 40px -10px rgba(245, 130, 32, 0.12);
 }
 
 .blog-card-img-wrapper {
@@ -4124,7 +4125,7 @@ button {
 .blog-card-frontend-title {
   font-family: var(--font-headings);
   font-size: 19px;
-  color: var(--white);
+  color: var(--dark-deep);
   font-weight: 700;
   line-height: 1.4;
   margin-bottom: 12px;
@@ -4137,7 +4138,7 @@ button {
 
 .blog-card-frontend-summary {
   font-size: 14px;
-  color: #cbd5e1;
+  color: #475569;
   line-height: 1.6;
   margin-bottom: 20px;
   flex-grow: 1;
@@ -4170,9 +4171,9 @@ button {
 .frontend-modal-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(2, 6, 12, 0.85);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  background: rgba(15, 23, 42, 0.45);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -4183,10 +4184,10 @@ button {
 .frontend-modal-card {
   width: 100%;
   max-width: 680px;
-  background: rgba(15, 32, 45, 0.85);
-  border: 1px solid rgba(15, 117, 188, 0.2);
+  background: #ffffff;
+  border: 1px solid rgba(15, 117, 188, 0.15);
   border-radius: var(--radius-md);
-  box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.7);
+  box-shadow: 0 25px 50px -12px rgba(15, 23, 42, 0.15);
   max-height: 90vh;
   display: flex;
   flex-direction: column;
@@ -4195,8 +4196,8 @@ button {
 
 .frontend-modal-header {
   padding: 24px 30px;
-  background: rgba(5, 46, 71, 0.8);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  background: var(--light-gray);
+  border-bottom: 1px solid rgba(15, 117, 188, 0.08);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -4205,7 +4206,7 @@ button {
 .frontend-modal-header h3 {
   font-family: var(--font-headings);
   font-size: 20px;
-  color: var(--white);
+  color: var(--dark-deep);
   font-weight: 700;
 }
 
@@ -4213,13 +4214,13 @@ button {
   background: transparent;
   border: none;
   font-size: 18px;
-  color: #64849c;
+  color: #64748b;
   cursor: pointer;
   transition: var(--transition-fast);
 }
 
 .frontend-modal-close:hover {
-  color: var(--white);
+  color: var(--black);
 }
 
 .frontend-modal-body {
@@ -4227,19 +4228,20 @@ button {
   overflow-y: auto;
   flex: 1;
   min-height: 0;
+  background: #ffffff;
 }
 
 /* High-contrast and readable modal texts */
 .frontend-modal-body p,
 .frontend-modal-body span,
 .frontend-modal-body li {
-  color: #cbd5e1 !important;
+  color: #334155 !important;
 }
 
 .frontend-modal-body h4,
 .frontend-modal-body h5,
 .frontend-modal-body strong {
-  color: #ffffff !important;
+  color: var(--dark-deep) !important;
 }
 
 /* Apply Form Custom CSS */
@@ -4435,7 +4437,7 @@ button {
 .blog-modal-article h2 {
   font-family: var(--font-headings);
   font-size: 26px;
-  color: var(--white);
+  color: var(--dark-deep);
   line-height: 1.35;
   margin-bottom: 15px;
   font-weight: 800;
@@ -4446,22 +4448,22 @@ button {
   align-items: center;
   gap: 15px;
   font-size: 13px;
-  color: #64849c;
+  color: var(--secondary-slate);
   margin-bottom: 24px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  border-bottom: 1px solid rgba(15, 117, 188, 0.08);
   padding-bottom: 15px;
 }
 
 .blog-modal-category {
-  background: rgba(245, 130, 32, 0.15);
-  color: #fb923c;
+  background: rgba(245, 130, 32, 0.1);
+  color: #ea580c;
   padding: 4px 12px;
   border-radius: var(--radius-full);
   font-weight: 700;
 }
 
 .blog-modal-content {
-  color: #cbd5e1;
+  color: #334155;
   font-size: 15px;
   line-height: 1.8;
   white-space: pre-wrap;
@@ -4490,14 +4492,14 @@ button {
   }
 }
 
-/* Ensure high contrast in section headers for dark sections */
+/* Ensure high contrast in section headers for light sections */
 .careers-section .section-header h2,
 .blog-section .section-header h2 {
-  color: #ffffff !important;
+  color: var(--dark-deep) !important;
 }
 
 .careers-section .section-header p,
 .blog-section .section-header p {
-  color: #cbd5e1 !important;
+  color: var(--secondary-slate) !important;
 }
 

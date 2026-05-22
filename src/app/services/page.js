@@ -223,8 +223,8 @@ export default function ServicesPage() {
                   </div>
                   <h3 className="service-title">{item.title}</h3>
                   <p className="service-desc">{item.desc}</p>
-                  <Link href={`/contact?service=${item.id}`} className="service-learn-more">
-                    Request Quote <span>→</span>
+                  <Link href={`/services/${item.id}`} className="service-learn-more">
+                    Learn More <span>→</span>
                   </Link>
                 </div>
               ))

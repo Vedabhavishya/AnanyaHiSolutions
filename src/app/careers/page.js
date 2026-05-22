@@ -164,7 +164,7 @@ export default function CareersPage() {
       <section className="section bg-white text-center py-16" style={{ borderBottom: "1px solid #f1f5f9" }}>
         <div className="container max-w-4xl mx-auto px-6">
           <h2 className="text-slate-800 mb-6 tracking-tight text-center" style={{ fontSize: "38px", fontWeight: "800", textAlign: "center" }}>Welcome to our Careers Page</h2>
-          <div className="w-16 h-1 bg-primary-blue mx-auto mb-6 rounded"></div>
+          <div className="w-16 h-1 bg-primary-blue mx-auto mb-6 rounded" style={{ marginBottom: "calc(1.5rem + 0.25cm)" }}></div>
           <p className="text-slate-600 text-lg leading-relaxed max-w-3xl mx-auto text-center">
             At Ananya Hi Solutions, we don't just build websites; we design powerful architectures and digital solutions that empower global businesses to grow. We believe in nurturing talent, pushing technical limits, and fostering an environment of creative freedom and professional growth. Whether you are a code enthusiast, a design virtuoso, or a strategic digital marketer, you will find a collaborative team that supports your journey here. Explore our active vacancies below and find your true calling!
           </p>

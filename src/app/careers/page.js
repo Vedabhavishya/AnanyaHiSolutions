@@ -163,9 +163,9 @@ export default function CareersPage() {
       {/* 3. Welcome to our Careers Page Section */}
       <section className="section bg-white text-center py-16" style={{ borderBottom: "1px solid #f1f5f9" }}>
         <div className="container max-w-4xl mx-auto px-6">
-          <h2 className="text-3xl font-extrabold text-slate-800 mb-6 tracking-tight">Welcome to our Careers Page</h2>
+          <h2 className="text-slate-800 mb-6 tracking-tight text-center" style={{ fontSize: "38px", fontWeight: "800", textAlign: "center" }}>Welcome to our Careers Page</h2>
           <div className="w-16 h-1 bg-primary-blue mx-auto mb-6 rounded"></div>
-          <p className="text-slate-600 text-lg leading-relaxed max-w-3xl mx-auto">
+          <p className="text-slate-600 text-lg leading-relaxed max-w-3xl mx-auto text-center">
             At Ananya Hi Solutions, we don't just build websites; we design powerful architectures and digital solutions that empower global businesses to grow. We believe in nurturing talent, pushing technical limits, and fostering an environment of creative freedom and professional growth. Whether you are a code enthusiast, a design virtuoso, or a strategic digital marketer, you will find a collaborative team that supports your journey here. Explore our active vacancies below and find your true calling!
           </p>
         </div>
@@ -174,15 +174,15 @@ export default function CareersPage() {
       {/* 4. Current Job Openings Section */}
       <section className="careers-section section py-20" style={{ flex: 1 }}>
         <div className="container">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-extrabold text-slate-800 tracking-tight">Current Job Openings</h2>
-            <p className="text-slate-600 mt-2">Explore our high-impact active roles. Find a match and apply today!</p>
+          <div className="text-center mb-12" style={{ textAlign: "center" }}>
+            <h2 className="text-slate-800 tracking-tight text-center" style={{ fontSize: "38px", fontWeight: "800", textAlign: "center" }}>Current Job Openings</h2>
+            <p className="text-slate-600 mt-2 text-center">Explore our high-impact active roles. Find a match and apply today!</p>
           </div>
 
           <div className="careers-grid">
             {jobs.length === 0 ? (
-              <div className="text-center py-12 w-full col-span-full">
-                <p className="text-slate-600 italic">No job openings are currently published. Check back later!</p>
+              <div className="text-center py-16 w-full col-span-full" style={{ textAlign: "center" }}>
+                <p className="text-slate-500 font-semibold text-center" style={{ fontSize: "22px", textAlign: "center" }}>No Current Job Openings</p>
               </div>
             ) : (
               jobs.map((job) => (

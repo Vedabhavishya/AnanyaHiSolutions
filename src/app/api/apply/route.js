@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { readDb, writeDb } from "../db-helper";
+import nodemailer from "nodemailer";
 
 // Next.js API route to process job applications and trigger automated notifications to vedabhavishya.gudivaka@gmail.com
 export async function POST(request) {
@@ -48,13 +49,74 @@ export async function POST(request) {
     db.applications.push(newApplication);
     await writeDb(db);
 
-    // 4. Automated Email Simulation
-    // In a production environment with SMTP set up, you would configure nodemailer here.
-    // To ensure compatibility, we log a detailed system action showing that the email
-    // has been triggered and routed automatically to vedabhavishya.gudivaka@gmail.com.
-    console.log(`
+    // 4. Real Email Sending via Nodemailer / SMTP with graceful fallback
+    let emailSent = false;
+    let emailError = null;
+
+    const smtpHost = process.env.SMTP_HOST;
+    const smtpUser = process.env.SMTP_USER;
+    const smtpPass = process.env.SMTP_PASS;
+
+    if (smtpHost && smtpUser && smtpPass) {
+      try {
+        const smtpPort = parseInt(process.env.SMTP_PORT || "587");
+        const smtpSecure = process.env.SMTP_SECURE === "true";
+        const smtpFrom = process.env.SMTP_FROM || `"${name}" <${smtpUser}>`;
+
+        const transporter = nodemailer.createTransport({
+          host: smtpHost,
+          port: smtpPort,
+          secure: smtpSecure,
+          auth: {
+            user: smtpUser,
+            pass: smtpPass
+          }
+        });
+
+        // Convert the file blob/arrayBuffer to Buffer for nodemailer attachment
+        const arrayBuffer = await resumeFile.arrayBuffer();
+        const buffer = Buffer.from(arrayBuffer);
+
+        await transporter.sendMail({
+          from: smtpFrom,
+          to: "vedabhavishya.gudivaka@gmail.com",
+          subject: `New Job Application - ${jobTitle} - ${name}`,
+          text: `Dear HR Team,
+
+A new application has been successfully submitted for the "${jobTitle}" position.
+
+Candidate Profile:
+- Name: ${name}
+- Email: ${email}
+- Phone: ${phone}
+- Cover Letter:
+  "${message}"
+
+Attachment:
+- Resume File: ${resumeFile.name} (${(resumeFile.size / 1024).toFixed(2)} KB)
+
+Best Regards,
+Ananya Hi Solutions Careers Portal`,
+          attachments: [
+            {
+              filename: resumeFile.name,
+              content: buffer
+            }
+          ]
+        });
+
+        emailSent = true;
+        console.log(`[SMTP DISPATCH SYSTEM] Email successfully sent to vedabhavishya.gudivaka@gmail.com via ${smtpHost}`);
+      } catch (err) {
+        emailError = err.message;
+        console.error("[SMTP ERROR] Failed to send email via nodemailer:", err);
+      }
+    }
+
+    if (!emailSent) {
+      console.log(`
 ================================================================================
-[AUTOMATED EMAIL DISPATCH SYSTEM]
+[AUTOMATED EMAIL DISPATCH SYSTEM - SIMULATION]
 To: vedabhavishya.gudivaka@gmail.com
 Subject: New Job Application - ${jobTitle} - ${name}
 --------------------------------------------------------------------------------
@@ -72,13 +134,16 @@ Candidate Profile:
 Attachment:
 - Resume File: ${resumeFile.name} (${(resumeFile.size / 1024).toFixed(2)} KB)
 
-[SYSTEM STATUS]: E-mail successfully routed to vedabhavishya.gudivaka@gmail.com.
+[SYSTEM STATUS]: simulated (reason: ${smtpHost ? `Error: ${emailError}` : 'SMTP credentials not configured in environment variables'}).
 ================================================================================
-    `);
+      `);
+    }
 
     return NextResponse.json({
       success: true,
-      message: `Application submitted successfully and notification email has been dispatched to vedabhavishya.gudivaka@gmail.com automatically.`,
+      message: emailSent
+        ? `Application submitted successfully and notification email has been dispatched to vedabhavishya.gudivaka@gmail.com automatically.`
+        : `Application submitted successfully (Simulated notification email logged to server logs; SMTP environment variables not configured).`,
       application: newApplication
     });
 

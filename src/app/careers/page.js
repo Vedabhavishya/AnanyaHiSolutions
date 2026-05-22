@@ -172,7 +172,7 @@ export default function CareersPage() {
       </section>
 
       {/* 4. Current Job Openings Section */}
-      <section className="section section-bg-alt py-20" style={{ flex: 1 }}>
+      <section className="careers-section section py-20" style={{ flex: 1, backgroundColor: "#031825", background: "radial-gradient(circle at 50% 50%, #052e47 0%, #031825 100%)" }}>
         <div className="container">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-extrabold text-white tracking-tight">Current Job Openings</h2>
@@ -186,51 +186,43 @@ export default function CareersPage() {
               </div>
             ) : (
               jobs.map((job) => (
-                <div key={job.id} className="job-card-frontend flex flex-col justify-between" style={{ minHeight: "360px", background: "rgba(255,255,255,0.03)", borderRadius: "12px", border: "1px solid rgba(255,255,255,0.08)", padding: "28px" }}>
+                <div key={job.id} className="job-card-frontend" style={{ minHeight: "360px" }}>
                   {/* Card TOP: displays Job Role, Qualifications, Experience, and Location */}
                   <div className="job-card-top-content">
-                    <div className="flex justify-between items-start gap-4 mb-4">
-                      <h3 className="job-card-frontend-title text-xl font-bold text-white leading-snug">{job.title}</h3>
+                    <div className="flex justify-between items-start gap-4 mb-4" style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: "16px", marginBottom: "16px" }}>
+                      <h3 className="job-card-frontend-title" style={{ color: "#ffffff", fontSize: "20px", fontWeight: "700" }}>{job.title}</h3>
                       <span className="badge-frontend dept whitespace-nowrap" style={{ fontSize: "10px", textTransform: "uppercase" }}>{job.department}</span>
                     </div>
 
                     {/* Metadata indicators */}
-                    <div className="job-card-meta-list flex flex-col gap-2.5 my-5 text-sm text-slate-300">
-                      <div className="flex items-center gap-2">
-                        <span className="text-base text-primary-blue">🎓</span>
+                    <div className="job-card-frontend-meta" style={{ display: "flex", flexDirection: "column", gap: "10px", margin: "20px 0", fontSize: "13.5px" }}>
+                      <div className="meta-item-frontend" style={{ display: "flex", alignItems: "center", gap: "8px", color: "#cbd5e1" }}>
+                        <span style={{ fontSize: "16px", color: "var(--primary-blue)" }}>🎓</span>
                         <span><strong>Qualifications:</strong> {job.qualifications || "Any Bachelor's / Technical Degree"}</span>
                       </div>
-                      <div className="flex items-center gap-2">
-                        <span className="text-base text-primary-blue">💼</span>
+                      <div className="meta-item-frontend" style={{ display: "flex", alignItems: "center", gap: "8px", color: "#cbd5e1" }}>
+                        <span style={{ fontSize: "16px", color: "var(--primary-blue)" }}>💼</span>
                         <span><strong>Experience:</strong> {job.experience}</span>
                       </div>
-                      <div className="flex items-center gap-2">
-                        <span className="text-base text-primary-blue">📍</span>
+                      <div className="meta-item-frontend" style={{ display: "flex", alignItems: "center", gap: "8px", color: "#cbd5e1" }}>
+                        <span style={{ fontSize: "16px", color: "var(--primary-blue)" }}>📍</span>
                         <span><strong>Location:</strong> {job.location}</span>
                       </div>
-                      <div className="flex items-center gap-2">
-                        <span className="text-base text-primary-blue">⏱️</span>
+                      <div className="meta-item-frontend" style={{ display: "flex", alignItems: "center", gap: "8px", color: "#cbd5e1" }}>
+                        <span style={{ fontSize: "16px", color: "var(--primary-blue)" }}>⏱️</span>
                         <span><strong>Job Type:</strong> {job.type}</span>
                       </div>
                     </div>
                   </div>
 
                   {/* Card BOTTOM: CTA trigger */}
-                  <div className="job-card-bottom-actions mt-4">
+                  <div className="job-card-bottom-actions" style={{ marginTop: "16px" }}>
                     <button
                       onClick={() => {
                         setSelectedJob(job);
                         setShowDetailsModal(true);
                       }}
-                      className="job-card-frontend-btn hover:scale-105 active:scale-95 transition-all w-full text-center font-bold text-sm tracking-wide"
-                      style={{
-                        padding: "12px",
-                        borderRadius: "8px",
-                        border: "1.5px solid rgba(15, 117, 188, 0.6)",
-                        background: "rgba(15, 117, 188, 0.05)",
-                        color: "#fff",
-                        cursor: "pointer"
-                      }}
+                      className="job-card-frontend-btn"
                     >
                       Get More Details
                     </button>
@@ -326,47 +318,69 @@ export default function CareersPage() {
 
       {/* 6. Job Details Modal Overlay */}
       {showDetailsModal && selectedJob && (
-        <div className="frontend-modal-overlay animate-fade-in" onClick={() => setShowDetailsModal(false)} style={{ display: "flex", alignItems: "center", justifyContent: "center", position: "fixed", inset: 0, background: "rgba(0,0,0,0.85)", zIndex: 1000, padding: "20px" }}>
-          <div className="frontend-modal-card animate-slide-up" onClick={(e) => e.stopPropagation()} style={{ background: "#061522", border: "1px solid rgba(255,255,255,0.1)", borderRadius: "16px", maxWidth: "650px", width: "100%", maxHeight: "90vh", overflowY: "auto", padding: "30px", boxShadow: "0 25px 50px -12px rgba(0,0,0,0.5)" }}>
-            <div className="frontend-modal-header flex justify-between items-center mb-6 pb-4" style={{ borderBottom: "1px solid rgba(255,255,255,0.08)" }}>
-              <h3 className="text-2xl font-bold text-white">{selectedJob.title} Details</h3>
-              <button className="frontend-modal-close text-white hover:text-red-500 font-bold text-xl" onClick={() => setShowDetailsModal(false)} style={{ background: "none", border: "none", cursor: "pointer" }}>✕</button>
+        <div className="frontend-modal-overlay animate-fade-in" onClick={() => setShowDetailsModal(false)} style={{ zIndex: 99999 }}>
+          <div className="frontend-modal-card animate-slide-up" onClick={(e) => e.stopPropagation()} style={{ background: "#081d2c" }}>
+            <div className="frontend-modal-header">
+              <h3 style={{ margin: 0, fontSize: "20px", fontWeight: "700", color: "#ffffff" }}>{selectedJob.title} Details</h3>
+              <button className="frontend-modal-close" onClick={() => setShowDetailsModal(false)} aria-label="Close details">✕</button>
             </div>
             
-            <div className="frontend-modal-body text-slate-300">
-              <div className="apply-job-header-info mb-6 p-4 rounded-lg" style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.05)" }}>
-                <p className="text-sm"><strong>Department:</strong> {selectedJob.department} | <strong>Location:</strong> {selectedJob.location}</p>
-                <p className="text-sm mt-1"><strong>Experience:</strong> {selectedJob.experience} | <strong>Qualifications:</strong> {selectedJob.qualifications || "B.Tech/MCA/MBA or equivalent"}</p>
+            <div className="frontend-modal-body">
+              <div className="apply-job-header-info" style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.06)", padding: "20px", borderRadius: "8px", marginBottom: "24px" }}>
+                <p style={{ margin: 0, fontSize: "14px", color: "#94a3b8" }}><strong>Department:</strong> {selectedJob.department} | <strong>Location:</strong> {selectedJob.location}</p>
+                <p style={{ margin: "6px 0 0 0", fontSize: "14px", color: "#94a3b8" }}><strong>Experience:</strong> {selectedJob.experience} | <strong>Qualifications:</strong> {selectedJob.qualifications || "B.Tech/MCA/MBA or equivalent"}</p>
               </div>
               
               <div className="job-details-group">
-                <h4 className="text-white font-bold text-base mb-2">Role Overview</h4>
-                <p className="text-sm text-slate-300 leading-relaxed mb-6">{selectedJob.description}</p>
+                <h5 style={{ color: "#ffffff", fontWeight: "700", fontSize: "15px", marginBottom: "10px", textTransform: "uppercase", letterSpacing: "0.05em" }}>Role Overview</h5>
+                <p style={{ color: "#cbd5e1", fontSize: "14.5px", lineHeight: "1.6", marginBottom: "24px" }}>{selectedJob.description}</p>
                 
                 {selectedJob.requirements && selectedJob.requirements.length > 0 && (
                   <>
-                    <h4 className="text-white font-bold text-base mb-3">Key Candidate Requirements</h4>
-                    <ul className="job-requirements-list list-disc pl-5 flex flex-col gap-2 mb-6" style={{ fontSize: "14px", color: "#cbd5e1" }}>
+                    <h5 style={{ color: "#ffffff", fontWeight: "700", fontSize: "15px", marginBottom: "12px", textTransform: "uppercase", letterSpacing: "0.05em" }}>Key Candidate Requirements</h5>
+                    <ul className="job-requirements-list" style={{ marginBottom: "24px" }}>
                       {selectedJob.requirements.map((req, idx) => (
-                        <li key={idx} className="leading-relaxed">{req}</li>
+                        <li key={idx}>{req}</li>
                       ))}
                     </ul>
                   </>
                 )}
               </div>
               
-              <div className="flex gap-4 mt-8 pt-4" style={{ borderTop: "1px solid rgba(255,255,255,0.08)" }}>
+              <div style={{ display: "flex", gap: "16px", marginTop: "28px", paddingTop: "20px", borderTop: "1px solid rgba(255,255,255,0.08)" }}>
                 <button
                   onClick={() => setShowDetailsModal(false)}
-                  className="px-6 py-3 rounded-lg font-bold text-sm tracking-wide transition-all border border-slate-600 hover:bg-slate-800 text-white"
-                  style={{ flex: 1, cursor: "pointer", background: "transparent" }}
+                  style={{
+                    flex: 1,
+                    padding: "12px 20px",
+                    borderRadius: "6px",
+                    border: "1.5px solid rgba(255, 255, 255, 0.15)",
+                    background: "transparent",
+                    color: "#94a3b8",
+                    fontWeight: "700",
+                    fontSize: "14px",
+                    cursor: "pointer",
+                    transition: "all 0.2s"
+                  }}
                 >
                   Cancel
                 </button>
                 <Link
                   href={`/careers/apply?jobId=${selectedJob.id}`}
-                  className="px-6 py-3 rounded-lg font-bold text-sm tracking-wide text-center text-white bg-primary-blue hover:bg-blue-600 shadow-md hover:shadow-lg transition-all"
-                  style={{ flex: 2, textDecoration: "none" }}
+                  style={{
+                    flex: 1.5,
+                    padding: "12px 20px",
+                    borderRadius: "6px",
+                    background: "linear-gradient(135deg, var(--primary-blue) 0%, #0d619c 100%)",
+                    color: "#ffffff",
+                    fontWeight: "700",
+                    fontSize: "14px",
+                    textAlign: "center",
+                    textDecoration: "none",
+                    cursor: "pointer",
+                    boxShadow: "0 4px 14px rgba(15, 117, 188, 0.25)",
+                    transition: "all 0.2s"
+                  }}
                 >
                   Apply Now
                 </Link>

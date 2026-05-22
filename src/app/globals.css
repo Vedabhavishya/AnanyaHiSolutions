@@ -3899,6 +3899,7 @@ button {
 /* Careers Section */
 .careers-section {
   padding: 100px 5%;
+  background-color: #031825;
   background: radial-gradient(circle at 50% 50%, #052e47 0%, #031825 100%);
   position: relative;
   overflow: hidden;
@@ -3924,13 +3925,13 @@ button {
 }
 
 .job-card-frontend {
-  background: rgba(255, 255, 255, 0.02);
+  background: rgba(8, 29, 44, 0.95);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  border: 1.5px solid rgba(15, 117, 188, 0.25);
   border-radius: var(--radius-md);
   padding: 30px;
-  box-shadow: 0 15px 35px -5px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 15px 35px -5px rgba(0, 0, 0, 0.4);
   transition: var(--transition-normal);
   display: flex;
   flex-direction: column;
@@ -3940,9 +3941,9 @@ button {
 
 .job-card-frontend:hover {
   transform: translateY(-6px);
-  background: rgba(255, 255, 255, 0.04);
-  border-color: rgba(15, 117, 188, 0.3);
-  box-shadow: 0 20px 40px -10px rgba(15, 117, 188, 0.25);
+  background: rgba(12, 40, 60, 0.98);
+  border-color: rgba(15, 117, 188, 0.5);
+  box-shadow: 0 20px 40px -10px rgba(15, 117, 188, 0.4);
 }
 
 .job-card-frontend-header {
@@ -3955,7 +3956,7 @@ button {
 .job-card-frontend-title {
   font-family: var(--font-headings);
   font-size: 20px;
-  color: var(--white);
+  color: #ffffff;
   font-weight: 700;
 }
 
@@ -3989,7 +3990,7 @@ button {
   gap: 8px;
   margin-bottom: 20px;
   font-size: 13px;
-  color: #94a3b8;
+  color: #cbd5e1;
 }
 
 .meta-item-frontend {
@@ -4008,22 +4009,23 @@ button {
 
 .job-card-frontend-btn {
   width: 100%;
-  padding: 12px;
-  background: transparent;
-  border: 1.5px solid rgba(15, 117, 188, 0.4);
+  padding: 12px 20px;
+  background: var(--primary-blue);
+  border: none;
   border-radius: var(--radius-sm);
-  color: var(--white);
+  color: #ffffff;
   font-weight: 700;
   font-size: 14px;
   cursor: pointer;
   transition: var(--transition-normal);
   text-align: center;
+  box-shadow: 0 4px 10px rgba(15, 117, 188, 0.25);
 }
 
 .job-card-frontend:hover .job-card-frontend-btn {
-  background: var(--primary-blue);
-  border-color: var(--primary-blue);
-  box-shadow: var(--shadow-lg);
+  background: #0d619c;
+  box-shadow: 0 6px 15px rgba(15, 117, 188, 0.4);
+  transform: translateY(-2px);
 }
 
 /* Blog Frontend Section */
@@ -4223,6 +4225,21 @@ button {
 .frontend-modal-body {
   padding: 30px;
   overflow-y: auto;
+  flex: 1;
+  min-height: 0;
+}
+
+/* High-contrast and readable modal texts */
+.frontend-modal-body p,
+.frontend-modal-body span,
+.frontend-modal-body li {
+  color: #cbd5e1 !important;
+}
+
+.frontend-modal-body h4,
+.frontend-modal-body h5,
+.frontend-modal-body strong {
+  color: #ffffff !important;
 }
 
 /* Apply Form Custom CSS */
@@ -4471,5 +4488,16 @@ button {
   .blog-modal-article h2 {
     font-size: 22px;
   }
+}
+
+/* Ensure high contrast in section headers for dark sections */
+.careers-section .section-header h2,
+.blog-section .section-header h2 {
+  color: #ffffff !important;
+}
+
+.careers-section .section-header p,
+.blog-section .section-header p {
+  color: #cbd5e1 !important;
 }
 

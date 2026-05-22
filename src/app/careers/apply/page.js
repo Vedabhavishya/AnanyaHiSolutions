@@ -211,54 +211,54 @@ function ApplyFormContent() {
       </section>
 
       {/* Main Application Form Area */}
-      <section className="section section-bg-alt py-20" style={{ flex: 1 }}>
-        <div className="container max-w-2xl mx-auto px-6">
-          <div className="glass p-8 md:p-10 rounded-2xl border border-white/10 shadow-2xl relative overflow-hidden" style={{ background: "rgba(255,255,255,0.02)" }}>
+      <section className="careers-section section py-20" style={{ flex: 1 }}>
+        <div className="container max-w-2xl mx-auto px-6" style={{ maxWidth: "680px" }}>
+          <div className="glass-card" style={{ background: "rgba(15, 32, 45, 0.85)", border: "1px solid rgba(15, 117, 188, 0.2)", borderRadius: "16px", padding: "40px", boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.5)", color: "#ffffff", relative: "true" }}>
             
             {success ? (
-              <div className="text-center py-10 animate-fade-in">
-                <div className="w-20 h-20 bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 text-4xl flex items-center justify-center rounded-full mx-auto mb-6 shadow-lg shadow-emerald-500/10">
+              <div className="text-center py-10 animate-fade-in" style={{ textAlign: "center" }}>
+                <div style={{ width: "80px", height: "80px", background: "rgba(52, 211, 153, 0.15)", color: "#34d399", border: "1.5px solid rgba(52, 211, 153, 0.3)", fontSize: "38px", display: "flex", alignItems: "center", justifyContent: "center", borderRadius: "50%", margin: "0 auto 24px auto" }}>
                   ✓
                 </div>
-                <h2 className="text-2xl font-bold text-white mb-4">Application Submitted!</h2>
-                <p className="text-slate-300 leading-relaxed max-w-md mx-auto mb-8">
+                <h2 style={{ fontSize: "24px", fontWeight: "700", color: "#ffffff", marginBottom: "12px" }}>Application Submitted!</h2>
+                <p style={{ color: "#cbd5e1", fontSize: "15px", lineHeight: "1.6", maxWidth: "450px", margin: "0 auto 30px auto" }}>
                   Your profile has been processed, and a system email has been automatically dispatched to <strong>info@ananyahisolutions.com</strong>.
                   Our team will review your CV and contact you within 2-3 business days.
                 </p>
-                <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                  <Link href="/careers" className="btn btn-primary px-8 py-3 rounded-lg font-bold text-sm tracking-wide text-center" style={{ textDecoration: "none" }}>
+                <div style={{ display: "flex", gap: "16px", justifyContent: "center" }}>
+                  <Link href="/careers" style={{ padding: "12px 24px", borderRadius: "6px", background: "#0f75bc", color: "#ffffff", fontWeight: "700", fontSize: "14px", textDecoration: "none" }}>
                     ← Open Careers
                   </Link>
-                  <Link href="/" className="btn btn-outline px-8 py-3 rounded-lg font-bold text-sm tracking-wide text-center border-slate-600 hover:bg-slate-800 text-white" style={{ textDecoration: "none" }}>
+                  <Link href="/" style={{ padding: "12px 24px", borderRadius: "6px", border: "1.5px solid rgba(255, 255, 255, 0.2)", color: "#cbd5e1", fontWeight: "600", fontSize: "14px", textDecoration: "none" }}>
                     Return Home
                   </Link>
                 </div>
               </div>
             ) : (
               <>
-                <div className="mb-8" style={{ borderBottom: "1px solid rgba(255,255,255,0.08)", paddingBottom: "20px" }}>
-                  <h2 className="text-2xl font-extrabold text-white">Submit Your Profile</h2>
+                <div className="mb-8" style={{ borderBottom: "1px solid rgba(255,255,255,0.08)", paddingBottom: "20px", marginBottom: "30px" }}>
+                  <h2 style={{ fontSize: "24px", fontWeight: "700", color: "#ffffff", margin: 0 }}>Submit Your Profile</h2>
                   {targetJob ? (
-                    <div className="mt-3 p-3 bg-slate-800/40 border border-slate-700/35 rounded-lg text-sm text-slate-300">
-                      <p>🎓 <strong>Job:</strong> {targetJob.title}</p>
-                      <p className="mt-1">📍 <strong>Department/Location:</strong> {targetJob.department} | {targetJob.location}</p>
+                    <div style={{ marginTop: "12px", padding: "14px", background: "rgba(255, 255, 255, 0.03)", border: "1px solid rgba(255, 255, 255, 0.06)", borderRadius: "8px", fontSize: "14px", color: "#cbd5e1" }}>
+                      <p style={{ margin: 0 }}>🎓 <strong>Job:</strong> {targetJob.title}</p>
+                      <p style={{ margin: "6px 0 0 0" }}>📍 <strong>Department/Location:</strong> {targetJob.department} | {targetJob.location}</p>
                     </div>
                   ) : (
-                    <p className="text-slate-400 text-sm mt-1">Please provide all mandatory details below to submit a general career opening application.</p>
+                    <p style={{ color: "#94a3b8", fontSize: "14px", marginTop: "6px", margin: 0 }}>Please provide all mandatory details below to submit a general career opening application.</p>
                   )}
                 </div>
 
                 {formError && (
-                  <div className="p-4 mb-6 bg-rose-500/15 border border-rose-500/30 rounded-lg text-rose-300 text-sm font-medium animate-shake">
+                  <div style={{ padding: "16px", marginBottom: "24px", background: "rgba(244, 63, 94, 0.15)", border: "1px solid rgba(244, 63, 94, 0.3)", borderRadius: "8px", color: "#fca5a5", fontSize: "14px", fontWeight: "600" }}>
                     ⚠️ {formError}
                   </div>
                 )}
 
-                <form onSubmit={handleSubmit} className="flex flex-col gap-6">
+                <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: "24px" }}>
                   {/* Name field */}
-                  <div className="flex flex-col gap-2">
-                    <label htmlFor="appl-fullname" className="text-sm font-bold text-slate-200">
-                      Full Name <span className="text-rose-400">*</span>
+                  <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
+                    <label htmlFor="appl-fullname" style={{ fontSize: "13.5px", fontWeight: "600", color: "#cbd5e1" }}>
+                      Full Name <span style={{ color: "#f43f5e" }}>*</span>
                     </label>
                     <input
                       id="appl-fullname"
@@ -266,16 +266,25 @@ function ApplyFormContent() {
                       value={fullName}
                       onChange={(e) => setFullName(e.target.value)}
                       placeholder="e.g. Rahul Sharma"
-                      className="w-full bg-slate-900/50 border border-white/10 text-white placeholder-slate-500 px-4 py-3 rounded-lg focus:outline-none focus:border-primary-blue transition-all"
+                      style={{
+                        width: "100%",
+                        padding: "12px 16px",
+                        background: "rgba(5, 46, 71, 0.4)",
+                        border: "1.5px solid rgba(255, 255, 255, 0.08)",
+                        borderRadius: "8px",
+                        color: "#ffffff",
+                        fontSize: "14px",
+                        outline: "none"
+                      }}
                       required
                     />
                   </div>
 
                   {/* Contact Fields Row */}
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div className="flex flex-col gap-2">
-                      <label htmlFor="appl-email" className="text-sm font-bold text-slate-200">
-                        Email Address <span className="text-rose-400">*</span>
+                  <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "20px" }}>
+                    <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
+                      <label htmlFor="appl-email" style={{ fontSize: "13.5px", fontWeight: "600", color: "#cbd5e1" }}>
+                        Email Address <span style={{ color: "#f43f5e" }}>*</span>
                       </label>
                       <input
                         id="appl-email"
@@ -283,13 +292,22 @@ function ApplyFormContent() {
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                         placeholder="rahul@example.com"
-                        className="w-full bg-slate-900/50 border border-white/10 text-white placeholder-slate-500 px-4 py-3 rounded-lg focus:outline-none focus:border-primary-blue transition-all"
+                        style={{
+                          width: "100%",
+                          padding: "12px 16px",
+                          background: "rgba(5, 46, 71, 0.4)",
+                          border: "1.5px solid rgba(255, 255, 255, 0.08)",
+                          borderRadius: "8px",
+                          color: "#ffffff",
+                          fontSize: "14px",
+                          outline: "none"
+                        }}
                         required
                       />
                     </div>
-                    <div className="flex flex-col gap-2">
-                      <label htmlFor="appl-phone" className="text-sm font-bold text-slate-200">
-                        Phone / WhatsApp <span className="text-rose-400">*</span>
+                    <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
+                      <label htmlFor="appl-phone" style={{ fontSize: "13.5px", fontWeight: "600", color: "#cbd5e1" }}>
+                        Phone / WhatsApp <span style={{ color: "#f43f5e" }}>*</span>
                       </label>
                       <input
                         id="appl-phone"
@@ -297,15 +315,24 @@ function ApplyFormContent() {
                         value={phone}
                         onChange={(e) => setPhone(e.target.value)}
                         placeholder="+91 XXXXX-XXXXX"
-                        className="w-full bg-slate-900/50 border border-white/10 text-white placeholder-slate-500 px-4 py-3 rounded-lg focus:outline-none focus:border-primary-blue transition-all"
+                        style={{
+                          width: "100%",
+                          padding: "12px 16px",
+                          background: "rgba(5, 46, 71, 0.4)",
+                          border: "1.5px solid rgba(255, 255, 255, 0.08)",
+                          borderRadius: "8px",
+                          color: "#ffffff",
+                          fontSize: "14px",
+                          outline: "none"
+                        }}
                         required
                       />
                     </div>
                   </div>
 
                   {/* Portfolio URL Field */}
-                  <div className="flex flex-col gap-2">
-                    <label htmlFor="appl-portfolio" className="text-sm font-bold text-slate-200">
+                  <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
+                    <label htmlFor="appl-portfolio" style={{ fontSize: "13.5px", fontWeight: "600", color: "#cbd5e1" }}>
                       Portfolio URL or LinkedIn (Optional)
                     </label>
                     <input
@@ -314,37 +341,46 @@ function ApplyFormContent() {
                       value={portfolio}
                       onChange={(e) => setPortfolio(e.target.value)}
                       placeholder="https://linkedin.com/in/rahulsharma"
-                      className="w-full bg-slate-900/50 border border-white/10 text-white placeholder-slate-500 px-4 py-3 rounded-lg focus:outline-none focus:border-primary-blue transition-all"
+                      style={{
+                        width: "100%",
+                        padding: "12px 16px",
+                        background: "rgba(5, 46, 71, 0.4)",
+                        border: "1.5px solid rgba(255, 255, 255, 0.08)",
+                        borderRadius: "8px",
+                        color: "#ffffff",
+                        fontSize: "14px",
+                        outline: "none"
+                      }}
                     />
                   </div>
 
                   {/* Resume Upload Browse Field */}
-                  <div className="flex flex-col gap-2">
-                    <label className="text-sm font-bold text-slate-200">
-                      Upload Resume / CV <span className="text-rose-400">*</span>
+                  <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
+                    <label style={{ fontSize: "13.5px", fontWeight: "600", color: "#cbd5e1" }}>
+                      Upload Resume / CV <span style={{ color: "#f43f5e" }}>*</span>
                     </label>
-                    <div className="file-input-wrapper relative border-2 border-dashed border-white/10 hover:border-primary-blue/50 transition-all rounded-lg overflow-hidden" style={{ minHeight: "90px" }}>
+                    <div style={{ position: "relative", width: "100%", height: "90px", background: "rgba(5, 46, 71, 0.3)", border: "1.5px dashed rgba(255, 255, 255, 0.15)", borderRadius: "8px", display: "flex", alignItems: "center", justifyContent: "center", cursor: "pointer" }}>
                       <input
                         type="file"
                         accept=".pdf,.doc,.docx"
                         onChange={handleFileChange}
-                        className="absolute inset-0 opacity-0 cursor-pointer w-full h-full z-10"
+                        style={{ position: "absolute", inset: 0, opacity: 0, cursor: "pointer", width: "100%", height: "100%", zIndex: 10 }}
                         required
                       />
-                      <div className="absolute inset-0 flex flex-col items-center justify-center p-4 text-center pointer-events-none">
-                        <span className="text-2xl mb-1">📁</span>
-                        <span className="text-xs font-semibold text-slate-300">
+                      <div style={{ pointerEvents: "none", textAlign: "center", padding: "12px" }}>
+                        <span style={{ fontSize: "24px", display: "block", marginBottom: "4px" }}>📁</span>
+                        <span style={{ fontSize: "13px", fontWeight: "600", color: "#cbd5e1", display: "block" }}>
                           {resumeName ? `📄 Selected: ${resumeName}` : "Click to browse and upload (PDF & Word only)"}
                         </span>
-                        <span className="text-[10px] text-slate-500 mt-1">Accepted Formats: .pdf, .doc, .docx</span>
+                        <span style={{ fontSize: "10.5px", color: "#64748b", display: "block", marginTop: "4px" }}>Accepted Formats: .pdf, .doc, .docx</span>
                       </div>
                     </div>
                   </div>
 
                   {/* Message/Cover Letter Field */}
-                  <div className="flex flex-col gap-2">
-                    <label htmlFor="appl-message" className="text-sm font-bold text-slate-200">
-                      Cover Letter / Message <span className="text-rose-400">*</span>
+                  <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
+                    <label htmlFor="appl-message" style={{ fontSize: "13.5px", fontWeight: "600", color: "#cbd5e1" }}>
+                      Cover Letter / Message <span style={{ color: "#f43f5e" }}>*</span>
                     </label>
                     <textarea
                       id="appl-message"
@@ -352,7 +388,17 @@ function ApplyFormContent() {
                       onChange={(e) => setMessage(e.target.value)}
                       placeholder="Please introduce yourself and explain why you are qualified to join Ananya Hi Solutions..."
                       rows="4"
-                      className="w-full bg-slate-900/50 border border-white/10 text-white placeholder-slate-500 px-4 py-3 rounded-lg focus:outline-none focus:border-primary-blue transition-all resize-none"
+                      style={{
+                        width: "100%",
+                        padding: "12px 16px",
+                        background: "rgba(5, 46, 71, 0.4)",
+                        border: "1.5px solid rgba(255, 255, 255, 0.08)",
+                        borderRadius: "8px",
+                        color: "#ffffff",
+                        fontSize: "14px",
+                        outline: "none",
+                        resize: "none"
+                      }}
                       required
                     ></textarea>
                   </div>
@@ -360,9 +406,21 @@ function ApplyFormContent() {
                   {/* Submit Button */}
                   <button
                     type="submit"
-                    className="apply-submit-btn w-full py-4 mt-2 font-bold text-center text-white bg-primary-blue hover:bg-blue-600 rounded-lg shadow-md transition-all active:scale-95 disabled:opacity-50"
+                    className="apply-submit-btn"
                     disabled={loading}
-                    style={{ cursor: "pointer", border: "none" }}
+                    style={{
+                      width: "100%",
+                      padding: "14px",
+                      background: "linear-gradient(135deg, var(--primary-blue) 0%, #0d619c 100%)",
+                      color: "#ffffff",
+                      fontWeight: "700",
+                      fontSize: "15px",
+                      borderRadius: "8px",
+                      border: "none",
+                      cursor: "pointer",
+                      boxShadow: "0 10px 15px -3px rgba(15, 117, 188, 0.3)",
+                      transition: "all 0.2s"
+                    }}
                   >
                     {loading ? "Submitting Application..." : "Submit Application Form"}
                   </button>

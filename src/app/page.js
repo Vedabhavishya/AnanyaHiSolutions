@@ -473,12 +473,23 @@ export default function Home() {
                 className="process-svg-path"
                 d="M 60,240 C 200,320 280,100 370,120 C 470,140 540,360 635,320 C 720,285 780,100 890,140 C 980,170 1020,330 1140,230"
               />
-              {/* Paper Plane Flying along path */}
-              <g className="process-paper-plane">
-                <path
-                  d="M1.94 13.91L29.6 1.15c.67-.3 1.45.2 1.34.93L26.68 28.5a.69.69 0 0 1-1.12.44L16.48 21.6 11.23 27a.5.5 0 0 1-.85-.35v-5.62l15.3-15.82c.16-.16-.06-.41-.26-.27L6.87 18.9 1.14 14.65a.69.69 0 0 1 .8-1.14z"
-                  fill="var(--primary-blue)"
-                />
+              {/* Custom Double-Chevron Arrow Symbol flying exactly along path */}
+              <g>
+                <g stroke="var(--primary-blue)" strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round" fill="none">
+                  {/* Outer Chevron */}
+                  <path d="M 2,-6 L 8,0 L 2,6" />
+                  {/* Inner Chevron */}
+                  <path d="M -4,-6 L 2,0 L -4,6" />
+                  {/* Dot in bottom left relative to chevron center */}
+                  <circle cx="-10" cy="5" r="2" fill="var(--primary-blue)" stroke="none" />
+                </g>
+                <animateMotion
+                  dur="12s"
+                  repeatCount="indefinite"
+                  rotate="auto"
+                >
+                  <mpath href="#wavePath" />
+                </animateMotion>
               </g>
             </svg>
 

@@ -688,21 +688,7 @@ button {
   line-height: 1.3;
 }
 
-.process-paper-plane {
-  position: absolute;
-  width: 32px;
-  height: 32px;
-  color: var(--primary-blue);
-  z-index: 10;
-  pointer-events: none;
-  offset-path: path("M 60,240 C 200,320 280,100 370,120 C 470,140 540,360 635,320 C 720,285 780,100 890,140 C 980,170 1020,330 1140,230");
-  animation: planeTravel 12s linear infinite;
-}
 
-@keyframes planeTravel {
-  0% { offset-distance: 0%; }
-  100% { offset-distance: 100%; }
-}
 
 /* Tools Section */
 .tools-grid {

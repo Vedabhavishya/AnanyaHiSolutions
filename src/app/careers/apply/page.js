@@ -222,7 +222,7 @@ function ApplyFormContent() {
                 </div>
                 <h2 style={{ fontSize: "24px", fontWeight: "700", color: "var(--dark-deep)", marginBottom: "12px" }}>Application Submitted!</h2>
                 <p style={{ color: "#475569", fontSize: "15px", lineHeight: "1.6", maxWidth: "450px", margin: "0 auto 30px auto" }}>
-                  Your profile has been processed, and a system email has been automatically dispatched to <strong>info@ananyahisolutions.com</strong>.
+                  Your profile has been processed, and a system email has been automatically dispatched to <strong>vedabhavishya.gudivaka@gmail.com</strong>.
                   Our team will review your CV and contact you within 2-3 business days.
                 </p>
                 <div style={{ display: "flex", gap: "16px", justifyContent: "center" }}>

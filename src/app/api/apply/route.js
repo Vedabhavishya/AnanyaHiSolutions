@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { readDb, writeDb } from "../db-helper";
 
-// Next.js API route to process job applications and trigger automated notifications to info@ananyahisolutions.com
+// Next.js API route to process job applications and trigger automated notifications to vedabhavishya.gudivaka@gmail.com
 export async function POST(request) {
   try {
     const formData = await request.formData();
@@ -51,11 +51,11 @@ export async function POST(request) {
     // 4. Automated Email Simulation
     // In a production environment with SMTP set up, you would configure nodemailer here.
     // To ensure compatibility, we log a detailed system action showing that the email
-    // has been triggered and routed automatically to info@ananyahisolutions.com.
+    // has been triggered and routed automatically to vedabhavishya.gudivaka@gmail.com.
     console.log(`
 ================================================================================
 [AUTOMATED EMAIL DISPATCH SYSTEM]
-To: info@ananyahisolutions.com
+To: vedabhavishya.gudivaka@gmail.com
 Subject: New Job Application - ${jobTitle} - ${name}
 --------------------------------------------------------------------------------
 Dear HR Team,
@@ -72,13 +72,13 @@ Candidate Profile:
 Attachment:
 - Resume File: ${resumeFile.name} (${(resumeFile.size / 1024).toFixed(2)} KB)
 
-[SYSTEM STATUS]: E-mail successfully routed to info@ananyahisolutions.com.
+[SYSTEM STATUS]: E-mail successfully routed to vedabhavishya.gudivaka@gmail.com.
 ================================================================================
     `);
 
     return NextResponse.json({
       success: true,
-      message: `Application submitted successfully and notification email has been dispatched to info@ananyahisolutions.com automatically.`,
+      message: `Application submitted successfully and notification email has been dispatched to vedabhavishya.gudivaka@gmail.com automatically.`,
       application: newApplication
     });
 

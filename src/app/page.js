@@ -377,8 +377,22 @@ export default function Home() {
   const [hoveredCategory, setHoveredCategory] = useState(null);
   const [activeCategory, setActiveCategory] = useState(null);
   const [hoveredBadge, setHoveredBadge] = useState(null); // { catIdx, toolIdx }
+  const [particles, setParticles] = useState([]);
   const specializationSectionRef = useRef(null);
   const mouseGlowRef = useRef(null);
+
+  // Initialize particles config on mount to prevent server-client hydration mismatch
+  useEffect(() => {
+    setParticles(
+      Array.from({ length: 15 }).map((_, i) => ({
+        size: Math.random() * 3 + 1,
+        left: Math.random() * 100,
+        top: Math.random() * 100,
+        duration: Math.random() * 12 + 8,
+        delay: Math.random() * -15
+      }))
+    );
+  }, []);
   const glowCoords = useRef({ x: 0, y: 0 });
   const targetGlowCoords = useRef({ x: 0, y: 0 });
   const isTracking = useRef(false);
@@ -480,16 +494,6 @@ export default function Home() {
     }
   };
 
-  // Background particles config (static values generated on mount to avoid hydration mismatch)
-  const particlesConfig = useRef(
-    Array.from({ length: 15 }).map((_, i) => ({
-      size: Math.random() * 3 + 1,
-      left: Math.random() * 100,
-      top: Math.random() * 100,
-      duration: Math.random() * 12 + 8,
-      delay: Math.random() * -15
-    }))
-  );
 
 
 
@@ -866,7 +870,7 @@ export default function Home() {
 
         {/* Ambient Particles */}
         <div className="particles-container" style={{ zIndex: 2 }}>
-          {particlesConfig.current.map((p, i) => (
+          {particles.map((p, i) => (
             <div
               key={i}
               className="particle"

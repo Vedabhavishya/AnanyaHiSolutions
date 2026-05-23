@@ -72,6 +72,215 @@ function renderServiceIcon(iconName) {
   }
 }
 
+// Custom Tool Logo Renderer for missing public/tools logos
+function ToolLogo({ type, name, isMobile = false }) {
+  let size = isMobile ? 20 : 46;
+  if (!isMobile && name.toLowerCase().includes("meta")) {
+    size = 54;
+  }
+  const sizePx = `${size}px`;
+
+  if (
+    type.endsWith(".svg") ||
+    type.endsWith(".png") ||
+    type.endsWith(".jpg") ||
+    type.endsWith(".jpeg") ||
+    type.endsWith(".webp")
+  ) {
+    return (
+      <img
+        src={type}
+        alt={name}
+        className="tool-logo-img"
+        style={{ width: sizePx, height: sizePx, objectFit: "contain", pointerEvents: "none" }}
+      />
+    );
+  }
+  switch (type) {
+    case "linkedin":
+      return (
+        <svg viewBox="0 0 24 24" width={size} height={size} fill="#0077b5" style={{ pointerEvents: "none" }}>
+          <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.779-1.75-1.75s.784-1.75 1.75-1.75 1.75.779 1.75 1.75-.784 1.75-1.75 1.75zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+        </svg>
+      );
+    case "twitter":
+      return (
+        <svg viewBox="0 0 24 24" width={isMobile ? 16 : 26} height={isMobile ? 16 : 26} fill="#000000" style={{ pointerEvents: "none" }}>
+          <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+        </svg>
+      );
+    case "jio":
+      return (
+        <svg viewBox="0 0 100 100" width={size} height={size} style={{ pointerEvents: "none" }}>
+          <circle cx="50" cy="50" r="50" fill="#0F3CC9" />
+          <text x="50" y="62" fill="#ffffff" fontFamily="system-ui, sans-serif" fontWeight="900" fontSize="30" textAnchor="middle">jio</text>
+        </svg>
+      );
+    case "adobe":
+      return (
+        <svg viewBox="0 0 24 24" width={size - 2} height={size - 2} fill="#FF0000" style={{ pointerEvents: "none" }}>
+          <path d="M14.867 2.667H24v20.8H14.867zM9.133 2.667H0v20.8h9.133zM12 8.767l4.567 11.2h-3.467l-2.033-5.2H7.4l-2.067 5.2H1.8z"/>
+        </svg>
+      );
+    case "youtube":
+      return (
+        <svg viewBox="0 0 24 24" width={size} height={size} fill="#FF0000" style={{ pointerEvents: "none" }}>
+          <path d="M23.498 6.163a3.003 3.003 0 0 0-2.11-2.11C19.518 3.545 12 3.545 12 3.545s-7.518 0-9.388.507a3.003 3.003 0 0 0-2.11 2.11C0 8.033 0 12 0 12s0 3.967.502 5.837a3.003 3.003 0 0 0 2.11 2.11c1.87.507 9.388.507 9.388.507s7.518 0 9.388-.507a3.003 3.003 0 0 0 2.11-2.11C24 15.967 24 12 24 12s0-3.967-.502-5.837zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+        </svg>
+      );
+    case "gmap":
+      return (
+        <svg viewBox="0 0 24 24" width={size} height={size} style={{ pointerEvents: "none" }}>
+          <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" fill="#EA4335" />
+          <path d="M12 6.5c-1.38 0-2.5 1.12-2.5 2.5s1.12 2.5 2.5 2.5 2.5-1.12 2.5-2.5-1.12-2.5-2.5-2.5z" fill="#4285F4" />
+        </svg>
+      );
+    case "merchant":
+      return (
+        <svg viewBox="0 0 24 24" width={size} height={size} style={{ pointerEvents: "none" }}>
+          <path d="M19 6h-2c0-2.76-2.24-5-5-5S7 3.24 7 6H5c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm-7-3c1.66 0 3 1.34 3 3H9c0-1.66 1.34-3 3-3zm7 17H5V8h14v12z" fill="#4285F4" />
+          <path d="M12 10c-1.66 0-3 1.34-3 3h6c0-1.66-1.34-3-3-3z" fill="#34A853" />
+        </svg>
+      );
+    case "photoshop":
+      return (
+        <svg viewBox="0 0 24 24" width={size} height={size} style={{ pointerEvents: "none" }}>
+          <rect width="24" height="24" rx="4" fill="#001E36" stroke="#00C8FF" strokeWidth="1.5" />
+          <text x="12" y="15.5" fill="#00C8FF" fontFamily="system-ui, sans-serif" fontWeight="bold" fontSize="10" textAnchor="middle">Ps</text>
+        </svg>
+      );
+    case "premiere":
+      return (
+        <svg viewBox="0 0 24 24" width={size} height={size} style={{ pointerEvents: "none" }}>
+          <rect width="24" height="24" rx="4" fill="#130022" stroke="#EA77FF" strokeWidth="1.5" />
+          <text x="12" y="15.5" fill="#EA77FF" fontFamily="system-ui, sans-serif" fontWeight="bold" fontSize="10" textAnchor="middle">Pr</text>
+        </svg>
+      );
+    case "clarity":
+      return (
+        <svg viewBox="0 0 24 24" width={size - 2} height={size - 2} fill="none" stroke="#0078D4" strokeWidth="2" style={{ pointerEvents: "none" }}>
+          <circle cx="9" cy="9" r="6" />
+          <circle cx="15" cy="15" r="6" stroke="#EC4899" />
+        </svg>
+      );
+    case "envato":
+      return (
+        <svg viewBox="0 0 24 24" width={size - 2} height={size - 2} fill="#81B441" style={{ pointerEvents: "none" }}>
+          <path d="M19.333 2.667c-1.8 1.4-3.5 3.3-4.8 5.6-1.2-2.1-2.9-3.7-4.8-4.8-1 .8-1.8 1.8-2.3 3-.9.4-1.6 1.1-2 2-1 2.3-.5 5 1.2 6.7 1.8 1.8 4.6 2.3 6.9 1.2.9 1.1 2.2 1.8 3.7 1.8 3.4 0 6.1-2.7 6.1-6.1.1-3.6-1.6-7.2-4-9.4z"/>
+        </svg>
+      );
+    case "meta-cert":
+      return (
+        <svg viewBox="0 0 24 24" width={size} height={size} fill="#0064e0" style={{ pointerEvents: "none" }}>
+          <path d="M12.5 15.6c-.6 0-1.1-.2-1.5-.6l-4.1-4.1c-1.2-1.2-1.2-3.1 0-4.3 1.2-1.2 3.1-1.2 4.3 0l1.3 1.3 1.3-1.3c1.2-1.2 3.1-1.2 4.3 0 1.2 1.2 1.2 3.1 0 4.3l-4.1 4.1c-.4.4-.9.6-1.5.6zm-4.3-8.2c-.6 0-1.2.2-1.6.6-.9.9-.9 2.4 0 3.3l4.1 4.1c.2.2.5.3.8.3s.6-.1.8-.3l4.1-4.1c.9-.9.9-2.4 0-3.3-.9-.9-2.4-.9-3.3 0l-1.6 1.6-1.6-1.6c-.4-.4-1-.6-1.6-.6z"/>
+        </svg>
+      );
+    case "google-cert":
+      return (
+        <svg viewBox="0 0 24 24" width={size} height={size} style={{ pointerEvents: "none" }}>
+          <path d="M12 2L1 7l11 5 9-4.09V16.5h2V7L12 2z" fill="#4285F4" />
+          <path d="M4.5 10.5v5c0 1.66 3.36 3 7.5 3s7.5-1.34 7.5-3v-5l-7.5 3.41-7.5-3.41z" fill="#34A853" />
+        </svg>
+      );
+    case "microsoft-cert":
+      return (
+        <svg viewBox="0 0 24 24" width={size - 2} height={size - 2} style={{ pointerEvents: "none" }}>
+          <rect x="2" y="2" width="9" height="9" fill="#F25022" />
+          <rect x="13" y="2" width="9" height="9" fill="#7FBA00" />
+          <rect x="2" y="13" width="9" height="9" fill="#00A1F1" />
+          <rect x="13" y="13" width="9" height="9" fill="#FFB900" />
+        </svg>
+      );
+    case "google-ecom-cert":
+      return (
+        <svg viewBox="0 0 24 24" width={size - 2} height={size - 2} style={{ pointerEvents: "none" }}>
+          <path d="M12.24 10.285V13.4h6.887c-.275 1.565-1.88 4.604-6.887 4.604-4.33 0-7.866-3.577-7.866-8s3.536-8 7.866-8c2.46 0 4.105 1.025 5.047 1.926l2.427-2.334C18.155 2.223 15.433 1 12.24 1 6.033 1 1 6.033 1 12.24s5.033 11.24 11.24 11.24c6.478 0 10.793-4.537 10.793-10.983 0-.74-.08-1.302-.178-1.859H12.24z" fill="#4285F4"/>
+          <path d="M19 14l2 2-4 4-2-2 4-4z" fill="#EA4335" />
+        </svg>
+      );
+    case "hubspot-cert":
+      return (
+        <svg viewBox="0 0 24 24" width={size - 2} height={size - 2} fill="#FF7A59" style={{ pointerEvents: "none" }}>
+          <path d="M21.3 9.7h-2.9C18 7.6 16.4 6 14.3 5.6V2.7c1-.3 1.7-1.2 1.7-2.3C16 .2 15 0 14.3 0c-2 0-3.5 1.5-3.5 3.5V5.6C8.7 6 7.1 7.6 6.7 9.7H3.8c-.3-1-1.2-1.7-2.3-1.7C.7 8 0 9 0 9.7s1 1.7 1.7 1.7c1.1 0 2-.7 2.3-1.7h2.9c.4 2.1 2 3.7 4.1 4.1v2.9c-1 .3-1.7 1.2-1.7 2.3 0 1.2 1 1.7 1.7 1.7s3.5-1.5 3.5-3.5v-2.9c2.1-.4 3.7-2 4.1-4.1h2.9c.3 1 1.2 1.7 2.3 1.7.8 0 1.7-1 1.7-1.7s-1-1.7-1.7-1.7zM12 14.5c-1.4 0-2.5-1.1-2.5-2.5s1.1-2.5 2.5-2.5 2.5 1.1 2.5 2.5-1.1 2.5-2.5 2.5z"/>
+        </svg>
+      );
+    default:
+      return <div className="text-[12px] font-bold text-slate-700" style={{ pointerEvents: "none" }}>{name.substring(0, 2)}</div>;
+  }
+}
+
+// Specialization Categories Data
+const specializationCategories = [
+  {
+    title: "Designing Tools",
+    icon: (
+      <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" />
+        <path d="M12 6a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z" />
+        <path d="M7 10a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z" />
+        <path d="M17 10a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z" />
+        <path d="M12 16a2 2 0 1 0 0-4 2 2 0 0 0 0 4z" />
+      </svg>
+    ),
+    count: 5,
+    color: "#7C3AED",
+    glowColor: "rgba(124, 58, 237, 0.4)",
+    tools: [
+      { name: "Canva", logo: "/logos/canva_logo.png" },
+      { name: "Photoshop", logo: "/logos/photoshop_logo.png" },
+      { name: "Adobe Premiere Pro", logo: "/logos/adobepremierepro_logo.png" },
+      { name: "Clarity", logo: "/logos/clarity_logo.png" },
+      { name: "Envato", logo: "/logos/envato_logo.png" },
+    ]
+  },
+  {
+    title: "Paid Marketing Tools",
+    icon: (
+      <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
+      </svg>
+    ),
+    count: 14,
+    color: "#2563EB",
+    glowColor: "rgba(37, 99, 235, 0.4)",
+    tools: [
+      { name: "Google Ads", logo: "/logos/Google_Ads_logo.png" },
+      { name: "Meta Ads", logo: "/logos/meta_ads_logo.jpg" },
+      { name: "LinkedIn Ads", logo: "/logos/linkedin_ads_logo.webp" },
+      { name: "Twitter/X Ads", logo: "/logos/twitter_ads_logo.jpg" },
+      { name: "Jio Ads", logo: "/logos/jio_ads_logo.jpg" },
+      { name: "Adobe Ads", logo: "/logos/adobe_ads_logo.png" },
+      { name: "YouTube Ads", logo: "/logos/youtube_ads_logo.jpg" },
+      { name: "GMAP Ads", logo: "/logos/GMAP_ads_logo.png" },
+      { name: "Google Merchant Ads", logo: "/logos/googlemerchant_ads_logo.png" },
+      { name: "Google Analytics", logo: "/logos/googleanalytics_logo.png" },
+      { name: "Google Search Console", logo: "/logos/googlesearchconsole_logo.png" },
+      { name: "Bing Webmaster", logo: "/logos/bing_logo.png" },
+      { name: "SE Ranking", logo: "/logos/seranking_logo.png" },
+      { name: "Hootsuite", logo: "/logos/hootsuite_logo.png" },
+    ]
+  },
+  {
+    title: "Certifications",
+    icon: (
+      <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+        <polyline points="9 11 11 13 15 9" />
+      </svg>
+    ),
+    count: 5,
+    color: "#EC4899",
+    glowColor: "rgba(236, 72, 153, 0.4)",
+    tools: [
+      { name: "Meta Certification", logo: "/logos/meta_certification_logo.png" },
+      { name: "Google Certification", logo: "/logos/google_certification_logo.png" },
+      { name: "Microsoft Certification", logo: "/logos/microsft_certification_logo.png" },
+      { name: "Google Ecommerce Certification", logo: "/logos/google_certifcation_logo.png" },
+      { name: "HubSpot Certification", logo: "/logos/hubspot_certification_logo.png" },
+    ]
+  }
+];
+
 export default function Home() {
   // Navigation & Scroll State
   const [isScrolled, setIsScrolled] = useState(false);
@@ -160,6 +369,129 @@ export default function Home() {
 
     fetchHomepageData();
   }, []);
+
+  // ----------------------------------------------------
+  // PLATFORMS & TOOLS SPECIALIZATION STATE & HOOKS
+  // ----------------------------------------------------
+  const [sectionInView, setSectionInView] = useState(false);
+  const [hoveredCategory, setHoveredCategory] = useState(null);
+  const [activeCategory, setActiveCategory] = useState(null);
+  const [hoveredBadge, setHoveredBadge] = useState(null); // { catIdx, toolIdx }
+  const specializationSectionRef = useRef(null);
+  const mouseGlowRef = useRef(null);
+  const glowCoords = useRef({ x: 0, y: 0 });
+  const targetGlowCoords = useRef({ x: 0, y: 0 });
+  const isTracking = useRef(false);
+
+  // IntersectionObserver for entrance animation
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setSectionInView(true);
+        }
+      },
+      { threshold: 0.05 }
+    );
+    if (specializationSectionRef.current) {
+      observer.observe(specializationSectionRef.current);
+    }
+    return () => observer.disconnect();
+  }, []);
+
+  // requestAnimationFrame for mouse-follow glow
+  useEffect(() => {
+    let animationFrameId;
+    const updateGlowPosition = () => {
+      glowCoords.current.x += (targetGlowCoords.current.x - glowCoords.current.x) * 0.15;
+      glowCoords.current.y += (targetGlowCoords.current.y - glowCoords.current.y) * 0.15;
+
+      if (mouseGlowRef.current) {
+        mouseGlowRef.current.style.transform = `translate3d(${glowCoords.current.x - 300}px, ${glowCoords.current.y - 300}px, 0)`;
+      }
+      animationFrameId = requestAnimationFrame(updateGlowPosition);
+    };
+
+    updateGlowPosition();
+
+    return () => {
+      cancelAnimationFrame(animationFrameId);
+    };
+  }, []);
+
+  const handleMouseMove = (e) => {
+    if (!specializationSectionRef.current) return;
+    const rect = specializationSectionRef.current.getBoundingClientRect();
+    targetGlowCoords.current.x = e.clientX - rect.left;
+    targetGlowCoords.current.y = e.clientY - rect.top;
+    if (!isTracking.current) {
+      isTracking.current = true;
+      if (mouseGlowRef.current) {
+        mouseGlowRef.current.style.opacity = "1";
+      }
+    }
+  };
+
+  const handleMouseLeaveSection = () => {
+    isTracking.current = false;
+    if (mouseGlowRef.current) {
+      mouseGlowRef.current.style.opacity = "0";
+    }
+  };
+
+  const handleCategoryClick = (idx) => {
+    setActiveCategory(activeCategory === idx ? null : idx);
+  };
+
+  const handleCategoryKeyDown = (e, idx) => {
+    if (e.key === "Enter" || e.key === " ") {
+      e.preventDefault();
+      setActiveCategory(activeCategory === idx ? null : idx);
+    }
+  };
+
+  // Trigonometric distribution helper for orbiting badges
+  const getToolCoords = (cat, tIdx) => {
+    if (cat.title === "Paid Marketing Tools") {
+      // Split Paid Marketing Into 2 Orbit Layers: Inner (9 ads tools), Outer (5 analytics/SEO tools)
+      if (tIdx < 9) {
+        // Inner Orbit: 9 core advertising platforms, r = 160px
+        const angle = (tIdx * 2 * Math.PI) / 9;
+        return {
+          x: Math.round(Math.cos(angle) * 160),
+          y: Math.round(Math.sin(angle) * 160)
+        };
+      } else {
+        // Outer Orbit: 5 analytics & SEO tools, r = 240px
+        const offsetAngle = Math.PI / 5;
+        const angle = ((tIdx - 9) * 2 * Math.PI) / 5 + offsetAngle;
+        return {
+          x: Math.round(Math.cos(angle) * 240),
+          y: Math.round(Math.sin(angle) * 240)
+        };
+      }
+    } else {
+      // Designing Tools & Certifications: 5 tools, r = 180px
+      const angle = (tIdx * 2 * Math.PI) / 5;
+      return {
+        x: Math.round(Math.cos(angle) * 180),
+        y: Math.round(Math.sin(angle) * 180)
+      };
+    }
+  };
+
+  // Background particles config (static values generated on mount to avoid hydration mismatch)
+  const particlesConfig = useRef(
+    Array.from({ length: 15 }).map((_, i) => ({
+      size: Math.random() * 3 + 1,
+      left: Math.random() * 100,
+      top: Math.random() * 100,
+      duration: Math.random() * 12 + 8,
+      delay: Math.random() * -15
+    }))
+  );
+
+
 
   // Client Onboarding Process State
   const [activeStep, setActiveStep] = useState(0);
@@ -515,20 +847,138 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 5. Tools We Use Section (Marquee / Grid) */}
-      <section id="tools" className="section section-bg-alt">
-        <div className="container">
-          <div className="section-header">
-            <h2>Core Technology Stack</h2>
-            <p>We leverage industry-leading tools to provide robust tracking, high designs, and superior execution speeds.</p>
+      {/* 5. Platforms & Tools We Specialize In (Futuristic Premium Section) */}
+      <section
+        id="specialization"
+        ref={specializationSectionRef}
+        className={`specialization-section ${sectionInView ? "in-view" : ""}`}
+        onMouseMove={handleMouseMove}
+        onMouseLeave={handleMouseLeaveSection}
+        aria-labelledby="specialization-heading"
+      >
+        {/* Layered cinematic glows & particles */}
+        <div className="glow-blob glow-blob-blue" style={{ zIndex: 1 }}></div>
+        <div className="glow-blob glow-blob-purple" style={{ zIndex: 1 }}></div>
+        <div className="glow-blob glow-blob-pink" style={{ zIndex: 1 }}></div>
+
+        {/* Mouse Follow Glow Overlay */}
+        <div ref={mouseGlowRef} className="mouse-follow-glow" style={{ zIndex: 3 }}></div>
+
+        {/* Ambient Particles */}
+        <div className="particles-container" style={{ zIndex: 2 }}>
+          {particlesConfig.current.map((p, i) => (
+            <div
+              key={i}
+              className="particle"
+              style={{
+                width: `${p.size}px`,
+                height: `${p.size}px`,
+                left: `${p.left}%`,
+                top: `${p.top}%`,
+                animationDuration: `${p.duration}s`,
+                animationDelay: `${p.delay}s`
+              }}
+            ></div>
+          ))}
+        </div>
+
+        <div className="container specialization-container" style={{ zIndex: 4 }}>
+          <div className="section-header spec-header">
+            <h2 id="specialization-heading">Platforms & Tools We Specialize In</h2>
+            <p>Powering digital growth with industry-leading platforms, marketing technologies, creative tools, and certified expertise.</p>
           </div>
 
-          <div className="tools-grid">
-            {tools.map((tool, idx) => (
-              <div key={idx} className="tool-card" title={`${tool.name} - ${tool.desc}`}>
-                <img src={tool.logo} alt={tool.name} className="tool-logo-img" />
-              </div>
-            ))}
+          <div className="categories-orbit-grid">
+            {specializationCategories.map((cat, idx) => {
+              const isCatActive = hoveredCategory === idx || activeCategory === idx;
+              const isAnyCatActive = hoveredCategory !== null || activeCategory !== null;
+              const isCatDimmed = isAnyCatActive && !isCatActive;
+
+              return (
+                <div
+                  key={idx}
+                  className={`category-circle-wrapper ${isCatActive ? "active" : ""} ${isCatDimmed ? "dimmed" : ""}`}
+                  onMouseEnter={() => setHoveredCategory(idx)}
+                  onMouseLeave={() => {
+                    setHoveredCategory(null);
+                    setHoveredBadge(null);
+                  }}
+                  onFocus={() => setHoveredCategory(idx)}
+                  onBlur={() => {
+                    setHoveredCategory(null);
+                    setHoveredBadge(null);
+                  }}
+                  onClick={() => handleCategoryClick(idx)}
+                  tabIndex={0}
+                  onKeyDown={(e) => handleCategoryKeyDown(e, idx)}
+                  role="button"
+                  aria-expanded={isCatActive}
+                  aria-label={`${cat.title}. Contains ${cat.count} tools. Click to toggle.`}
+                  style={{
+                    "--entry-delay": `${idx * 200}ms`
+                  }}
+                >
+                  {/* Category Circle Card */}
+                  <div className="category-circle-card" style={{ zIndex: 4 }}>
+                    <div className="category-glow-pulse" style={{ backgroundColor: cat.color }}></div>
+                    <div className="category-circle-border"></div>
+                    <div className="category-content">
+                      <div className="category-icon-box" style={{ color: cat.color }}>
+                        {cat.icon}
+                      </div>
+                      <h3 className="category-title">{cat.title}</h3>
+                      <span className="category-count">{cat.count} Tools</span>
+                    </div>
+                  </div>
+
+                  {/* Desktop Orbits (Hidden/disabled on mobile via media queries) */}
+                  <div className="orbit-badges-container">
+                    {cat.tools.map((tool, tIdx) => {
+                      const coords = getToolCoords(cat, tIdx);
+                      const isBadgeActive = hoveredBadge?.catIdx === idx && hoveredBadge?.toolIdx === tIdx;
+                      return (
+                        <div
+                          key={tIdx}
+                          className={`orbit-badge-item ${isBadgeActive ? "badge-hovered" : ""}`}
+                          style={{
+                            "--x": `${coords.x}px`,
+                            "--y": `${coords.y}px`,
+                            transitionDelay: isCatActive ? `${tIdx * 40}ms` : "0ms",
+                            zIndex: 5
+                          }}
+                          onMouseEnter={() => setHoveredBadge({ catIdx: idx, toolIdx: tIdx })}
+                          onMouseLeave={() => setHoveredBadge(null)}
+                          tabIndex={isCatActive ? 0 : -1}
+                          aria-label={tool.name}
+                        >
+                          <div className="orbit-badge-icon">
+                            <ToolLogo type={tool.logo} name={tool.name} />
+                          </div>
+                          {/* Rich SaaS Tooltip */}
+                          <div className="orbit-tooltip" style={{ zIndex: 6 }}>
+                            <span className="tooltip-title">{tool.name}</span>
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+
+                  {/* Mobile Accordion Panel */}
+                  <div className="mobile-accordion-content">
+                    <div className="mobile-tools-grid">
+                      {cat.tools.map((tool, tIdx) => (
+                        <div key={tIdx} className="mobile-tool-card" aria-label={tool.name}>
+                          <div className="mobile-tool-icon">
+                            <ToolLogo type={tool.logo} name={tool.name} isMobile={true} />
+                          </div>
+                          <span className="mobile-tool-name">{tool.name}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>

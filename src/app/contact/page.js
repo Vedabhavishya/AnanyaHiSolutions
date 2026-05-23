@@ -154,14 +154,14 @@ export default function ContactPage() {
           <ul className="nav-links">
             <li><Link href="/" className="nav-link">Home</Link></li>
             <li><Link href="/about" className="nav-link">About</Link></li>
-            <li><Link href="/#services" className="nav-link">Services</Link></li>
-            <li><Link href="/#careers" className="nav-link">Careers</Link></li>
-            <li><Link href="/#blog" className="nav-link">Blog</Link></li>
+            <li><Link href="/services" className="nav-link">Services</Link></li>
+            <li><Link href="/careers" className="nav-link">Careers</Link></li>
+            <li><Link href="/blog" className="nav-link">Blog</Link></li>
             <li><Link href="/contact" className="nav-link active">Contact us</Link></li>
           </ul>
 
           <div className="nav-cta">
-            <Link href="/#pricing" className="btn btn-primary">Choose Package</Link>
+            <Link href="/contact" className="btn btn-primary">Choose Package</Link>
           </div>
 
           {/* Mobile Menu Icon Toggle */}
@@ -179,11 +179,11 @@ export default function ContactPage() {
           <div className="fixed inset-0 top-[70px] bg-white z-[999] flex flex-col p-6 gap-6 shadow-lg md:hidden animate-slide-in">
             <Link href="/" onClick={() => setMobileMenuOpen(false)} className="text-xl font-bold border-b pb-2">Home</Link>
             <Link href="/about" onClick={() => setMobileMenuOpen(false)} className="text-xl font-bold border-b pb-2">About</Link>
-            <Link href="/#services" onClick={() => setMobileMenuOpen(false)} className="text-xl font-bold border-b pb-2">Services</Link>
-            <Link href="/#careers" onClick={() => setMobileMenuOpen(false)} className="text-xl font-bold border-b pb-2">Careers</Link>
-            <Link href="/#blog" onClick={() => setMobileMenuOpen(false)} className="text-xl font-bold border-b pb-2">Blog</Link>
+            <Link href="/services" onClick={() => setMobileMenuOpen(false)} className="text-xl font-bold border-b pb-2">Services</Link>
+            <Link href="/careers" onClick={() => setMobileMenuOpen(false)} className="text-xl font-bold border-b pb-2">Careers</Link>
+            <Link href="/blog" onClick={() => setMobileMenuOpen(false)} className="text-xl font-bold border-b pb-2">Blog</Link>
             <Link href="/contact" onClick={() => setMobileMenuOpen(false)} className="text-xl font-bold border-b pb-2">Contact us</Link>
-            <Link href="/#pricing" onClick={() => setMobileMenuOpen(false)} className="btn btn-accent text-center mt-4">Choose Package</Link>
+            <Link href="/contact" onClick={() => setMobileMenuOpen(false)} className="btn btn-accent text-center mt-4">Choose Package</Link>
           </div>
         )}
       </header>
@@ -257,7 +257,7 @@ export default function ContactPage() {
       </section>
 
       {/* 4. Send Us a Message — Grey Background */}
-      <section className="contact-form-section section-bg-alt">
+      <section className="contact-form-section" style={{ backgroundColor: "#f4f7f9" }}>
         <div className="container">
           <div className="contact-form-container">
             {!formSubmitted ? (
@@ -458,9 +458,9 @@ export default function ContactPage() {
             <ul className="footer-links">
               <li><Link href="/">Home</Link></li>
               <li><Link href="/about">About Us</Link></li>
-              <li><Link href="/#careers">Careers</Link></li>
-              <li><Link href="/#pricing">Payment Terms</Link></li>
-              <li><Link href="/#blog">News</Link></li>
+              <li><Link href="/careers">Careers</Link></li>
+              <li><Link href="/contact">Payment Terms</Link></li>
+              <li><Link href="/blog">News</Link></li>
               <li><Link href="/contact">Contact</Link></li>
             </ul>
           </div>
@@ -468,12 +468,12 @@ export default function ContactPage() {
           <div className="footer-column">
             <h4>Our Services</h4>
             <ul className="footer-links">
-              <li><Link href="/#services?id=web-design">Website Design</Link></li>
-              <li><Link href="/#services?id=digital-marketing">Digital Marketing</Link></li>
-              <li><Link href="/#services?id=mobile-app">Mobile Application</Link></li>
-              <li><Link href="/#services?id=ecommerce-app">eCommerce Application</Link></li>
-              <li><Link href="/#services?id=video-production">Video Production</Link></li>
-              <li><Link href="/#services?id=software-dev">Software Development</Link></li>
+              <li><Link href="/services">Website Design</Link></li>
+              <li><Link href="/services">Digital Marketing</Link></li>
+              <li><Link href="/services">Mobile Application</Link></li>
+              <li><Link href="/services">eCommerce Application</Link></li>
+              <li><Link href="/services">Video Production</Link></li>
+              <li><Link href="/services">Software Development</Link></li>
             </ul>
           </div>
 

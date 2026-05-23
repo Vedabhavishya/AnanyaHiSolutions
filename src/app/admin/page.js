@@ -38,6 +38,7 @@ export default function AdminDashboardPage() {
   const [jobDept, setJobDept] = useState("");
   const [jobLoc, setJobLoc] = useState("");
   const [jobExp, setJobExp] = useState("");
+  const [jobQual, setJobQual] = useState("");
   const [jobType, setJobType] = useState("Full-Time");
   const [jobDesc, setJobDesc] = useState("");
   const [jobReqs, setJobReqs] = useState("");
@@ -162,6 +163,7 @@ export default function AdminDashboardPage() {
         setJobDept(item.department);
         setJobLoc(item.location);
         setJobExp(item.experience);
+        setJobQual(item.qualifications || "");
         setJobType(item.type);
         setJobDesc(item.description);
         setJobReqs(item.requirements ? item.requirements.join("\n") : "");
@@ -184,6 +186,7 @@ export default function AdminDashboardPage() {
         setJobDept("");
         setJobLoc("");
         setJobExp("");
+        setJobQual("");
         setJobType("Full-Time");
         setJobDesc("");
         setJobReqs("");
@@ -230,6 +233,7 @@ export default function AdminDashboardPage() {
         department: jobDept,
         location: jobLoc,
         experience: jobExp,
+        qualifications: jobQual,
         type: jobType,
         description: jobDesc,
         requirements: requirementsArray,
@@ -537,6 +541,7 @@ export default function AdminDashboardPage() {
                         <th>Location</th>
                         <th>Job Type</th>
                         <th>Experience</th>
+                        <th>Qualifications</th>
                         <th>Requirements</th>
                         <th>Actions</th>
                       </tr>
@@ -544,7 +549,7 @@ export default function AdminDashboardPage() {
                     <tbody>
                       {jobs.length === 0 ? (
                         <tr>
-                          <td colSpan="7" className="table-empty-row">No active job postings found. Create one.</td>
+                          <td colSpan="8" className="table-empty-row">No active job postings found. Create one.</td>
                         </tr>
                       ) : (
                         jobs.map((item) => (
@@ -558,6 +563,7 @@ export default function AdminDashboardPage() {
                               <span className="badge-type">{item.type}</span>
                             </td>
                             <td>{item.experience}</td>
+                            <td>{item.qualifications || "N/A"}</td>
                             <td className="cell-desc">
                               {item.requirements ? `${item.requirements.length} item(s)` : "0 items"}
                             </td>
@@ -773,6 +779,18 @@ export default function AdminDashboardPage() {
                         required
                       />
                     </div>
+                  </div>
+
+                  <div className="modal-form-group">
+                    <label htmlFor="job-qual">Qualifications Required</label>
+                    <input
+                      id="job-qual"
+                      type="text"
+                      value={jobQual}
+                      onChange={(e) => setJobQual(e.target.value)}
+                      placeholder="e.g. B.Tech, MCA, MBA or equivalent degree"
+                      required
+                    />
                   </div>
 
                   <div className="modal-form-group">

@@ -35,6 +35,12 @@
       "title": "Software Development",
       "desc": "Highly robust customized enterprise resource planners (ERPs), customer managers (CRMs), API layers, and intelligent backend automations.",
       "iconName": "code"
+    },
+    {
+      "id": "aeo",
+      "title": "AEO",
+      "desc": "bgjusiushuhiuhshv",
+      "iconName": "globe"
     }
   ],
   "jobs": [
@@ -44,6 +50,7 @@
       "department": "Engineering",
       "location": "Begumpet, Hyderabad (On-site)",
       "experience": "3-5 Years",
+      "qualifications": "B.Tech in CSE, MCA, or equivalent technical degree",
       "type": "Full-Time",
       "description": "We are seeking a Senior Next.js Developer to join our core development team. You will lead the engineering of highly interactive, blazing-fast web applications, e-commerce storefronts, and customized headless dashboards for our international clients.",
       "requirements": [
@@ -55,10 +62,11 @@
     },
     {
       "id": "job-2",
-      "title": "Digital Marketing Strategist",
+      "title": "Digital Marketing Specialist",
       "department": "Marketing",
       "location": "Begumpet, Hyderabad (On-site)",
       "experience": "2-4 Years",
+      "qualifications": "MBA in Marketing, Bachelor's in Business, or related degree",
       "type": "Full-Time",
       "description": "Join our marketing powerhouse as a Lead Strategist! You will design, execute, and monitor high-converting Google Ads (PPC), Facebook Blueprint marketing funnels, and organic search engine growth campaigns for top-tier Indian and global brands.",
       "requirements": [
@@ -66,21 +74,6 @@
         "Certified in Google Ads Search/Display and Facebook Blueprint.",
         "Deep expertise in Google Analytics (GA4), heatmaps, and landing page conversions.",
         "Stellar writing skills for copywriting and marketing copy."
-      ]
-    },
-    {
-      "id": "job-3",
-      "title": "UI/UX & Brand Designer",
-      "department": "Design",
-      "location": "Begumpet, Hyderabad (On-site)",
-      "experience": "2-3 Years",
-      "type": "Full-Time",
-      "description": "Are you passionate about breathtaking visuals and fluid micro-interactions? We are seeking a creative UI/UX designer to craft outstanding prototypes, design systems, and visual elements using Figma and Adobe Creative Suite.",
-      "requirements": [
-        "An outstanding portfolio showcasing web and mobile application prototypes.",
-        "Expert knowledge of Figma components, auto-layouts, and design systems.",
-        "Basic understanding of SVG animations and front-end layout limits.",
-        "Strong understanding of visual hierarchy, elegant typography, and color harmony."
       ]
     }
   ],
@@ -102,6 +95,56 @@
       "category": "Digital Marketing",
       "date": "May 20, 2026",
       "author": "Certified SEO Specialists"
+    }
+  ],
+  "applications": [
+    {
+      "id": "app-1779436626271",
+      "jobId": "job-1",
+      "jobTitle": "Senior Next.js Developer",
+      "candidateName": "Veda Bhavishya Gudivaka",
+      "candidateEmail": "vedabhavishya.gudivaka@gmail.com",
+      "candidatePhone": "9951484472",
+      "coverLetter": "Hi",
+      "resumeFileName": "GudivakaVedaBhavishya_Resume.pdf",
+      "resumeSize": 47323,
+      "appliedAt": "2026-05-22T07:57:06.271Z"
+    },
+    {
+      "id": "app-1779437680486",
+      "jobId": "job-1",
+      "jobTitle": "Senior Next.js Developer",
+      "candidateName": "Veda Bhavishya Gudivaka",
+      "candidateEmail": "vedabhavishya.gudivaka@gmail.com",
+      "candidatePhone": "+91919951484472",
+      "coverLetter": "hi",
+      "resumeFileName": "GudivakaVedaBhavishya_Resume.pdf",
+      "resumeSize": 47323,
+      "appliedAt": "2026-05-22T08:14:40.486Z"
+    },
+    {
+      "id": "app-1779441056720",
+      "jobId": "job-2",
+      "jobTitle": "Digital Marketing Specialist",
+      "candidateName": "Veda Bhavishya Gudivaka",
+      "candidateEmail": "vedabhavishya.gudivaka@gmail.com",
+      "candidatePhone": "+91919951484472",
+      "coverLetter": "oihbgvfcdxsz",
+      "resumeFileName": "GudivakaVedaBhavishya_Resume.pdf",
+      "resumeSize": 47323,
+      "appliedAt": "2026-05-22T09:10:56.720Z"
+    },
+    {
+      "id": "app-1779441650456",
+      "jobId": "job-2",
+      "jobTitle": "Digital Marketing Specialist",
+      "candidateName": "Veda Bhavishya Gudivaka",
+      "candidateEmail": "vedabhavishya.gudivaka@gmail.com",
+      "candidatePhone": "+91919951484472",
+      "coverLetter": "asdfghuijkmnbvcfds",
+      "resumeFileName": "GudivakaVedaBhavishya_Resume.pdf",
+      "resumeSize": 47323,
+      "appliedAt": "2026-05-22T09:20:50.456Z"
     }
   ]
 }

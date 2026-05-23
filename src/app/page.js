@@ -72,6 +72,215 @@ function renderServiceIcon(iconName) {
   }
 }
 
+// Custom Tool Logo Renderer for missing public/tools logos
+function ToolLogo({ type, name, isMobile = false }) {
+  let size = isMobile ? 20 : 46;
+  if (!isMobile && name.toLowerCase().includes("meta")) {
+    size = 54;
+  }
+  const sizePx = `${size}px`;
+
+  if (
+    type.endsWith(".svg") ||
+    type.endsWith(".png") ||
+    type.endsWith(".jpg") ||
+    type.endsWith(".jpeg") ||
+    type.endsWith(".webp")
+  ) {
+    return (
+      <img
+        src={type}
+        alt={name}
+        className="tool-logo-img"
+        style={{ width: sizePx, height: sizePx, objectFit: "contain", pointerEvents: "none" }}
+      />
+    );
+  }
+  switch (type) {
+    case "linkedin":
+      return (
+        <svg viewBox="0 0 24 24" width={size} height={size} fill="#0077b5" style={{ pointerEvents: "none" }}>
+          <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.779-1.75-1.75s.784-1.75 1.75-1.75 1.75.779 1.75 1.75-.784 1.75-1.75 1.75zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+        </svg>
+      );
+    case "twitter":
+      return (
+        <svg viewBox="0 0 24 24" width={isMobile ? 16 : 26} height={isMobile ? 16 : 26} fill="#000000" style={{ pointerEvents: "none" }}>
+          <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+        </svg>
+      );
+    case "jio":
+      return (
+        <svg viewBox="0 0 100 100" width={size} height={size} style={{ pointerEvents: "none" }}>
+          <circle cx="50" cy="50" r="50" fill="#0F3CC9" />
+          <text x="50" y="62" fill="#ffffff" fontFamily="system-ui, sans-serif" fontWeight="900" fontSize="30" textAnchor="middle">jio</text>
+        </svg>
+      );
+    case "adobe":
+      return (
+        <svg viewBox="0 0 24 24" width={size - 2} height={size - 2} fill="#FF0000" style={{ pointerEvents: "none" }}>
+          <path d="M14.867 2.667H24v20.8H14.867zM9.133 2.667H0v20.8h9.133zM12 8.767l4.567 11.2h-3.467l-2.033-5.2H7.4l-2.067 5.2H1.8z"/>
+        </svg>
+      );
+    case "youtube":
+      return (
+        <svg viewBox="0 0 24 24" width={size} height={size} fill="#FF0000" style={{ pointerEvents: "none" }}>
+          <path d="M23.498 6.163a3.003 3.003 0 0 0-2.11-2.11C19.518 3.545 12 3.545 12 3.545s-7.518 0-9.388.507a3.003 3.003 0 0 0-2.11 2.11C0 8.033 0 12 0 12s0 3.967.502 5.837a3.003 3.003 0 0 0 2.11 2.11c1.87.507 9.388.507 9.388.507s7.518 0 9.388-.507a3.003 3.003 0 0 0 2.11-2.11C24 15.967 24 12 24 12s0-3.967-.502-5.837zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+        </svg>
+      );
+    case "gmap":
+      return (
+        <svg viewBox="0 0 24 24" width={size} height={size} style={{ pointerEvents: "none" }}>
+          <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" fill="#EA4335" />
+          <path d="M12 6.5c-1.38 0-2.5 1.12-2.5 2.5s1.12 2.5 2.5 2.5 2.5-1.12 2.5-2.5-1.12-2.5-2.5-2.5z" fill="#4285F4" />
+        </svg>
+      );
+    case "merchant":
+      return (
+        <svg viewBox="0 0 24 24" width={size} height={size} style={{ pointerEvents: "none" }}>
+          <path d="M19 6h-2c0-2.76-2.24-5-5-5S7 3.24 7 6H5c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm-7-3c1.66 0 3 1.34 3 3H9c0-1.66 1.34-3 3-3zm7 17H5V8h14v12z" fill="#4285F4" />
+          <path d="M12 10c-1.66 0-3 1.34-3 3h6c0-1.66-1.34-3-3-3z" fill="#34A853" />
+        </svg>
+      );
+    case "photoshop":
+      return (
+        <svg viewBox="0 0 24 24" width={size} height={size} style={{ pointerEvents: "none" }}>
+          <rect width="24" height="24" rx="4" fill="#001E36" stroke="#00C8FF" strokeWidth="1.5" />
+          <text x="12" y="15.5" fill="#00C8FF" fontFamily="system-ui, sans-serif" fontWeight="bold" fontSize="10" textAnchor="middle">Ps</text>
+        </svg>
+      );
+    case "premiere":
+      return (
+        <svg viewBox="0 0 24 24" width={size} height={size} style={{ pointerEvents: "none" }}>
+          <rect width="24" height="24" rx="4" fill="#130022" stroke="#EA77FF" strokeWidth="1.5" />
+          <text x="12" y="15.5" fill="#EA77FF" fontFamily="system-ui, sans-serif" fontWeight="bold" fontSize="10" textAnchor="middle">Pr</text>
+        </svg>
+      );
+    case "clarity":
+      return (
+        <svg viewBox="0 0 24 24" width={size - 2} height={size - 2} fill="none" stroke="#0078D4" strokeWidth="2" style={{ pointerEvents: "none" }}>
+          <circle cx="9" cy="9" r="6" />
+          <circle cx="15" cy="15" r="6" stroke="#EC4899" />
+        </svg>
+      );
+    case "envato":
+      return (
+        <svg viewBox="0 0 24 24" width={size - 2} height={size - 2} fill="#81B441" style={{ pointerEvents: "none" }}>
+          <path d="M19.333 2.667c-1.8 1.4-3.5 3.3-4.8 5.6-1.2-2.1-2.9-3.7-4.8-4.8-1 .8-1.8 1.8-2.3 3-.9.4-1.6 1.1-2 2-1 2.3-.5 5 1.2 6.7 1.8 1.8 4.6 2.3 6.9 1.2.9 1.1 2.2 1.8 3.7 1.8 3.4 0 6.1-2.7 6.1-6.1.1-3.6-1.6-7.2-4-9.4z"/>
+        </svg>
+      );
+    case "meta-cert":
+      return (
+        <svg viewBox="0 0 24 24" width={size} height={size} fill="#0064e0" style={{ pointerEvents: "none" }}>
+          <path d="M12.5 15.6c-.6 0-1.1-.2-1.5-.6l-4.1-4.1c-1.2-1.2-1.2-3.1 0-4.3 1.2-1.2 3.1-1.2 4.3 0l1.3 1.3 1.3-1.3c1.2-1.2 3.1-1.2 4.3 0 1.2 1.2 1.2 3.1 0 4.3l-4.1 4.1c-.4.4-.9.6-1.5.6zm-4.3-8.2c-.6 0-1.2.2-1.6.6-.9.9-.9 2.4 0 3.3l4.1 4.1c.2.2.5.3.8.3s.6-.1.8-.3l4.1-4.1c.9-.9.9-2.4 0-3.3-.9-.9-2.4-.9-3.3 0l-1.6 1.6-1.6-1.6c-.4-.4-1-.6-1.6-.6z"/>
+        </svg>
+      );
+    case "google-cert":
+      return (
+        <svg viewBox="0 0 24 24" width={size} height={size} style={{ pointerEvents: "none" }}>
+          <path d="M12 2L1 7l11 5 9-4.09V16.5h2V7L12 2z" fill="#4285F4" />
+          <path d="M4.5 10.5v5c0 1.66 3.36 3 7.5 3s7.5-1.34 7.5-3v-5l-7.5 3.41-7.5-3.41z" fill="#34A853" />
+        </svg>
+      );
+    case "microsoft-cert":
+      return (
+        <svg viewBox="0 0 24 24" width={size - 2} height={size - 2} style={{ pointerEvents: "none" }}>
+          <rect x="2" y="2" width="9" height="9" fill="#F25022" />
+          <rect x="13" y="2" width="9" height="9" fill="#7FBA00" />
+          <rect x="2" y="13" width="9" height="9" fill="#00A1F1" />
+          <rect x="13" y="13" width="9" height="9" fill="#FFB900" />
+        </svg>
+      );
+    case "google-ecom-cert":
+      return (
+        <svg viewBox="0 0 24 24" width={size - 2} height={size - 2} style={{ pointerEvents: "none" }}>
+          <path d="M12.24 10.285V13.4h6.887c-.275 1.565-1.88 4.604-6.887 4.604-4.33 0-7.866-3.577-7.866-8s3.536-8 7.866-8c2.46 0 4.105 1.025 5.047 1.926l2.427-2.334C18.155 2.223 15.433 1 12.24 1 6.033 1 1 6.033 1 12.24s5.033 11.24 11.24 11.24c6.478 0 10.793-4.537 10.793-10.983 0-.74-.08-1.302-.178-1.859H12.24z" fill="#4285F4"/>
+          <path d="M19 14l2 2-4 4-2-2 4-4z" fill="#EA4335" />
+        </svg>
+      );
+    case "hubspot-cert":
+      return (
+        <svg viewBox="0 0 24 24" width={size - 2} height={size - 2} fill="#FF7A59" style={{ pointerEvents: "none" }}>
+          <path d="M21.3 9.7h-2.9C18 7.6 16.4 6 14.3 5.6V2.7c1-.3 1.7-1.2 1.7-2.3C16 .2 15 0 14.3 0c-2 0-3.5 1.5-3.5 3.5V5.6C8.7 6 7.1 7.6 6.7 9.7H3.8c-.3-1-1.2-1.7-2.3-1.7C.7 8 0 9 0 9.7s1 1.7 1.7 1.7c1.1 0 2-.7 2.3-1.7h2.9c.4 2.1 2 3.7 4.1 4.1v2.9c-1 .3-1.7 1.2-1.7 2.3 0 1.2 1 1.7 1.7 1.7s3.5-1.5 3.5-3.5v-2.9c2.1-.4 3.7-2 4.1-4.1h2.9c.3 1 1.2 1.7 2.3 1.7.8 0 1.7-1 1.7-1.7s-1-1.7-1.7-1.7zM12 14.5c-1.4 0-2.5-1.1-2.5-2.5s1.1-2.5 2.5-2.5 2.5 1.1 2.5 2.5-1.1 2.5-2.5 2.5z"/>
+        </svg>
+      );
+    default:
+      return <div className="text-[12px] font-bold text-slate-700" style={{ pointerEvents: "none" }}>{name.substring(0, 2)}</div>;
+  }
+}
+
+// Specialization Categories Data
+const specializationCategories = [
+  {
+    title: "Designing Tools",
+    icon: (
+      <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" />
+        <path d="M12 6a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z" />
+        <path d="M7 10a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z" />
+        <path d="M17 10a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z" />
+        <path d="M12 16a2 2 0 1 0 0-4 2 2 0 0 0 0 4z" />
+      </svg>
+    ),
+    count: 5,
+    color: "#7C3AED",
+    glowColor: "rgba(124, 58, 237, 0.4)",
+    tools: [
+      { name: "Canva", logo: "/logos/canva_logo.png" },
+      { name: "Photoshop", logo: "/logos/photoshop_logo.png" },
+      { name: "Adobe Premiere Pro", logo: "/logos/adobepremierepro_logo.png" },
+      { name: "Clarity", logo: "/logos/clarity_logo.png" },
+      { name: "Envato", logo: "/logos/envato_logo.png" },
+    ]
+  },
+  {
+    title: "Paid Marketing Tools",
+    icon: (
+      <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
+      </svg>
+    ),
+    count: 14,
+    color: "#2563EB",
+    glowColor: "rgba(37, 99, 235, 0.4)",
+    tools: [
+      { name: "Google Ads", logo: "/logos/Google_Ads_logo.png" },
+      { name: "Meta Ads", logo: "/logos/meta_ads_logo.jpg" },
+      { name: "LinkedIn Ads", logo: "/logos/linkedin_ads_logo.webp" },
+      { name: "Twitter/X Ads", logo: "/logos/twitter_ads_logo.jpg" },
+      { name: "Jio Ads", logo: "/logos/jio_ads_logo.jpg" },
+      { name: "Adobe Ads", logo: "/logos/adobe_ads_logo.png" },
+      { name: "YouTube Ads", logo: "/logos/youtube_ads_logo.jpg" },
+      { name: "GMAP Ads", logo: "/logos/GMAP_ads_logo.png" },
+      { name: "Google Merchant Ads", logo: "/logos/googlemerchant_ads_logo.png" },
+      { name: "Google Analytics", logo: "/logos/googleanalytics_logo.png" },
+      { name: "Google Search Console", logo: "/logos/googlesearchconsole_logo.png" },
+      { name: "Bing Webmaster", logo: "/logos/bing_logo.png" },
+      { name: "SE Ranking", logo: "/logos/seranking_logo.png" },
+      { name: "Hootsuite", logo: "/logos/hootsuite_logo.png" },
+    ]
+  },
+  {
+    title: "Certifications",
+    icon: (
+      <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+        <polyline points="9 11 11 13 15 9" />
+      </svg>
+    ),
+    count: 5,
+    color: "#EC4899",
+    glowColor: "rgba(236, 72, 153, 0.4)",
+    tools: [
+      { name: "Meta Certification", logo: "/logos/meta_certification_logo.png" },
+      { name: "Google Certification", logo: "/logos/google_certification_logo.png" },
+      { name: "Microsoft Certification", logo: "/logos/microsft_certification_logo.png" },
+      { name: "Google Ecommerce Certification", logo: "/logos/google_certifcation_logo.png" },
+      { name: "HubSpot Certification", logo: "/logos/hubspot_certification_logo.png" },
+    ]
+  }
+];
+
 export default function Home() {
   // Navigation & Scroll State
   const [isScrolled, setIsScrolled] = useState(false);
@@ -142,48 +351,16 @@ export default function Home() {
   // DYNAMIC FETCH STATES
   // ----------------------------------------------------
   const [services, setServices] = useState([]);
-  const [jobs, setJobs] = useState([]);
-  const [blogs, setBlogs] = useState([]);
-
-  // Frontend Careers Modals states
-  const [selectedJob, setSelectedJob] = useState(null);
-  const [showApplyModal, setShowApplyModal] = useState(false);
-  const [applySuccess, setApplySuccess] = useState(false);
-  const [applyLoading, setApplyLoading] = useState(false);
-
-  // Application fields
-  const [applicantName, setApplicantName] = useState("");
-  const [applicantEmail, setApplicantEmail] = useState("");
-  const [applicantPhone, setApplicantPhone] = useState("");
-  const [applicantPortfolio, setApplicantPortfolio] = useState("");
-  const [applicantMessage, setApplicantMessage] = useState("");
-  const [resumeName, setResumeName] = useState("");
-
-  // Frontend Blogs Modals states
-  const [selectedBlog, setSelectedBlog] = useState(null);
-  const [showBlogModal, setShowBlogModal] = useState(false);
 
   // Fetch dynamic content on mount
   useEffect(() => {
     const fetchHomepageData = async () => {
       try {
-        const [resServices, resJobs, resBlogs] = await Promise.all([
-          fetch("/api/services"),
-          fetch("/api/jobs"),
-          fetch("/api/blogs")
-        ]);
+        const resServices = await fetch("/api/services");
 
         if (resServices.ok) {
           const dataServices = await resServices.json();
           setServices(dataServices);
-        }
-        if (resJobs.ok) {
-          const dataJobs = await resJobs.json();
-          setJobs(dataJobs);
-        }
-        if (resBlogs.ok) {
-          const dataBlogs = await resBlogs.json();
-          setBlogs(dataBlogs);
         }
       } catch (err) {
         console.error("Failed to load dynamic database components:", err);
@@ -192,6 +369,133 @@ export default function Home() {
 
     fetchHomepageData();
   }, []);
+
+  // ----------------------------------------------------
+  // PLATFORMS & TOOLS SPECIALIZATION STATE & HOOKS
+  // ----------------------------------------------------
+  const [sectionInView, setSectionInView] = useState(false);
+  const [hoveredCategory, setHoveredCategory] = useState(null);
+  const [activeCategory, setActiveCategory] = useState(null);
+  const [hoveredBadge, setHoveredBadge] = useState(null); // { catIdx, toolIdx }
+  const [particles, setParticles] = useState([]);
+  const specializationSectionRef = useRef(null);
+  const mouseGlowRef = useRef(null);
+
+  // Initialize particles config on mount to prevent server-client hydration mismatch
+  useEffect(() => {
+    setParticles(
+      Array.from({ length: 15 }).map((_, i) => ({
+        size: Math.random() * 3 + 1,
+        left: Math.random() * 100,
+        top: Math.random() * 100,
+        duration: Math.random() * 12 + 8,
+        delay: Math.random() * -15
+      }))
+    );
+  }, []);
+  const glowCoords = useRef({ x: 0, y: 0 });
+  const targetGlowCoords = useRef({ x: 0, y: 0 });
+  const isTracking = useRef(false);
+
+  // IntersectionObserver for entrance animation
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setSectionInView(true);
+        }
+      },
+      { threshold: 0.05 }
+    );
+    if (specializationSectionRef.current) {
+      observer.observe(specializationSectionRef.current);
+    }
+    return () => observer.disconnect();
+  }, []);
+
+  // requestAnimationFrame for mouse-follow glow
+  useEffect(() => {
+    let animationFrameId;
+    const updateGlowPosition = () => {
+      glowCoords.current.x += (targetGlowCoords.current.x - glowCoords.current.x) * 0.15;
+      glowCoords.current.y += (targetGlowCoords.current.y - glowCoords.current.y) * 0.15;
+
+      if (mouseGlowRef.current) {
+        mouseGlowRef.current.style.transform = `translate3d(${glowCoords.current.x - 300}px, ${glowCoords.current.y - 300}px, 0)`;
+      }
+      animationFrameId = requestAnimationFrame(updateGlowPosition);
+    };
+
+    updateGlowPosition();
+
+    return () => {
+      cancelAnimationFrame(animationFrameId);
+    };
+  }, []);
+
+  const handleMouseMove = (e) => {
+    if (!specializationSectionRef.current) return;
+    const rect = specializationSectionRef.current.getBoundingClientRect();
+    targetGlowCoords.current.x = e.clientX - rect.left;
+    targetGlowCoords.current.y = e.clientY - rect.top;
+    if (!isTracking.current) {
+      isTracking.current = true;
+      if (mouseGlowRef.current) {
+        mouseGlowRef.current.style.opacity = "1";
+      }
+    }
+  };
+
+  const handleMouseLeaveSection = () => {
+    isTracking.current = false;
+    if (mouseGlowRef.current) {
+      mouseGlowRef.current.style.opacity = "0";
+    }
+  };
+
+  const handleCategoryClick = (idx) => {
+    setActiveCategory(activeCategory === idx ? null : idx);
+  };
+
+  const handleCategoryKeyDown = (e, idx) => {
+    if (e.key === "Enter" || e.key === " ") {
+      e.preventDefault();
+      setActiveCategory(activeCategory === idx ? null : idx);
+    }
+  };
+
+  // Trigonometric distribution helper for orbiting badges
+  const getToolCoords = (cat, tIdx) => {
+    if (cat.title === "Paid Marketing Tools") {
+      // Split Paid Marketing Into 2 Orbit Layers: Inner (9 ads tools), Outer (5 analytics/SEO tools)
+      if (tIdx < 9) {
+        // Inner Orbit: 9 core advertising platforms, r = 160px
+        const angle = (tIdx * 2 * Math.PI) / 9;
+        return {
+          x: Math.round(Math.cos(angle) * 160),
+          y: Math.round(Math.sin(angle) * 160)
+        };
+      } else {
+        // Outer Orbit: 5 analytics & SEO tools, r = 240px
+        const offsetAngle = Math.PI / 5;
+        const angle = ((tIdx - 9) * 2 * Math.PI) / 5 + offsetAngle;
+        return {
+          x: Math.round(Math.cos(angle) * 240),
+          y: Math.round(Math.sin(angle) * 240)
+        };
+      }
+    } else {
+      // Designing Tools & Certifications: 5 tools, r = 180px
+      const angle = (tIdx * 2 * Math.PI) / 5;
+      return {
+        x: Math.round(Math.cos(angle) * 180),
+        y: Math.round(Math.sin(angle) * 180)
+      };
+    }
+  };
+
+
+
 
   // Client Onboarding Process State
   const [activeStep, setActiveStep] = useState(0);
@@ -333,7 +637,7 @@ export default function Home() {
       } else if (lower.includes("service") || lower.includes("web") || lower.includes("marketing") || lower.includes("app")) {
         reply = "We specialize in Web Design, Digital Marketing, Mobile Apps, eCommerce solutions, Software Development, and Video Production. Which specific solution are you looking to implement first?";
       } else if (lower.includes("job") || lower.includes("career") || lower.includes("hire") || lower.includes("work")) {
-        reply = "We are always on the hunt for passionate developers, SEO wizards, and content creators! Please email your updated CV to info@ananyahisolutions.com and our HR team will review it.";
+        reply = "We are always on the hunt for passionate developers, SEO wizards, and content creators! Please email your updated CV to vedabhavishya.gudivaka@gmail.com and our HR team will review it.";
       } else if (lower.includes("hello") || lower.includes("hi") || lower.includes("hey")) {
         reply = "Hi there! I am thrilled to assist you. Tell me, are we looking to develop a beautiful website, optimize your SEO, or build custom software?";
       }
@@ -362,22 +666,22 @@ export default function Home() {
       {/* 1. Header & Navigation Bar */}
       <header className={`navbar ${isScrolled ? "scrolled" : ""}`}>
         <div className="navbar-container">
-          <a href="#home" className="flex items-center">
+          <Link href="/" className="flex items-center">
             <Logo />
-          </a>
+          </Link>
 
           {/* Desktop Nav Links */}
           <ul className="nav-links">
-            <li><a href="#home" className="nav-link active">Home</a></li>
+            <li><Link href="/" className="nav-link active">Home</Link></li>
             <li><Link href="/about" className="nav-link">About</Link></li>
-            <li><a href="#services" className="nav-link">Services</a></li>
-            <li><a href="#careers" className="nav-link">Careers</a></li>
-            <li><a href="#blog" className="nav-link">Blog</a></li>
+            <li><Link href="/services" className="nav-link">Services</Link></li>
+            <li><Link href="/careers" className="nav-link">Careers</Link></li>
+            <li><Link href="/blog" className="nav-link">Blog</Link></li>
             <li><Link href="/contact" className="nav-link">Contact us</Link></li>
           </ul>
 
           <div className="nav-cta">
-            <a href="#pricing" className="btn btn-primary">Choose Package</a>
+            <Link href="/contact" className="btn btn-primary">Choose Package</Link>
           </div>
 
           {/* Mobile Menu Icon Toggle */}
@@ -393,13 +697,13 @@ export default function Home() {
         {/* Mobile Menu Overlay */}
         {mobileMenuOpen && (
           <div className="fixed inset-0 top-[70px] bg-white z-[999] flex flex-col p-6 gap-6 shadow-lg md:hidden animate-slide-in">
-            <a href="#home" onClick={() => setMobileMenuOpen(false)} className="text-xl font-bold border-b pb-2">Home</a>
+            <Link href="/" onClick={() => setMobileMenuOpen(false)} className="text-xl font-bold border-b pb-2">Home</Link>
             <Link href="/about" onClick={() => setMobileMenuOpen(false)} className="text-xl font-bold border-b pb-2">About</Link>
-            <a href="#services" onClick={() => setMobileMenuOpen(false)} className="text-xl font-bold border-b pb-2">Services</a>
-            <a href="#careers" onClick={() => setMobileMenuOpen(false)} className="text-xl font-bold border-b pb-2">Careers</a>
-            <a href="#blog" onClick={() => setMobileMenuOpen(false)} className="text-xl font-bold border-b pb-2">Blog</a>
+            <Link href="/services" onClick={() => setMobileMenuOpen(false)} className="text-xl font-bold border-b pb-2">Services</Link>
+            <Link href="/careers" onClick={() => setMobileMenuOpen(false)} className="text-xl font-bold border-b pb-2">Careers</Link>
+            <Link href="/blog" onClick={() => setMobileMenuOpen(false)} className="text-xl font-bold border-b pb-2">Blog</Link>
             <Link href="/contact" onClick={() => setMobileMenuOpen(false)} className="text-xl font-bold border-b pb-2">Contact us</Link>
-            <a href="#pricing" onClick={() => setMobileMenuOpen(false)} className="btn btn-accent text-center mt-4">Choose Package</a>
+            <Link href="/contact" onClick={() => setMobileMenuOpen(false)} className="btn btn-accent text-center mt-4">Choose Package</Link>
           </div>
         )}
       </header>
@@ -420,8 +724,8 @@ export default function Home() {
               />
               <p className="carousel-desc">{slide.desc}</p>
               <div className="carousel-buttons">
-                <a href="#services" className="btn btn-accent">{slide.btn1}</a>
-                <a href="#pricing" className="btn btn-outline" style={{ color: "#fff", borderColor: "#fff" }}>{slide.btn2}</a>
+                <Link href="/services" className="btn btn-accent">{slide.btn1}</Link>
+                <Link href="/contact" className="btn btn-outline" style={{ color: "#fff", borderColor: "#fff" }}>{slide.btn2}</Link>
               </div>
             </div>
           </div>
@@ -505,11 +809,25 @@ export default function Home() {
                 className="process-svg-path"
                 d="M 60,240 C 200,320 280,100 370,120 C 470,140 540,360 635,320 C 720,285 780,100 890,140 C 980,170 1020,330 1140,230"
               />
-              {/* Paper Plane Flying along path */}
+              {/* Double Chevron Flying along path */}
               <g className="process-paper-plane">
+                {/* Left/Back Chevron */}
                 <path
-                  d="M1.94 13.91L29.6 1.15c.67-.3 1.45.2 1.34.93L26.68 28.5a.69.69 0 0 1-1.12.44L16.48 21.6 11.23 27a.5.5 0 0 1-.85-.35v-5.62l15.3-15.82c.16-.16-.06-.41-.26-.27L6.87 18.9 1.14 14.65a.69.69 0 0 1 .8-1.14z"
-                  fill="var(--primary-blue)"
+                  d="M -10 -9 L 0 0 L -10 9"
+                  fill="none"
+                  stroke="var(--primary-blue)"
+                  strokeWidth="4"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+                {/* Right/Front Chevron */}
+                <path
+                  d="M -2 -9 L 8 0 L -2 9"
+                  fill="none"
+                  stroke="#38bdf8"
+                  strokeWidth="4"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                 />
               </g>
             </svg>
@@ -533,20 +851,138 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 5. Tools We Use Section (Marquee / Grid) */}
-      <section id="tools" className="section section-bg-alt">
-        <div className="container">
-          <div className="section-header">
-            <h2>Core Technology Stack</h2>
-            <p>We leverage industry-leading tools to provide robust tracking, high designs, and superior execution speeds.</p>
+      {/* 5. Platforms & Tools We Specialize In (Futuristic Premium Section) */}
+      <section
+        id="specialization"
+        ref={specializationSectionRef}
+        className={`specialization-section ${sectionInView ? "in-view" : ""}`}
+        onMouseMove={handleMouseMove}
+        onMouseLeave={handleMouseLeaveSection}
+        aria-labelledby="specialization-heading"
+      >
+        {/* Layered cinematic glows & particles */}
+        <div className="glow-blob glow-blob-blue" style={{ zIndex: 1 }}></div>
+        <div className="glow-blob glow-blob-purple" style={{ zIndex: 1 }}></div>
+        <div className="glow-blob glow-blob-pink" style={{ zIndex: 1 }}></div>
+
+        {/* Mouse Follow Glow Overlay */}
+        <div ref={mouseGlowRef} className="mouse-follow-glow" style={{ zIndex: 3 }}></div>
+
+        {/* Ambient Particles */}
+        <div className="particles-container" style={{ zIndex: 2 }}>
+          {particles.map((p, i) => (
+            <div
+              key={i}
+              className="particle"
+              style={{
+                width: `${p.size}px`,
+                height: `${p.size}px`,
+                left: `${p.left}%`,
+                top: `${p.top}%`,
+                animationDuration: `${p.duration}s`,
+                animationDelay: `${p.delay}s`
+              }}
+            ></div>
+          ))}
+        </div>
+
+        <div className="container specialization-container" style={{ zIndex: 4 }}>
+          <div className="section-header spec-header">
+            <h2 id="specialization-heading">Platforms & Tools We Specialize In</h2>
+            <p>Powering digital growth with industry-leading platforms, marketing technologies, creative tools, and certified expertise.</p>
           </div>
 
-          <div className="tools-grid">
-            {tools.map((tool, idx) => (
-              <div key={idx} className="tool-card" title={`${tool.name} - ${tool.desc}`}>
-                <img src={tool.logo} alt={tool.name} className="tool-logo-img" />
-              </div>
-            ))}
+          <div className="categories-orbit-grid">
+            {specializationCategories.map((cat, idx) => {
+              const isCatActive = hoveredCategory === idx || activeCategory === idx;
+              const isAnyCatActive = hoveredCategory !== null || activeCategory !== null;
+              const isCatDimmed = isAnyCatActive && !isCatActive;
+
+              return (
+                <div
+                  key={idx}
+                  className={`category-circle-wrapper ${isCatActive ? "active" : ""} ${isCatDimmed ? "dimmed" : ""}`}
+                  onMouseEnter={() => setHoveredCategory(idx)}
+                  onMouseLeave={() => {
+                    setHoveredCategory(null);
+                    setHoveredBadge(null);
+                  }}
+                  onFocus={() => setHoveredCategory(idx)}
+                  onBlur={() => {
+                    setHoveredCategory(null);
+                    setHoveredBadge(null);
+                  }}
+                  onClick={() => handleCategoryClick(idx)}
+                  tabIndex={0}
+                  onKeyDown={(e) => handleCategoryKeyDown(e, idx)}
+                  role="button"
+                  aria-expanded={isCatActive}
+                  aria-label={`${cat.title}. Contains ${cat.count} tools. Click to toggle.`}
+                  style={{
+                    "--entry-delay": `${idx * 200}ms`
+                  }}
+                >
+                  {/* Category Circle Card */}
+                  <div className="category-circle-card" style={{ zIndex: 4 }}>
+                    <div className="category-glow-pulse" style={{ backgroundColor: cat.color }}></div>
+                    <div className="category-circle-border"></div>
+                    <div className="category-content">
+                      <div className="category-icon-box" style={{ color: cat.color }}>
+                        {cat.icon}
+                      </div>
+                      <h3 className="category-title">{cat.title}</h3>
+                      <span className="category-count">{cat.count} Tools</span>
+                    </div>
+                  </div>
+
+                  {/* Desktop Orbits (Hidden/disabled on mobile via media queries) */}
+                  <div className="orbit-badges-container">
+                    {cat.tools.map((tool, tIdx) => {
+                      const coords = getToolCoords(cat, tIdx);
+                      const isBadgeActive = hoveredBadge?.catIdx === idx && hoveredBadge?.toolIdx === tIdx;
+                      return (
+                        <div
+                          key={tIdx}
+                          className={`orbit-badge-item ${isBadgeActive ? "badge-hovered" : ""}`}
+                          style={{
+                            "--x": `${coords.x}px`,
+                            "--y": `${coords.y}px`,
+                            transitionDelay: isCatActive ? `${tIdx * 40}ms` : "0ms",
+                            zIndex: 5
+                          }}
+                          onMouseEnter={() => setHoveredBadge({ catIdx: idx, toolIdx: tIdx })}
+                          onMouseLeave={() => setHoveredBadge(null)}
+                          tabIndex={isCatActive ? 0 : -1}
+                          aria-label={tool.name}
+                        >
+                          <div className="orbit-badge-icon">
+                            <ToolLogo type={tool.logo} name={tool.name} />
+                          </div>
+                          {/* Rich SaaS Tooltip */}
+                          <div className="orbit-tooltip" style={{ zIndex: 6 }}>
+                            <span className="tooltip-title">{tool.name}</span>
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+
+                  {/* Mobile Accordion Panel */}
+                  <div className="mobile-accordion-content">
+                    <div className="mobile-tools-grid">
+                      {cat.tools.map((tool, tIdx) => (
+                        <div key={tIdx} className="mobile-tool-card" aria-label={tool.name}>
+                          <div className="mobile-tool-icon">
+                            <ToolLogo type={tool.logo} name={tool.name} isMobile={true} />
+                          </div>
+                          <span className="mobile-tool-name">{tool.name}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -583,114 +1019,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 7. DYNAMIC CAREERS / JOBS SECTION */}
-      <section id="careers" className="careers-section section">
-        <div className="container">
-          <div className="section-header">
-            <h2>Careers at Ananya</h2>
-            <p>Join our Begumpet, Hyderabad team and engineer advanced digital architectures for global clients.</p>
-          </div>
-
-          <div className="careers-grid">
-            {jobs.length === 0 ? (
-              <div className="text-center py-10 w-full col-span-full">
-                <p className="text-slate-400 italic">No job openings are currently published. Check back later!</p>
-              </div>
-            ) : (
-              jobs.map((job) => (
-                <div key={job.id} className="job-card-frontend">
-                  <div className="job-card-frontend-header">
-                    <h3 className="job-card-frontend-title">{job.title}</h3>
-                    <div className="job-card-frontend-badges">
-                      <span className="badge-frontend dept">{job.department}</span>
-                      <span className="badge-frontend type">{job.type}</span>
-                    </div>
-                  </div>
-                  
-                  <div className="job-card-frontend-meta">
-                    <div className="meta-item-frontend">
-                      <span>📍</span> <span>{job.location}</span>
-                    </div>
-                    <div className="meta-item-frontend">
-                      <span>💼</span> <span>{job.experience}</span>
-                    </div>
-                  </div>
-
-                  <p className="job-card-frontend-desc">
-                    {job.description.length > 150 ? `${job.description.slice(0, 150)}...` : job.description}
-                  </p>
-
-                  <button
-                    onClick={() => {
-                      setSelectedJob(job);
-                      setShowApplyModal(true);
-                      setApplySuccess(false);
-                      setResumeName("");
-                      setApplicantName("");
-                      setApplicantEmail("");
-                      setApplicantPhone("");
-                      setApplicantPortfolio("");
-                      setApplicantMessage("");
-                    }}
-                    className="job-card-frontend-btn"
-                  >
-                    View Details & Apply
-                  </button>
-                </div>
-              ))
-            )}
-          </div>
-        </div>
-      </section>
-
-      {/* 8. DYNAMIC BLOG / NEWS SECTION */}
-      <section id="blog" className="blog-section section">
-        <div className="container">
-          <div className="section-header">
-            <h2>Insights & Tech Updates</h2>
-            <p>Explore high-fidelity web design guidelines, local SEO insights, and enterprise software engineering tips.</p>
-          </div>
-
-          <div className="blog-grid">
-            {blogs.length === 0 ? (
-              <div className="text-center py-10 w-full col-span-full">
-                <p className="text-slate-400 italic">No news updates have been published yet. Stay tuned!</p>
-              </div>
-            ) : (
-              blogs.map((post) => (
-                <div key={post.id} className="blog-card-frontend">
-                  <div className="blog-card-img-wrapper">
-                    <div className="blog-card-img-placeholder"></div>
-                    <span className="blog-card-img-text">{post.category ? post.category.slice(0, 3) : "AHS"}</span>
-                    <span className="blog-card-img-badge">{post.category || "News"}</span>
-                  </div>
-                  
-                  <div className="blog-card-frontend-content">
-                    <div>
-                      <div className="blog-card-frontend-meta">
-                        <span>📅 {post.date}</span>
-                        <span>✍️ {post.author || "Ananya Team"}</span>
-                      </div>
-                      <h3 className="blog-card-frontend-title">{post.title}</h3>
-                      <p className="blog-card-frontend-summary">{post.summary}</p>
-                    </div>
-                    
-                    <button
-                      onClick={() => {
-                        setSelectedBlog(post);
-                        setShowBlogModal(true);
-                      }}
-                      className="blog-card-frontend-link cursor-pointer bg-transparent border-none text-left p-0"
-                    >
-                      Read Full Article <span>→</span>
-                    </button>
-                  </div>
-                </div>
-              ))
-            )}
-          </div>
-        </div>
-      </section>
 
       {/* 9. Frequently Asked Questions (FAQ) */}
       <section id="faq" className="section section-bg-alt">
@@ -781,11 +1109,11 @@ export default function Home() {
           <div className="footer-column">
             <h4>Quick Links</h4>
             <ul className="footer-links">
-              <li><a href="#home">Home</a></li>
+              <li><Link href="/">Home</Link></li>
               <li><Link href="/about">About Us</Link></li>
-              <li><a href="#careers">Careers</a></li>
-              <li><a href="#pricing">Payment Terms</a></li>
-              <li><a href="#blog">News</a></li>
+              <li><Link href="/careers">Careers</Link></li>
+              <li><Link href="/contact">Payment Terms</Link></li>
+              <li><Link href="/blog">News</Link></li>
               <li><Link href="/contact">Contact</Link></li>
             </ul>
           </div>
@@ -793,12 +1121,12 @@ export default function Home() {
           <div className="footer-column">
             <h4>Our Services</h4>
             <ul className="footer-links">
-              <li><a href="#services?id=web-design">Website Design</a></li>
-              <li><a href="#services?id=digital-marketing">Digital Marketing</a></li>
-              <li><a href="#services?id=mobile-app">Mobile Application</a></li>
-              <li><a href="#services?id=ecommerce-app">eCommerce Application</a></li>
-              <li><a href="#services?id=video-production">Video Production</a></li>
-              <li><a href="#services?id=software-dev">Software Development</a></li>
+              <li><Link href="/services">Website Design</Link></li>
+              <li><Link href="/services">Digital Marketing</Link></li>
+              <li><Link href="/services">Mobile Application</Link></li>
+              <li><Link href="/services">eCommerce Application</Link></li>
+              <li><Link href="/services">Video Production</Link></li>
+              <li><Link href="/services">Software Development</Link></li>
             </ul>
           </div>
 
@@ -939,194 +1267,7 @@ export default function Home() {
         </div>
       </div>
 
-      {/* ----------------------------------------------------
-         FRONTEND POPUP PORTALS / MODALS
-         ---------------------------------------------------- */}
 
-      {/* 13. Careers Apply Modal Overlay */}
-      {showApplyModal && selectedJob && (
-        <div className="frontend-modal-overlay animate-fade-in" onClick={() => setShowApplyModal(false)}>
-          <div className="frontend-modal-card animate-slide-up" onClick={(e) => e.stopPropagation()}>
-            <div className="frontend-modal-header">
-              <h3>Apply for {selectedJob.title}</h3>
-              <button className="frontend-modal-close" onClick={() => setShowApplyModal(false)}>✕</button>
-            </div>
-            
-            <div className="frontend-modal-body">
-              {applySuccess ? (
-                <div className="apply-success-overlay">
-                  <div className="success-badge-icon">✓</div>
-                  <h3>Application Submitted!</h3>
-                  <p>
-                    Thank you for applying, {applicantName}! Our Begumpet recruitment crew will review your credentials and contact you at {applicantEmail} within 2-3 business days.
-                  </p>
-                  <button onClick={() => setShowApplyModal(false)} className="apply-submit-btn w-full">
-                    Close Window
-                  </button>
-                </div>
-              ) : (
-                <>
-                  <div className="apply-job-header-info">
-                    <h4>{selectedJob.title}</h4>
-                    <p>Department: {selectedJob.department} | Location: {selectedJob.location} | Type: {selectedJob.type}</p>
-                  </div>
-                  
-                  <div className="job-details-group">
-                    <h5>Role Description</h5>
-                    <p className="text-sm text-slate-300 leading-relaxed mb-6">{selectedJob.description}</p>
-                    
-                    {selectedJob.requirements && selectedJob.requirements.length > 0 && (
-                      <>
-                        <h5>Candidate Requirements</h5>
-                        <ul className="job-requirements-list">
-                          {selectedJob.requirements.map((req, idx) => (
-                            <li key={idx}>{req}</li>
-                          ))}
-                        </ul>
-                      </>
-                    )}
-                  </div>
-                  
-                  <form
-                    onSubmit={(e) => {
-                      e.preventDefault();
-                      setApplyLoading(true);
-                      setTimeout(() => {
-                        setApplyLoading(false);
-                        setApplySuccess(true);
-                      }, 1200);
-                    }}
-                    className="apply-form"
-                  >
-                    <div className="apply-form-group">
-                      <label htmlFor="appl-name">Full Name</label>
-                      <input
-                        id="appl-name"
-                        type="text"
-                        value={applicantName}
-                        onChange={(e) => setApplicantName(e.target.value)}
-                        placeholder="Enter your full name"
-                        required
-                      />
-                    </div>
-                    
-                    <div className="apply-form-group">
-                      <label htmlFor="appl-email">Email Address</label>
-                      <input
-                        id="appl-email"
-                        type="email"
-                        value={applicantEmail}
-                        onChange={(e) => setApplicantEmail(e.target.value)}
-                        placeholder="name@example.com"
-                        required
-                      />
-                    </div>
-                    
-                    <div className="apply-form-group">
-                      <label htmlFor="appl-phone">Phone / WhatsApp Number</label>
-                      <input
-                        id="appl-phone"
-                        type="tel"
-                        value={applicantPhone}
-                        onChange={(e) => setApplicantPhone(e.target.value)}
-                        placeholder="+91 XXXXX-XXXXX"
-                        required
-                      />
-                    </div>
-
-                    <div className="apply-form-group">
-                      <label htmlFor="appl-portfolio">Portfolio URL (Optional)</label>
-                      <input
-                        id="appl-portfolio"
-                        type="url"
-                        value={applicantPortfolio}
-                        onChange={(e) => setApplicantPortfolio(e.target.value)}
-                        placeholder="https://github.com/yourusername"
-                      />
-                    </div>
-                    
-                    <div className="apply-form-group">
-                      <label>Upload Resume / CV (PDF/Word)</label>
-                      <div className="file-input-wrapper">
-                        <input
-                          type="file"
-                          accept=".pdf,.doc,.docx"
-                          required
-                          onChange={(e) => {
-                            if (e.target.files && e.target.files[0]) {
-                              setResumeName(e.target.files[0].name);
-                            }
-                          }}
-                        />
-                        <span className="file-input-label">
-                          {resumeName ? `📄 ${resumeName}` : "📁 Upload PDF or Word Document"}
-                        </span>
-                      </div>
-                    </div>
-                    
-                    <div className="apply-form-group">
-                      <label htmlFor="appl-msg">Cover Letter / Message</label>
-                      <textarea
-                        id="appl-msg"
-                        value={applicantMessage}
-                        onChange={(e) => setApplicantMessage(e.target.value)}
-                        placeholder="Why do you want to join Ananya Hi Solutions? Tell us about your background..."
-                        rows="3"
-                      ></textarea>
-                    </div>
-                    
-                    <button type="submit" className="apply-submit-btn" disabled={applyLoading}>
-                      {applyLoading ? "Submitting application..." : "Submit Application"}
-                    </button>
-                  </form>
-                </>
-              )}
-            </div>
-          </div>
-        </div>
-      )}
-
-      {/* 14. Blog News Article Modal Overlay */}
-      {showBlogModal && selectedBlog && (
-        <div className="frontend-modal-overlay animate-fade-in" onClick={() => setShowBlogModal(false)}>
-          <div className="frontend-modal-card animate-slide-up" onClick={(e) => e.stopPropagation()}>
-            <div className="frontend-modal-header">
-              <h3>Article Insights</h3>
-              <button className="frontend-modal-close" onClick={() => setShowBlogModal(false)}>✕</button>
-            </div>
-            
-            <div className="frontend-modal-body">
-              <article className="blog-modal-article">
-                <h2>{selectedBlog.title}</h2>
-                
-                <div className="blog-modal-meta">
-                  <span className="blog-modal-category">{selectedBlog.category || "General"}</span>
-                  <span>📅 Published: {selectedBlog.date}</span>
-                  <span>✍️ Author: {selectedBlog.author || "Ananya Solutions Team"}</span>
-                </div>
-                
-                <div className="blog-modal-content">
-                  {selectedBlog.content}
-                </div>
-              </article>
-              
-              <div className="mt-8 pt-6 border-t border-slate-800 flex flex-col gap-4">
-                <p className="text-sm text-slate-400">
-                  Looking to implement these exact tech secrets or SEO growth strategies in your own company? Let's consult!
-                </p>
-                <Link
-                  href="/contact"
-                  onClick={() => setShowBlogModal(false)}
-                  className="btn btn-accent text-center w-full"
-                  style={{ textDecoration: 'none' }}
-                >
-                  ✉️ Book a Free Strategy Session
-                </Link>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
     </div>
   );
 }

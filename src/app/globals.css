@@ -4643,40 +4643,43 @@ button {
 /* Premium Services Detail Page Styles */
 .premium-service-hero {
   position: relative;
-  min-height: 55vh;
+  min-height: 75vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 150px 0 80px 0;
+  padding: 160px 0 100px 0;
   overflow: hidden;
-  background: var(--dark-deep);
+  background: radial-gradient(circle at 80% 20%, #083c5d 0%, var(--dark-deep) 70%);
 }
 
-.hero-bg-visual {
+.hero-glow-blob-1 {
   position: absolute;
-  inset: 0;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+  top: 10%;
+  left: -5%;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(15, 117, 188, 0.15) 0%, transparent 70%);
   z-index: 1;
+  pointer-events: none;
+  filter: blur(50px);
 }
 
-.hero-dark-overlay {
+.hero-glow-blob-2 {
   position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    to bottom,
-    rgba(5, 46, 71, 0.75) 0%,
-    rgba(5, 46, 71, 0.94) 75%,
-    rgba(5, 46, 71, 0.97) 100%
-  );
-  z-index: 2;
+  bottom: -10%;
+  right: -5%;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(245, 130, 32, 0.1) 0%, transparent 70%);
+  z-index: 1;
+  pointer-events: none;
+  filter: blur(60px);
 }
 
 .hero-shapes-container {
   position: absolute;
   inset: 0;
-  z-index: 3;
+  z-index: 2;
   pointer-events: none;
 }
 
@@ -4689,7 +4692,7 @@ button {
 
 .hero-shape-1 {
   top: -10%;
-  right: -5%;
+  right: 5%;
   width: 400px;
   height: 400px;
   background: var(--primary-blue);
@@ -4698,7 +4701,7 @@ button {
 
 .hero-shape-2 {
   bottom: -10%;
-  left: -5%;
+  left: 5%;
   width: 350px;
   height: 350px;
   background: var(--accent-orange);
@@ -4715,42 +4718,68 @@ button {
   100% { transform: translateY(-30px) scale(1.15); }
 }
 
-.hero-content-wrapper {
+/* Redesigned 50/50 Split Container */
+.hero-split-container {
   position: relative;
-  z-index: 4;
-  max-width: 900px;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  gap: 50px;
+  width: 100%;
+  max-width: 1200px;
   margin: 0 auto;
   padding: 0 24px;
+}
+
+@media (min-width: 992px) {
+  .hero-split-container {
+    flex-direction: row;
+    gap: 60px;
+  }
+}
+
+.hero-left-content {
+  flex: 1.2;
+  width: 100%;
   text-align: center;
+}
+
+@media (min-width: 992px) {
+  .hero-left-content {
+    text-align: left;
+  }
 }
 
 .hero-title {
   font-family: var(--font-headings);
-  font-size: 2.6rem;
+  font-size: 2.5rem;
   font-weight: 800;
   color: var(--white);
-  line-height: 1.25;
-  margin-bottom: 20px;
+  line-height: 1.2;
+  margin-bottom: 24px;
   text-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
 }
 
 @media (min-width: 768px) {
   .hero-title {
-    font-size: 3.6rem;
+    font-size: 3.4rem;
   }
 }
 
 .hero-subtitle {
-  font-size: 1.1rem;
-  color: rgba(255, 255, 255, 0.88);
-  max-width: 750px;
+  font-size: 1.05rem;
+  color: rgba(255, 255, 255, 0.85);
+  max-width: 650px;
   margin: 0 auto 35px auto;
-  line-height: 1.75;
+  line-height: 1.65;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 992px) {
   .hero-subtitle {
-    font-size: 1.2rem;
+    margin-left: 0;
+    margin-right: 0;
   }
 }
 
@@ -4762,28 +4791,34 @@ button {
   gap: 16px;
 }
 
+@media (min-width: 992px) {
+  .hero-actions {
+    justify-content: flex-start;
+  }
+}
+
 .hero-cta-btn {
   background: var(--accent-orange) !important;
   color: var(--white) !important;
   border: none !important;
   box-shadow: var(--shadow-orange) !important;
-  padding: 14px 32px !important;
+  padding: 15px 34px !important;
   font-weight: 700 !important;
   border-radius: var(--radius-md) !important;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
 }
 
 .hero-cta-btn:hover {
-  transform: translateY(-3px) !important;
-  box-shadow: 0 15px 25px -3px rgba(245, 130, 32, 0.4) !important;
+  transform: translateY(-4px) !important;
+  box-shadow: 0 18px 30px -4px rgba(245, 130, 32, 0.5) !important;
   filter: brightness(1.05);
 }
 
 .hero-portfolio-btn {
   background: transparent !important;
   color: var(--white) !important;
-  border: 2px solid rgba(255, 255, 255, 0.35) !important;
-  padding: 12px 30px !important;
+  border: 2px solid rgba(255, 255, 255, 0.3) !important;
+  padding: 13px 32px !important;
   font-weight: 700 !important;
   border-radius: var(--radius-md) !important;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
@@ -4791,8 +4826,61 @@ button {
 
 .hero-portfolio-btn:hover {
   border-color: var(--white) !important;
-  background: rgba(255, 255, 255, 0.1) !important;
-  transform: translateY(-3px) !important;
+  background: rgba(255, 255, 255, 0.08) !important;
+  transform: translateY(-4px) !important;
+}
+
+/* Floating Image Frame styles */
+.hero-right-visual {
+  flex: 1;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-image-frame {
+  position: relative;
+  width: 100%;
+  max-width: 480px;
+  aspect-ratio: 4/3;
+  border-radius: 20px;
+  padding: 8px;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.02) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(12px);
+  animation: floatingFrame 6s ease-in-out infinite;
+  overflow: hidden;
+}
+
+.hero-frame-glow {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 50%, rgba(15, 117, 188, 0.2) 0%, transparent 60%);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.hero-frame-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 12px;
+  display: block;
+  position: relative;
+  z-index: 2;
+  transition: transform 0.5s ease;
+}
+
+.hero-image-frame:hover .hero-frame-image {
+  transform: scale(1.03);
+}
+
+@keyframes floatingFrame {
+  0% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-12px) rotate(0.5deg); }
+  100% { transform: translateY(0px) rotate(0deg); }
 }
 
 /* Premium Subservices Section */

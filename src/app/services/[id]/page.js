@@ -64,7 +64,7 @@ const SERVICES_DETAIL_DATA = {
     bannerTitle: "Website Design Company in Hyderabad",
     bannerDesc: "Ananya Hi Solutions is your trusted partner for affordable, SEO-friendly & mobile-optimized website design in Hyderabad. We create websites that not only look stunning but also bring you more traffic, leads & sales.",
     bannerBadge: "✓ 100+ Websites Delivered in Hyderabad | ⭐️ Rated 5/5 by Local Businesses",
-    heroVisual: "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=1200&q=80",
+    heroVisual: "/images/hero/web-design.png",
     subtypesTitle: "Website Development Agency in Hyderabad for Startups & Brands",
     subtypesDesc: "Get SEO-friendly static, dynamic, and e-commerce websites that drive traffic, leads & sales. Trusted by startups & brands in Hyderabad.",
     row1Image: "https://images.unsplash.com/photo-1581291518655-9523c932dedf?auto=format&fit=crop&w=800&q=80",
@@ -108,7 +108,7 @@ const SERVICES_DETAIL_DATA = {
     bannerTitle: "Digital Marketing Agency in Hyderabad",
     bannerDesc: "Ananya Hi Solutions is a top-rated digital marketing company in Hyderabad. We build data-driven organic search campaigns, paid ad pipelines, and viral social campaigns designed to multiply your sales and ROI.",
     bannerBadge: "✓ 50+ Growth Campaigns Managed | ⭐️ Rated 4.9/5 by Brand Managers",
-    heroVisual: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=80",
+    heroVisual: "/images/hero/digital-marketing.png",
     subtypesTitle: "Digital Marketing Services in Hyderabad for Startups & Brands",
     subtypesDesc: "Drive high-intent traffic, build active communities, and generate consistent leads with targeted digital campaigns.",
     row1Image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80",
@@ -164,7 +164,7 @@ const SERVICES_DETAIL_DATA = {
     bannerTitle: "Mobile App Development Company in Hyderabad",
     bannerDesc: "Ananya Hi Solutions engineers elite mobile applications for iOS and Android platforms. We design fluid, high-performance apps that drive user engagement and scale your services.",
     bannerBadge: "✓ 30+ Custom Apps Launched | ⭐️ Rated 5/5 by Product Owners",
-    heroVisual: "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=1200&q=80",
+    heroVisual: "/images/hero/mobile-app.png",
     subtypesTitle: "Mobile App Development Services in Hyderabad",
     subtypesDesc: "Deploy high-performance Swift, Kotlin, or cross-platform mobile applications tailored to your business specifications.",
     row1Image: "https://images.unsplash.com/photo-1522542550221-31fd19575a2d?auto=format&fit=crop&w=800&q=80",
@@ -202,7 +202,7 @@ const SERVICES_DETAIL_DATA = {
     bannerTitle: "Ecommerce Development Company in Hyderabad",
     bannerDesc: "Scale your retail sales with high-converting eCommerce stores. Ananya Hi Solutions builds blazing-fast multi-vendor marketplaces and single-brand storefronts.",
     bannerBadge: "✓ 40+ E-Commerce Platforms Built | ⭐️ Rated 5/5 by Online Retailers",
-    heroVisual: "https://images.unsplash.com/photo-1557821552-17105176677c?auto=format&fit=crop&w=1200&q=80",
+    heroVisual: "/images/hero/ecommerce-app.png",
     subtypesTitle: "eCommerce Store Development in Hyderabad",
     subtypesDesc: "Deploy highly secure, scalable, and fast shopping pipelines with inventory systems and payment integrations.",
     row1Image: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=800&q=80",
@@ -240,7 +240,7 @@ const SERVICES_DETAIL_DATA = {
     bannerTitle: "Video Production Company in Hyderabad",
     bannerDesc: "Ananya Hi Solutions delivers premium cinematic video production. We script, film, and edit corporate profiles, social media loops, and product explainers that captivate audiences.",
     bannerBadge: "✓ 200+ Videos Produced | ⭐️ Rated 4.9/5 by Corporate Clients",
-    heroVisual: "https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?auto=format&fit=crop&w=1200&q=80",
+    heroVisual: "/images/hero/video-production.png",
     subtypesTitle: "Professional Video Production Services in Hyderabad",
     subtypesDesc: "High-definition corporate profiles, marketing promotions, explainers, event highlights, and social loops.",
     row1Image: "https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?auto=format&fit=crop&w=800&q=80",
@@ -308,7 +308,7 @@ const SERVICES_DETAIL_DATA = {
     bannerTitle: "Software Development Company in Hyderabad",
     bannerDesc: "Ananya Hi Solutions develops robust enterprise-grade software. We build custom CRMs, Billing engines, LMS portals, and College management systems to automate your workflows.",
     bannerBadge: "✓ 60+ Custom Software Builds | ⭐️ Rated 5/5 by Operations Directors",
-    heroVisual: "https://images.unsplash.com/photo-1551434678-e076c223a692?auto=format&fit=crop&w=1200&q=80",
+    heroVisual: "/images/hero/software-development.png",
     subtypesTitle: "Enterprise Software Development in Hyderabad",
     subtypesDesc: "Custom business tools, educational dashboards, billing structures, and operations systems built to scale.",
     row1Image: "https://images.unsplash.com/photo-1504639725590-34d0984388bd?auto=format&fit=crop&w=800&q=80",
@@ -358,7 +358,7 @@ const SERVICES_DETAIL_DATA = {
     bannerTitle: "Advanced Marketing Agency in Hyderabad",
     bannerDesc: "Ananya Hi Solutions dominates next-generation search layout algorithms. We position your brand inside conversational AI responses, Google SGE snapshots, and viral video recommendations.",
     bannerBadge: "✓ Next-Gen AI & Video Search Ready | ⭐️ Rated 5/5 by Tech Startups",
-    heroVisual: "https://images.unsplash.com/photo-1677442136019-21780efad99a?auto=format&fit=crop&w=1200&q=80",
+    heroVisual: "/images/hero/advanced-marketing.png",
     subtypesTitle: "AI-Driven & Video-Powered Marketing Services in Hyderabad",
     subtypesDesc: "Structure your website footprint to be cited as the top recommendation inside ChatGPT Search, Gemini, Google SGE, and YouTube.",
     row1Image: "https://images.unsplash.com/photo-1684369175833-31126786a345?auto=format&fit=crop&w=800&q=80",
@@ -446,24 +446,39 @@ export default function ServiceDetailPage({ params: paramsPromise }) {
       {/* 1. Navigation Header */}
       <Header activePage="services" />
 
-      {/* 2. Hero Section */}
+      {/* 2. Redesigned Hero Section */}
       <section className="premium-service-hero">
-        <div className="hero-bg-visual" style={{ backgroundImage: `url(${data.heroVisual})` }}></div>
-        <div className="hero-dark-overlay"></div>
+        <div className="hero-glow-blob-1"></div>
+        <div className="hero-glow-blob-2"></div>
         <div className="hero-shapes-container">
           <div className="hero-shape hero-shape-1"></div>
           <div className="hero-shape hero-shape-2"></div>
         </div>
-        <div className="container hero-content-wrapper animate-slide-in">
-          <h1 className="hero-title">{data.bannerTitle}</h1>
-          <p className="hero-subtitle">{data.bannerDesc}</p>
-          <div className="hero-actions">
-            <Link href="/contact" className="btn btn-accent hero-cta-btn">
-              Get Free Consultation
-            </Link>
-            <Link href="/about#portfolio" className="btn btn-outline hero-portfolio-btn">
-              View Portfolio
-            </Link>
+        <div className="container hero-split-container animate-slide-in">
+          {/* Left Column: Text & CTAs */}
+          <div className="hero-left-content">
+            <h1 className="hero-title">{data.bannerTitle}</h1>
+            <p className="hero-subtitle">{data.bannerDesc}</p>
+            <div className="hero-actions">
+              <Link href="/contact" className="btn btn-accent hero-cta-btn">
+                Get Free Consultation
+              </Link>
+              <Link href="/about#portfolio" className="btn btn-outline hero-portfolio-btn">
+                View Portfolio
+              </Link>
+            </div>
+          </div>
+          
+          {/* Right Column: Floating Visual Frame */}
+          <div className="hero-right-visual">
+            <div className="hero-image-frame">
+              <div className="hero-frame-glow"></div>
+              <img 
+                src={data.heroVisual} 
+                alt={`${data.title} Presentation`} 
+                className="hero-frame-image"
+              />
+            </div>
           </div>
         </div>
       </section>

@@ -95,7 +95,7 @@ export default function BlogPage() {
       <Header activePage="blog" />
 
       {/* 2. Hero Section */}
-      <section className="contact-hero" style={{ background: "radial-gradient(circle at 50% 50%, #052e47 0%, #031825 100%)" }}>
+      <section className="contact-hero">
         <div className="contact-hero-content container animate-slide-in">
           <h1>Insights & <span>Tech Updates</span></h1>
           <p>
@@ -105,7 +105,7 @@ export default function BlogPage() {
       </section>
 
       {/* 3. Blog listings Grid (DYNAMIC FROM DATABASE) */}
-      <section className="section section-bg-alt" style={{ flex: 1 }}>
+      <section className="section" style={{ flex: 1, backgroundColor: "#ffffff" }}>
         <div className="container">
           <div className="blog-grid">
             {blogs.length === 0 ? (
@@ -254,8 +254,8 @@ export default function BlogPage() {
                 </div>
               </article>
               
-              <div className="mt-8 pt-6 border-t border-slate-800 flex flex-col gap-4">
-                <p className="text-sm text-slate-400">
+              <div className="mt-8 pt-6 flex flex-col gap-4" style={{ borderTop: "1px solid rgba(15, 117, 188, 0.08)" }}>
+                <p className="text-sm text-slate-600">
                   Looking to implement these exact tech secrets or SEO growth strategies in your own company? Let's consult!
                 </p>
                 <Link

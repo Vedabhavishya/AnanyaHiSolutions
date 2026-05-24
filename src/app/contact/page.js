@@ -201,7 +201,7 @@ export default function ContactPage() {
       </section>
 
       {/* 4. Send Us a Message — Grey Background */}
-      <section className="contact-form-section section-bg-alt">
+      <section className="contact-form-section" style={{ backgroundColor: "#f4f7f9" }}>
         <div className="container">
           <div className="contact-form-container">
             {!formSubmitted ? (

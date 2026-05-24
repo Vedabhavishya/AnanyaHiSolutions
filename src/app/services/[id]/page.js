@@ -47,8 +47,17 @@ function renderParagraph(text, index, serviceId) {
     case "software-development":
       htmlContent = text.replace("software", `<a href="/services/software-development" style="color: var(--primary-blue); text-decoration: underline; font-weight: 600;">software</a>`);
       break;
-    case "advanced-marketing":
-      htmlContent = text.replace("advanced marketing", `<a href="/services/advanced-marketing" style="color: var(--primary-blue); text-decoration: underline; font-weight: 600;">advanced marketing</a>`);
+    case "aeo":
+      htmlContent = text.replace("Answer Engine Optimization", `<a href="/services/aeo" style="color: var(--primary-blue); text-decoration: underline; font-weight: 600;">Answer Engine Optimization</a>`);
+      break;
+    case "geo":
+      htmlContent = text.replace("Google Engine Optimization", `<a href="/services/geo" style="color: var(--primary-blue); text-decoration: underline; font-weight: 600;">Google Engine Optimization</a>`);
+      break;
+    case "youtube-seo":
+      htmlContent = text.replace("YouTube SEO", `<a href="/services/youtube-seo" style="color: var(--primary-blue); text-decoration: underline; font-weight: 600;">YouTube SEO</a>`);
+      break;
+    case "youtube-ads":
+      htmlContent = text.replace("YouTube Ads", `<a href="/services/youtube-ads" style="color: var(--primary-blue); text-decoration: underline; font-weight: 600;">YouTube Ads</a>`);
       break;
     default:
       break;
@@ -353,52 +362,96 @@ const SERVICES_DETAIL_DATA = {
       { q: "Can your billing software work without an active internet connection?", a: "Yes. We build offline-first billing portals that record invoices locally and automatically sync data with cloud servers once internet connection is restored." }
     ]
   },
-  "advanced-marketing": {
-    title: "Advanced Marketing Services",
-    bannerTitle: "Advanced Marketing Agency in Hyderabad",
-    bannerDesc: "Ananya Hi Solutions dominates next-generation search layout algorithms. We position your brand inside conversational AI responses, Google SGE snapshots, and viral video recommendations.",
-    bannerBadge: "✓ Next-Gen AI & Video Search Ready | ⭐️ Rated 5/5 by Tech Startups",
-    heroVisual: "/images/hero/advanced-marketing.png",
-    subtypesTitle: "AI-Driven & Video-Powered Marketing Services in Hyderabad",
-    subtypesDesc: "Structure your website footprint to be cited as the top recommendation inside ChatGPT Search, Gemini, Google SGE, and YouTube.",
-    row1Image: "https://images.unsplash.com/photo-1684369175833-31126786a345?auto=format&fit=crop&w=800&q=80",
-    row2Image: "https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=800&q=80",
-    types: [
-      { 
-        id: "aeo", 
-        title: "AEO (Answer Engine Optimization)", 
-        bgImage: "https://images.unsplash.com/photo-1677442136019-21780efad99a?auto=format&fit=crop&w=800&q=80",
-        desc: "Optimize content indexing architectures so conversational LLMs (like ChatGPT, Claude, and Gemini) reference your brand." 
-      },
-      { 
-        id: "geo", 
-        title: "GEO (Google Engine Optimization)", 
-        bgImage: "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=800&q=80",
-        desc: "Restructure websites to secure snapshot citations inside Google's Search Generative Experience AI summaries." 
-      },
-      { 
-        id: "youtube-seo", 
-        title: "YouTube SEO", 
-        bgImage: "https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?auto=format&fit=crop&w=800&q=80",
-        desc: "Structure video transcripts, keywords, playlists, and descriptions to dominate organic video recommendation feeds." 
-      },
-      { 
-        id: "youtube-ads", 
-        title: "YouTube Ads", 
-        bgImage: "https://images.unsplash.com/photo-1551836022-8b2858c9c69b?auto=format&fit=crop&w=800&q=80",
-        desc: "Deploy ROI-focused TrueView bumper ads, target placements, and retargeting ads that capture client conversions." 
-      }
-    ],
-    overviewTitle: "Pioneering the Next Era of Conversational and Visual Marketing",
+  "aeo": {
+    title: "AEO (Answer Engine)",
+    bannerTitle: "Answer Engine Optimization (AEO) in Hyderabad",
+    bannerDesc: "Optimize your digital presence for conversational search tools. Ananya Hi Solutions structures your site to rank as a cited reference within ChatGPT, Claude, and Gemini.",
+    bannerBadge: "✓ AI-Search Indexing Ready | ⭐️ Rated 5/5 by Tech Startups",
+    heroVisual: "/images/hero/aeo.png",
+    subtypesTitle: "",
+    subtypesDesc: "",
+    row1Image: "https://images.unsplash.com/photo-1677442136019-21780efad99a?auto=format&fit=crop&w=800&q=80",
+    row2Image: "https://images.unsplash.com/photo-1684369175833-31126786a345?auto=format&fit=crop&w=800&q=80",
+    types: [],
+    overviewTitle: "Pioneering Answer Engine Optimization",
     paragraphs: [
-      "Traditional search engine optimization is undergoing a historic shift towards direct conversational AI answers and visual search recommendations. At Ananya Hi Solutions, we build advanced marketing architectures designed to ensure your business remains the top-recommended choice across ChatGPT Search, Gemini, Google SGE, and YouTube.",
-      "By targeting conversational AI citations, structuring rich database schemas, and ranking video search content, we intercept high-intent buyers before they even visit a traditional search results page. Our next-gen approach builds compounding organic traffic and video ad pipelines for maximum ROI."
+      "Traditional search behavior is transitioning rapidly from basic links to direct conversational answers. Answer Engine Optimization (AEO) structures and optimizes your content footprint so that conversational AI platforms select your business as the definitive source.",
+      "We build advanced schema markups, structure FAQ data networks, and craft direct, query-focused content that aligns perfectly with how large language models (LLMs) parse and retrieve information.",
+      "Early adoption of AEO ensures your brand remains visible inside ChatGPT Search, Gemini, and Claude answers, driving compounding organic authority and building trust before a user ever clicks a link."
     ],
     faqs: [
       { q: "What is Answer Engine Optimization (AEO)?", a: "AEO is the practice of optimizing content so AI engines like ChatGPT, Gemini, and Claude can easily read, index, and cite your website as the source when answering user questions." },
-      { q: "How does GEO differ from traditional SEO?", a: "GEO focuses on securing citations in Google's Search Generative Experience (SGE) AI snapshots, whereas traditional SEO focuses on links ranking in the search index." },
-      { q: "Why should my business focus on YouTube SEO?", a: "YouTube is the second largest search engine in the world. Video SEO ranks your content organically for high-traffic buyer keywords, expanding your reach to a visual-first audience." },
-      { q: "Is advanced marketing suitable for small businesses?", a: "Yes. Early adoption of AI search optimization gives small businesses and startups a massive competitive advantage, enabling them to outrank larger competitors." }
+      { q: "How do conversational AI search engines find my site?", a: "AI engines crawl structured web indexes, looking for authoritative, highly structured, direct answers. We configure advanced JSON-LD semantic markup to make your content easy for LLMs to reference." },
+      { q: "Is AEO suitable for small businesses?", a: "Yes. Early adoption of AI search optimization gives small businesses and startups a massive competitive advantage, enabling them to outrank larger competitors inside AI search responses." }
+    ]
+  },
+  "geo": {
+    title: "GEO (Google Engine)",
+    bannerTitle: "Google Engine Optimization (GEO) in Hyderabad",
+    bannerDesc: "Secure SGE citations. We optimize your website content and structure to occupy AI summary panels and snapshot recommendations in Google SGE.",
+    bannerBadge: "✓ Google SGE Citations Strategy | ⭐️ Rated 4.9/5 by Brand Managers",
+    heroVisual: "/images/hero/geo.png",
+    subtypesTitle: "",
+    subtypesDesc: "",
+    row1Image: "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=800&q=80",
+    row2Image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80",
+    types: [],
+    overviewTitle: "Dominating Google Search Generative Experience",
+    paragraphs: [
+      "Google's Search Generative Experience (SGE) represents the biggest shift in search engine history. SGE presents AI-synthesized responses at the top of results, citing only a select few websites. GEO is the practice of optimizing your site to be one of those citations.",
+      "We restructure your site architecture, improve content authority using semantic SEO techniques, and align pages with Google's SGE indexing algorithms to secure your place in the generative snapshots.",
+      "By securing these high-visibility citations, your brand captures high-intent organic users who trust Google's direct recommendations, increasing search CTR and conversions."
+    ],
+    faqs: [
+      { q: "What is GEO and SGE?", a: "SGE is Google's Search Generative Experience, which shows AI-generated answers above search results. GEO (Google Engine Optimization) optimizes your site to get cited inside those SGE boxes." },
+      { q: "How does GEO differ from traditional SEO?", a: "GEO focuses on securing citations in Google's AI snapshots, whereas traditional SEO focuses on links ranking in the search index. GEO requires higher semantic density and clear factual declarations." },
+      { q: "When will I see results from GEO optimization?", a: "Google SGE crawls and updates its snapshots continuously. Once we deploy structured semantic markup and optimized content, citations can appear within a few weeks." }
+    ]
+  },
+  "youtube-seo": {
+    title: "YouTube SEO",
+    bannerTitle: "YouTube SEO Company in Hyderabad",
+    bannerDesc: "Dominate video recommendation algorithms. We optimize metadata, playlists, descriptions, and closed captions to rank your channel organically.",
+    bannerBadge: "✓ YouTube Search Domination | ⭐️ Rated 5/5 by Creators & Brands",
+    heroVisual: "/images/hero/youtube-seo.png",
+    subtypesTitle: "",
+    subtypesDesc: "",
+    row1Image: "https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?auto=format&fit=crop&w=800&q=80",
+    row2Image: "https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?auto=format&fit=crop&w=800&q=80",
+    types: [],
+    overviewTitle: "Unlocking Algorithmic Video Reach",
+    paragraphs: [
+      "YouTube is the second largest search engine globally. To rank organically, your videos must satisfy both user retention metrics and search indexing algorithms. Our YouTube SEO services optimize your videos from script to upload.",
+      "We perform high-volume video keyword research, optimize video titles, tags, closed captions, and description schemas, and design visual masterclass thumbnails that maximize click-through rate (CTR).",
+      "By aligning your videos with search trends and YouTube's recommendation feed parameters, we build consistent, compounding organic views and channel subscribers."
+    ],
+    faqs: [
+      { q: "Why should my business focus on YouTube SEO?", a: "YouTube search ranks your videos for high-traffic buyer keywords, expanding your brand reach to a visual-first audience and driving long-term passive leads." },
+      { q: "What elements do you optimize for YouTube SEO?", a: "We optimize video file names, titles, descriptions, tag fields, timestamps, custom thumbnails, and closed captions (transcripts) to feed clear signals to the algorithm." },
+      { q: "Do you also help with thumbnail designs?", a: "Yes. We design custom high-CTR thumbnails and advise on video hooks to maximize user retention, which is a major ranking factor." }
+    ]
+  },
+  "youtube-ads": {
+    title: "YouTube Ads",
+    bannerTitle: "YouTube Ads Management Agency in Hyderabad",
+    bannerDesc: "Build and scale high-ROAS visual video campaigns. We manage scripthooks, precise channel placements, and landing page conversion funnels.",
+    bannerBadge: "✓ High-ROI YouTube Ads Setup | ⭐️ Rated 5/5 by E-commerce Brands",
+    heroVisual: "/images/hero/youtube-ads.png",
+    subtypesTitle: "",
+    subtypesDesc: "",
+    row1Image: "https://images.unsplash.com/photo-1551836022-8b2858c9c69b?auto=format&fit=crop&w=800&q=80",
+    row2Image: "https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?auto=format&fit=crop&w=800&q=80",
+    types: [],
+    overviewTitle: "High-Performance Video Advertising",
+    paragraphs: [
+      "Video ads offer unparalleled narrative persuasion. We design, write, target, and monitor custom YouTube ad campaigns (In-Stream, Bumper, Display) that capture buyer interest and multiply ROAS.",
+      "We script strong hooks to reduce skips, integrate Google Ads placement parameters, set custom target profiles, and build clean landing page funnels to optimize conversions.",
+      "With transparent daily budget tracking, A/B ad creative testing, and weekly performance reviews, we scale video campaigns that drive predictable acquisitions."
+    ],
+    faqs: [
+      { q: "What types of YouTube ads do you run?", a: "We run Skippable In-Stream ads, Non-Skippable ads, 6-second Bumper ads, and In-Feed video ads depending on whether your goal is brand awareness or direct lead conversion." },
+      { q: "How do you ensure our ads target the right audience?", a: "We use custom placement targeting (showing ads on specific channels or videos), intent-based keywords, competitor channel targeting, and demographic filtering." },
+      { q: "What budget is required for YouTube ads?", a: "We configure campaigns based on your comfortable budget. You can start with a modest daily ad spend and scale up as we optimize for positive return-on-ad-spend (ROAS)." }
     ]
   }
 };
@@ -484,32 +537,33 @@ export default function ServiceDetailPage({ params: paramsPromise }) {
       </section>
 
       {/* 3. Sub-services Cards Section */}
-      <section className="section subservices-section" style={{ padding: "100px 0", background: "var(--light-gray)" }}>
-        <div className="container" style={{ maxWidth: "1200px", margin: "0 auto", padding: "0 20px" }}>
-          <div className="section-header">
-            <h2>{data.subtypesTitle}</h2>
-            <p>{data.subtypesDesc}</p>
-          </div>
+      {data.types && data.types.length > 0 && (
+        <section className="section subservices-section" style={{ padding: "100px 0", background: "var(--light-gray)" }}>
+          <div className="container" style={{ maxWidth: "1200px", margin: "0 auto", padding: "0 20px" }}>
+            <div className="section-header">
+              <h2>{data.subtypesTitle}</h2>
+              <p>{data.subtypesDesc}</p>
+            </div>
 
-
-          <div className="subservices-premium-grid">
-            {data.types.map((type) => (
-              <div key={type.id} className="premium-subservice-card">
-                <div className="card-bg-image" style={{ backgroundImage: `url(${type.bgImage})` }}></div>
-                <div className="card-overlay"></div>
-                <div className="card-content">
-                  <h3 className="card-title">{type.title}</h3>
-                  <div className="card-underline"></div>
-                  <p className="card-description">{type.desc}</p>
-                  <Link href="/contact" className="card-cta-btn">
-                    Learn More
-                  </Link>
+            <div className="subservices-premium-grid">
+              {data.types.map((type) => (
+                <div key={type.id} className="premium-subservice-card">
+                  <div className="card-bg-image" style={{ backgroundImage: `url(${type.bgImage})` }}></div>
+                  <div className="card-overlay"></div>
+                  <div className="card-content">
+                    <h3 className="card-title">{type.title}</h3>
+                    <div className="card-underline"></div>
+                    <p className="card-description">{type.desc}</p>
+                    <Link href="/contact" className="card-cta-btn">
+                      Learn More
+                    </Link>
+                  </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
 
       {/* 4. Alternating Content Section */}
       <section className="alternating-section bg-white" style={{ padding: "100px 0" }}>
@@ -670,7 +724,10 @@ export default function ServiceDetailPage({ params: paramsPromise }) {
               <li><Link href="/services/ecommerce-app">Ecommerce Application</Link></li>
               <li><Link href="/services/video-production">Video Production</Link></li>
               <li><Link href="/services/software-development">Software Development</Link></li>
-              <li><Link href="/services/advanced-marketing">Advanced Marketing</Link></li>
+              <li><Link href="/services/aeo">AEO (Answer Engine)</Link></li>
+              <li><Link href="/services/geo">GEO (Google Engine)</Link></li>
+              <li><Link href="/services/youtube-seo">YouTube SEO</Link></li>
+              <li><Link href="/services/youtube-ads">YouTube Ads</Link></li>
             </ul>
           </div>
 

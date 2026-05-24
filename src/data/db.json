@@ -37,9 +37,27 @@
       "iconName": "code"
     },
     {
-      "id": "advanced-marketing",
-      "title": "Advanced Marketing Services",
-      "desc": "Next-generation optimization strategies for conversational search prompts, Google SGE generative snapshots, and YouTube video recommendation algorithms.",
+      "id": "aeo",
+      "title": "AEO (Answer Engine)",
+      "desc": "Optimize your content footprint to rank as the primary answer inside conversational AI search engines like ChatGPT, Claude, and Gemini.",
+      "iconName": "trending-up"
+    },
+    {
+      "id": "geo",
+      "title": "GEO (Google Engine)",
+      "desc": "Advanced content architectures optimized for Google's Search Generative Experience (SGE) SGE overlays to capture high-intent organic users.",
+      "iconName": "globe"
+    },
+    {
+      "id": "youtube-seo",
+      "title": "YouTube SEO",
+      "desc": "Video structure mapping, descriptions, metadata, and playlist optimizations designed to skyrocket your YouTube algorithmic organic reach.",
+      "iconName": "video"
+    },
+    {
+      "id": "youtube-ads",
+      "title": "YouTube Ads",
+      "desc": "High-impact video ad scripts, TrueView bumper placement architectures, and laser-targeted campaigns that convert viewers into clients.",
       "iconName": "award"
     }
   ],

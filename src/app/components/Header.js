@@ -66,7 +66,10 @@ export default function Header({ activePage = "" }) {
               <li><Link href="/services/ecommerce-app">Ecommerce Application</Link></li>
               <li><Link href="/services/video-production">Video Production</Link></li>
               <li><Link href="/services/software-development">Software Development</Link></li>
-              <li><Link href="/services/advanced-marketing">Advanced Marketing Services</Link></li>
+              <li><Link href="/services/aeo">AEO (Answer Engine)</Link></li>
+              <li><Link href="/services/geo">GEO (Google Engine)</Link></li>
+              <li><Link href="/services/youtube-seo">YouTube SEO</Link></li>
+              <li><Link href="/services/youtube-ads">YouTube Ads</Link></li>
             </ul>
           </li>
           <li>
@@ -133,7 +136,10 @@ export default function Header({ activePage = "" }) {
                 <Link href="/services/ecommerce-app" onClick={() => setMobileMenuOpen(false)} className="text-sm font-medium text-slate-600 hover:text-primary-blue">Ecommerce Application</Link>
                 <Link href="/services/video-production" onClick={() => setMobileMenuOpen(false)} className="text-sm font-medium text-slate-600 hover:text-primary-blue">Video Production</Link>
                 <Link href="/services/software-development" onClick={() => setMobileMenuOpen(false)} className="text-sm font-medium text-slate-600 hover:text-primary-blue">Software Development</Link>
-                <Link href="/services/advanced-marketing" onClick={() => setMobileMenuOpen(false)} className="text-sm font-medium text-slate-600 hover:text-primary-blue">Advanced Marketing Services</Link>
+                <Link href="/services/aeo" onClick={() => setMobileMenuOpen(false)} className="text-sm font-medium text-slate-600 hover:text-primary-blue">AEO (Answer Engine)</Link>
+                <Link href="/services/geo" onClick={() => setMobileMenuOpen(false)} className="text-sm font-medium text-slate-600 hover:text-primary-blue">GEO (Google Engine)</Link>
+                <Link href="/services/youtube-seo" onClick={() => setMobileMenuOpen(false)} className="text-sm font-medium text-slate-600 hover:text-primary-blue">YouTube SEO</Link>
+                <Link href="/services/youtube-ads" onClick={() => setMobileMenuOpen(false)} className="text-sm font-medium text-slate-600 hover:text-primary-blue">YouTube Ads</Link>
               </div>
             )}
           </div>

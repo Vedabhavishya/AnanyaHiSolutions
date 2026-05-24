@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
+import Header from "../components/Header";
 
 // Crisp Inline SVG Logo Component
 function Logo({ className = "", light = false }) {
@@ -21,8 +22,6 @@ function Logo({ className = "", light = false }) {
 }
 
 export default function BlogPage() {
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [blogs, setBlogs] = useState([]);
 
   // Modals and Blog states
@@ -45,18 +44,7 @@ export default function BlogPage() {
     scrollToBottom();
   }, [chatHistory, chatOpen]);
 
-  // Handle scroll event for Header
-  useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 50) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
-      }
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+
 
   // Fetch blogs on mount
   useEffect(() => {
@@ -104,49 +92,7 @@ export default function BlogPage() {
   return (
     <div className="flex flex-col min-h-screen">
       {/* 1. Header & Navigation Bar */}
-      <header className={`navbar ${isScrolled ? "scrolled" : ""}`}>
-        <div className="navbar-container">
-          <Link href="/" className="flex items-center">
-            <Logo />
-          </Link>
-
-          {/* Desktop Nav Links */}
-          <ul className="nav-links">
-            <li><Link href="/" className="nav-link">Home</Link></li>
-            <li><Link href="/about" className="nav-link">About</Link></li>
-            <li><Link href="/services" className="nav-link">Services</Link></li>
-            <li><Link href="/careers" className="nav-link">Careers</Link></li>
-            <li><Link href="/blog" className="nav-link active">Blog</Link></li>
-            <li><Link href="/contact" className="nav-link">Contact us</Link></li>
-          </ul>
-
-          <div className="nav-cta">
-            <Link href="/contact" className="btn btn-primary">Choose Package</Link>
-          </div>
-
-          {/* Mobile Menu Icon Toggle */}
-          <button
-            className="mobile-menu-btn"
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            aria-label="Toggle menu"
-          >
-            {mobileMenuOpen ? "✕" : "☰"}
-          </button>
-        </div>
-
-        {/* Mobile Menu Overlay */}
-        {mobileMenuOpen && (
-          <div className="fixed inset-0 top-[70px] bg-white z-[999] flex flex-col p-6 gap-6 shadow-lg md:hidden animate-slide-in">
-            <Link href="/" onClick={() => setMobileMenuOpen(false)} className="text-xl font-bold border-b pb-2">Home</Link>
-            <Link href="/about" onClick={() => setMobileMenuOpen(false)} className="text-xl font-bold border-b pb-2">About</Link>
-            <Link href="/services" onClick={() => setMobileMenuOpen(false)} className="text-xl font-bold border-b pb-2">Services</Link>
-            <Link href="/careers" onClick={() => setMobileMenuOpen(false)} className="text-xl font-bold border-b pb-2">Careers</Link>
-            <Link href="/blog" onClick={() => setMobileMenuOpen(false)} className="text-xl font-bold border-b pb-2">Blog</Link>
-            <Link href="/contact" onClick={() => setMobileMenuOpen(false)} className="text-xl font-bold border-b pb-2">Contact us</Link>
-            <Link href="/contact" onClick={() => setMobileMenuOpen(false)} className="btn btn-accent text-center mt-4">Choose Package</Link>
-          </div>
-        )}
-      </header>
+      <Header activePage="blog" />
 
       {/* 2. Hero Section */}
       <section className="contact-hero" style={{ background: "radial-gradient(circle at 50% 50%, #052e47 0%, #031825 100%)" }}>
@@ -227,12 +173,12 @@ export default function BlogPage() {
           <div className="footer-column">
             <h4>Our Services</h4>
             <ul className="footer-links">
-              <li><Link href="/services">Website Design</Link></li>
-              <li><Link href="/services">Digital Marketing</Link></li>
-              <li><Link href="/services">Mobile Application</Link></li>
-              <li><Link href="/services">eCommerce Application</Link></li>
-              <li><Link href="/services">Video Production</Link></li>
-              <li><Link href="/services">Software Development</Link></li>
+              <li><Link href="/services/web-design">Website Design</Link></li>
+              <li><Link href="/services/digital-marketing">Digital Marketing</Link></li>
+              <li><Link href="/services/mobile-app">Mobile Application</Link></li>
+              <li><Link href="/services/ecommerce-app">eCommerce Application</Link></li>
+              <li><Link href="/services/video-production">Video Production</Link></li>
+              <li><Link href="/services/software-development">Software Development</Link></li>
             </ul>
           </div>
 

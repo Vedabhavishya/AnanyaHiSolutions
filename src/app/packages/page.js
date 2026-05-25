@@ -182,13 +182,13 @@ export default function PackagesPage() {
                       </div>
 
                       {/* 4 Single-line features */}
-                      <div className="package-hover-features">
+                      <ul className="package-hover-features">
                         {card.features.map((feat, fIdx) => (
-                          <p key={fIdx} className="package-hover-feature-item">
+                          <li key={fIdx} className="package-hover-feature-item">
                             {feat}
-                          </p>
+                          </li>
                         ))}
-                      </div>
+                      </ul>
 
                       {/* Unlock button */}
                       <Link href={card.link} className="package-hover-btn">

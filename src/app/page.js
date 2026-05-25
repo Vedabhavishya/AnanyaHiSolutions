@@ -313,9 +313,9 @@ export default function Home() {
       btnText: "Read Our Blog",
     },
     {
-      title: "Choose the <span>Perfect Service Package</span>",
+      title: "Choose the Perfect <span>Service Package</span>",
       desc: "We offer flexible, transparent, and tailor-made pricing packages tailored to your business goals. Get a custom proposal today.",
-      path: "/contact",
+      path: "/packages",
       bgImage: "/images/hero/advanced-marketing.png",
       btnText: "Select a Package",
     },

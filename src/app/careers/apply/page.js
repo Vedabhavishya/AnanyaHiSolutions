@@ -174,7 +174,7 @@ function ApplyFormContent() {
           </ul>
 
           <div className="nav-cta">
-            <Link href="/contact" className="btn btn-primary">Choose Package</Link>
+            <Link href="/packages" className="btn btn-primary">Choose Package</Link>
           </div>
 
           <button
@@ -194,7 +194,7 @@ function ApplyFormContent() {
             <Link href="/careers" onClick={() => setMobileMenuOpen(false)} className="text-xl font-bold border-b pb-2">Careers</Link>
             <Link href="/blog" onClick={() => setMobileMenuOpen(false)} className="text-xl font-bold border-b pb-2">Blog</Link>
             <Link href="/contact" onClick={() => setMobileMenuOpen(false)} className="text-xl font-bold border-b pb-2">Contact us</Link>
-            <Link href="/contact" onClick={() => setMobileMenuOpen(false)} className="btn btn-accent text-center mt-4">Choose Package</Link>
+            <Link href="/packages" onClick={() => setMobileMenuOpen(false)} className="btn btn-accent text-center mt-4">Choose Package</Link>
           </div>
         )}
       </header>

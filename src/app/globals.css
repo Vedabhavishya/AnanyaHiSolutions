@@ -1406,7 +1406,8 @@ button {
    ========================================== */
 /* Page Hero Banner System */
 .page-hero {
-  padding: 160px 5% 100px 5%;
+  height: 380px;
+  padding: 80px 5% 0 5%;
   background-color: var(--white);
   color: var(--dark-deep);
   text-align: center;
@@ -1416,7 +1417,6 @@ button {
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 340px;
 }
 
 .page-hero-bg {
@@ -1990,8 +1990,8 @@ button {
     font-size: 2.75rem;
   }
   .page-hero {
-    padding: 130px 5% 80px 5%;
-    min-height: 280px;
+    height: 300px;
+    padding: 75px 5% 0 5%;
   }
   .about-grid {
     grid-template-columns: 1fr;

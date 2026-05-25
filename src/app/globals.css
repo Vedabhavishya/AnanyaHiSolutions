@@ -584,7 +584,7 @@ button {
 }
 
 .process-section .section-header h2::after {
-  background: var(--primary-blue);
+  background: var(--accent-orange);
 }
 
 .process-container {
@@ -620,14 +620,15 @@ button {
   width: 180px;
   text-align: center;
   transition: var(--transition-normal);
+  transform: translateX(-50%);
 }
 
-/* Positioning based on the curvy sine wave */
+/* Positioning based on the curvy sine wave (perfectly centered on coordinates) */
 .process-step-1 { left: 5%; top: 45%; }
-.process-step-2 { left: 27%; top: 15%; }
-.process-step-3 { left: 49%; top: 52%; }
-.process-step-4 { left: 71%; top: 22%; }
-.process-step-5 { left: 91%; top: 48%; }
+.process-step-2 { left: 31%; top: 15%; }
+.process-step-3 { left: 53%; top: 52%; }
+.process-step-4 { left: 74%; top: 22%; }
+.process-step-5 { left: 92%; top: 48%; }
 
 .process-node {
   width: 60px;
@@ -1294,9 +1295,9 @@ button {
   .hero-carousel .carousel-title {
     font-size: 48px;
   }
-  .process-step-1 { left: 2%; top: 45%; }
-  .process-step-2 { left: 26%; top: 20%; }
-  .process-step-3 { left: 50%; top: 52%; }
+  .process-step-1 { left: 5%; top: 45%; }
+  .process-step-2 { left: 31%; top: 20%; }
+  .process-step-3 { left: 53%; top: 52%; }
   .process-step-4 { left: 74%; top: 25%; }
   .process-step-5 { left: 92%; top: 48%; }
   .footer-container {
@@ -1349,6 +1350,7 @@ button {
     background: var(--light-gray);
     padding: 15px;
     border-radius: var(--radius-md);
+    transform: none;
   }
   .process-node {
     margin: 0;

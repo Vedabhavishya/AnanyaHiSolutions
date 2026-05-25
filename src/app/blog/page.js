@@ -95,11 +95,16 @@ export default function BlogPage() {
       <Header activePage="blog" />
 
       {/* 2. Hero Section */}
-      <section className="contact-hero">
-        <div className="contact-hero-content container animate-slide-in">
-          <h1>Insights & <span>Tech Updates</span></h1>
+      <section className="page-hero">
+        <div 
+          className="page-hero-bg" 
+          style={{ backgroundImage: "url('/images/hero/digital-marketing.png')" }}
+        />
+        <div className="page-hero-overlay"></div>
+        <div className="page-hero-content container animate-slide-in">
+          <h1>Ananya <span>Tech Blog</span></h1>
           <p>
-            Explore high-fidelity web design guidelines, local SEO insights, and enterprise software engineering tips.
+            Stay ahead of the curve with expert tutorials, local marketing strategies, and deep dives into modern software engineering patterns.
           </p>
         </div>
       </section>

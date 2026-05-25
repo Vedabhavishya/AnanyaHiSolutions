@@ -200,8 +200,13 @@ function ApplyFormContent() {
       </header>
 
       {/* Hero Banner Section */}
-      <section className="contact-hero">
-        <div className="contact-hero-content container animate-slide-in">
+      <section className="page-hero">
+        <div 
+          className="page-hero-bg" 
+          style={{ backgroundImage: "url('/images/hero/software-development.png')" }}
+        />
+        <div className="page-hero-overlay"></div>
+        <div className="page-hero-content container animate-slide-in">
           <span className="text-accent-orange font-bold text-sm uppercase tracking-wider block mb-2">Join the crew</span>
           <h1>Application <span>Form</span></h1>
           <p>

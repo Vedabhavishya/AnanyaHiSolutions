@@ -1424,14 +1424,14 @@ button {
   inset: 0;
   background-size: cover;
   background-position: center;
-  opacity: 0.12;
+  opacity: 0.45;
   z-index: 0;
 }
 
 .page-hero-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.92) 0%, rgba(244, 247, 249, 0.75) 100%);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.65) 0%, rgba(255, 255, 255, 0.45) 100%);
   z-index: 1;
 }
 
@@ -2519,7 +2519,7 @@ button {
 
 .subscribe-section {
   padding: 80px 5%;
-  background: var(--light-gray);
+  background: var(--white);
 }
 
 .subscribe-card {
@@ -2667,14 +2667,14 @@ button {
 
 /* Channel section tight spacing — override .section padding */
 .contact-channels-section {
-  background: var(--white);
+  background: var(--light-gray);
   padding: 50px 5% 60px 5%;
 }
 
 /* Stay Connected Section */
 .stay-connected-section {
   padding: 80px 5%;
-  background: var(--white);
+  background: var(--light-gray);
   border-top: 1px solid rgba(15, 117, 188, 0.08);
   text-align: center;
   position: relative;

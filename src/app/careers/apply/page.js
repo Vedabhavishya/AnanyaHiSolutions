@@ -216,7 +216,7 @@ function ApplyFormContent() {
       </section>
 
       {/* Main Application Form Area */}
-      <section className="section py-20" style={{ flex: 1, backgroundColor: "#ffffff" }}>
+      <section className="section section-bg-alt py-20" style={{ flex: 1 }}>
         <div className="container max-w-2xl mx-auto px-6" style={{ maxWidth: "680px" }}>
           <div className="glass-card" style={{ background: "#ffffff", border: "1px solid rgba(15, 117, 188, 0.12)", borderRadius: "16px", padding: "40px", boxShadow: "0 20px 40px -10px rgba(15, 117, 188, 0.08)", color: "var(--dark-deep)", relative: "true" }}>
             

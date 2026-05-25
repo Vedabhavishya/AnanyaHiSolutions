@@ -205,8 +205,8 @@ export default function ContactPage() {
         </div>
       </section>
 
-      {/* 4. Send Us a Message — Grey Background */}
-      <section className="contact-form-section" style={{ backgroundColor: "#f4f7f9" }}>
+      {/* 4. Send Us a Message — White Background */}
+      <section className="contact-form-section">
         <div className="container">
           <div className="contact-form-container">
             {!formSubmitted ? (
@@ -288,8 +288,8 @@ export default function ContactPage() {
         </div>
       </section>
 
-      {/* 5. FAQ Section — White Background */}
-      <section className="section" style={{ background: "var(--white)" }}>
+      {/* 5. FAQ Section — Grey Background */}
+      <section className="section section-bg-alt">
         <div className="container">
           <div className="section-header">
             <h2>Frequently Asked Questions</h2>

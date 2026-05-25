@@ -110,7 +110,7 @@ export default function BlogPage() {
       </section>
 
       {/* 3. Blog listings Grid (DYNAMIC FROM DATABASE) */}
-      <section className="section" style={{ flex: 1, backgroundColor: "#ffffff" }}>
+      <section className="section section-bg-alt" style={{ flex: 1 }}>
         <div className="container">
           <div className="blog-grid">
             {blogs.length === 0 ? (

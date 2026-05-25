@@ -76,8 +76,20 @@ function renderServiceIcon(iconName) {
 // Custom Tool Logo Renderer for missing public/tools logos
 function ToolLogo({ type, name, isMobile = false }) {
   let size = isMobile ? 20 : 46;
-  if (!isMobile && name.toLowerCase().includes("meta")) {
-    size = 54;
+  const nameLower = name.toLowerCase();
+
+  if (!isMobile) {
+    if (
+      nameLower.includes("jio ads") ||
+      nameLower.includes("twitter") ||
+      nameLower.includes("youtube ads") ||
+      nameLower.includes("meta ads") ||
+      nameLower.includes("clarity")
+    ) {
+      size = 36;
+    } else if (nameLower.includes("meta")) {
+      size = 54;
+    }
   }
   const sizePx = `${size}px`;
 
@@ -248,7 +260,7 @@ const specializationCategories = [
       { name: "Google Ads", logo: "/logos/Google_Ads_logo.png" },
       { name: "Meta Ads", logo: "/logos/meta_ads_logo.jpg" },
       { name: "LinkedIn Ads", logo: "/logos/linkedin_ads_logo.webp" },
-      { name: "Twitter/X Ads", logo: "/logos/twitter_ads_logo.jpg" },
+      { name: "Twitter/X Ads", logo: "/logos/twitter_ads_logo.png" },
       { name: "Jio Ads", logo: "/logos/jio_ads_logo.jpg" },
       { name: "Adobe Ads", logo: "/logos/adobe_ads_logo.png" },
       { name: "YouTube Ads", logo: "/logos/youtube_ads_logo.jpg" },

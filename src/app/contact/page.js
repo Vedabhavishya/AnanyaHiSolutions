@@ -133,8 +133,13 @@ export default function ContactPage() {
       <Header activePage="contact" />
 
       {/* 2. Contact Hero Section */}
-      <section className="contact-hero">
-        <div className="contact-hero-content container animate-slide-in">
+      <section className="page-hero">
+        <div 
+          className="page-hero-bg" 
+          style={{ backgroundImage: "url('/images/hero/video-production.png')" }}
+        />
+        <div className="page-hero-overlay"></div>
+        <div className="page-hero-content container animate-slide-in">
           <h1>Contact <span>Ananya Hi Solutions</span></h1>
           <p>
             Have a project idea or looking to accelerate your digital growth? Get in touch with our tech consultants. We design custom high-performance web, app, and marketing solutions.

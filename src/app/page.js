@@ -287,40 +287,40 @@ export default function Home() {
   const [activeSlide, setActiveSlide] = useState(0);
   const carouselSlides = [
     {
-      title: "We Elevate Your <span>Digital Presence</span>",
-      desc: "Empowering businesses through cutting-edge web design, software solutions, and result-oriented digital marketing strategies that guarantee measurable success.",
-      bg: "linear-gradient(135deg, rgba(5, 46, 71, 0.95) 0%, rgba(15, 117, 188, 0.6) 100%)",
-      btn1: "Explore Services",
-      btn2: "Choose Package",
+      title: "Crafting Digital Success with <span>Ananya Solutions</span>",
+      desc: "Learn how our creative design and scalable software engineering solutions empower brands to dominate their markets globally.",
+      path: "/about",
+      bgImage: "/images/hero/web-design.png",
+      btnText: "Learn About Us",
     },
     {
-      title: "Crafting High-Performance <span>Mobile Apps</span>",
-      desc: "Stunning, scalable, and intuitive mobile solutions tailored for iOS and Android platforms to keep your customers engaged and ahead of competitors.",
-      bg: "linear-gradient(135deg, rgba(5, 46, 71, 0.95) 0%, rgba(100, 132, 156, 0.7) 100%)",
-      btn1: "Get a Quote",
-      btn2: "View Portfolio",
+      title: "Insights, Trends & <span>Technical Strategy</span>",
+      desc: "Explore our blog containing expert web development tutorials, local SEO guides, and result-oriented advertising case studies.",
+      path: "/blog",
+      bgImage: "/images/hero/digital-marketing.png",
+      btnText: "Read Our Blog",
     },
     {
-      title: "Scale Your Sales with <span>eCommerce</span>",
-      desc: "Turn your retail business into a global digital powerhouse with robust shopping carts, high conversion optimizations, and seamless checkout pipelines.",
-      bg: "linear-gradient(135deg, rgba(7, 60, 90, 0.95) 0%, rgba(245, 130, 32, 0.5) 100%)",
-      btn1: "Start Selling",
-      btn2: "Learn More",
+      title: "Choose the <span>Perfect Service Package</span>",
+      desc: "We offer flexible, transparent, and tailor-made pricing packages tailored to your business goals. Get a custom proposal today.",
+      path: "/contact",
+      bgImage: "/images/hero/advanced-marketing.png",
+      btnText: "Select a Package",
     },
     {
-      title: "Next-Gen <span>Software Solutions</span>",
-      desc: "Enterprise-grade custom software architectures engineered with modern frameworks to streamline your operations and maximize productivity.",
-      bg: "linear-gradient(135deg, rgba(5, 46, 71, 0.95) 0%, rgba(15, 117, 188, 0.7) 100%)",
-      btn1: "Consult Experts",
-      btn2: "Tech Stack",
+      title: "Let's Build <span>Something Amazing Together</span>",
+      desc: "Have a project in mind or want to accelerate your digital growth? Reach out to our consultants in Begumpet, Hyderabad.",
+      path: "/contact",
+      bgImage: "/images/hero/video-production.png",
+      btnText: "Get Free Consultation",
     },
     {
-      title: "Dominate Search with <span>Digital Marketing</span>",
-      desc: "Result-driven SEO, Google Ads, and high-impact social media campaigns meticulously tuned to supercharge your ROI and online authority.",
-      bg: "linear-gradient(135deg, rgba(7, 60, 90, 0.95) 0%, rgba(245, 130, 32, 0.65) 100%)",
-      btn1: "Boost Rankings",
-      btn2: "Contact Us",
-    },
+      title: "Explore Our <span>Core Technology Services</span>",
+      desc: "From high-performance Website Design and Mobile Applications to custom Software Engineering, we build platforms that scale.",
+      path: "#services",
+      bgImage: "/images/hero/software-development.png",
+      btnText: "View Our Services",
+    }
   ];
 
   // Auto scroll carousel
@@ -655,11 +655,16 @@ export default function Home() {
       {/* 2. Hero Carousel Banners */}
       <section id="home" className="hero-carousel">
         {carouselSlides.map((slide, index) => (
-          <div
+          <Link
             key={index}
+            href={slide.path}
             className={`carousel-slide ${index === activeSlide ? "active" : ""}`}
-            style={{ background: slide.bg }}
+            style={{ textDecoration: 'none' }}
           >
+            <div 
+              className="carousel-bg" 
+              style={{ backgroundImage: `url(${slide.bgImage})` }}
+            />
             <div className="carousel-overlay"></div>
             <div className="carousel-content">
               <h1
@@ -668,11 +673,10 @@ export default function Home() {
               />
               <p className="carousel-desc">{slide.desc}</p>
               <div className="carousel-buttons">
-                <Link href="/services/web-design" className="btn btn-accent">{slide.btn1}</Link>
-                <Link href="/contact" className="btn btn-outline" style={{ color: "#fff", borderColor: "#fff" }}>{slide.btn2}</Link>
+                <span className="btn btn-accent">{slide.btnText}</span>
               </div>
             </div>
-          </div>
+          </Link>
         ))}
 
         {/* Controls */}

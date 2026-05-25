@@ -554,7 +554,7 @@ export default function ServiceDetailPage({ params: paramsPromise }) {
                     <h3 className="card-title">{type.title}</h3>
                     <div className="card-underline"></div>
                     <p className="card-description">{type.desc}</p>
-                    <Link href="/contact" className="card-cta-btn">
+                    <Link href={`/services/${id}/${type.id}`} className="card-cta-btn">
                       Learn More
                     </Link>
                   </div>

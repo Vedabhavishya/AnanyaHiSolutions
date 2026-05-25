@@ -29,10 +29,10 @@ const PACKAGE_CATEGORIES = [
         title: "Social Media Marketing",
         image: "https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?auto=format&fit=crop&w=800&q=80",
         features: [
-          "Custom graphic designs matching brand identity",
-          "Monthly post and story planning calendar",
-          "Hashtag research & demographic profiling",
-          "Community engagement monitoring & logs"
+          "15-18 High-Quality Creative Posts.",
+          "Competitor Analysis.",
+          "Paid Meta Ads.",
+          "Strategy & Content Calendar"
         ],
         link: "/services/digital-marketing/smm"
       },

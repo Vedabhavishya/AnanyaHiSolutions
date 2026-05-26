@@ -80,6 +80,25 @@ const SUBSERVICES_DETAIL_DATA = {
       "Multi-currency support & tax rule calculators"
     ]
   },
+  "spa": {
+    title: "Single Page Application (SPA)",
+    packageName: "Premium SPA Package",
+    packageSubtitle: "Highly Interactive, Blazing-Fast Single Page Apps",
+    topVisual: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=1200&q=80",
+    bodyVisual: "https://images.unsplash.com/photo-1531403009284-440f080d1e12?auto=format&fit=crop&w=800&q=80",
+    whyChoose: "Single Page Applications (SPAs) deliver an instantaneous, desktop-like user experience by reloading content dynamically without page refreshes. We build custom SPAs using React, Next.js, and Vue.js, optimized for performance, interactive animations, and state management.",
+    visibleFeatures: [
+      "Blazing fast React/Vue/Next.js SPA architecture",
+      "Seamless client-side page routing",
+      "Fluid state management & micro-interactions",
+      "PWA capabilities (offline support, home screen install)"
+    ],
+    lockedFeatures: [
+      "Custom REST/GraphQL API integration layers",
+      "Secure OAuth2 / JWT user authentication",
+      "Real-time web socket data feeds & notifications"
+    ]
+  },
 
   // Digital Marketing
   "seo": {

@@ -53,15 +53,16 @@ export async function POST(request) {
     let emailSent = false;
     let emailError = null;
 
-    const smtpHost = process.env.SMTP_HOST;
-    const smtpUser = process.env.SMTP_USER;
-    const smtpPass = process.env.SMTP_PASS;
+    const smtpHost = process.env.SMTP_HOST || "smtp.gmail.com";
+    const smtpUser = process.env.SMTP_USER || "bhavishyagudivaka18@gmail.com";
+    const smtpPass = process.env.SMTP_PASS || "wqbj eqhr pbwu jkrj";
+    const adminEmail = process.env.ADMIN_EMAIL || "vedabhavishya.gudivaka@gmail.com";
 
     if (smtpHost && smtpUser && smtpPass) {
       try {
         const smtpPort = parseInt(process.env.SMTP_PORT || "587");
         const smtpSecure = process.env.SMTP_SECURE === "true";
-        const smtpFrom = process.env.SMTP_FROM || `"${name}" <${smtpUser}>`;
+        const smtpFrom = process.env.SMTP_FROM || `"${name} via Support" <${smtpUser}>`;
 
         const transporter = nodemailer.createTransport({
           host: smtpHost,
@@ -79,7 +80,8 @@ export async function POST(request) {
 
         await transporter.sendMail({
           from: smtpFrom,
-          to: "vedabhavishya.gudivaka@gmail.com",
+          to: adminEmail,
+          replyTo: email,
           subject: `New Job Application - ${jobTitle} - ${name}`,
           text: `Dear HR Team,
 
@@ -106,7 +108,7 @@ Ananya Hi Solutions Careers Portal`,
         });
 
         emailSent = true;
-        console.log(`[SMTP DISPATCH SYSTEM] Email successfully sent to vedabhavishya.gudivaka@gmail.com via ${smtpHost}`);
+        console.log(`[SMTP DISPATCH SYSTEM] Email successfully sent to ${adminEmail} via ${smtpHost}`);
       } catch (err) {
         emailError = err.message;
         console.error("[SMTP ERROR] Failed to send email via nodemailer:", err);
@@ -142,7 +144,7 @@ Attachment:
     return NextResponse.json({
       success: true,
       message: emailSent
-        ? `Application submitted successfully and notification email has been dispatched to vedabhavishya.gudivaka@gmail.com automatically.`
+        ? `Application submitted successfully and notification email has been dispatched to ${adminEmail} automatically.`
         : `Application submitted successfully (Simulated notification email logged to server logs; SMTP environment variables not configured).`,
       application: newApplication
     });

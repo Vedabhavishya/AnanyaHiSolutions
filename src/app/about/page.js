@@ -119,7 +119,9 @@ export default function AboutPage() {
       <section className="page-hero">
         <div 
           className="page-hero-bg" 
-          style={{ backgroundImage: "url('/about-collaboration.png')" }}
+          style={{ 
+            backgroundImage: "url('/images/hero/about-stars.png')"
+          }}
         />
         <div className="page-hero-overlay"></div>
         <div className="page-hero-content container">
@@ -131,7 +133,7 @@ export default function AboutPage() {
       </section>
 
       {/* 3. Who We Are Intro Section */}
-      <section className="section">
+      <section className="section section-bg-alt">
         <div className="container">
           <div className="about-story-grid">
             <div className="about-story-visual">

@@ -174,7 +174,7 @@ function ApplyFormContent() {
           </ul>
 
           <div className="nav-cta">
-            <Link href="/contact" className="btn btn-primary">Choose Package</Link>
+            <Link href="/packages" className="btn btn-primary">Choose Package</Link>
           </div>
 
           <button
@@ -194,14 +194,19 @@ function ApplyFormContent() {
             <Link href="/careers" onClick={() => setMobileMenuOpen(false)} className="text-xl font-bold border-b pb-2">Careers</Link>
             <Link href="/blog" onClick={() => setMobileMenuOpen(false)} className="text-xl font-bold border-b pb-2">Blog</Link>
             <Link href="/contact" onClick={() => setMobileMenuOpen(false)} className="text-xl font-bold border-b pb-2">Contact us</Link>
-            <Link href="/contact" onClick={() => setMobileMenuOpen(false)} className="btn btn-accent text-center mt-4">Choose Package</Link>
+            <Link href="/packages" onClick={() => setMobileMenuOpen(false)} className="btn btn-accent text-center mt-4">Choose Package</Link>
           </div>
         )}
       </header>
 
       {/* Hero Banner Section */}
-      <section className="contact-hero">
-        <div className="contact-hero-content container animate-slide-in">
+      <section className="page-hero">
+        <div 
+          className="page-hero-bg" 
+          style={{ backgroundImage: "url('/images/hero/software-development.png')" }}
+        />
+        <div className="page-hero-overlay"></div>
+        <div className="page-hero-content container animate-slide-in">
           <span className="text-accent-orange font-bold text-sm uppercase tracking-wider block mb-2">Join the crew</span>
           <h1>Application <span>Form</span></h1>
           <p>
@@ -211,7 +216,7 @@ function ApplyFormContent() {
       </section>
 
       {/* Main Application Form Area */}
-      <section className="section py-20" style={{ flex: 1, backgroundColor: "#ffffff" }}>
+      <section className="section section-bg-alt py-20" style={{ flex: 1 }}>
         <div className="container max-w-2xl mx-auto px-6" style={{ maxWidth: "680px" }}>
           <div className="glass-card" style={{ background: "#ffffff", border: "1px solid rgba(15, 117, 188, 0.12)", borderRadius: "16px", padding: "40px", boxShadow: "0 20px 40px -10px rgba(15, 117, 188, 0.08)", color: "var(--dark-deep)", relative: "true" }}>
             

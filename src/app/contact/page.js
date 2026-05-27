@@ -30,6 +30,8 @@ export default function ContactPage() {
     message: "",
   });
   const [formSubmitted, setFormSubmitted] = useState(false);
+  const [formSubmitting, setFormSubmitting] = useState(false);
+  const [formError, setFormError] = useState("");
 
   // Subscription State
   const [subEmail, setSubEmail] = useState("");
@@ -84,12 +86,33 @@ export default function ContactPage() {
   };
 
   // Form submit handler
-  const handleFormSubmit = (e) => {
+  const handleFormSubmit = async (e) => {
     e.preventDefault();
     if (!formData.name || !formData.phone || !formData.email || !formData.message) return;
     
-    // Simulate API Submission
-    setFormSubmitted(true);
+    setFormSubmitting(true);
+    setFormError("");
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+      if (!response.ok) {
+        throw new Error(data.error || "Failed to send message. Please try again.");
+      }
+
+      setFormSubmitted(true);
+    } catch (err) {
+      setFormError(err.message);
+    } finally {
+      setFormSubmitting(false);
+    }
   };
 
   // Subscription submit handler
@@ -133,8 +156,13 @@ export default function ContactPage() {
       <Header activePage="contact" />
 
       {/* 2. Contact Hero Section */}
-      <section className="contact-hero">
-        <div className="contact-hero-content container animate-slide-in">
+      <section className="page-hero">
+        <div 
+          className="page-hero-bg" 
+          style={{ backgroundImage: "url('/images/hero/video-production.png')" }}
+        />
+        <div className="page-hero-overlay"></div>
+        <div className="page-hero-content container animate-slide-in">
           <h1>Contact <span>Ananya Hi Solutions</span></h1>
           <p>
             Have a project idea or looking to accelerate your digital growth? Get in touch with our tech consultants. We design custom high-performance web, app, and marketing solutions.
@@ -200,8 +228,8 @@ export default function ContactPage() {
         </div>
       </section>
 
-      {/* 4. Send Us a Message — Grey Background */}
-      <section className="contact-form-section" style={{ backgroundColor: "#f4f7f9" }}>
+      {/* 4. Send Us a Message — White Background */}
+      <section className="contact-form-section">
         <div className="container">
           <div className="contact-form-container">
             {!formSubmitted ? (
@@ -260,7 +288,14 @@ export default function ContactPage() {
                       />
                     </div>
                   </div>
-                  <button type="submit" className="form-submit-btn">Send Message</button>
+                  {formError && (
+                    <div style={{ color: "#ef4444", marginTop: "20px", marginBottom: "10px", fontSize: "14px", fontWeight: "600", textAlign: "center" }}>
+                      ⚠️ {formError}
+                    </div>
+                  )}
+                  <button type="submit" className="form-submit-btn" disabled={formSubmitting}>
+                    {formSubmitting ? "Sending Message..." : "Send Message"}
+                  </button>
                 </form>
               </>
             ) : (
@@ -283,8 +318,8 @@ export default function ContactPage() {
         </div>
       </section>
 
-      {/* 5. FAQ Section — White Background */}
-      <section className="section" style={{ background: "var(--white)" }}>
+      {/* 5. FAQ Section — Grey Background */}
+      <section className="section section-bg-alt">
         <div className="container">
           <div className="section-header">
             <h2>Frequently Asked Questions</h2>

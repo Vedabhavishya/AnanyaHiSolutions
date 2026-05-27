@@ -116,17 +116,24 @@ export default function AboutPage() {
       <Header activePage="about" />
 
       {/* 2. About Hero Section */}
-      <section className="about-hero">
-        <div className="about-hero-content container">
+      <section className="page-hero">
+        <div 
+          className="page-hero-bg" 
+          style={{ 
+            backgroundImage: "url('/images/hero/about-stars.png')"
+          }}
+        />
+        <div className="page-hero-overlay"></div>
+        <div className="page-hero-content container">
           <h1>About <span>Ananya Hi Solutions</span></h1>
           <p>
-            An industry-leading digital agency based in Hyderabad. We deliver high-performance web solutions, scalables mobile apps, and results-driven marketing strategies globally.
+            An industry-leading digital agency based in Hyderabad. We deliver high-performance web solutions, scalable mobile apps, and results-driven marketing strategies globally.
           </p>
         </div>
       </section>
 
       {/* 3. Who We Are Intro Section */}
-      <section className="section">
+      <section className="section section-bg-alt">
         <div className="container">
           <div className="about-story-grid">
             <div className="about-story-visual">

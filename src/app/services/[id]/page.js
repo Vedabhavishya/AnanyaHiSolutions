@@ -76,8 +76,8 @@ const SERVICES_DETAIL_DATA = {
     heroVisual: "/images/hero/web-design.png",
     subtypesTitle: "Website Development Agency in Hyderabad for Startups & Brands",
     subtypesDesc: "Get SEO-friendly static, dynamic, and e-commerce websites that drive traffic, leads & sales. Trusted by startups & brands in Hyderabad.",
-    row1Image: "https://images.unsplash.com/photo-1581291518655-9523c932dedf?auto=format&fit=crop&w=800&q=80",
-    row2Image: "https://images.unsplash.com/photo-1531403009284-440f080d1e12?auto=format&fit=crop&w=800&q=80",
+    row1Image: "/images/web-design-overview.png",
+    row2Image: "/images/web-design-capabilities.png",
     types: [
       { 
         id: "static", 
@@ -513,12 +513,14 @@ export default function ServiceDetailPage({ params: paramsPromise }) {
             <h1 className="hero-title">{data.bannerTitle}</h1>
             <p className="hero-subtitle">{data.bannerDesc}</p>
             <div className="hero-actions">
-              <Link href="/contact" className="btn btn-accent hero-cta-btn">
+              <a 
+                href={`https://wa.me/917673935353?text=Hello%20Ananya%20Hi%20Solutions,%20I%20would%20like%20to%20get%20a%20free%20consultation%20regarding%20your%20${encodeURIComponent(data.title)}%20services.`} 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="btn btn-accent hero-cta-btn"
+              >
                 Get Free Consultation
-              </Link>
-              <Link href="/about#portfolio" className="btn btn-outline hero-portfolio-btn">
-                View Portfolio
-              </Link>
+              </a>
             </div>
           </div>
           
@@ -687,9 +689,14 @@ export default function ServiceDetailPage({ params: paramsPromise }) {
           <p className="cta-subtitle">
             Get a free consultation and let our digital engineers craft a custom strategy tailored to your business goals.
           </p>
-          <Link href="/contact" className="btn btn-accent cta-glow-btn">
+          <a 
+            href={`https://wa.me/917673935353?text=Hello%20Ananya%20Hi%20Solutions,%20I%20would%20like%20to%20get%20a%20free%20consultation%20regarding%20your%20${encodeURIComponent(data.title)}%20services.`} 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            className="btn btn-accent cta-glow-btn"
+          >
             Get Free Consultation
-          </Link>
+          </a>
         </div>
       </section>
 

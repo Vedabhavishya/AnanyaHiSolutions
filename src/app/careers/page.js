@@ -95,9 +95,13 @@ export default function CareersPage() {
       <Header activePage="careers" />
 
       {/* 2. Stunning Banner at the Starting */}
-      <section className="contact-hero" style={{ position: "relative" }}>
-        <div className="absolute inset-0 opacity-10 bg-[radial-gradient(var(--primary-blue)_1px,transparent_1px)] [background-size:16px_16px]"></div>
-        <div className="contact-hero-content container animate-slide-in relative z-10">
+      <section className="page-hero">
+        <div 
+          className="page-hero-bg" 
+          style={{ backgroundImage: "url('/images/hero/software-development.png')" }}
+        />
+        <div className="page-hero-overlay"></div>
+        <div className="page-hero-content container animate-slide-in">
           <span className="text-accent-orange font-bold tracking-widest text-sm uppercase block mb-3">Work with Experts</span>
           <h1>Careers at <span>Ananya</span></h1>
           <p>
@@ -107,7 +111,7 @@ export default function CareersPage() {
       </section>
 
       {/* 3. Welcome to our Careers Page Section */}
-      <section className="section bg-white text-center py-16" style={{ borderBottom: "1px solid #f1f5f9" }}>
+      <section className="section text-center py-16" style={{ borderBottom: "1px solid #f1f5f9", backgroundColor: "var(--white)" }}>
         <div className="container max-w-4xl mx-auto px-6">
           <h2 className="text-slate-800 mb-6 tracking-tight text-center" style={{ fontSize: "38px", fontWeight: "800", textAlign: "center" }}>Welcome to our Careers Page</h2>
           <div className="w-16 h-1 bg-primary-blue mx-auto mb-6 rounded" style={{ marginBottom: "calc(1.5rem + 0.25cm)" }}></div>

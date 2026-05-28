@@ -249,10 +249,9 @@ export default function SubserviceDetailPage({ params: paramsPromise }) {
                       {data.lockedFeatures.map((feat, idx) => (
                         <li 
                           key={idx} 
-                          className="package-hover-feature-item"
+                          className={`package-hover-feature-item ${unlocked ? "" : "locked-item"}`}
                           style={{
-                            filter: unlocked ? "none" : "blur(4px)",
-                            opacity: unlocked ? 1 : 0.45,
+                            opacity: unlocked ? 1 : 0.65,
                             transition: "all 0.5s ease"
                           }}
                         >

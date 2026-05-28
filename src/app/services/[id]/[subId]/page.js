@@ -262,20 +262,17 @@ export default function SubserviceDetailPage({ params: paramsPromise }) {
 
                     {/* Unlock / Success Button */}
                     <button 
-                      onClick={() => {
-                        if (!unlocked) setModalOpen(true);
-                      }}
+                      onClick={() => setModalOpen(true)}
                       className="package-hover-btn"
-                      disabled={unlocked}
                       style={{
-                        background: unlocked ? "#10b981" : "var(--white)",
-                        color: unlocked ? "var(--white)" : "var(--primary-blue)",
-                        cursor: unlocked ? "default" : "pointer",
+                        background: "var(--white)",
+                        color: "var(--primary-blue)",
+                        cursor: "pointer",
                         border: "none",
                         width: "100%"
                       }}
                     >
-                      {unlocked ? "🎉 Unlocked Successfully" : "🔒 Unlock Full Details"}
+                      🔒 Unlock Full Details
                     </button>
                   </div>
                 </div>
@@ -558,22 +555,24 @@ export default function SubserviceDetailPage({ params: paramsPromise }) {
                   Successfully Unlocked!
                 </h3>
                 <p style={{ color: "var(--secondary-slate)", fontSize: "0.95rem", lineHeight: "1.6", marginBottom: "24px" }}>
-                  Thank you! The package feature list has been fully updated and is now fully visible behind this modal.
+                  Thank you for unlocking!
                 </p>
-                <button 
-                  onClick={closeModal}
+                <Link 
+                  href={`/packages/plans?package=${encodeURIComponent(data.title)}`}
                   style={{
+                    display: "inline-block",
                     background: "var(--primary-blue)",
                     color: "var(--white)",
                     padding: "10px 24px",
                     borderRadius: "6px",
                     fontWeight: "700",
                     border: "none",
-                    cursor: "pointer"
+                    cursor: "pointer",
+                    textDecoration: "none"
                   }}
                 >
                   View Details
-                </button>
+                </Link>
               </div>
             )}
           </div>

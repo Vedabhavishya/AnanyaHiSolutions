@@ -6632,3 +6632,27 @@ button {
 .plan-card-popular .plan-expert-msg {
   color: #9ca3af;
 }
+
+/* Custom styling for subservice packages card to prevent text overflow and cut off buttons */
+.package-card-premium.package-card-subpage {
+  height: 560px;
+}
+
+.package-card-premium.package-card-subpage .package-card-hover-panel {
+  padding: 30px 24px;
+}
+
+.package-card-premium.package-card-subpage .package-hover-features {
+  gap: 10px;
+  margin: 15px 0;
+}
+
+.package-card-premium.package-card-subpage .package-hover-feature-item {
+  font-size: 0.9rem;
+  line-height: 1.45;
+}
+
+.package-card-premium.package-card-subpage .package-hover-header h3 {
+  font-size: 1.4rem;
+}
+

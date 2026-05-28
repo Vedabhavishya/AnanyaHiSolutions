@@ -189,9 +189,9 @@ export default function SubserviceDetailPage({ params: paramsPromise }) {
           
           <div className="what-we-provide-grid">
             {[...data.visibleFeatures, ...data.lockedFeatures].map((feat, idx) => (
-              <div key={idx} className="provide-card" style={{ display: "flex", alignItems: "center", gap: "16px", background: "#f8fafc", padding: "18px 24px", borderRadius: "12px", border: "1px solid #f1f5f9", boxShadow: "0 2px 4px rgba(0,0,0,0.02)" }}>
-                <span className="provide-icon" style={{ display: "flex", alignItems: "center", justifyContent: "center", width: "24px", height: "24px", background: "rgba(15,117,188,0.1)", borderRadius: "50%", color: "var(--primary-blue)", fontSize: "14px", fontWeight: "bold", flexShrink: 0 }}>✓</span>
-                <span style={{ fontSize: "1.05rem", color: "var(--dark-deep)", fontWeight: "500" }}>{feat}</span>
+              <div key={idx} className="provide-card" style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", textAlign: "center", gap: "12px", background: "#f8fafc", padding: "24px 20px", borderRadius: "12px", border: "1px solid #f1f5f9", boxShadow: "0 2px 4px rgba(0,0,0,0.02)" }}>
+                <span className="provide-icon" style={{ display: "flex", alignItems: "center", justifyContent: "center", width: "32px", height: "32px", background: "rgba(15,117,188,0.1)", borderRadius: "50%", color: "var(--primary-blue)", fontSize: "16px", fontWeight: "bold", flexShrink: 0 }}>✓</span>
+                <span style={{ fontSize: "1.05rem", color: "var(--dark-deep)", fontWeight: "600", lineHeight: "1.5" }}>{feat}</span>
               </div>
             ))}
           </div>
@@ -215,7 +215,7 @@ export default function SubserviceDetailPage({ params: paramsPromise }) {
               </div>
 
               <div style={{ display: "flex", justifyContent: "center", marginTop: "40px" }}>
-                <div className="package-card-premium" style={{ width: "100%", maxWidth: "380px" }}>
+                <div className="package-card-premium package-card-subpage" style={{ width: "100%", maxWidth: "380px" }}>
                   {/* Card Background image */}
                   <div 
                     className="package-card-bg"

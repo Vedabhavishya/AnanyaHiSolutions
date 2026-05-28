@@ -65,13 +65,13 @@ const PACKAGE_CATEGORIES = [
     key: "websites",
     cards: [
       {
-        title: "Starter Static Website",
+        title: "Static Website Design",
         image: "https://images.unsplash.com/photo-1541462608143-67571c6738dd?auto=format&fit=crop&w=800&q=80",
         features: [
-          "Up to 6 fully responsive web layouts",
-          "Lightweight landing pages for faster loads",
-          "Free Web Hosting & SSL setup for 1 year",
-          "1 week free post-launch support care"
+          "Delivery Within 3 Working Days.",
+          "FREE Web Hosting & SSL for 1 year.",
+          "1 Week FREE Support After Deployment.",
+          "Responsive Design."
         ],
         link: "/services/web-design/static"
       },

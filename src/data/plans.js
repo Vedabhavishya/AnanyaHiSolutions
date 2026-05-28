@@ -120,5 +120,86 @@ export const PACKAGE_PLANS_DATA = {
       ],
       note: "Campaign charge not included."
     }
+  ],
+  "Static Website Design": [
+    {
+      name: "Basic Plan",
+      icon: "🎯",
+      price: "₹5,999",
+      billing: "+ GST",
+      isPopular: false,
+      features: [
+        "Single Page Website (Scrolling Layout)",
+        "Modern Mobile-Friendly Design",
+        "Eye-Catching Hero Banner with CTA Button",
+        "Business Info, Services, Gallery & Contact Section",
+        "WhatsApp & Call Button Integration",
+        "Free Contact Form Setup (Email or WhatsApp Lead)",
+        "Social Media Links Integration",
+        "Basic SEO Setup (Meta Title, Description, Keywords)",
+        "Google Map Embed for Location",
+        "Delivery Within 3 Working Days",
+        "1 Free Revision",
+        "Perfect for Startups, Freelancers & Local Businesses",
+        "Mobile-Friendly/Responsive Design",
+        "Effective Call-To-Actions & Easy Navigation",
+        "Brand Typography & Color Code",
+        "Complete Deployment"
+      ],
+      note: "Campaign charge not included."
+    },
+    {
+      name: "Standard Plan",
+      icon: "🚀",
+      price: "₹9,999",
+      billing: "+ GST",
+      isPopular: true,
+      features: [
+        "Everything in Basic",
+        "Free Hosting & SSL for 1 Year",
+        "Up to 5 Pages, Extra Per Page Cost not Included (Home, About, Services, Gallery, Contact)",
+        "Custom Brand-Based Design & Color Theme",
+        "Optimized Image & Banner Design",
+        "Basic On-Page SEO Optimization",
+        "Google Analytics & Search Console Integration",
+        "Faster Loading (Speed Optimization)",
+        "Lead Capture Form with Email Alerts",
+        "1 Month Free Maintenance Support",
+        "Delivery Within 5–7 Working Days",
+        "Great for Local Businesses & Agencies"
+      ],
+      note: "Campaign charge not included."
+    },
+    {
+      name: "Premium Plan",
+      icon: "👑",
+      price: "₹11,999",
+      billing: "+ GST",
+      isPopular: false,
+      features: [
+        "Everything in Standard",
+        "Up to 8 Static Website Pages (Extra Per Page Cost not Included)",
+        "Advanced UI/UX Design with Animation & Motion Effects",
+        "SEO-Optimized Structure for Higher Google Ranking",
+        "Content Writing Support (Up to 800 Words)",
+        "Interactive Elements (Counters, Sliders, Reviews, etc.)",
+        "Call-to-Action Strategy for More Leads",
+        "Google Business Profile Setup Assistance",
+        "Priority Support with Faster Delivery",
+        "Delivery Within 10–15 Working Days",
+        "Google Page Speed Optimized (Loads Fast Even on Weak Networks)",
+        "Unlimited Copyright-Free Stock Images",
+        "Copyright-Free Unique Website Content",
+        "SEO Optimized Code (Semantic Tags & Meta Tags)",
+        "Secure & Error-Free Coding",
+        "Unique User Interactive UI/UX",
+        "UI/UX Testing",
+        "Browser Compatibility Testing",
+        "Less Scroll for Better User Experience",
+        "Minified CSS/JS",
+        "Perfect for Professionals & Established Businesses"
+      ],
+      note: "Campaign charge not included."
+    }
   ]
 };

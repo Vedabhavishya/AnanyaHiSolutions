@@ -24,6 +24,8 @@ export const metadata = {
   keywords: "web design, digital marketing, mobile application, ecommerce application, video production, software development, Hyderabad, digital agency",
 };
 
+import { ServicesProvider } from "./context/ServicesContext";
+
 export default function RootLayout({ children }) {
   return (
     <html
@@ -34,7 +36,9 @@ export default function RootLayout({ children }) {
         <link rel="icon" href="/favicon.ico" />
       </head>
       <body className="min-h-full font-sans antialiased bg-slate-50 text-slate-900 transition-colors duration-300">
-        {children}
+        <ServicesProvider>
+          {children}
+        </ServicesProvider>
       </body>
     </html>
   );

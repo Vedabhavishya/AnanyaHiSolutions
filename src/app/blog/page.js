@@ -1,5 +1,6 @@
 "use client";
 
+import GlobalFooter from "../components/GlobalFooter";
 import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import Header from "../components/Header";
@@ -154,86 +155,7 @@ export default function BlogPage() {
       </section>
 
       {/* 4. Footer */}
-      <footer className="footer">
-        <div className="footer-container">
-          <div className="footer-brand">
-            <Logo light={true} className="footer-logo-svg" />
-            <p className="footer-desc mt-4">
-              We are a professional Web Design & Digital Marketing agency in Hyderabad, delivering creative solutions that help businesses grow online.
-            </p>
-          </div>
-
-          <div className="footer-column">
-            <h4>Quick Links</h4>
-            <ul className="footer-links">
-              <li><Link href="/">Home</Link></li>
-              <li><Link href="/about">About Us</Link></li>
-              <li><Link href="/careers">Careers</Link></li>
-              <li><Link href="/contact">Payment Terms</Link></li>
-              <li><Link href="/blog">News</Link></li>
-              <li><Link href="/contact">Contact</Link></li>
-            </ul>
-          </div>
-
-          <div className="footer-column">
-            <h4>Our Services</h4>
-            <ul className="footer-links">
-              <li><Link href="/services/web-design">Website Design</Link></li>
-              <li><Link href="/services/digital-marketing">Digital Marketing</Link></li>
-              <li><Link href="/services/mobile-app">Mobile Application</Link></li>
-              <li><Link href="/services/ecommerce-app">eCommerce Application</Link></li>
-              <li><Link href="/services/video-production">Video Production</Link></li>
-              <li><Link href="/services/software-development">Software Development</Link></li>
-            </ul>
-          </div>
-
-          <div className="footer-column">
-            <h4>Contact Us</h4>
-            <ul className="footer-contact">
-              <li className="footer-contact-item">
-                <span className="footer-contact-icon">📍</span>
-                <span>401 Sravya Vatika, Greenlands,<br />Begumpet, Hyderabad, Telangana-500016</span>
-              </li>
-              <li className="footer-contact-item">
-                <span className="footer-contact-icon">📞</span>
-                <span>(+91) 76739-35353</span>
-              </li>
-              <li className="footer-contact-item">
-                <span className="footer-contact-icon">✉️</span>
-                <span>info@ananyahisolutions.com</span>
-              </li>
-            </ul>
-
-            <div className="footer-socials">
-              <a href="https://facebook.com" className="footer-social-link" aria-label="Facebook">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
-                </svg>
-              </a>
-              <a href="https://instagram.com" className="footer-social-link" aria-label="Instagram">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
-                  <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
-                  <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
-                </svg>
-              </a>
-              <a href="https://linkedin.com" className="footer-social-link" aria-label="LinkedIn">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
-                  <rect x="2" y="9" width="4" height="12" />
-                  <circle cx="4" cy="4" r="2" />
-                </svg>
-              </a>
-            </div>
-          </div>
-        </div>
-
-        <hr className="footer-divider" />
-
-        <div className="footer-bottom">
-          <p>© 2025 Ananya Hi Solutions. All Rights Reserved.</p>
-        </div>
-      </footer>
+      <GlobalFooter />
 
       {/* 5. Blog News Article Modal Overlay */}
       {showBlogModal && selectedBlog && (

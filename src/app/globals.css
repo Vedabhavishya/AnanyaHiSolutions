@@ -6656,3 +6656,15 @@ button {
   font-size: 1.4rem;
 }
 
+/* Footer Bottom Centering Update */
+.footer-bottom {
+  text-align: center;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.footer-bottom p {
+  text-align: center;
+  margin: 0 auto;
+}

@@ -3,7 +3,7 @@
 import React, { useState, useRef, useEffect, use } from "react";
 import Link from "next/link";
 import Header from "../../../components/Header";
-
+import GlobalFooter from "../../../components/GlobalFooter";
 // Clean footer logo component
 function FooterLogo() {
   return (
@@ -570,66 +570,8 @@ export default function SubserviceDetailPage({ params: paramsPromise }) {
         </div>
       )}
 
-      {/* 7. Footer */}
-      <footer className="footer mt-auto">
-        <div className="footer-container">
-          <div className="footer-brand">
-            <FooterLogo />
-            <p className="footer-desc mt-4">
-              We are a professional Web Design & Digital Marketing agency in Hyderabad, delivering creative solutions that help businesses grow online.
-            </p>
-          </div>
-
-          <div className="footer-column">
-            <h4>Quick Links</h4>
-            <ul className="footer-links">
-              <li><Link href="/">Home</Link></li>
-              <li><Link href="/about">About Us</Link></li>
-              <li><Link href="/careers">Careers</Link></li>
-              <li><Link href="/blog">Blogs</Link></li>
-              <li><Link href="/contact">Contact</Link></li>
-            </ul>
-          </div>
-
-          <div className="footer-column">
-            <h4>Our Services</h4>
-            <ul className="footer-links">
-              <li><Link href="/services/web-design">Website Design</Link></li>
-              <li><Link href="/services/digital-marketing">Digital Marketing</Link></li>
-              <li><Link href="/services/mobile-app">Mobile Application</Link></li>
-              <li><Link href="/services/ecommerce-app">Ecommerce Application</Link></li>
-              <li><Link href="/services/video-production">Video Production</Link></li>
-              <li><Link href="/services/software-development">Software Development</Link></li>
-              <li><Link href="/services/aeo">AEO (Answer Engine)</Link></li>
-              <li><Link href="/services/geo">GEO (Google Engine)</Link></li>
-              <li><Link href="/services/youtube-seo">YouTube SEO</Link></li>
-              <li><Link href="/services/youtube-ads">YouTube Ads</Link></li>
-            </ul>
-          </div>
-
-          <div className="footer-column">
-            <h4>Contact Us</h4>
-            <ul className="footer-contact">
-              <li className="footer-contact-item">
-                <span className="footer-contact-icon">📍</span>
-                <span>401 Sravya Vatika, Greenlands,<br />Begumpet, Hyderabad, Telangana-500016</span>
-              </li>
-              <li className="footer-contact-item">
-                <span className="footer-contact-icon">📞</span>
-                <span>(+91) 76739-35353</span>
-              </li>
-              <li className="footer-contact-item">
-                <span className="footer-contact-icon">✉️</span>
-                <span>info@ananyahisolutions.com</span>
-              </li>
-            </ul>
-          </div>
-        </div>
-
-        <div className="footer-bottom">
-          <p>© 2026 Ananya Hi Solutions. All Rights Reserved.</p>
-        </div>
-      </footer>
+      {/* Global Footer */}
+      <GlobalFooter />
     </div>
   );
 }

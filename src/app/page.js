@@ -574,6 +574,41 @@ export default function Home() {
       text: "From complete UI/UX wireframing to custom software integration, the crew at Ananya Hi Solutions proved to be technical giants. Highly professional, responsive, and creative.",
       initials: "PS",
     },
+    {
+      name: "Neerunemula Arunkumar",
+      role: "Local Guide",
+      stars: 5,
+      text: "Best social media marketing firm.",
+      initials: "NA",
+    },
+    {
+      name: "sunspringwellnessspa",
+      role: "Spa & Wellness Brand",
+      stars: 5,
+      text: "Ananya Hi Solutions is hands down the best AI digital marketing and automation service provider in Hyderabad. Their team doesn't just run ads; they use advanced automation to streamline lead generation and ROI. Since partnering with them, our digital presence has grown significantly. Highly recommended for any business looking for data-driven results",
+      initials: "SS",
+    },
+    {
+      name: "sri bhavani",
+      role: "Local Business Owner",
+      stars: 5,
+      text: "best digital marketing agencies in hyderabad",
+      initials: "SB",
+    },
+    {
+      name: "Vinay Varma",
+      role: "Client",
+      stars: 5,
+      text: "best digital marketing agencies in hyderabad",
+      initials: "VV",
+    },
+    {
+      name: "vissvekanth",
+      role: "Client",
+      stars: 5,
+      text: "best digital marketing agencies in hyderabad",
+      initials: "VS",
+    },
   ];
 
   // FAQ State

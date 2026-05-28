@@ -8,10 +8,10 @@ export const SUBSERVICES_DETAIL_DATA = {
     bodyVisual: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80",
     whyChoose: "At Ananya Hi Solutions, our static website designs combine lightning-fast loading speeds with robust mobile responsiveness. We specialize in building lightweight, clean, and search-optimized landing pages or multi-page sites that act as high-converting storefronts. This approach ensures your business establishes a highly professional, secure online presence with minimal maintenance overhead.",
     visibleFeatures: [
-      "Up to 6 fully responsive web pages",
-      "FREE Web Hosting & SSL certificate for 1 year",
-      "1 week free post-launch support",
-      "Mobile-first responsive UX design framework"
+      "Delivery Within 3 Working Days.",
+      "FREE Web Hosting & SSL for 1 year.",
+      "1 Week FREE Support After Deployment.",
+      "Responsive Design."
     ],
     lockedFeatures: [
       "Advanced JSON-LD SEO schema integration",

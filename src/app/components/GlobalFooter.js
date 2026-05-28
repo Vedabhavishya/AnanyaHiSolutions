@@ -103,7 +103,7 @@ export default function GlobalFooter() {
             </ul>
           </div>
 
-          <div className="footer-column" style={{ minWidth: '300px' }}>
+          <div className="footer-column footer-services-column">
             <h4>Our Services</h4>
             <ul className="footer-links" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', columnGap: '1rem' }}>
               {services.map((svc) => (

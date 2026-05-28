@@ -983,7 +983,7 @@ button {
   max-width: 1200px;
   margin: 0 auto;
   display: grid;
-  grid-template-columns: 2fr 1fr 1fr 1.5fr;
+  grid-template-columns: 1.5fr 1fr 2fr 1.2fr;
   gap: 50px;
   margin-bottom: 60px;
 }
@@ -1020,6 +1020,15 @@ button {
   width: 35px;
   height: 2px;
   background-color: var(--accent-orange);
+}
+
+.footer-services-column h4 {
+  text-align: center;
+}
+
+.footer-services-column h4::after {
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 .footer-links {

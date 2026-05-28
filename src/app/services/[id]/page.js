@@ -3,7 +3,7 @@
 import React, { useState, useEffect, useRef, use } from "react";
 import Link from "next/link";
 import Header from "../../components/Header";
-
+import GlobalFooter from "../../components/GlobalFooter";
 // Crisp Inline SVG Logo Component for Footer
 function Logo({ className = "", light = false }) {
   return (
@@ -700,131 +700,8 @@ export default function ServiceDetailPage({ params: paramsPromise }) {
         </div>
       </section>
 
-      {/* 7. Footer */}
-      <footer className="footer mt-auto">
-        <div className="footer-container">
-          <div className="footer-brand">
-            <Logo light={true} className="footer-logo-svg" />
-            <p className="footer-desc mt-4">
-              We are a professional Web Design & Digital Marketing agency in Hyderabad, delivering creative solutions that help businesses grow online.
-            </p>
-          </div>
-
-          <div className="footer-column">
-            <h4>Quick Links</h4>
-            <ul className="footer-links">
-              <li><Link href="/">Home</Link></li>
-              <li><Link href="/about">About Us</Link></li>
-              <li><Link href="/careers">Careers</Link></li>
-              <li><Link href="/blog">Blogs</Link></li>
-              <li><Link href="/contact">Contact</Link></li>
-            </ul>
-          </div>
-
-          <div className="footer-column">
-            <h4>Our Services</h4>
-            <ul className="footer-links">
-              <li><Link href="/services/web-design">Website Design</Link></li>
-              <li><Link href="/services/digital-marketing">Digital Marketing</Link></li>
-              <li><Link href="/services/mobile-app">Mobile Application</Link></li>
-              <li><Link href="/services/ecommerce-app">Ecommerce Application</Link></li>
-              <li><Link href="/services/video-production">Video Production</Link></li>
-              <li><Link href="/services/software-development">Software Development</Link></li>
-              <li><Link href="/services/aeo">AEO (Answer Engine)</Link></li>
-              <li><Link href="/services/geo">GEO (Google Engine)</Link></li>
-              <li><Link href="/services/youtube-seo">YouTube SEO</Link></li>
-              <li><Link href="/services/youtube-ads">YouTube Ads</Link></li>
-            </ul>
-          </div>
-
-          <div className="footer-column">
-            <h4>Contact Us</h4>
-            <ul className="footer-contact">
-              <li className="footer-contact-item">
-                <span className="footer-contact-icon">📍</span>
-                <span>401 Sravya Vatika, Greenlands,<br />Begumpet, Hyderabad, Telangana-500016</span>
-              </li>
-              <li className="footer-contact-item">
-                <span className="footer-contact-icon">📞</span>
-                <span>(+91) 76739-35353</span>
-              </li>
-              <li className="footer-contact-item">
-                <span className="footer-contact-icon">✉️</span>
-                <span>info@ananyahisolutions.com</span>
-              </li>
-            </ul>
-          </div>
-        </div>
-
-        <hr className="footer-divider" />
-
-        <div className="footer-bottom">
-          <p>© 2025 Ananya Hi Solutions. All Rights Reserved.</p>
-        </div>
-      </footer>
-
-      {/* 8. Interactive Chat Widget */}
-      <div className="chat-widget-container">
-        {!chatOpen && (
-          <div className="chat-bubble" onClick={() => setChatOpen(true)}>
-            <span>Need Help? 👋</span>
-          </div>
-        )}
-
-        <div className={`chat-box ${chatOpen ? "open" : ""}`}>
-          <div className="chat-header">
-            <div className="chat-header-user">
-              <div className="chat-header-avatar flex items-center justify-center font-bold text-slate-800 text-[20px]">
-                👩‍💻
-              </div>
-              <div className="chat-header-info">
-                <h4>Ananya</h4>
-                <p>Online | Digital Assistant</p>
-              </div>
-            </div>
-            <button
-              className="chat-header-close"
-              onClick={() => setChatOpen(false)}
-              aria-label="Close chat"
-            >
-              ✕
-            </button>
-          </div>
-
-          <div className="chat-messages">
-            {chatHistory.map((msg, index) => (
-              <div
-                key={index}
-                className={`chat-msg ${
-                  msg.sender === "bot" ? "chat-msg-received" : "chat-msg-sent"
-                }`}
-              >
-                {msg.text}
-              </div>
-            ))}
-            <div ref={messagesEndRef} />
-          </div>
-
-          <form onSubmit={handleSendChat} className="chat-footer">
-            <input
-              type="text"
-              placeholder="Ask about this service..."
-              className="chat-input"
-              value={chatMessage}
-              onChange={(e) => setChatMessage(e.target.value)}
-            />
-            <button type="submit" className="chat-send-btn" aria-label="Send message">
-              ➤
-            </button>
-          </form>
-        </div>
-
-        <div className="chat-trigger" onClick={() => setChatOpen(!chatOpen)}>
-          <div className="w-full h-full flex items-center justify-center text-3xl">
-            👩‍💻
-          </div>
-        </div>
-      </div>
+      {/* Global Footer and Chat Widget */}
+      <GlobalFooter />
     </div>
   );
 }

@@ -277,15 +277,6 @@ export default function SubserviceDetailPage({ params: paramsPromise }) {
                   </div>
                 </div>
               </div>
-
-              {/* Matter below the choose packages card */}
-              <div style={{ textAlign: "center", marginTop: "50px", maxWidth: "700px", margin: "50px auto 0 auto" }}>
-                <p style={{ color: "var(--secondary-slate)", fontSize: "1.1rem", lineHeight: "1.8" }}>
-                  All of our {data.title} packages are structured to maximize organic growth, conversion efficiency, and return on investment. 
-                  If you need custom integrations, bespoke features, or direct enterprise service level agreements, we can configure a tailored 
-                  plan specifically suited for your business scale.
-                </p>
-              </div>
             </div>
           ) : (
             // CASE B: Subservice has no package (Show Consultation Lead Form inline matching screenshot)

@@ -180,7 +180,7 @@ export default function SubserviceDetailPage({ params: paramsPromise }) {
       {/* 4. What We Provide Section */}
       <section className="what-we-provide-section bg-white" style={{ padding: "80px 0", borderBottom: "1px solid #f1f5f9" }}>
         <div className="container" style={{ maxWidth: "1000px", margin: "0 auto", padding: "0 24px" }}>
-          <div className="text-center mb-12">
+          <div style={{ textAlign: "center", marginBottom: "48px" }}>
             <h2 style={{ fontFamily: "var(--font-headings)", color: "var(--dark-deep)", fontSize: "2.2rem", fontWeight: "800", marginBottom: "16px" }}>
               What We Provide in {data.title}
             </h2>
@@ -293,7 +293,7 @@ export default function SubserviceDetailPage({ params: paramsPromise }) {
           ) : (
             // CASE B: Subservice has no package (Show Consultation Lead Form inline matching screenshot)
             <div style={{ maxWidth: "720px", margin: "0 auto" }}>
-              <div className="text-center mb-12">
+              <div style={{ textAlign: "center", marginBottom: "48px" }}>
                 <h2 style={{ fontFamily: "var(--font-headings)", color: "var(--dark-deep)", fontSize: "2.2rem", fontWeight: "800", marginBottom: "16px" }}>
                   💬 Enquire Us
                 </h2>

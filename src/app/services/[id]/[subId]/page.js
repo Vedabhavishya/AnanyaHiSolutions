@@ -205,11 +205,11 @@ export default function SubserviceDetailPage({ params: paramsPromise }) {
           {SUBSERVICES_WITH_PACKAGES.includes(subId) ? (
             // CASE A: Subservice has a package (Show hover sliding card in centered container)
             <div>
-              <div className="text-center mb-16">
-                <h2 style={{ fontFamily: "var(--font-headings)", color: "var(--dark-deep)", fontSize: "2.4rem", fontWeight: "800", marginBottom: "16px" }}>
-                  🎁 Choose Package
+              <div style={{ textAlign: "center", marginBottom: "40px" }}>
+                <h2 style={{ fontFamily: "var(--font-headings)", color: "var(--dark-deep)", fontSize: "2.4rem", fontWeight: "800", marginBottom: "16px", textAlign: "center" }}>
+                  🎁 Choose Packages
                 </h2>
-                <p style={{ color: "var(--secondary-slate)", fontSize: "1.15rem", maxWidth: "700px", margin: "0 auto" }}>
+                <p style={{ color: "var(--secondary-slate)", fontSize: "1.15rem", maxWidth: "700px", margin: "0 auto", textAlign: "center" }}>
                   Select our highly specialized, result-oriented {data.title} package. Hover to view features and unlock details.
                 </p>
               </div>
@@ -280,6 +280,15 @@ export default function SubserviceDetailPage({ params: paramsPromise }) {
                     </button>
                   </div>
                 </div>
+              </div>
+
+              {/* Matter below the choose packages card */}
+              <div style={{ textAlign: "center", marginTop: "50px", maxWidth: "700px", margin: "50px auto 0 auto" }}>
+                <p style={{ color: "var(--secondary-slate)", fontSize: "1.1rem", lineHeight: "1.8" }}>
+                  All of our {data.title} packages are structured to maximize organic growth, conversion efficiency, and return on investment. 
+                  If you need custom integrations, bespoke features, or direct enterprise service level agreements, we can configure a tailored 
+                  plan specifically suited for your business scale.
+                </p>
               </div>
             </div>
           ) : (

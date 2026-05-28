@@ -120,6 +120,54 @@ const PACKAGE_CATEGORIES = [
 ];
 
 export default function PackagesPage() {
+  const router = require("next/navigation").useRouter();
+  const [modalOpen, setModalOpen] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [selectedPackage, setSelectedPackage] = useState({ category: "", plan: "" });
+  const [formData, setFormData] = useState({ name: "", email: "", phone: "", company: "" });
+
+  const openModal = (category, plan) => {
+    setSelectedPackage({ category, plan });
+    setModalOpen(true);
+  };
+  const closeModal = () => setModalOpen(false);
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleUnlockSubmit = async (e) => {
+    e.preventDefault();
+    if (!formData.name || !formData.email || !formData.phone) {
+      alert("Please fill in all required fields.");
+      return;
+    }
+    setSubmitting(true);
+    try {
+      const response = await fetch("/api/unlock", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          company: formData.company,
+          packageTitle: selectedPackage.category,
+          subId: selectedPackage.plan
+        })
+      });
+      const result = await response.json();
+      if (!response.ok) throw new Error(result.error || "Failed to unlock.");
+      
+      router.push(`/packages/plans?package=${encodeURIComponent(selectedPackage.plan)}`);
+    } catch (err) {
+      alert(err.message);
+    } finally {
+      setSubmitting(false);
+    }
+  };
+
   return (
     <div className="flex flex-col min-h-screen">
       {/* 1. Navbar */}
@@ -191,9 +239,9 @@ export default function PackagesPage() {
                       </ul>
 
                       {/* Unlock button */}
-                      <Link href={card.link} className="package-hover-btn">
+                      <button onClick={() => openModal(category.title, card.title)} className="package-hover-btn">
                         Unlock Full Details
-                      </Link>
+                      </button>
                     </div>
                   </div>
                 ))}
@@ -267,6 +315,51 @@ export default function PackagesPage() {
           <p>© 2026 Ananya Hi Solutions. All Rights Reserved.</p>
         </div>
       </footer>
+
+      {/* Lead Capture Modal */}
+      {modalOpen && (
+        <div className="modal-overlay" style={{ position: "fixed", inset: 0, background: "rgba(3,24,37,0.7)", backdropFilter: "blur(8px)", display: "flex", alignItems: "center", justifyContent: "center", zIndex: 9999, padding: "20px" }}>
+          <div className="modal-content" style={{ background: "#ffffff", borderRadius: "20px", width: "100%", maxWidth: "480px", boxShadow: "0 25px 50px -12px rgba(0,0,0,0.5)", overflow: "hidden", position: "relative", animation: "modalSlideIn 0.3s ease-out" }}>
+            <button 
+              onClick={closeModal}
+              style={{ position: "absolute", top: "16px", right: "16px", background: "none", border: "none", fontSize: "20px", color: "var(--secondary-slate)", cursor: "pointer", fontWeight: "bold" }}
+            >✕</button>
+            <form onSubmit={handleUnlockSubmit} style={{ padding: "40px 30px" }}>
+              <h3 style={{ fontFamily: "var(--font-headings)", color: "var(--dark-deep)", fontSize: "1.45rem", fontWeight: "800", marginBottom: "8px", textAlign: "center" }}>
+                Unlock {selectedPackage.plan}
+              </h3>
+              <p style={{ color: "var(--secondary-slate)", fontSize: "0.9rem", textAlign: "center", marginBottom: "28px" }}>
+                Enter your details to instantly view our comprehensive checklists and pricing models.
+              </p>
+              <div style={{ display: "flex", flexDirection: "column", gap: "16px", marginBottom: "24px" }}>
+                <div>
+                  <label style={{ display: "block", fontSize: "0.85rem", fontWeight: "700", color: "var(--dark-deep)", marginBottom: "6px" }}>Full Name *</label>
+                  <input type="text" name="name" required value={formData.name} onChange={handleInputChange} placeholder="e.g. John Doe" style={{ width: "100%", padding: "12px 16px", border: "1px solid #cbd5e1", borderRadius: "8px", fontSize: "0.95rem", color: "var(--dark-deep)" }} />
+                </div>
+                <div>
+                  <label style={{ display: "block", fontSize: "0.85rem", fontWeight: "700", color: "var(--dark-deep)", marginBottom: "6px" }}>Email Address *</label>
+                  <input type="email" name="email" required value={formData.email} onChange={handleInputChange} placeholder="e.g. john@company.com" style={{ width: "100%", padding: "12px 16px", border: "1px solid #cbd5e1", borderRadius: "8px", fontSize: "0.95rem", color: "var(--dark-deep)" }} />
+                </div>
+                <div>
+                  <label style={{ display: "block", fontSize: "0.85rem", fontWeight: "700", color: "var(--dark-deep)", marginBottom: "6px" }}>Phone Number *</label>
+                  <input type="tel" name="phone" required value={formData.phone} onChange={handleInputChange} placeholder="e.g. +91 98765 43210" style={{ width: "100%", padding: "12px 16px", border: "1px solid #cbd5e1", borderRadius: "8px", fontSize: "0.95rem", color: "var(--dark-deep)" }} />
+                </div>
+                <div>
+                  <label style={{ display: "block", fontSize: "0.85rem", fontWeight: "700", color: "var(--dark-deep)", marginBottom: "6px" }}>Company Name (Optional)</label>
+                  <input type="text" name="company" value={formData.company} onChange={handleInputChange} placeholder="e.g. Acme Corp" style={{ width: "100%", padding: "12px 16px", border: "1px solid #cbd5e1", borderRadius: "8px", fontSize: "0.95rem", color: "var(--dark-deep)" }} />
+                </div>
+              </div>
+              <button 
+                type="submit" 
+                disabled={submitting}
+                style={{ width: "100%", background: "var(--accent-orange)", color: "var(--white)", padding: "14px", borderRadius: "8px", fontWeight: "700", fontSize: "0.95rem", border: "none", cursor: submitting ? "not-allowed" : "pointer", boxShadow: "var(--shadow-orange)", opacity: submitting ? 0.8 : 1, transition: "all 0.2s" }}
+              >
+                {submitting ? "Processing..." : "Unlock Full Packages"}
+              </button>
+            </form>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

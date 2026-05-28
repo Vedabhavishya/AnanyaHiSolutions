@@ -6264,3 +6264,371 @@ button {
 .inline-input-wrapper select {
   cursor: pointer;
 }
+/* ==========================================================================
+   Pricing Plans Page Styles
+   ========================================================================== */
+
+.plans-page-wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: var(--light-gray);
+}
+
+.plans-section {
+  padding: 140px 20px 80px;
+  text-align: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.plans-subtitle {
+  color: var(--accent-orange);
+  font-weight: 700;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  display: block;
+  margin-bottom: 12px;
+}
+
+.plans-title {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: var(--dark-deep);
+  margin-bottom: 16px;
+  font-family: var(--font-headings);
+}
+
+@media (min-width: 768px) {
+  .plans-title {
+    font-size: 3rem;
+  }
+}
+
+.plans-description {
+  font-size: 1.125rem;
+  color: var(--secondary-slate);
+  max-width: 800px;
+  margin: 0 auto 64px;
+  line-height: 1.6;
+}
+
+.plans-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 32px;
+  align-items: flex-start;
+}
+
+@media (min-width: 1024px) {
+  .plans-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.plan-card {
+  background-color: var(--white);
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 1px solid #eaeaea;
+  display: flex;
+  flex-direction: column;
+}
+
+.plan-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+.plan-card-popular {
+  background-color: var(--dark-deep);
+  border: 2px solid var(--accent-orange);
+  box-shadow: 0 15px 35px rgba(5, 30, 54, 0.2);
+  z-index: 10;
+}
+
+@media (min-width: 1024px) {
+  .plan-card-popular {
+    transform: scale(1.05);
+  }
+  .plan-card-popular:hover {
+    transform: scale(1.05) translateY(-8px);
+  }
+}
+
+.plan-badge {
+  background-color: var(--accent-orange);
+  color: var(--white);
+  font-size: 0.875rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding: 8px 0;
+  text-align: center;
+  width: 100%;
+}
+
+.plan-card-content {
+  padding: 32px;
+  text-align: left;
+  flex-grow: 1;
+}
+
+.plan-name {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 16px;
+  color: var(--dark-deep);
+  text-align: center;
+}
+
+.plan-card-popular .plan-name {
+  color: var(--white);
+}
+
+.plan-price-wrapper {
+  display: flex;
+  align-items: flex-end;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+
+.plan-price {
+  font-size: 2.25rem;
+  font-weight: 800;
+  color: var(--accent-orange);
+}
+
+.plan-billing {
+  font-weight: 600;
+  padding-bottom: 4px;
+  color: #6b7280;
+}
+
+.plan-card-popular .plan-billing {
+  color: #d1d5db;
+}
+
+.plan-whatsapp-btn {
+  width: 100%;
+  padding: 16px;
+  border-radius: 50px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 32px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  border: none;
+  background-color: var(--dark-deep);
+  color: var(--white);
+}
+
+.plan-whatsapp-btn:hover {
+  background-color: var(--primary-blue);
+  box-shadow: 0 4px 15px rgba(15, 117, 188, 0.4);
+}
+
+.plan-card-popular .plan-whatsapp-btn {
+  background-color: var(--accent-orange);
+  color: var(--white);
+}
+
+.plan-card-popular .plan-whatsapp-btn:hover {
+  background-color: #e0701b;
+  box-shadow: 0 4px 15px rgba(245, 130, 32, 0.4);
+}
+
+.plan-note {
+  font-size: 0.875rem;
+  margin-bottom: 24px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid #f3f4f6;
+  color: #6b7280;
+}
+
+.plan-card-popular .plan-note {
+  border-bottom-color: rgba(255, 255, 255, 0.1);
+  color: #d1d5db;
+}
+
+.plan-features-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.plan-feature-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  font-size: 0.875rem;
+}
+
+.feature-icon {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  margin-top: 2px;
+  color: #10b981;
+}
+
+.plan-card-popular .feature-icon {
+  color: var(--accent-orange);
+}
+
+.feature-icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.feature-text {
+  color: #374151;
+  line-height: 1.5;
+}
+
+.plan-card-popular .feature-text {
+  color: #e5e7eb;
+}
+
+.plan-footer {
+  margin-top: 32px;
+  padding-top: 24px;
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
+  text-align: center;
+}
+
+.plan-card-popular .plan-footer {
+  border-top-color: rgba(255, 255, 255, 0.05);
+}
+
+.plan-footer p {
+  font-size: 0.875rem;
+  font-style: italic;
+  color: #6b7280;
+}
+
+.plan-card-popular .plan-footer p {
+  color: #d1d5db;
+}
+
+/* Empty State */
+.plans-empty-state {
+  background-color: var(--white);
+  border-radius: 24px;
+  padding: 48px;
+  max-width: 600px;
+  margin: 0 auto;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+  border: 1px solid #eaeaea;
+}
+
+.empty-icon {
+  font-size: 4rem;
+  margin-bottom: 24px;
+}
+
+.empty-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--dark-deep);
+  margin-bottom: 16px;
+}
+
+.empty-desc {
+  color: var(--secondary-slate);
+  margin-bottom: 32px;
+  line-height: 1.6;
+}
+
+.empty-btn {
+  display: inline-block;
+  background-color: var(--accent-orange);
+  color: var(--white);
+  padding: 12px 32px;
+  border-radius: 50px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(245, 130, 32, 0.3);
+}
+
+.empty-btn:hover {
+  background-color: #e0701b;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(245, 130, 32, 0.4);
+}
+
+/* ==========================================================================
+   Pricing Plans Alignment & Alert Fixes
+   ========================================================================== */
+
+.plans-grid {
+  align-items: flex-start; /* Vary height based on content */
+}
+
+@media (min-width: 1024px) {
+  .plan-card-popular {
+    transform: none; /* Align tops with other cards */
+  }
+  .plan-card-popular:hover {
+    transform: translateY(-8px);
+  }
+}
+
+.plan-card-content {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.plan-features-list {
+  margin-bottom: 32px;
+}
+
+.plan-alert-note {
+  background-color: #fffbeb;
+  color: #92400e;
+  padding: 12px 16px;
+  border-radius: 8px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  margin-bottom: 32px;
+  border-left: 4px solid #f59e0b;
+}
+
+.plan-card-popular .plan-alert-note {
+  background-color: rgba(245, 158, 11, 0.15);
+  color: #fde68a;
+  border-left-color: #f59e0b;
+}
+
+.plan-action-area {
+  margin-top: 0;
+}
+
+.plan-whatsapp-btn {
+  margin-bottom: 24px;
+}
+
+.plan-expert-msg {
+  font-size: 0.875rem;
+  font-style: italic;
+  color: #6b7280;
+  text-align: center;
+  margin-top: -8px;
+  margin-bottom: 0;
+}
+
+.plan-card-popular .plan-expert-msg {
+  color: #9ca3af;
+}

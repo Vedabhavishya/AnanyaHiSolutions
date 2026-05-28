@@ -547,34 +547,6 @@ export default function Home() {
   // Reviews State
   const reviews = [
     {
-      name: "Rajesh Kumar",
-      role: "Founder, TechVibe Solutions",
-      stars: 5,
-      text: "Ananya Hi Solutions completely transformed our legacy platform. Their web design is outstanding, sleek, and loading speeds have drastically improved, which immediately raised our conversion rates by 42%!",
-      initials: "RK",
-    },
-    {
-      name: "Sarah D'Souza",
-      role: "Global Marketing Director, Elevate Retail",
-      stars: 5,
-      text: "The search rankings speak for themselves. Their digital marketing gurus boosted our organic visibility by 150% in under three months! A highly communicative and reliable partner.",
-      initials: "SD",
-    },
-    {
-      name: "Vignesh Rao",
-      role: "CTO, QuickCart Logistics",
-      stars: 5,
-      text: "Their mobile app development is pure art. They created a highly responsive shopping interface using Next.js APIs that our clients absolutely love. Extremely clean code structures.",
-      initials: "VR",
-    },
-    {
-      name: "Priyanka Sharma",
-      role: "Brand Director, MedLife Systems",
-      stars: 5,
-      text: "From complete UI/UX wireframing to custom software integration, the crew at Ananya Hi Solutions proved to be technical giants. Highly professional, responsive, and creative.",
-      initials: "PS",
-    },
-    {
       name: "Neerunemula Arunkumar",
       role: "Local Guide",
       stars: 5,

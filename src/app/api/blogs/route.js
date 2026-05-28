@@ -13,7 +13,7 @@ export async function POST(request) {
 
   try {
     const body = await request.json();
-    const { title, summary, content, category, author } = body;
+    const { title, summary, content, category, author, coverImage } = body;
 
     if (!title || !summary || !content || !category) {
       return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
@@ -37,8 +37,9 @@ export async function POST(request) {
       summary,
       content,
       category,
+      coverImage: coverImage || "/images/hero/blog_hero_bg.png",
       date: formattedDate,
-      author: author || "Ananya Solutions Team"
+      author: author || "Ananya Hi Solutions"
     };
 
     db.blogs.push(newPost);
@@ -59,7 +60,7 @@ export async function PUT(request) {
 
   try {
     const body = await request.json();
-    const { id, title, summary, content, category, author, date } = body;
+    const { id, title, summary, content, category, author, date, coverImage } = body;
 
     if (!id || !title || !summary || !content || !category) {
       return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
@@ -82,8 +83,9 @@ export async function PUT(request) {
       summary,
       content,
       category,
+      coverImage: coverImage || db.blogs[blogIndex].coverImage || "/images/hero/blog_hero_bg.png",
       date: date || db.blogs[blogIndex].date || currentDate,
-      author: author || db.blogs[blogIndex].author || "Ananya Solutions Team"
+      author: author || db.blogs[blogIndex].author || "Ananya Hi Solutions"
     };
     
     const success = await writeDb(db);

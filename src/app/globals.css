@@ -4077,6 +4077,17 @@ button {
                     radial-gradient(circle at 80% 70%, rgba(15, 117, 188, 0.4) 0%, transparent 60%);
 }
 
+.blog-card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.blog-card-frontend:hover .blog-card-img {
+  transform: scale(1.08);
+}
+
 .blog-card-img-text {
   position: absolute;
   font-family: var(--font-headings);
@@ -4138,6 +4149,11 @@ button {
   line-height: 1.6;
   margin-bottom: 20px;
   flex-grow: 1;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .blog-card-frontend-link {
@@ -5688,6 +5704,15 @@ button {
     background: transparent;
   }
 
+  .category-circle-border {
+    border-radius: 12px !important;
+  }
+
+  .category-circle-wrapper.active .category-circle-border {
+    animation: none !important;
+    background: linear-gradient(135deg, rgba(15, 117, 188, 0.25) 0%, rgba(245, 130, 32, 0.25) 100%) !important;
+  }
+
   .category-circle-card {
     width: 100%;
     height: auto;
@@ -6647,25 +6672,30 @@ button {
 
 /* Custom styling for subservice packages card to prevent text overflow and cut off buttons */
 .package-card-premium.package-card-subpage {
-  height: 560px;
+  height: 440px;
 }
 
 .package-card-premium.package-card-subpage .package-card-hover-panel {
-  padding: 30px 24px;
+  padding: 20px 20px;
 }
 
 .package-card-premium.package-card-subpage .package-hover-features {
-  gap: 10px;
-  margin: 15px 0;
+  gap: 6px;
+  margin: 10px 0;
 }
 
 .package-card-premium.package-card-subpage .package-hover-feature-item {
-  font-size: 0.9rem;
-  line-height: 1.45;
+  font-size: 0.82rem;
+  line-height: 1.35;
 }
 
 .package-card-premium.package-card-subpage .package-hover-header h3 {
-  font-size: 1.4rem;
+  font-size: 1.25rem;
+}
+
+.package-card-premium.package-card-subpage .package-hover-btn {
+  padding: 10px 16px !important;
+  font-size: 0.85rem !important;
 }
 
 /* Footer Bottom Centering Update */

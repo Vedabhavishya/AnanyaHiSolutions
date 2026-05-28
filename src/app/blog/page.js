@@ -122,7 +122,15 @@ export default function BlogPage() {
               blogs.map((post) => (
                 <div key={post.id} className="blog-card-frontend">
                   <div className="blog-card-img-wrapper">
-                    <div className="blog-card-img-placeholder"></div>
+                    {post.coverImage ? (
+                      <img 
+                        src={post.coverImage} 
+                        alt={post.title} 
+                        className="blog-card-img"
+                      />
+                    ) : (
+                      <div className="blog-card-img-placeholder"></div>
+                    )}
                     <span className="blog-card-img-text">{post.category ? post.category.slice(0, 3) : "AHS"}</span>
                     <span className="blog-card-img-badge">{post.category || "News"}</span>
                   </div>
@@ -131,10 +139,10 @@ export default function BlogPage() {
                     <div>
                       <div className="blog-card-frontend-meta">
                         <span>📅 {post.date}</span>
-                        <span>✍️ {post.author || "Ananya Team"}</span>
+                        <span>✍️ {post.author || "Ananya Hi Solutions"}</span>
                       </div>
                       <h3 className="blog-card-frontend-title">{post.title}</h3>
-                      <p className="blog-card-frontend-summary">{post.summary}</p>
+                      <p className="blog-card-frontend-summary">{post.content || post.summary}</p>
                     </div>
                     
                     <button
@@ -168,12 +176,27 @@ export default function BlogPage() {
             
             <div className="frontend-modal-body">
               <article className="blog-modal-article">
+                {selectedBlog.coverImage && (
+                  <img 
+                    src={selectedBlog.coverImage} 
+                    alt={selectedBlog.title} 
+                    className="blog-modal-cover-image"
+                    style={{
+                      width: "100%",
+                      maxHeight: "350px",
+                      objectFit: "cover",
+                      borderRadius: "8px",
+                      marginBottom: "20px",
+                      display: "block"
+                    }}
+                  />
+                )}
                 <h2>{selectedBlog.title}</h2>
                 
                 <div className="blog-modal-meta">
                   <span className="blog-modal-category">{selectedBlog.category || "General"}</span>
                   <span>📅 Published: {selectedBlog.date}</span>
-                  <span>✍️ Author: {selectedBlog.author || "Ananya Solutions Team"}</span>
+                  <span>✍️ Author: {selectedBlog.author || "Ananya Hi Solutions"}</span>
                 </div>
                 
                 <div className="blog-modal-content">

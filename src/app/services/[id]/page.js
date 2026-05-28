@@ -716,8 +716,7 @@ export default function ServiceDetailPage({ params: paramsPromise }) {
               <li><Link href="/">Home</Link></li>
               <li><Link href="/about">About Us</Link></li>
               <li><Link href="/careers">Careers</Link></li>
-              <li><Link href="/contact">Payment Terms</Link></li>
-              <li><Link href="/blog">News</Link></li>
+              <li><Link href="/blog">Blogs</Link></li>
               <li><Link href="/contact">Contact</Link></li>
             </ul>
           </div>

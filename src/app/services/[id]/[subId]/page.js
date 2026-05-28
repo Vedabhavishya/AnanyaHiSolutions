@@ -180,7 +180,7 @@ export default function SubserviceDetailPage({ params: paramsPromise }) {
       {/* 4. What We Provide Section */}
       <section className="what-we-provide-section bg-white" style={{ padding: "80px 0", borderBottom: "1px solid #f1f5f9" }}>
         <div className="container" style={{ maxWidth: "1000px", margin: "0 auto", padding: "0 24px" }}>
-          <div className="text-center mb-12">
+          <div style={{ textAlign: "center", marginBottom: "48px" }}>
             <h2 style={{ fontFamily: "var(--font-headings)", color: "var(--dark-deep)", fontSize: "2.2rem", fontWeight: "800", marginBottom: "16px" }}>
               What We Provide in {data.title}
             </h2>
@@ -189,9 +189,9 @@ export default function SubserviceDetailPage({ params: paramsPromise }) {
           
           <div className="what-we-provide-grid">
             {[...data.visibleFeatures, ...data.lockedFeatures].map((feat, idx) => (
-              <div key={idx} className="provide-card" style={{ display: "flex", alignItems: "center", gap: "16px", background: "#f8fafc", padding: "18px 24px", borderRadius: "12px", border: "1px solid #f1f5f9", boxShadow: "0 2px 4px rgba(0,0,0,0.02)" }}>
-                <span className="provide-icon" style={{ display: "flex", alignItems: "center", justifyContent: "center", width: "24px", height: "24px", background: "rgba(15,117,188,0.1)", borderRadius: "50%", color: "var(--primary-blue)", fontSize: "14px", fontWeight: "bold", flexShrink: 0 }}>✓</span>
-                <span style={{ fontSize: "1.05rem", color: "var(--dark-deep)", fontWeight: "500" }}>{feat}</span>
+              <div key={idx} className="provide-card" style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", textAlign: "center", gap: "12px", background: "#f8fafc", padding: "24px 20px", borderRadius: "12px", border: "1px solid #f1f5f9", boxShadow: "0 2px 4px rgba(0,0,0,0.02)" }}>
+                <span className="provide-icon" style={{ display: "flex", alignItems: "center", justifyContent: "center", width: "32px", height: "32px", background: "rgba(15,117,188,0.1)", borderRadius: "50%", color: "var(--primary-blue)", fontSize: "16px", fontWeight: "bold", flexShrink: 0 }}>✓</span>
+                <span style={{ fontSize: "1.05rem", color: "var(--dark-deep)", fontWeight: "600", lineHeight: "1.5" }}>{feat}</span>
               </div>
             ))}
           </div>
@@ -205,17 +205,17 @@ export default function SubserviceDetailPage({ params: paramsPromise }) {
           {SUBSERVICES_WITH_PACKAGES.includes(subId) ? (
             // CASE A: Subservice has a package (Show hover sliding card in centered container)
             <div>
-              <div className="text-center mb-16">
-                <h2 style={{ fontFamily: "var(--font-headings)", color: "var(--dark-deep)", fontSize: "2.4rem", fontWeight: "800", marginBottom: "16px" }}>
-                  🎁 Choose Package
+              <div style={{ textAlign: "center", marginBottom: "40px" }}>
+                <h2 style={{ fontFamily: "var(--font-headings)", color: "var(--dark-deep)", fontSize: "2.4rem", fontWeight: "800", marginBottom: "16px", textAlign: "center" }}>
+                  🎁 Choose Packages
                 </h2>
-                <p style={{ color: "var(--secondary-slate)", fontSize: "1.15rem", maxWidth: "700px", margin: "0 auto" }}>
+                <p style={{ color: "var(--secondary-slate)", fontSize: "1.15rem", maxWidth: "700px", margin: "0 auto", textAlign: "center" }}>
                   Select our highly specialized, result-oriented {data.title} package. Hover to view features and unlock details.
                 </p>
               </div>
 
               <div style={{ display: "flex", justifyContent: "center", marginTop: "40px" }}>
-                <div className="package-card-premium" style={{ width: "100%", maxWidth: "380px" }}>
+                <div className="package-card-premium package-card-subpage" style={{ width: "100%", maxWidth: "380px" }}>
                   {/* Card Background image */}
                   <div 
                     className="package-card-bg"
@@ -249,10 +249,9 @@ export default function SubserviceDetailPage({ params: paramsPromise }) {
                       {data.lockedFeatures.map((feat, idx) => (
                         <li 
                           key={idx} 
-                          className="package-hover-feature-item"
+                          className={`package-hover-feature-item ${unlocked ? "" : "locked-item"}`}
                           style={{
-                            filter: unlocked ? "none" : "blur(4px)",
-                            opacity: unlocked ? 1 : 0.45,
+                            opacity: unlocked ? 1 : 0.65,
                             transition: "all 0.5s ease"
                           }}
                         >
@@ -263,29 +262,35 @@ export default function SubserviceDetailPage({ params: paramsPromise }) {
 
                     {/* Unlock / Success Button */}
                     <button 
-                      onClick={() => {
-                        if (!unlocked) setModalOpen(true);
-                      }}
+                      onClick={() => setModalOpen(true)}
                       className="package-hover-btn"
-                      disabled={unlocked}
                       style={{
-                        background: unlocked ? "#10b981" : "var(--white)",
-                        color: unlocked ? "var(--white)" : "var(--primary-blue)",
-                        cursor: unlocked ? "default" : "pointer",
+                        background: "var(--white)",
+                        color: "var(--primary-blue)",
+                        cursor: "pointer",
                         border: "none",
                         width: "100%"
                       }}
                     >
-                      {unlocked ? "🎉 Unlocked Successfully" : "🔒 Unlock Full Details"}
+                      🔒 Unlock Full Details
                     </button>
                   </div>
                 </div>
+              </div>
+
+              {/* Matter below the choose packages card */}
+              <div style={{ textAlign: "center", marginTop: "50px", maxWidth: "700px", margin: "50px auto 0 auto" }}>
+                <p style={{ color: "var(--secondary-slate)", fontSize: "1.1rem", lineHeight: "1.8" }}>
+                  All of our {data.title} packages are structured to maximize organic growth, conversion efficiency, and return on investment. 
+                  If you need custom integrations, bespoke features, or direct enterprise service level agreements, we can configure a tailored 
+                  plan specifically suited for your business scale.
+                </p>
               </div>
             </div>
           ) : (
             // CASE B: Subservice has no package (Show Consultation Lead Form inline matching screenshot)
             <div style={{ maxWidth: "720px", margin: "0 auto" }}>
-              <div className="text-center mb-12">
+              <div style={{ textAlign: "center", marginBottom: "48px" }}>
                 <h2 style={{ fontFamily: "var(--font-headings)", color: "var(--dark-deep)", fontSize: "2.2rem", fontWeight: "800", marginBottom: "16px" }}>
                   💬 Enquire Us
                 </h2>
@@ -550,22 +555,24 @@ export default function SubserviceDetailPage({ params: paramsPromise }) {
                   Successfully Unlocked!
                 </h3>
                 <p style={{ color: "var(--secondary-slate)", fontSize: "0.95rem", lineHeight: "1.6", marginBottom: "24px" }}>
-                  Thank you! The package feature list has been fully updated and is now fully visible behind this modal.
+                  Thank you for unlocking!
                 </p>
-                <button 
-                  onClick={closeModal}
+                <Link 
+                  href={`/packages/plans?package=${encodeURIComponent(data.title)}`}
                   style={{
+                    display: "inline-block",
                     background: "var(--primary-blue)",
                     color: "var(--white)",
                     padding: "10px 24px",
                     borderRadius: "6px",
                     fontWeight: "700",
                     border: "none",
-                    cursor: "pointer"
+                    cursor: "pointer",
+                    textDecoration: "none"
                   }}
                 >
                   View Details
-                </button>
+                </Link>
               </div>
             )}
           </div>
@@ -588,8 +595,7 @@ export default function SubserviceDetailPage({ params: paramsPromise }) {
               <li><Link href="/">Home</Link></li>
               <li><Link href="/about">About Us</Link></li>
               <li><Link href="/careers">Careers</Link></li>
-              <li><Link href="/contact">Payment Terms</Link></li>
-              <li><Link href="/blog">News</Link></li>
+              <li><Link href="/blog">Blogs</Link></li>
               <li><Link href="/contact">Contact</Link></li>
             </ul>
           </div>

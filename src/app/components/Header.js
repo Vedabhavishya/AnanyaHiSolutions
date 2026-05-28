@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import { useServices } from "../context/ServicesContext";
 import Link from "next/link";
 
 function Logo({ className = "" }) {
@@ -20,6 +21,7 @@ function Logo({ className = "" }) {
 }
 
 export default function Header({ activePage = "" }) {
+  const { services } = useServices();
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
@@ -60,16 +62,9 @@ export default function Header({ activePage = "" }) {
               Services <span className="dropdown-arrow">▼</span>
             </span>
             <ul className="dropdown-menu">
-              <li><Link href="/services/web-design">Website Design</Link></li>
-              <li><Link href="/services/digital-marketing">Digital Marketing</Link></li>
-              <li><Link href="/services/mobile-app">Mobile Application</Link></li>
-              <li><Link href="/services/ecommerce-app">Ecommerce Application</Link></li>
-              <li><Link href="/services/video-production">Video Production</Link></li>
-              <li><Link href="/services/software-development">Software Development</Link></li>
-              <li><Link href="/services/aeo">AEO (Answer Engine)</Link></li>
-              <li><Link href="/services/geo">GEO (Google Engine)</Link></li>
-              <li><Link href="/services/youtube-seo">YouTube SEO</Link></li>
-              <li><Link href="/services/youtube-ads">YouTube Ads</Link></li>
+              {services.map((svc) => (
+                <li key={svc.id}><Link href={`/services/${svc.id}`}>{svc.title}</Link></li>
+              ))}
             </ul>
           </li>
           <li>
@@ -130,16 +125,9 @@ export default function Header({ activePage = "" }) {
             </div>
             {mobileServicesOpen && (
               <div className="flex flex-col gap-2 pl-4 pt-2">
-                <Link href="/services/web-design" onClick={() => setMobileMenuOpen(false)} className="text-sm font-medium text-slate-600 hover:text-primary-blue">Website Design</Link>
-                <Link href="/services/digital-marketing" onClick={() => setMobileMenuOpen(false)} className="text-sm font-medium text-slate-600 hover:text-primary-blue">Digital Marketing</Link>
-                <Link href="/services/mobile-app" onClick={() => setMobileMenuOpen(false)} className="text-sm font-medium text-slate-600 hover:text-primary-blue">Mobile Application</Link>
-                <Link href="/services/ecommerce-app" onClick={() => setMobileMenuOpen(false)} className="text-sm font-medium text-slate-600 hover:text-primary-blue">Ecommerce Application</Link>
-                <Link href="/services/video-production" onClick={() => setMobileMenuOpen(false)} className="text-sm font-medium text-slate-600 hover:text-primary-blue">Video Production</Link>
-                <Link href="/services/software-development" onClick={() => setMobileMenuOpen(false)} className="text-sm font-medium text-slate-600 hover:text-primary-blue">Software Development</Link>
-                <Link href="/services/aeo" onClick={() => setMobileMenuOpen(false)} className="text-sm font-medium text-slate-600 hover:text-primary-blue">AEO (Answer Engine)</Link>
-                <Link href="/services/geo" onClick={() => setMobileMenuOpen(false)} className="text-sm font-medium text-slate-600 hover:text-primary-blue">GEO (Google Engine)</Link>
-                <Link href="/services/youtube-seo" onClick={() => setMobileMenuOpen(false)} className="text-sm font-medium text-slate-600 hover:text-primary-blue">YouTube SEO</Link>
-                <Link href="/services/youtube-ads" onClick={() => setMobileMenuOpen(false)} className="text-sm font-medium text-slate-600 hover:text-primary-blue">YouTube Ads</Link>
+                {services.map((svc) => (
+                  <Link key={svc.id} href={`/services/${svc.id}`} onClick={() => setMobileMenuOpen(false)} className="text-sm font-medium text-slate-600 hover:text-primary-blue">{svc.title}</Link>
+                ))}
               </div>
             )}
           </div>

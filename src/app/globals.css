@@ -6220,20 +6220,23 @@ button {
 
 /* Sub-service Page Enhancements */
 .what-we-provide-grid {
-  display: grid;
-  grid-template-columns: 1fr;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: 20px;
   margin-top: 20px;
 }
 
-@media (min-width: 768px) {
-  .what-we-provide-grid {
-    grid-template-columns: 1fr 1fr;
-  }
+.provide-card {
+  width: 100%;
+  max-width: 480px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
 }
 
-.provide-card {
-  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+@media (min-width: 768px) {
+  .provide-card {
+    width: calc(50% - 10px);
+  }
 }
 
 .provide-card:hover {
@@ -6631,4 +6634,47 @@ button {
 
 .plan-card-popular .plan-expert-msg {
   color: #9ca3af;
+}
+
+/* Custom styling for subservice packages card to prevent text overflow and cut off buttons */
+.package-card-premium.package-card-subpage {
+  height: 560px;
+}
+
+.package-card-premium.package-card-subpage .package-card-hover-panel {
+  padding: 30px 24px;
+}
+
+.package-card-premium.package-card-subpage .package-hover-features {
+  gap: 10px;
+  margin: 15px 0;
+}
+
+.package-card-premium.package-card-subpage .package-hover-feature-item {
+  font-size: 0.9rem;
+  line-height: 1.45;
+}
+
+.package-card-premium.package-card-subpage .package-hover-header h3 {
+  font-size: 1.4rem;
+}
+
+/* Footer Bottom Centering Update */
+.footer-bottom {
+  text-align: center;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.footer-bottom p {
+  text-align: center;
+  margin: 0 auto;
+}
+
+.package-hover-feature-item.locked-item::before {
+  content: "🔒" !important;
+  font-size: 0.85rem !important;
+  top: 1px !important;
+  left: 2px !important;
 }

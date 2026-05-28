@@ -148,7 +148,7 @@ export default function SubserviceDetailPage({ params: paramsPromise }) {
       <Header activePage="services" />
 
       {/* 2. Top Header Visual Banner */}
-      <section className="subservice-banner-section" style={{ background: "var(--dark-deep)", paddingTop: "140px", paddingBottom: "60px" }}>
+      <section className="subservice-banner-section" style={{ background: "var(--dark-deep)", paddingTop: "120px", paddingBottom: "40px" }}>
         <div className="container" style={{ maxWidth: "1000px", margin: "0 auto", padding: "0 24px", textAlign: "center" }}>
           <div className="subservice-banner-wrapper" style={{ position: "relative", width: "100%", height: "350px", borderRadius: "20px", overflow: "hidden", boxShadow: "0 20px 40px rgba(0,0,0,0.3)", marginBottom: "40px", border: "1px solid rgba(255, 255, 255, 0.1)" }}>
             <img 
@@ -165,7 +165,7 @@ export default function SubserviceDetailPage({ params: paramsPromise }) {
       </section>
 
       {/* 3. Why Choose Ananya Hi Solutions Section */}
-      <section className="why-choose-subservice bg-white" style={{ padding: "80px 0", borderBottom: "1px solid #f1f5f9" }}>
+      <section className="why-choose-subservice bg-white" style={{ padding: "50px 0", borderBottom: "1px solid #f1f5f9" }}>
         <div className="container" style={{ maxWidth: "850px", margin: "0 auto", padding: "0 24px", textAlign: "center" }}>
           <h2 style={{ fontFamily: "var(--font-headings)", color: "var(--dark-deep)", fontSize: "2.2rem", fontWeight: "800", marginBottom: "24px" }}>
             Why Choose Ananya Hi Solutions for {data.title}
@@ -178,7 +178,7 @@ export default function SubserviceDetailPage({ params: paramsPromise }) {
       </section>
 
       {/* 4. What We Provide Section */}
-      <section className="what-we-provide-section bg-white" style={{ padding: "80px 0", borderBottom: "1px solid #f1f5f9" }}>
+      <section className="what-we-provide-section bg-white" style={{ padding: "50px 0", borderBottom: "1px solid #f1f5f9" }}>
         <div className="container" style={{ maxWidth: "1000px", margin: "0 auto", padding: "0 24px" }}>
           <div style={{ textAlign: "center", marginBottom: "48px" }}>
             <h2 style={{ fontFamily: "var(--font-headings)", color: "var(--dark-deep)", fontSize: "2.2rem", fontWeight: "800", marginBottom: "16px" }}>
@@ -199,14 +199,14 @@ export default function SubserviceDetailPage({ params: paramsPromise }) {
       </section>
 
       {/* 5. Choose Package / Consultation Lead Form Section */}
-      <section className="package-details-section" style={{ padding: "100px 0", background: "var(--light-gray)" }}>
+      <section className="package-details-section" style={{ padding: "50px 0", background: "var(--light-gray)" }}>
         <div className="container" style={{ maxWidth: "1200px", margin: "0 auto", padding: "0 24px" }}>
           
           {SUBSERVICES_WITH_PACKAGES.includes(subId) ? (
             // CASE A: Subservice has a package (Show hover sliding card in centered container)
             <div>
               <div style={{ textAlign: "center", marginBottom: "40px" }}>
-                <h2 style={{ fontFamily: "var(--font-headings)", color: "var(--dark-deep)", fontSize: "2.4rem", fontWeight: "800", marginBottom: "16px", textAlign: "center" }}>
+                <h2 style={{ fontFamily: "var(--font-headings)", color: "var(--accent-orange)", fontSize: "2.4rem", fontWeight: "800", marginBottom: "16px", textAlign: "center" }}>
                   🎁 Choose Packages
                 </h2>
                 <p style={{ color: "var(--secondary-slate)", fontSize: "1.15rem", maxWidth: "700px", margin: "0 auto", textAlign: "center" }}>

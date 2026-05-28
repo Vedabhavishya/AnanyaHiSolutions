@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import { useRouter } from "next/navigation";
 import Link from "next/link";
 import Header from "../components/Header";
 
@@ -27,7 +28,7 @@ const PACKAGE_CATEGORIES = [
     cards: [
       {
         title: "Social Media Marketing",
-        image: "https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?auto=format&fit=crop&w=800&q=80",
+        price: "Starts from ₹14,999/mo",
         features: [
           "15-18 High-Quality Creative Posts.",
           "Competitor Analysis.",
@@ -38,18 +39,18 @@ const PACKAGE_CATEGORIES = [
       },
       {
         title: "Google Ads/PPC Ads",
-        image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80",
+        price: "Starts from ₹19,999/mo",
         features: [
           "High-intent keyword match type grouping",
-          "Persuasive copy writing & ad variations testing",
+          "Persuasive ad copy writing & variations testing",
           "Negative keyword exclusions list mapping",
-          "Conversion pixel and metrics tracking setup"
+          "Conversion pixel metrics tracking setups"
         ],
         link: "/services/digital-marketing/google-ads"
       },
       {
         title: "Search Engine Optimization (SEO)",
-        image: "https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?auto=format&fit=crop&w=800&q=80",
+        price: "Starts from ₹14,999/mo",
         features: [
           "Competitor search queries profiling",
           "PageSpeed core vitals speed audits",
@@ -66,7 +67,7 @@ const PACKAGE_CATEGORIES = [
     cards: [
       {
         title: "Static Website Design",
-        image: "https://images.unsplash.com/photo-1541462608143-67571c6738dd?auto=format&fit=crop&w=800&q=80",
+        price: "Starts from ₹9,999",
         features: [
           "Delivery Within 3 Working Days.",
           "FREE Web Hosting & SSL for 1 year.",
@@ -77,7 +78,7 @@ const PACKAGE_CATEGORIES = [
       },
       {
         title: "Dynamic Website",
-        image: "https://images.unsplash.com/photo-1531403009284-440f080d1e12?auto=format&fit=crop&w=800&q=80",
+        price: "Starts from ₹19,999",
         features: [
           "Dynamic database-driven content architectures",
           "User-friendly dynamic admin panel console",
@@ -88,7 +89,7 @@ const PACKAGE_CATEGORIES = [
       },
       {
         title: "E-Commerce Website",
-        image: "https://images.unsplash.com/photo-1557821552-17105176677c?auto=format&fit=crop&w=800&q=80",
+        price: "Starts from ₹29,999",
         features: [
           "Unlimited product listings and inventory logs",
           "Secure payment gateways (Stripe, Razorpay, UPI)",
@@ -102,11 +103,10 @@ const PACKAGE_CATEGORIES = [
   {
     title: "Special Packages",
     key: "special",
-    isSingleCard: true,
     cards: [
       {
         title: "Spa Packages",
-        image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=800&q=80",
+        price: "Starts from ₹14,999",
         features: [
           "Blazing fast React/Vue/Next.js dynamic rendering",
           "Seamless client-side transition page routing",
@@ -120,7 +120,7 @@ const PACKAGE_CATEGORIES = [
 ];
 
 export default function PackagesPage() {
-  const router = require("next/navigation").useRouter();
+  const router = useRouter();
   const [modalOpen, setModalOpen] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [selectedPackage, setSelectedPackage] = useState({ category: "", plan: "" });
@@ -189,67 +189,88 @@ export default function PackagesPage() {
         </div>
       </section>
 
-      {/* 3. Package Sections */}
-      {PACKAGE_CATEGORIES.map((category, index) => {
-        // Alternate background colors (Light Gray -> White -> Light Gray)
-        const isAltBg = index % 2 === 0;
-        const bgClass = isAltBg ? "section section-bg-alt" : "section";
-        const bgStyle = isAltBg ? {} : { backgroundColor: "var(--white)" };
+      {/* 3. Redesigned Split Packages Section */}
+      <div className="packages-split-container">
+        
+        {/* Left Banner Pane (Sticky desktop, top mobile) */}
+        <div className="packages-left-banner">
+          <img 
+            src="https://images.unsplash.com/photo-1551434678-e076c223a692?auto=format&fit=crop&w=1200&q=80"
+            alt="Ananya Digital Services"
+            className="packages-banner-img"
+          />
+          <div className="packages-banner-overlay" />
+          
+          {/* Floating animated tech elements */}
+          <div className="floating-icon-item" style={{ top: "15%", left: "20%", animationDelay: "0s" }}>💻</div>
+          <div className="floating-icon-item" style={{ top: "30%", right: "20%", animationDelay: "1.2s" }}>📈</div>
+          <div className="floating-icon-item" style={{ top: "58%", left: "15%", animationDelay: "2.4s" }}>🎥</div>
+          <div className="floating-icon-item" style={{ bottom: "22%", right: "25%", animationDelay: "3.6s" }}>🤖</div>
+        </div>
 
-        return (
-          <section key={category.key} className={bgClass} style={bgStyle}>
-            <div className="container">
-              <div className="package-category-header">
-                <h2 className="package-category-title">{category.title}</h2>
-                <div className="package-category-underline"></div>
-              </div>
+        {/* Right Content Pane (Scrollable) */}
+        <div className="packages-right-content">
+          <div style={{ marginBottom: "50px" }}>
+            <span className="text-accent-orange font-bold text-sm uppercase tracking-wider block mb-2">Premium Solutions</span>
+            <h2 style={{ fontFamily: "var(--font-headings)", color: "var(--dark-deep)", fontSize: "2.4rem", fontWeight: "800", margin: "0 0 16px 0" }}>
+              Tailored Plans for Growth
+            </h2>
+            <p style={{ color: "var(--secondary-slate)", fontSize: "1.05rem", lineHeight: "1.6", margin: 0 }}>
+              Select a package details overview below. Hover over each card to experience micro-interactions and select your plan.
+            </p>
+          </div>
 
-              <div className={category.isSingleCard ? "packages-grid-single" : "packages-grid"}>
+          {PACKAGE_CATEGORIES.map((category) => (
+            <div key={category.key} style={{ marginBottom: "50px" }}>
+              <h3 className="packages-category-heading-main">{category.title}</h3>
+              
+              <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
                 {category.cards.map((card, cIdx) => (
-                  <div key={cIdx} className="package-card-premium">
-                    {/* Default Background Image */}
-                    <div 
-                      className="package-card-bg"
-                      style={{ backgroundImage: `url('${card.image}')` }}
-                    />
+                  <div key={cIdx} className="glass-package-card animate-slide-up">
+                    <h4 style={{ fontFamily: "var(--font-headings)", color: "var(--dark-deep)", fontSize: "1.45rem", fontWeight: "800", margin: "0 0 4px 0" }}>
+                      {card.title}
+                    </h4>
                     
-                    {/* Shadow overlay gradient */}
-                    <div className="package-card-overlay" />
-
-                    {/* Default visible Title at bottom */}
-                    <div className="package-card-title-default">
-                      <h3>{card.title}</h3>
-                      <div className="package-card-underline" />
-                    </div>
-
-                    {/* Sliding Hover Panel */}
-                    <div className="package-card-hover-panel">
-                      <div className="package-hover-header">
-                        <h3>{card.title}</h3>
-                        <div style={{ width: "40px", height: "3px", background: "var(--accent-orange)", margin: "0 auto", borderRadius: "10px" }} />
-                      </div>
-
-                      {/* 4 Single-line features */}
-                      <ul className="package-hover-features">
-                        {card.features.map((feat, fIdx) => (
-                          <li key={fIdx} className="package-hover-feature-item">
-                            {feat}
-                          </li>
-                        ))}
-                      </ul>
-
-                      {/* Unlock button */}
-                      <button onClick={() => openModal(category.title, card.title)} className="package-hover-btn">
-                        Unlock Full Details
-                      </button>
-                    </div>
+                    <div className="glass-card-price-tag">{card.price}</div>
+                    
+                    <ul className="glass-card-highlights">
+                      {card.features.map((feat, fIdx) => (
+                        <li key={fIdx} className="glass-card-highlight-item">
+                          {feat}
+                        </li>
+                      ))}
+                    </ul>
+                    
+                    <button 
+                      onClick={() => openModal(category.title, card.title)} 
+                      className="glass-card-cta-btn"
+                    >
+                      Enquire Plan
+                    </button>
                   </div>
                 ))}
               </div>
             </div>
-          </section>
-        );
-      })}
+          ))}
+
+          {/* Bottom CTA Area */}
+          <div style={{ borderTop: "1px solid rgba(15, 117, 188, 0.08)", paddingTop: "40px", marginTop: "60px", textAlign: "center" }}>
+            <h3 style={{ fontFamily: "var(--font-headings)", color: "var(--dark-deep)", fontSize: "1.5rem", fontWeight: "800", marginBottom: "12px" }}>
+              Want to see all checklist points?
+            </h3>
+            <p style={{ color: "var(--secondary-slate)", fontSize: "0.95rem", marginBottom: "30px", maxWidth: "450px", margin: "0 auto 30px auto" }}>
+              Unlock the entire dashboard comparison to explore fully detailed technical points and custom deliverables.
+            </p>
+            <button 
+              onClick={() => openModal("All Packages", "All Categories Comparison")} 
+              className="unlock-all-cta-btn"
+            >
+              Unlock All Packages
+            </button>
+          </div>
+        </div>
+
+      </div>
 
       {/* 4. Footer */}
       <footer className="footer mt-auto">

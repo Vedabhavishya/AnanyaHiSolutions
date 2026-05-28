@@ -46,7 +46,7 @@ export default function AboutPage() {
   const faqs = [
     {
       q: "What is the experience level of Ananya Hi Solutions team?",
-      a: "Our team comprises 50+ professionals with an average experience of 7+ years in their respective fields. This includes Google Ads certified specialists, Facebook Blueprint certified marketers, certified web developers, UX/UI designers, and project managers. Our leadership team brings over 15 years of combined digital industry experience.",
+      a: "Our team comprises a great group of passionate professionals with extensive experience in their respective fields. This includes Google Ads certified specialists, Facebook Blueprint certified marketers, certified web developers, UX/UI designers, and project managers. Our leadership team brings highly seasoned digital industry experience.",
     },
     {
       q: "How does Ananya Hi Solutions maintain quality standards?",
@@ -320,10 +320,10 @@ export default function AboutPage() {
             <div className="about-story-text">
               <h3>Who We Are</h3>
               <p>
-                Founded in 2013, Ananya Hi Solutions has evolved into one of Hyderabad's most trusted digital transformation partners. Our journey began with a simple vision: to help businesses harness the power of digital technology to achieve extraordinary growth. Today, we're proud to be a team of 50+ passionate professionals including certified digital marketers, experienced web designers, skilled developers, creative content specialists, and strategic consultants. Each team member brings specialized expertise and unwavering commitment to client success. Our core values drive everything we do: Innovation in every solution, Transparency in all communications, Excellence in execution, and Partnership in relationships. We don't just work for our clients; we work with them as strategic partners invested in their success.
+                Ananya Hi Solutions is one of Hyderabad's most trusted digital transformation partners. Our journey began with a simple vision: to help businesses harness the power of digital technology to achieve extraordinary growth. Today, we're proud to have a great team of passionate professionals, including certified digital marketers, experienced web designers, skilled developers, creative content specialists, and strategic consultants. Each team member brings specialized expertise and unwavering commitment to client success. Our core values drive everything we do: Innovation in every solution, Transparency in all communications, Excellence in execution, and Partnership in relationships. We don't just work for our clients; we work with them as strategic partners invested in their success.
               </p>
               <p>
-                Over the years, we've successfully delivered 500+ projects, helping businesses across India and internationally to establish powerful digital presence, generate quality leads, and scale their operations. Our client retention rate of 95% speaks to the lasting relationships we build and the consistent value we deliver.
+                We have successfully delivered numerous projects, helping businesses across India and internationally to establish a powerful digital presence, generate quality leads, and scale their operations. Our high client retention rate speaks to the lasting relationships we build, the great team synergy we maintain, and the consistent value we deliver to our partners.
               </p>
             </div>
           </div>

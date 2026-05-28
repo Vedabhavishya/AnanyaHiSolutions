@@ -100,15 +100,67 @@ export default function Header({ activePage = "" }) {
 
       {/* Mobile Menu Overlay */}
       {mobileMenuOpen && (
-        <div className="fixed inset-0 top-[70px] bg-white z-[999] flex flex-col p-6 gap-6 shadow-lg md:hidden animate-slide-in">
-          <Link href="/" onClick={() => setMobileMenuOpen(false)} className="text-xl font-bold border-b pb-2">Home</Link>
-          <Link href="/about" onClick={() => setMobileMenuOpen(false)} className="text-xl font-bold border-b pb-2">About</Link>
+        <div 
+          className="md:hidden animate-slide-in"
+          style={{
+            position: "fixed",
+            left: 0,
+            right: 0,
+            top: "70px",
+            bottom: 0,
+            background: "#ffffff",
+            zIndex: 9999,
+            display: "flex",
+            flexDirection: "column",
+            padding: "24px",
+            gap: "20px",
+            boxShadow: "0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1)",
+            overflowY: "auto"
+          }}
+        >
+          <Link 
+            href="/" 
+            onClick={() => setMobileMenuOpen(false)} 
+            style={{
+              fontSize: "18px",
+              fontWeight: "700",
+              color: "var(--dark-deep)",
+              textDecoration: "none",
+              paddingBottom: "12px",
+              borderBottom: "1px solid #f1f5f9",
+              display: "block"
+            }}
+          >
+            Home
+          </Link>
           
-          <div className="flex flex-col border-b pb-2">
-            <div className="flex justify-between items-center text-xl font-bold">
+          <Link 
+            href="/about" 
+            onClick={() => setMobileMenuOpen(false)} 
+            style={{
+              fontSize: "18px",
+              fontWeight: "700",
+              color: "var(--dark-deep)",
+              textDecoration: "none",
+              paddingBottom: "12px",
+              borderBottom: "1px solid #f1f5f9",
+              display: "block"
+            }}
+          >
+            About
+          </Link>
+          
+          <div style={{ display: "flex", flexDirection: "column", borderBottom: "1px solid #f1f5f9", paddingBottom: "12px" }}>
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
               <span 
                 onClick={() => setMobileServicesOpen(!mobileServicesOpen)} 
-                className="cursor-pointer select-none"
+                style={{
+                  fontSize: "18px",
+                  fontWeight: "700",
+                  color: "var(--dark-deep)",
+                  cursor: "pointer",
+                  userSelect: "none"
+                }}
               >
                 Services
               </span>
@@ -117,25 +169,100 @@ export default function Header({ activePage = "" }) {
                   e.stopPropagation(); 
                   setMobileServicesOpen(!mobileServicesOpen); 
                 }} 
-                className="text-xl px-2 animate-pulse"
-                style={{ background: "none", border: "none", cursor: "pointer", color: "var(--primary-blue)" }}
+                style={{
+                  fontSize: "18px",
+                  background: "none",
+                  border: "none",
+                  cursor: "pointer",
+                  color: "var(--primary-blue)",
+                  padding: "0 8px"
+                }}
               >
                 {mobileServicesOpen ? "▲" : "▼"}
               </button>
             </div>
             {mobileServicesOpen && (
-              <div className="flex flex-col gap-2 pl-4 pt-2">
+              <div style={{ display: "flex", flexDirection: "column", gap: "10px", paddingLeft: "16px", paddingTop: "10px" }}>
                 {services.map((svc) => (
-                  <Link key={svc.id} href={`/services/${svc.id}`} onClick={() => setMobileMenuOpen(false)} className="text-sm font-medium text-slate-600 hover:text-primary-blue">{svc.title}</Link>
+                  <Link 
+                    key={svc.id} 
+                    href={`/services/${svc.id}`} 
+                    onClick={() => setMobileMenuOpen(false)} 
+                    style={{
+                      fontSize: "14px",
+                      fontWeight: "600",
+                      color: "#475569",
+                      textDecoration: "none",
+                      display: "block"
+                    }}
+                  >
+                    {svc.title}
+                  </Link>
                 ))}
               </div>
             )}
           </div>
 
-          <Link href="/careers" onClick={() => setMobileMenuOpen(false)} className="text-xl font-bold border-b pb-2">Careers</Link>
-          <Link href="/blog" onClick={() => setMobileMenuOpen(false)} className="text-xl font-bold border-b pb-2">Blog</Link>
-          <Link href="/contact" onClick={() => setMobileMenuOpen(false)} className="text-xl font-bold border-b pb-2">Contact us</Link>
-          <Link href="/packages" onClick={() => setMobileMenuOpen(false)} className="btn btn-accent text-center mt-4">Choose Package</Link>
+          <Link 
+            href="/careers" 
+            onClick={() => setMobileMenuOpen(false)} 
+            style={{
+              fontSize: "18px",
+              fontWeight: "700",
+              color: "var(--dark-deep)",
+              textDecoration: "none",
+              paddingBottom: "12px",
+              borderBottom: "1px solid #f1f5f9",
+              display: "block"
+            }}
+          >
+            Careers
+          </Link>
+          
+          <Link 
+            href="/blog" 
+            onClick={() => setMobileMenuOpen(false)} 
+            style={{
+              fontSize: "18px",
+              fontWeight: "700",
+              color: "var(--dark-deep)",
+              textDecoration: "none",
+              paddingBottom: "12px",
+              borderBottom: "1px solid #f1f5f9",
+              display: "block"
+            }}
+          >
+            Blog
+          </Link>
+          
+          <Link 
+            href="/contact" 
+            onClick={() => setMobileMenuOpen(false)} 
+            style={{
+              fontSize: "18px",
+              fontWeight: "700",
+              color: "var(--dark-deep)",
+              textDecoration: "none",
+              paddingBottom: "12px",
+              borderBottom: "1px solid #f1f5f9",
+              display: "block"
+            }}
+          >
+            Contact us
+          </Link>
+          
+          <Link 
+            href="/packages" 
+            onClick={() => setMobileMenuOpen(false)} 
+            className="btn btn-accent text-center" 
+            style={{
+              marginTop: "16px",
+              textDecoration: "none",
+              display: "block"
+            }}
+          >
+            Choose Package
+          </Link>
         </div>
       )}
     </header>

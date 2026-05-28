@@ -48,7 +48,8 @@ export default function AdminDashboardPage() {
   const [blogSummary, setBlogSummary] = useState("");
   const [blogContent, setBlogContent] = useState("");
   const [blogCategory, setBlogCategory] = useState("Technology");
-  const [blogAuthor, setBlogAuthor] = useState("Ananya Solutions Team");
+  const [blogAuthor, setBlogAuthor] = useState("Ananya Hi Solutions");
+  const [blogCoverImage, setBlogCoverImage] = useState("");
 
   // Authorization Check
   useEffect(() => {
@@ -172,7 +173,8 @@ export default function AdminDashboardPage() {
         setBlogSummary(item.summary);
         setBlogContent(item.content);
         setBlogCategory(item.category);
-        setBlogAuthor(item.author || "Ananya Solutions Team");
+        setBlogAuthor(item.author || "Ananya Hi Solutions");
+        setBlogCoverImage(item.coverImage || "");
       }
     } else {
       // Clear forms for Add action
@@ -195,11 +197,113 @@ export default function AdminDashboardPage() {
         setBlogSummary("");
         setBlogContent("");
         setBlogCategory("Technology");
-        setBlogAuthor("Ananya Solutions Team");
+        setBlogAuthor("Ananya Hi Solutions");
+        setBlogCoverImage("");
       }
     }
 
     setIsModalOpen(true);
+  };
+
+  // Load dynamic scripts (e.g. mammoth, pdfjs)
+  const loadScript = (src) => {
+    return new Promise((resolve, reject) => {
+      if (document.querySelector(`script[src="${src}"]`)) {
+        resolve();
+        return;
+      }
+      const script = document.createElement("script");
+      script.src = src;
+      script.onload = () => resolve();
+      script.onerror = () => reject(new Error(`Failed to load script: ${src}`));
+      document.body.appendChild(script);
+    });
+  };
+
+  // Handle parsing PDF/DOCX
+  const handleDocumentUpload = async (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+
+    const fileType = file.name.split('.').pop().toLowerCase();
+    showToast("Extracting document text...", true);
+
+    try {
+      if (fileType === "docx") {
+        if (!window.mammoth) {
+          await loadScript("https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.6.0/mammoth.browser.min.js");
+        }
+        
+        const reader = new FileReader();
+        reader.onload = (event) => {
+          const arrayBuffer = event.target.result;
+          window.mammoth.extractRawText({ arrayBuffer: arrayBuffer })
+            .then((result) => {
+              const text = result.value;
+              setBlogContent(text);
+              // Auto-fill summary helper
+              const trimmed = text.replace(/\s+/g, ' ').trim();
+              setBlogSummary(trimmed.slice(0, 180) + (trimmed.length > 180 ? "..." : ""));
+              showToast("Successfully extracted .docx content!", true);
+            })
+            .catch((err) => {
+              showToast("Error parsing docx content", false);
+              console.error(err);
+            });
+        };
+        reader.readAsArrayBuffer(file);
+      } else if (fileType === "pdf") {
+        if (!window['pdfjs-dist/build/pdf']) {
+          await loadScript("https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.4.120/pdf.min.js");
+        }
+        
+        const reader = new FileReader();
+        reader.onload = async (event) => {
+          const typedarray = new Uint8Array(event.target.result);
+          const pdfjsLib = window['pdfjs-dist/build/pdf'];
+          pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.4.120/pdf.worker.min.js';
+          
+          try {
+            const pdf = await pdfjsLib.getDocument({ data: typedarray }).promise;
+            let fullText = "";
+            for (let i = 1; i <= pdf.numPages; i++) {
+              const page = await pdf.getPage(i);
+              const textContent = await page.getTextContent();
+              const pageText = textContent.items.map((item) => item.str).join(" ");
+              fullText += pageText + "\n";
+            }
+            setBlogContent(fullText);
+            // Auto-fill summary helper
+            const trimmed = fullText.replace(/\s+/g, ' ').trim();
+            setBlogSummary(trimmed.slice(0, 180) + (trimmed.length > 180 ? "..." : ""));
+            showToast("Successfully extracted .pdf content!", true);
+          } catch (err) {
+            showToast("Error extracting PDF text pages", false);
+            console.error(err);
+          }
+        };
+        reader.readAsArrayBuffer(file);
+      }
+    } catch (err) {
+      showToast("Error loading parsing libraries", false);
+      console.error(err);
+    }
+  };
+
+  // Handle image uploading & conversion to base64
+  const handleCoverImageUpload = (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onload = (event) => {
+      setBlogCoverImage(event.target.result);
+      showToast("Cover image loaded successfully!", true);
+    };
+    reader.onerror = () => {
+      showToast("Failed to read cover image file", false);
+    };
+    reader.readAsDataURL(file);
   };
 
   // Form Submit Handler
@@ -248,7 +352,8 @@ export default function AdminDashboardPage() {
         summary: blogSummary,
         content: blogContent,
         category: blogCategory,
-        author: blogAuthor,
+        author: blogAuthor || "Ananya Hi Solutions",
+        coverImage: blogCoverImage,
       };
 
       if (modalAction === "edit") {
@@ -845,6 +950,59 @@ export default function AdminDashboardPage() {
                       placeholder="e.g. How Web Designs Influence E-commerce Revenue"
                       required
                     />
+                  </div>
+
+                  <div className="modal-form-row">
+                    <div className="modal-form-group flex-1">
+                      <label htmlFor="blog-cover">Cover Image URL</label>
+                      <input
+                        id="blog-cover"
+                        type="text"
+                        value={blogCoverImage}
+                        onChange={(e) => setBlogCoverImage(e.target.value)}
+                        placeholder="e.g. /images/hero/digital-marketing.png"
+                      />
+                    </div>
+                    <div className="modal-form-group flex-1">
+                      <label htmlFor="blog-cover-file">Upload Cover Image</label>
+                      <input
+                        id="blog-cover-file"
+                        type="file"
+                        accept="image/*"
+                        onChange={handleCoverImageUpload}
+                        className="file-input-custom"
+                        style={{
+                          padding: "6px",
+                          border: "1px dashed rgba(15, 117, 188, 0.3)",
+                          borderRadius: "var(--radius-sm)",
+                          background: "rgba(15, 117, 188, 0.02)",
+                          fontSize: "12px",
+                          color: "#334155"
+                        }}
+                      />
+                    </div>
+                  </div>
+
+                  <div className="modal-form-group">
+                    <label htmlFor="blog-doc-file">Upload Content File (.docx or .pdf)</label>
+                    <input
+                      id="blog-doc-file"
+                      type="file"
+                      accept=".docx,.pdf"
+                      onChange={handleDocumentUpload}
+                      className="file-input-custom"
+                      style={{
+                        padding: "8px",
+                        border: "1px dashed #ea580c",
+                        borderRadius: "var(--radius-sm)",
+                        background: "rgba(234, 88, 12, 0.02)",
+                        fontSize: "12px",
+                        color: "#334155"
+                      }}
+                    />
+                    <small style={{ color: "#475569", marginTop: "4px", display: "block", fontSize: "11px" }}>
+                      Selecting a document will extract its plain text directly into the article content box below.
+                    </small>
                   </div>
 
                   <div className="modal-form-row">

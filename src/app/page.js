@@ -531,18 +531,18 @@ export default function Home() {
   // Reviews State
   const reviews = [
     {
-      name: "Neerunemula Arunkumar",
-      role: "Local Guide",
-      stars: 5,
-      text: "Best social media marketing firm.",
-      initials: "NA",
-    },
-    {
       name: "sunspringwellnessspa",
       role: "Spa & Wellness Brand",
       stars: 5,
       text: "Ananya Hi Solutions is hands down the best AI digital marketing and automation service provider in Hyderabad. Their team doesn't just run ads; they use advanced automation to streamline lead generation and ROI. Since partnering with them, our digital presence has grown significantly. Highly recommended for any business looking for data-driven results",
       initials: "SS",
+    },
+    {
+      name: "Neerunemula Arunkumar",
+      role: "Local Guide",
+      stars: 5,
+      text: "Best social media marketing firm.",
+      initials: "NA",
     },
     {
       name: "sri bhavani",

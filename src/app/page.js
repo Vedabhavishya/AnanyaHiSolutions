@@ -954,7 +954,7 @@ export default function Home() {
       <section id="worldwide" className="worldwide-section">
         <div className="container">
           <div className="section-header">
-            <h2>Project delivere worldwide</h2>
+            <h2>Projects Delivered Worldwide</h2>
             <p>Delivering high-performance digital solutions globally from our headquarters in Hyderabad.</p>
           </div>
 

@@ -165,51 +165,33 @@ export default function SubserviceDetailPage({ params: paramsPromise }) {
       </section>
 
       {/* 3. Why Choose Ananya Hi Solutions Section */}
-      <section className="why-choose-subservice" style={{ padding: "80px 0", background: "linear-gradient(135deg, #f8fafc 0%, #ffffff 100%)", position: "relative", overflow: "hidden" }}>
-        {/* Subtle background decoration */}
-        <div style={{ position: "absolute", top: "-50px", right: "-50px", width: "300px", height: "300px", background: "rgba(15, 117, 188, 0.03)", borderRadius: "50%", filter: "blur(40px)", zIndex: 0 }}></div>
-        <div className="container" style={{ maxWidth: "1100px", margin: "0 auto", padding: "0 24px", position: "relative", zIndex: 1 }}>
-          <div className="subservice-split-why-choose">
-            <div className="why-choose-text-content">
-              <h2 style={{ fontFamily: "var(--font-headings)", color: "var(--dark-deep)", fontSize: "2.4rem", fontWeight: "800", marginBottom: "20px", lineHeight: "1.2" }}>
-                Why Choose Ananya Hi Solutions for <span style={{ color: "var(--accent-orange)" }}>{data.title}</span>
-              </h2>
-              <div style={{ width: "60px", height: "4px", background: "var(--primary-blue)", marginBottom: "30px", borderRadius: "10px" }}></div>
-              <p style={{ color: "var(--secondary-slate)", fontSize: "1.15rem", lineHeight: "1.8", margin: 0, textAlign: "justify" }}>
-                {data.whyChoose}
-              </p>
-            </div>
-            <div className="why-choose-visual" style={{ position: "relative" }}>
-              <div style={{ position: "absolute", inset: "-15px", background: "linear-gradient(135deg, var(--accent-orange), var(--primary-blue))", borderRadius: "24px", opacity: "0.1", filter: "blur(20px)", transform: "translateY(10px)" }}></div>
-              <img 
-                src={data.bodyVisual} 
-                alt={`${data.title} graphic`} 
-                style={{ width: "100%", height: "auto", borderRadius: "20px", boxShadow: "0 20px 40px rgba(5,46,71,0.12)", position: "relative", zIndex: 2, border: "4px solid white" }}
-              />
-            </div>
-          </div>
+      <section className="why-choose-subservice bg-white" style={{ padding: "50px 0", borderBottom: "1px solid #f1f5f9" }}>
+        <div className="container" style={{ maxWidth: "850px", margin: "0 auto", padding: "0 24px", textAlign: "center" }}>
+          <h2 style={{ fontFamily: "var(--font-headings)", color: "var(--dark-deep)", fontSize: "2.2rem", fontWeight: "800", marginBottom: "24px" }}>
+            Why Choose Ananya Hi Solutions for {data.title}
+          </h2>
+          <div style={{ width: "60px", height: "4px", background: "var(--accent-orange)", margin: "0 auto 30px auto", borderRadius: "10px" }}></div>
+          <p style={{ color: "var(--secondary-slate)", fontSize: "1.15rem", lineHeight: "1.8", margin: 0, textAlign: "justify" }}>
+            {data.whyChoose}
+          </p>
         </div>
       </section>
 
       {/* 4. What We Provide Section */}
-      <section className="what-we-provide-section" style={{ padding: "80px 0", background: "linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%)", position: "relative" }}>
-        {/* Abstract background blobs */}
-        <div style={{ position: "absolute", top: "10%", left: "5%", width: "400px", height: "400px", background: "rgba(245, 130, 32, 0.04)", borderRadius: "50%", filter: "blur(60px)", pointerEvents: "none" }}></div>
-        <div style={{ position: "absolute", bottom: "10%", right: "5%", width: "500px", height: "500px", background: "rgba(15, 117, 188, 0.05)", borderRadius: "50%", filter: "blur(80px)", pointerEvents: "none" }}></div>
-        
-        <div className="container" style={{ maxWidth: "1000px", margin: "0 auto", padding: "0 24px", position: "relative", zIndex: 2 }}>
-          <div style={{ textAlign: "center", marginBottom: "60px" }}>
-            <h2 style={{ fontFamily: "var(--font-headings)", color: "var(--dark-deep)", fontSize: "2.4rem", fontWeight: "800", marginBottom: "20px" }}>
+      <section className="what-we-provide-section bg-white" style={{ padding: "50px 0", borderBottom: "1px solid #f1f5f9" }}>
+        <div className="container" style={{ maxWidth: "1000px", margin: "0 auto", padding: "0 24px" }}>
+          <div style={{ textAlign: "center", marginBottom: "48px" }}>
+            <h2 style={{ fontFamily: "var(--font-headings)", color: "var(--dark-deep)", fontSize: "2.2rem", fontWeight: "800", marginBottom: "16px" }}>
               What We Provide in {data.title}
             </h2>
             <div style={{ width: "60px", height: "4px", background: "var(--primary-blue)", margin: "0 auto", borderRadius: "10px" }}></div>
           </div>
           
-          <div className="subservice-glass-features-grid">
+          <div className="what-we-provide-grid">
             {[...data.visibleFeatures, ...data.lockedFeatures].map((feat, idx) => (
-              <div key={idx} className="subservice-glass-feature-card">
-                <span className="provide-icon subservice-feature-icon-wrapper" style={{ display: "flex", alignItems: "center", justifyContent: "center", width: "40px", height: "40px", background: "rgba(15,117,188,0.1)", borderRadius: "50%", color: "var(--primary-blue)", fontSize: "20px", fontWeight: "bold", marginBottom: "16px", flexShrink: 0 }}>✓</span>
-                <span style={{ fontSize: "1.05rem", color: "var(--dark-deep)", fontWeight: "600", lineHeight: "1.6" }}>{feat}</span>
+              <div key={idx} className="provide-card" style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", textAlign: "center", gap: "12px", background: "#f8fafc", padding: "24px 20px", borderRadius: "12px", border: "1px solid #f1f5f9", boxShadow: "0 2px 4px rgba(0,0,0,0.02)" }}>
+                <span className="provide-icon" style={{ display: "flex", alignItems: "center", justifyContent: "center", width: "32px", height: "32px", background: "rgba(15,117,188,0.1)", borderRadius: "50%", color: "var(--primary-blue)", fontSize: "16px", fontWeight: "bold", flexShrink: 0 }}>✓</span>
+                <span style={{ fontSize: "1.05rem", color: "var(--dark-deep)", fontWeight: "600", lineHeight: "1.5" }}>{feat}</span>
               </div>
             ))}
           </div>
@@ -221,9 +203,9 @@ export default function SubserviceDetailPage({ params: paramsPromise }) {
         <div className="container" style={{ maxWidth: "1200px", margin: "0 auto", padding: "0 24px" }}>
           
           {SUBSERVICES_WITH_PACKAGES.includes(subId) ? (
-            // CASE A: Subservice has a package (Show hover sliding card in split container)
+            // CASE A: Subservice has a package (Show hover sliding card in centered container)
             <div>
-              <div style={{ textAlign: "center", marginBottom: "50px" }}>
+              <div style={{ textAlign: "center", marginBottom: "40px" }}>
                 <h2 style={{ fontFamily: "var(--font-headings)", color: "var(--accent-orange)", fontSize: "2.4rem", fontWeight: "800", marginBottom: "16px", textAlign: "center" }}>
                   🎁 Choose Packages
                 </h2>
@@ -232,64 +214,51 @@ export default function SubserviceDetailPage({ params: paramsPromise }) {
                 </p>
               </div>
 
-              <div className="subservice-package-split" style={{ display: "grid", gridTemplateColumns: "1fr", gap: "20px", alignItems: "center" }}>
-                
-                {/* Left Side: Related Image */}
-                <div className="package-split-left" style={{ position: "relative", borderRadius: "20px", overflow: "hidden", boxShadow: "0 20px 40px rgba(5,46,71,0.15)" }}>
-                  <img 
-                    src={data.topVisual} 
-                    alt={`${data.title} Package`}
-                    style={{ width: "100%", height: "100%", minHeight: "500px", objectFit: "cover", display: "block" }}
+              <div style={{ display: "flex", justifyContent: "center", marginTop: "40px" }}>
+                <div className="package-card-premium package-card-subpage" style={{ width: "100%", maxWidth: "380px" }}>
+                  {/* Card Background image */}
+                  <div 
+                    className="package-card-bg"
+                    style={{ backgroundImage: `url('${data.bodyVisual}')` }}
                   />
-                  <div style={{ position: "absolute", inset: 0, background: "linear-gradient(135deg, rgba(15,117,188,0.2) 0%, rgba(245,130,32,0.2) 100%)", mixBlendMode: "overlay" }}></div>
-                </div>
+                  
+                  {/* Shadow overlay gradient */}
+                  <div className="package-card-overlay" />
 
-                {/* Right Side: Package Card */}
-                <div className="package-split-right" style={{ display: "flex", justifyContent: "flex-start", position: "relative", zIndex: 5 }}>
-                  <div className="package-card-premium package-card-subpage package-card-premium-saas" style={{ width: "100%", maxWidth: "380px" }}>
-                    {/* Card Background image */}
-                    <div 
-                      className="package-card-bg"
-                      style={{ backgroundImage: `url('${data.bodyVisual}')` }}
-                    />
-                    
-                    {/* Shadow overlay gradient */}
-                    <div className="package-card-overlay" style={{ background: "linear-gradient(to top, rgba(5,46,71,0.95) 0%, rgba(5,46,71,0.6) 50%, rgba(5,46,71,0.1) 100%)" }} />
+                  {/* Default visible title at bottom */}
+                  <div className="package-card-title-default">
+                    <h3 style={{ color: "var(--white)" }}>{data.packageName}</h3>
+                    <p style={{ fontSize: "0.9rem", color: "rgba(255,255,255,0.8)", margin: "4px 0 0 0" }}>{data.packageSubtitle}</p>
+                    <div className="package-card-underline" />
+                  </div>
 
-                    {/* Default visible title at bottom */}
-                    <div className="package-card-title-default">
-                      <h3 style={{ color: "var(--white)", fontSize: "1.6rem", textShadow: "0 2px 4px rgba(0,0,0,0.5)" }}>{data.packageName}</h3>
-                      <p style={{ fontSize: "0.95rem", color: "var(--accent-orange)", margin: "8px 0 0 0", fontWeight: "600", textShadow: "0 1px 2px rgba(0,0,0,0.5)" }}>{data.packageSubtitle}</p>
-                      <div className="package-card-underline" style={{ background: "var(--accent-orange)", height: "3px" }} />
+                  {/* Sliding Hover Panel */}
+                  <div className="package-card-hover-panel">
+                    <div className="package-hover-header">
+                      <h3>{data.packageName}</h3>
+                      <div style={{ width: "40px", height: "3px", background: "var(--accent-orange)", margin: "0 auto", borderRadius: "10px" }} />
                     </div>
 
-                    {/* Sliding Hover Panel */}
-                    <div className="package-card-hover-panel">
-                      <div className="package-hover-header">
-                        <h3>{data.packageName}</h3>
-                        <div style={{ width: "50px", height: "4px", background: "var(--accent-orange)", margin: "0 auto", borderRadius: "10px" }} />
-                      </div>
-
-                      {/* Features list */}
-                      <ul className="package-hover-features">
-                        {data.visibleFeatures.map((feat, idx) => (
-                          <li key={idx} className="package-hover-feature-item">
-                            {feat}
-                          </li>
-                        ))}
-                        {data.lockedFeatures.map((feat, idx) => (
-                          <li 
-                            key={idx} 
-                            className={`package-hover-feature-item ${unlocked ? "" : "locked-item"}`}
-                            style={{
-                              opacity: unlocked ? 1 : 0.65,
-                              transition: "all 0.5s ease"
-                            }}
-                          >
-                            {feat}
-                          </li>
-                        ))}
-                      </ul>
+                    {/* Features list */}
+                    <ul className="package-hover-features">
+                      {data.visibleFeatures.map((feat, idx) => (
+                        <li key={idx} className="package-hover-feature-item">
+                          {feat}
+                        </li>
+                      ))}
+                      {data.lockedFeatures.map((feat, idx) => (
+                        <li 
+                          key={idx} 
+                          className={`package-hover-feature-item ${unlocked ? "" : "locked-item"}`}
+                          style={{
+                            opacity: unlocked ? 1 : 0.65,
+                            transition: "all 0.5s ease"
+                          }}
+                        >
+                          {feat}
+                        </li>
+                      ))}
+                    </ul>
 
                     {/* Unlock / Success Button */}
                     <button 
@@ -309,7 +278,6 @@ export default function SubserviceDetailPage({ params: paramsPromise }) {
                 </div>
               </div>
             </div>
-          </div>
           ) : (
             // CASE B: Subservice has no package (Show Consultation Lead Form inline matching screenshot)
             <div style={{ maxWidth: "720px", margin: "0 auto" }}>

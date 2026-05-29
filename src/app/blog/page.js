@@ -24,6 +24,7 @@ function Logo({ className = "", light = false }) {
 
 export default function BlogPage() {
   const [blogs, setBlogs] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   // Modals and Blog states
   const [selectedBlog, setSelectedBlog] = useState(null);
@@ -58,6 +59,8 @@ export default function BlogPage() {
         }
       } catch (err) {
         console.error("Failed to load blogs:", err);
+      } finally {
+        setIsLoading(false);
       }
     };
     fetchBlogs();
@@ -113,8 +116,66 @@ export default function BlogPage() {
       {/* 3. Blog listings Grid (DYNAMIC FROM DATABASE) */}
       <section className="section section-bg-alt" style={{ flex: 1 }}>
         <div className="container">
+          <style dangerouslySetInnerHTML={{ __html: `
+            @keyframes shimmer {
+              0% { transform: translateX(-100%); }
+              100% { transform: translateX(100%); }
+            }
+            .skeleton-shimmer-container {
+              position: absolute;
+              top: 0;
+              left: 0;
+              width: 100%;
+              height: 100%;
+              background: linear-gradient(
+                90deg,
+                rgba(255, 255, 255, 0) 0%,
+                rgba(255, 255, 255, 0.4) 30%,
+                rgba(255, 255, 255, 0.4) 60%,
+                rgba(255, 255, 255, 0) 100%
+              );
+              animation: shimmer 1.5s infinite;
+            }
+          `}} />
           <div className="blog-grid">
-            {blogs.length === 0 ? (
+            {isLoading ? (
+              Array.from({ length: 6 }).map((_, idx) => (
+                <div key={idx} className="blog-card-frontend" style={{ pointerEvents: 'none' }}>
+                  <div className="blog-card-img-wrapper" style={{ background: '#e2e8f0', position: 'relative', overflow: 'hidden' }}>
+                    <div className="skeleton-shimmer-container"></div>
+                  </div>
+                  
+                  <div className="blog-card-frontend-content">
+                    <div>
+                      <div className="blog-card-frontend-meta" style={{ gap: '15px' }}>
+                        <span style={{ width: '80px', height: '14px', background: '#e2e8f0', borderRadius: '4px', display: 'inline-block', position: 'relative', overflow: 'hidden' }}>
+                          <span className="skeleton-shimmer-container"></span>
+                        </span>
+                        <span style={{ width: '120px', height: '14px', background: '#e2e8f0', borderRadius: '4px', display: 'inline-block', position: 'relative', overflow: 'hidden' }}>
+                          <span className="skeleton-shimmer-container"></span>
+                        </span>
+                      </div>
+                      <h3 style={{ width: '100%', height: '22px', background: '#e2e8f0', borderRadius: '4px', marginTop: '12px', marginBottom: '12px', position: 'relative', overflow: 'hidden' }}>
+                        <span className="skeleton-shimmer-container"></span>
+                      </h3>
+                      <h3 style={{ width: '70%', height: '22px', background: '#e2e8f0', borderRadius: '4px', marginBottom: '16px', position: 'relative', overflow: 'hidden' }}>
+                        <span className="skeleton-shimmer-container"></span>
+                      </h3>
+                      <p style={{ width: '100%', height: '14px', background: '#e2e8f0', borderRadius: '4px', marginBottom: '8px', position: 'relative', overflow: 'hidden' }}>
+                        <span className="skeleton-shimmer-container"></span>
+                      </p>
+                      <p style={{ width: '90%', height: '14px', background: '#e2e8f0', borderRadius: '4px', marginBottom: '20px', position: 'relative', overflow: 'hidden' }}>
+                        <span className="skeleton-shimmer-container"></span>
+                      </p>
+                    </div>
+                    
+                    <div style={{ width: '110px', height: '16px', background: '#e2e8f0', borderRadius: '4px', position: 'relative', overflow: 'hidden' }}>
+                      <span className="skeleton-shimmer-container"></span>
+                    </div>
+                  </div>
+                </div>
+              ))
+            ) : blogs.length === 0 ? (
               <div className="text-center py-10 w-full col-span-full">
                 <p className="text-slate-400 italic">No news updates have been published yet. Stay tuned!</p>
               </div>

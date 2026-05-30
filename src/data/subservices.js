@@ -20,7 +20,7 @@ export const SUBSERVICES_DETAIL_DATA = {
     ]
   },
   "dynamic": {
-    title: "Dynamic Website Design",
+    title: "Dynamic Website",
     packageName: "Growth Dynamic Package",
     packageSubtitle: "Ideal for Corporate Portals & Content Creators",
     topVisual: "https://images.unsplash.com/photo-1531403009284-440f080d1e12?auto=format&fit=crop&w=1200&q=80",
@@ -39,7 +39,7 @@ export const SUBSERVICES_DETAIL_DATA = {
     ]
   },
   "ecommerce": {
-    title: "E-commerce Website Design",
+    title: "E-Commerce Website",
     packageName: "Enterprise E-commerce Package",
     packageSubtitle: "Optimized for Multi-Product Direct-to-Consumer Stores",
     topVisual: "https://images.unsplash.com/photo-1557821552-17105176677c?auto=format&fit=crop&w=1200&q=80",
@@ -98,9 +98,9 @@ export const SUBSERVICES_DETAIL_DATA = {
     ]
   },
   "google-ads": {
-    title: "Google Ads (PPC)",
-    packageName: "High-Intent PPC Accelerator",
-    packageSubtitle: "Immediate Sales, Traffic, and Conversion Funnels",
+    title: "Google Ads/PPC Ads",
+    packageName: "Lead Generator PPC Package",
+    packageSubtitle: "Perfect for Instant Traffic & High-Intent Conversions",
     topVisual: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=80",
     bodyVisual: "https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=800&q=80",
     whyChoose: "Capture prospects at the exact moment they search for your service. We structure laser-targeted paid search, shopping, and display campaigns that reduce your client acquisition cost (CAC) and scale your ROAS. Our team continuously refines your bidding and ad copy to maximize conversions and eliminate budget waste on low-performing terms.",

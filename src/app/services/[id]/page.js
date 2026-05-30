@@ -87,13 +87,13 @@ const SERVICES_DETAIL_DATA = {
       },
       { 
         id: "dynamic", 
-        title: "Dynamic Website Design", 
+        title: "Dynamic Website", 
         bgImage: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80",
         desc: "Custom content management systems (CMS), corporate portals, and interactive, database-driven sites." 
       },
       { 
         id: "ecommerce", 
-        title: "E-commerce Website Design", 
+        title: "E-Commerce Website", 
         bgImage: "https://images.unsplash.com/photo-1557821552-17105176677c?auto=format&fit=crop&w=800&q=80",
         desc: "Full-scale online stores featuring advanced shopping pipelines, secure payments, and inventory dashboards." 
       }
@@ -137,7 +137,7 @@ const SERVICES_DETAIL_DATA = {
       },
       { 
         id: "google-ads", 
-        title: "Google Ads", 
+        title: "Google Ads/PPC Ads", 
         bgImage: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80",
         desc: "Target immediate prospective buyers with high-converting search, shopping, and display ad setups." 
       },

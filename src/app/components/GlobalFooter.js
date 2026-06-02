@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect, useRef } from "react";
+import React from "react";
 import { useServices } from "../context/ServicesContext";
 import Link from "next/link";
 
@@ -23,63 +23,6 @@ function Logo({ className = "", light = false }) {
 
 export default function GlobalFooter() {
   const { services } = useServices();
-  // Chat Widget State & Handlers
-  const [chatOpen, setChatOpen] = useState(false);
-  const [chatMessage, setChatMessage] = useState("");
-  const [chatHistory, setChatHistory] = useState([
-    { sender: "bot", text: "Hello! Welcome to Ananya Hi Solutions. I am Ananya, your digital assistant. How can I help you grow your business today?" },
-  ]);
-  const messagesEndRef = useRef(null);
-
-  const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
-  };
-
-  useEffect(() => {
-    scrollToBottom();
-  }, [chatHistory, chatOpen]);
-
-  const handleSendChat = (e) => {
-    e.preventDefault();
-    if (!chatMessage.trim()) return;
-
-    const userMsg = chatMessage;
-    setChatHistory((prev) => [...prev, { sender: "user", text: userMsg }]);
-    setChatMessage("");
-
-    // Simulate intelligent helper responses
-    setTimeout(() => {
-      let reply = "Thank you for reaching out! I've logged your request. Our digital consultants will contact you at info@ananyahisolutions.com shortly, or you can ring us at (+91) 76739-35353.";
-      
-      const lower = userMsg.toLowerCase();
-      if (lower.includes("price") || lower.includes("cost") || lower.includes("package") || lower.includes("quote")) {
-        reply = "We offer tailor-made pricing! Our basic web design packages start from very competitive rates, and customized software packages depend on features. Please drop your email or WhatsApp number and I will have a custom quote dispatched to you instantly!";
-      } else if (lower.includes("service") || lower.includes("web") || lower.includes("marketing") || lower.includes("app")) {
-        reply = "We specialize in Web Design, Digital Marketing, Mobile Apps, eCommerce solutions, Software Development, and Video Production. Which specific solution are you looking to implement first?";
-      } else if (lower.includes("job") || lower.includes("career") || lower.includes("hire") || lower.includes("work")) {
-        reply = "We are always on the hunt for passionate developers, SEO wizards, and content creators! Please email your updated CV to vedabhavishya.gudivaka@gmail.com and our HR team will review it.";
-      } else if (lower.includes("hello") || lower.includes("hi") || lower.includes("hey")) {
-        reply = "Hi there! I am thrilled to assist you. Tell me, are we looking to develop a beautiful website, optimize your SEO, or build custom software?";
-      }
-
-      setChatHistory((prev) => [...prev, { sender: "bot", text: reply }]);
-    }, 1000);
-  };
-
-  const handleSuggestionClick = (text) => {
-    setChatHistory((prev) => [...prev, { sender: "user", text: text }]);
-    setTimeout(() => {
-      let reply = "";
-      if (text.includes("Web Design")) {
-        reply = "Our web designs are engineered with Next.js for maximum performance, premium visual aesthetics, responsive views, and seamless search engine crawling. Would you like a free UI audit of your current site?";
-      } else if (text.includes("Marketing")) {
-        reply = "Our Digital Marketing covers Google Search, social media retargeting, and full-funnel content design. We focus purely on conversion rates and ROI. Do you have a monthly budget in mind?";
-      } else if (text.includes("Contact info")) {
-        reply = "You can visit our headquarters at: 401 Sravya Vatika, Greenlands, Begumpet, Hyderabad, Telangana-500016. Alternatively, call us at (+91) 76739-35353 or email info@ananyahisolutions.com.";
-      }
-      setChatHistory((prev) => [...prev, { sender: "bot", text: reply }]);
-    }, 1000);
-  };
 
   return (
     <>
@@ -98,34 +41,36 @@ export default function GlobalFooter() {
               <li><Link href="/">Home</Link></li>
               <li><Link href="/about">About Us</Link></li>
               <li><Link href="/careers">Careers</Link></li>
-              <li><Link href="/blog">Blogs</Link></li>
+              <li><Link href="/blog">Blog</Link></li>
               <li><Link href="/contact">Contact</Link></li>
             </ul>
           </div>
 
-          <div className="footer-column footer-services-column">
+          <div className="footer-column">
             <h4>Our Services</h4>
-            <ul className="footer-links" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', columnGap: '1rem' }}>
-              {services.map((svc) => (
-                <li key={svc.id}><Link href={`/services/${svc.id}`}>{svc.title}</Link></li>
+            <ul className="footer-links">
+              {services && services.slice(0, 5).map((service) => (
+                <li key={service.id}>
+                  <Link href={`/services/${service.id}`}>{service.title}</Link>
+                </li>
               ))}
             </ul>
           </div>
 
           <div className="footer-column">
-            <h4>Contact Us</h4>
+            <h4>Contact Info</h4>
             <ul className="footer-contact">
               <li className="footer-contact-item">
                 <span className="footer-contact-icon">📍</span>
-                <span>401 Sravya Vatika, Greenlands,<br />Begumpet, Hyderabad, Telangana-500016</span>
+                <span>401 Sravya Vatika, Greenlands, Begumpet, Hyderabad - 500016</span>
               </li>
               <li className="footer-contact-item">
                 <span className="footer-contact-icon">📞</span>
-                <span>(+91) 76739-35353</span>
+                <a href="tel:+917673935353">(+91) 76739-35353</a>
               </li>
               <li className="footer-contact-item">
                 <span className="footer-contact-icon">✉️</span>
-                <span>info@ananyahisolutions.com</span>
+                <a href="mailto:info@ananyahisolutions.com">info@ananyahisolutions.com</a>
               </li>
             </ul>
 
@@ -161,80 +106,30 @@ export default function GlobalFooter() {
         </div>
       </footer>
 
-      {/* Interactive Chat Widget */}
+      {/* Floating WhatsApp Widget */}
       <div className="chat-widget-container">
         {/* Closed speech bubble helper */}
-        {!chatOpen && (
-          <div className="chat-bubble" onClick={() => setChatOpen(true)}>
-            <span>Hi, I'm Ananya 👋</span>
-          </div>
-        )}
-
-        {/* Chat window panel */}
-        <div className={`chat-box ${chatOpen ? "open" : ""}`}>
-          <div className="chat-header">
-            <div className="chat-header-user">
-              <div className="chat-header-avatar flex items-center justify-center font-bold text-slate-800 text-[20px]">
-                👩‍💻
-              </div>
-              <div className="chat-header-info">
-                <h4>Ananya</h4>
-                <p>Online | Digital Assistant</p>
-              </div>
-            </div>
-            <button
-              className="chat-header-close"
-              onClick={() => setChatOpen(false)}
-              aria-label="Close chat"
-            >
-              ✕
-            </button>
-          </div>
-
-          <div className="chat-messages">
-            {chatHistory.map((msg, index) => (
-              <div
-                key={index}
-                className={`chat-msg ${msg.sender === "bot" ? "bot-msg" : "user-msg"}`}
-              >
-                {msg.text}
-              </div>
-            ))}
-            <div ref={messagesEndRef} />
-          </div>
-
-          <div className="chat-suggestions">
-            <button onClick={() => handleSuggestionClick("Tell me about Web Design")}>
-              Website Design
-            </button>
-            <button onClick={() => handleSuggestionClick("How does Digital Marketing work?")}>
-              Marketing Services
-            </button>
-            <button onClick={() => handleSuggestionClick("Contact info please")}>
-              Contact Info
-            </button>
-          </div>
-
-          <form className="chat-input-area" onSubmit={handleSendChat}>
-            <input
-              type="text"
-              placeholder="Ask me anything..."
-              value={chatMessage}
-              onChange={(e) => setChatMessage(e.target.value)}
-            />
-            <button type="submit" className="chat-send-btn" aria-label="Send message">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <line x1="22" y1="2" x2="11" y2="13" />
-                <polygon points="22 2 15 22 11 13 2 9 22 2" />
-              </svg>
-            </button>
-          </form>
-        </div>
+        <a 
+          href="https://wa.me/917673935353?text=Hi%20Ananya%20Team,%20I%20need%20assistance!"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="chat-bubble"
+          style={{ textDecoration: "none" }}
+        >
+          <span>Hi, I'm Ananya 👋</span>
+        </a>
 
         {/* Floating rounded button */}
-        <div className="chat-trigger" onClick={() => setChatOpen(!chatOpen)}>
-          <div className="chat-trigger-icon">👩‍💻</div>
-        </div>
+        <a 
+          href="https://wa.me/917673935353?text=Hi%20Ananya%20Team,%20I%20need%20assistance!"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="chat-trigger"
+          aria-label="Chat on WhatsApp"
+          style={{ display: "flex", alignItems: "center", justifyContent: "center", textDecoration: "none" }}
+        >
+          <div className="chat-trigger-icon text-3xl">👩‍💻</div>
+        </a>
       </div>
     </>
   );

@@ -40,10 +40,10 @@ const PACKAGE_CATEGORIES = [
         title: "Google Ads/PPC Ads",
         image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80",
         features: [
-          "High-intent keyword match type grouping",
-          "Persuasive copy writing & ad variations testing",
-          "Negative keyword exclusions list mapping",
-          "Conversion pixel and metrics tracking setup"
+          "Ads Account Setup & Audit.",
+          "Advanced Keyword Research.",
+          "Conversion Tracking.",
+          "Audience Targeting Strategies."
         ],
         link: "/services/digital-marketing/google-ads"
       },
@@ -51,10 +51,10 @@ const PACKAGE_CATEGORIES = [
         title: "Search Engine Optimization (SEO)",
         image: "https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?auto=format&fit=crop&w=800&q=80",
         features: [
-          "Competitor search queries profiling",
-          "PageSpeed core vitals speed audits",
-          "Off-page high authority backlink profiles",
-          "Local SEO Maps pack optimization setups"
+          "Free Website Audit.",
+          "Keyword Research & Strategy.",
+          "Competitor Analysis & Reporting.",
+          "High-Quality Backlink Building."
         ],
         link: "/services/digital-marketing/seo"
       }
@@ -79,10 +79,10 @@ const PACKAGE_CATEGORIES = [
         title: "Dynamic Website",
         image: "https://images.unsplash.com/photo-1531403009284-440f080d1e12?auto=format&fit=crop&w=800&q=80",
         features: [
-          "Dynamic database-driven content architectures",
-          "User-friendly dynamic admin panel console",
-          "Secure authentication & account access setups",
-          "Automated email responder integrations"
+          "Unlimited Dynamic Web Pages Website.",
+          "FREE Web Hosting & SSL for 1 year.",
+          "1 Week FREE Support After Deployment.",
+          "Responsive Design."
         ],
         link: "/services/web-design/dynamic"
       },
@@ -90,10 +90,10 @@ const PACKAGE_CATEGORIES = [
         title: "E-Commerce Website",
         image: "https://images.unsplash.com/photo-1557821552-17105176677c?auto=format&fit=crop&w=800&q=80",
         features: [
-          "Unlimited product listings and inventory logs",
-          "Secure payment gateways (Stripe, Razorpay, UPI)",
-          "Stock levels and coupons manager modules",
-          "Live courier API and order tracing links"
+          "Add & Manage Unlimited Store Products.",
+          "Shopping Cart System.",
+          "Easy Checkout System.",
+          "Secure Payment Gateway Integration."
         ],
         link: "/services/web-design/ecommerce"
       }
@@ -108,10 +108,10 @@ const PACKAGE_CATEGORIES = [
         title: "Spa Packages",
         image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=800&q=80",
         features: [
-          "Blazing fast React/Vue/Next.js dynamic rendering",
-          "Seamless client-side transition page routing",
-          "Complex state management & animated interfaces",
-          "Progressive Web App (PWA) offline capabilities"
+          "Performance Insights Report.",
+          "Social Media Setup (Instagram & Facebook).",
+          "Social Media Management.",
+          "Content Strategy & Planning."
         ],
         link: "/services/web-design/spa"
       }

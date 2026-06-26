@@ -29,24 +29,6 @@ export default function CareersPage() {
   const [selectedJob, setSelectedJob] = useState(null);
   const [showDetailsModal, setShowDetailsModal] = useState(false);
 
-  // Chat Widget State
-  const [chatOpen, setChatOpen] = useState(false);
-  const [chatMessage, setChatMessage] = useState("");
-  const [chatHistory, setChatHistory] = useState([
-    { sender: "bot", text: "Hello! Welcome to Ananya Hi Solutions. I am Ananya, your digital assistant. How can I help you find your dream job today?" },
-  ]);
-  const messagesEndRef = useRef(null);
-
-  const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
-  };
-
-  useEffect(() => {
-    scrollToBottom();
-  }, [chatHistory, chatOpen]);
-
-
-
   // Fetch jobs on mount
   useEffect(() => {
     const fetchJobs = async () => {
@@ -62,33 +44,6 @@ export default function CareersPage() {
     };
     fetchJobs();
   }, []);
-
-  const handleSendChat = (e) => {
-    e.preventDefault();
-    if (!chatMessage.trim()) return;
-
-    const userMsg = chatMessage;
-    setChatHistory((prev) => [...prev, { sender: "user", text: userMsg }]);
-    setChatMessage("");
-
-    setTimeout(() => {
-      let reply = "Thank you for reaching out! I've logged your request. Our digital consultants will contact you at info@ananyahisolutions.com shortly, or you can ring us at (+91) 76739-35353.";
-      
-      const lower = userMsg.toLowerCase();
-      if (lower.includes("price") || lower.includes("cost") || lower.includes("package") || lower.includes("quote")) {
-        reply = "We offer tailor-made pricing! Our basic web design packages start from very competitive rates. Drop your contact details right here in our message form and we will email a brochure immediately.";
-      } else if (lower.includes("service") || lower.includes("web") || lower.includes("marketing") || lower.includes("app")) {
-        reply = "We specialize in Web Design, Digital Marketing, Mobile Apps, eCommerce solutions, Software Development, and Video Production. You can fill out the form on this page to request a detailed call!";
-      } else if (lower.includes("location") || lower.includes("address") || lower.includes("office")) {
-        reply = "We are located at: 401 Sravya Vatika, Greenlands, Begumpet, Hyderabad, Telangana-500016. Clicking the location card above will open Google Maps directly!";
-      }
-      setChatHistory((prev) => [...prev, { sender: "bot", text: reply }]);
-    }, 1000);
-  };
-
-  const handleSuggestionClick = (msg) => {
-    setChatMessage(msg);
-  };
 
   return (
     <div className="flex flex-col min-h-screen">
@@ -262,89 +217,7 @@ export default function CareersPage() {
         </div>
       )}
 
-      {/* 7. Interactive Chat Widget */}
-      <div className="chat-widget-container">
-        {!chatOpen && (
-          <div className="chat-bubble" onClick={() => setChatOpen(true)}>
-            <span>Hi, I'm Ananya 👋</span>
-          </div>
-        )}
 
-        <div className={`chat-box ${chatOpen ? "open" : ""}`}>
-          <div className="chat-header">
-            <div className="chat-header-user">
-              <div className="chat-header-avatar flex items-center justify-center font-bold text-slate-800 text-[20px]">
-                👩‍💻
-              </div>
-              <div className="chat-header-info">
-                <h4>Ananya</h4>
-                <p>Online | Digital Assistant</p>
-              </div>
-            </div>
-            <button
-              className="chat-header-close"
-              onClick={() => setChatOpen(false)}
-              aria-label="Close chat"
-            >
-              ✕
-            </button>
-          </div>
-
-          <div className="chat-messages">
-            {chatHistory.map((msg, index) => (
-              <div
-                key={index}
-                className={`chat-msg ${
-                  msg.sender === "bot" ? "chat-msg-received" : "chat-msg-sent"
-                }`}
-              >
-                {msg.text}
-              </div>
-            ))}
-            <div ref={messagesEndRef} />
-          </div>
-
-          <div className="flex flex-wrap gap-2 p-3 bg-white border-t border-slate-100">
-            <button
-              onClick={() => handleSuggestionClick("Tell me about Web Design")}
-              className="text-xs bg-slate-100 hover:bg-primary-blue hover:text-white transition-all text-slate-700 px-3 py-1.5 rounded-full font-medium"
-            >
-              🌐 Web Design
-            </button>
-            <button
-              onClick={() => handleSuggestionClick("Tell me about Digital Marketing")}
-              className="text-xs bg-slate-100 hover:bg-primary-blue hover:text-white transition-all text-slate-700 px-3 py-1.5 rounded-full font-medium"
-            >
-              📈 Marketing
-            </button>
-            <button
-              onClick={() => handleSuggestionClick("Show Office location")}
-              className="text-xs bg-slate-100 hover:bg-primary-blue hover:text-white transition-all text-slate-700 px-3 py-1.5 rounded-full font-medium"
-            >
-              📍 Office location
-            </button>
-          </div>
-
-          <form onSubmit={handleSendChat} className="chat-footer">
-            <input
-              type="text"
-              placeholder="Ask me something..."
-              className="chat-input"
-              value={chatMessage}
-              onChange={(e) => setChatMessage(e.target.value)}
-            />
-            <button type="submit" className="chat-send-btn" aria-label="Send message">
-              ➤
-            </button>
-          </form>
-        </div>
-
-        <div className="chat-trigger" onClick={() => setChatOpen(!chatOpen)}>
-          <div className="w-full h-full flex items-center justify-center text-3xl">
-            👩‍💻
-          </div>
-        </div>
-      </div>
     </div>
   );
 }

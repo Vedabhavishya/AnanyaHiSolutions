@@ -33,7 +33,7 @@ export default function RootLayout({ children }) {
       className={`${plusJakartaSans.variable} ${outfit.variable} h-full scroll-smooth`}
     >
       <head>
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/favicon.png" type="image/png" />
       </head>
       <body className="min-h-full font-sans antialiased bg-slate-50 text-slate-900 transition-colors duration-300">
         <ServicesProvider>

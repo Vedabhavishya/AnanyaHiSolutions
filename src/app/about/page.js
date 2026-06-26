@@ -498,7 +498,7 @@ export default function AboutPage() {
 
             <div className="choose-card">
               <div className="choose-icon-wrapper">🎧</div>
-              <h3>24/7 Support</h3>
+              <h3>Expert Support</h3>
               <p>Round-the-clock assistance to ensure your business never stops.</p>
             </div>
 

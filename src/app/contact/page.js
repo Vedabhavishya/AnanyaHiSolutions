@@ -378,6 +378,12 @@ export default function ContactPage() {
                 <circle cx="4" cy="4" r="2" />
               </svg>
             </a>
+            {/* YouTube */}
+            <a href="#" target="_blank" rel="noopener noreferrer" className="sc-icon-link" aria-label="YouTube">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M23.498 6.163c-.272-.98-1.04-1.748-2.02-2.02C19.716 3.75 12 3.75 12 3.75s-7.718 0-9.478.393c-.98.272-1.748 1.04-2.02 2.02C.1 7.925.1 12 .1 12s0 4.075.393 5.837c.272.98 1.04 1.748 2.02 2.02C4.282 20.25 12 20.25 12 20.25s7.716 0 9.478-.393c.98-.272 1.748-1.04 2.02-2.02.393-1.762.393-5.837.393-5.837s0-4.075-.393-5.837zm-14.73 9.077V8.76l6.4 3.74-6.4 3.74z" />
+              </svg>
+            </a>
           </div>
         </div>
       </section>

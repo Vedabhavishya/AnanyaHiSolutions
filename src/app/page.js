@@ -301,39 +301,25 @@ export default function Home() {
   const [activeSlide, setActiveSlide] = useState(0);
   const carouselSlides = [
     {
-      title: "Crafting Digital Success with <span>Ananya Solutions</span>",
-      desc: "Learn how our creative design and scalable software engineering solutions empower brands to dominate their markets globally.",
-      path: "/about",
-      bgImage: "/images/hero/web-design.png",
-      btnText: "Learn About Us",
-    },
-    {
-      title: "Insights, Trends & <span>Technical Strategy</span>",
-      desc: "Explore our blog containing expert web development tutorials, local SEO guides, and result-oriented advertising case studies.",
-      path: "/blog",
+      title: "Search Engine Dominance: <span>GEO, SEO, AEO, AIO, SXO</span>",
+      desc: "Drive high-intent customer traffic from Google Search, AI Overviews, Answer Engines, and experience-first search engines. Upgrade your organic reach today.",
+      path: "/packages",
       bgImage: "/images/hero/digital-marketing.png",
-      btnText: "Read Our Blog",
+      btnText: "Upgrade Now",
     },
     {
-      title: "Choose the Perfect <span>Service Package</span>",
-      desc: "We offer flexible, transparent, and tailor-made pricing packages tailored to your business goals. Get a custom proposal today.",
+      title: "Scale Your Brand on <span>Social Media</span>",
+      desc: "Maximize brand authority and acquire active leads across Meta, Instagram, and LinkedIn with premium design posts, Reels strategy, and paid campaigns.",
       path: "/packages",
       bgImage: "/images/hero/advanced-marketing.png",
-      btnText: "Select a Package",
+      btnText: "Upgrade Now",
     },
     {
-      title: "Let's Build <span>Something Amazing Together</span>",
-      desc: "Have a project in mind or want to accelerate your digital growth? Reach out to our consultants in Begumpet, Hyderabad.",
-      path: "/contact",
-      bgImage: "/images/hero/video-production.png",
-      btnText: "Get Free Consultation",
-    },
-    {
-      title: "Explore Our <span>Core Technology Services</span>",
-      desc: "From high-performance Website Design and Mobile Applications to custom Software Engineering, we build platforms that scale.",
-      path: "#services",
-      bgImage: "/images/hero/software-development.png",
-      btnText: "View Our Services",
+      title: "Premium <span>E-Commerce Website Design</span>",
+      desc: "Launch robust, secure, and blazing-fast online storefronts integrated with inventory tracking, payment gateways, and seamless checkout flows.",
+      path: "/packages",
+      bgImage: "/images/hero/ecommerce-app.png",
+      btnText: "Upgrade Now",
     }
   ];
 

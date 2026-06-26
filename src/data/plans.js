@@ -12,7 +12,6 @@ export const PACKAGE_PLANS_DATA = {
         "Basic 8 to 10 Creative Design Per Month",
         "1 Revision per Post",
         "5 to 6 Reels Per Month",
-        "Basic Content Calendar Creation",
         "Monthly Performance Report",
         "Trending-Based Creative Posts",
         "Description, Hashtag Research & Optimization",
@@ -38,12 +37,12 @@ export const PACKAGE_PLANS_DATA = {
       billing: "+ GST/Month",
       isPopular: true,
       features: [
+        "Everything in Basic",
         "Facebook, Instagram Platforms & Google Business Profile",
         "Social Media Audit for All Platforms",
         "Standard 10 to 12 Creative Design Per Month",
         "2 Revision per Post",
         "8 to 10 Reels Per Month",
-        "Standard Content Calendar Creation",
         "Weekly Performance Report",
         "Trending-Based Creative Posts",
         "Description, Hashtag Research & Optimization",
@@ -82,15 +81,15 @@ export const PACKAGE_PLANS_DATA = {
       billing: "+ GST/Month",
       isPopular: false,
       features: [
+        "Everything in Standard",
         "Facebook, Instagram, Google Business Profile & YouTube",
         "Social Media Audit for All Platforms",
         "Premium 12 to 15 Creative Design Per Month",
         "3 Revision per Post",
-        "12 to 15 Reels Per Month",
+        "20 to 25 Reels Per Month",
         "2 shoots ( camera shoot) - each shoot duration 6 hours",
         "Premium Content Calendar Creation",
         "Youtube SEO",
-        "6 to 8 videos for YouTube - duration (3-5 mins), 6 to 8 thumbnaills.",
         "Weekly Performance Report",
         "Trending-Based Creative Posts",
         "Festival & National Day Posts (creative posters for special occasions)",
@@ -495,9 +494,9 @@ export const PACKAGE_PLANS_DATA = {
       note: "One of our experts will contact you soon."
     },
     {
-      name: "Premium Plan",
+      name: "Premium Plan (Multi Vendor)",
       icon: "👑",
-      price: "₹3,21,999",
+      price: "₹2,21,999",
       billing: "+ GST",
       isPopular: false,
       features: [
@@ -559,6 +558,7 @@ export const PACKAGE_PLANS_DATA = {
       billing: "+ GST/Month",
       isPopular: true,
       features: [
+        "Everything in Basic",
         "Facebook & Instagram Platforms",
         "10 posters",
         "2 Ads Setup",
@@ -584,6 +584,7 @@ export const PACKAGE_PLANS_DATA = {
       billing: "+ GST/Month",
       isPopular: false,
       features: [
+        "Everything in Standard",
         "Facebook & Instagram Platforms",
         "12 posters",
         "3 Ads Setup",

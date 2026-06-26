@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect, useRef, use } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import Header from "../../components/Header";
 import GlobalFooter from "../../components/GlobalFooter";
 // Crisp Inline SVG Logo Component for Footer
@@ -456,10 +457,160 @@ const SERVICES_DETAIL_DATA = {
   }
 };
 
+const PACKAGE_MAPPING = {
+  "static": { category: "Website Packages", plan: "Static Website Design" },
+  "dynamic": { category: "Website Packages", plan: "Dynamic Website" },
+  "ecommerce": { category: "Website Packages", plan: "E-Commerce Website" },
+  "spa": { category: "Special Packages", plan: "Spa Packages" },
+  "seo": { category: "Digital Marketing Packages", plan: "Search Engine Optimization (SEO)" },
+  "smm": { category: "Digital Marketing Packages", plan: "Social Media Marketing" },
+  "google-ads": { category: "Digital Marketing Packages", plan: "Google Ads/PPC Ads" }
+};
+
 export default function ServiceDetailPage({ params: paramsPromise }) {
+  const router = useRouter();
   const params = use(paramsPromise);
   const { id } = params;
   const [activeFaq, setActiveFaq] = useState(0);
+
+  // Package Unlock Modal States
+  const [unlockModalOpen, setUnlockModalOpen] = useState(false);
+  const [selectedPackage, setSelectedPackage] = useState({ category: "", plan: "" });
+  const [unlockFormData, setUnlockFormData] = useState({ name: "", email: "", phone: "", company: "" });
+  const [unlockSubmitting, setUnlockSubmitting] = useState(false);
+  const [unlockSuccess, setUnlockSuccess] = useState(false);
+  const [unlockError, setUnlockError] = useState("");
+
+  const handleUnlockInputChange = (e) => {
+    const { name, value } = e.target;
+    setUnlockFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const openUnlockModal = (subId) => {
+    const mapping = PACKAGE_MAPPING[subId];
+    if (mapping) {
+      setSelectedPackage(mapping);
+      setUnlockFormData({ name: "", email: "", phone: "", company: "" });
+      setUnlockModalOpen(true);
+      setUnlockSuccess(false);
+      setUnlockError("");
+    }
+  };
+
+  const handleUnlockSubmit = (e) => {
+    e.preventDefault();
+    if (!unlockFormData.name || !unlockFormData.email || !unlockFormData.phone) {
+      setUnlockError("Please fill in all required fields.");
+      return;
+    }
+    setUnlockSubmitting(true);
+    setUnlockError("");
+
+    const targetPlan = selectedPackage.plan;
+
+    // Fire lead data dispatch in the background
+    fetch("/api/unlock", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        name: unlockFormData.name,
+        email: unlockFormData.email,
+        phone: unlockFormData.phone,
+        company: unlockFormData.company,
+        packageTitle: selectedPackage.category,
+        subId: targetPlan
+      })
+    }).catch((err) => {
+      console.error("Error submitting lead in background:", err);
+    });
+
+    // Instantly transition to success & redirect
+    setUnlockSuccess(true);
+    setUnlockFormData({ name: "", email: "", phone: "", company: "" });
+    
+    // Redirect directly to plans page instantly
+    router.push(`/packages/plans?package=${encodeURIComponent(targetPlan)}`);
+    
+    setTimeout(() => {
+      setUnlockModalOpen(false);
+      setUnlockSuccess(false);
+      setUnlockSubmitting(false);
+    }, 500);
+  };
+
+  const closeUnlockModal = () => {
+    setUnlockModalOpen(false);
+    setUnlockSuccess(false);
+    setUnlockError("");
+  };
+
+  // Enquiry Modal States
+  const [enquiryModalOpen, setEnquiryModalOpen] = useState(false);
+  const [enquirySubject, setEnquirySubject] = useState("");
+  const [formData, setFormData] = useState({ name: "", email: "", phone: "", company: "", message: "" });
+  const [submitting, setSubmitting] = useState(false);
+  const [submitSuccess, setSubmitSuccess] = useState(false);
+  const [submitError, setSubmitError] = useState("");
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const openEnquiryModal = (title) => {
+    setEnquirySubject(title);
+    setEnquiryModalOpen(true);
+    setSubmitSuccess(false);
+    setSubmitError("");
+    setFormData({ name: "", email: "", phone: "", company: "", message: "" });
+  };
+
+  const handleEnquirySubmit = async (e) => {
+    e.preventDefault();
+    if (!formData.name || !formData.email || !formData.phone) {
+      setSubmitError("Please fill in all required fields.");
+      return;
+    }
+    setSubmitting(true);
+    setSubmitError("");
+
+    const messageBody = `Enquiry about Subservice: ${enquirySubject}
+Company Name: ${formData.company || "Not provided"}
+User Comments: ${formData.message || "None"}`;
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          message: messageBody
+        })
+      });
+      const result = await response.json();
+      if (!response.ok) {
+        throw new Error(result.error || "Failed to submit enquiry.");
+      }
+      setSubmitSuccess(true);
+      setFormData({ name: "", email: "", phone: "", company: "", message: "" });
+      setTimeout(() => {
+        setEnquiryModalOpen(false);
+        setSubmitSuccess(false);
+      }, 3000);
+    } catch (err) {
+      setSubmitError(err.message || "An unexpected error occurred.");
+    } finally {
+      setSubmitting(false);
+    }
+  };
+
+  const closeEnquiryModal = () => {
+    setEnquiryModalOpen(false);
+    setSubmitSuccess(false);
+    setSubmitError("");
+  };
 
   // Chat Widget State
   const [chatOpen, setChatOpen] = useState(false);
@@ -548,20 +699,54 @@ export default function ServiceDetailPage({ params: paramsPromise }) {
             </div>
 
             <div className="subservices-premium-grid">
-              {data.types.map((type) => (
-                <div key={type.id} className="premium-subservice-card">
-                  <div className="card-bg-image" style={{ backgroundImage: `url(${type.bgImage})` }}></div>
-                  <div className="card-overlay"></div>
-                  <div className="card-content">
-                    <h3 className="card-title">{type.title}</h3>
-                    <div className="card-underline"></div>
-                    <p className="card-description">{type.desc}</p>
-                    <Link href={`/services/${id}/${type.id}`} className="card-cta-btn">
-                      Learn More
-                    </Link>
+              {data.types.map((type) => {
+                const hasPackage = !!PACKAGE_MAPPING[type.id];
+                return hasPackage ? (
+                  <div 
+                    key={type.id} 
+                    className="premium-subservice-card"
+                    onClick={() => openUnlockModal(type.id)}
+                    style={{ cursor: 'pointer' }}
+                  >
+                    <div className="card-bg-image" style={{ backgroundImage: `url(${type.bgImage})` }}></div>
+                    <div className="card-overlay"></div>
+                    <div className="card-content">
+                      <h3 className="card-title">{type.title}</h3>
+                      <div className="card-underline"></div>
+                      <p className="card-description">{type.desc}</p>
+                      <button 
+                        onClick={(e) => { e.stopPropagation(); openUnlockModal(type.id); }} 
+                        className="card-cta-btn"
+                        style={{ border: 'none', cursor: 'pointer' }}
+                      >
+                        View Packages
+                      </button>
+                    </div>
                   </div>
-                </div>
-              ))}
+                ) : (
+                  <div 
+                    key={type.id} 
+                    className="premium-subservice-card"
+                    onClick={() => openEnquiryModal(type.title)}
+                    style={{ cursor: 'pointer' }}
+                  >
+                    <div className="card-bg-image" style={{ backgroundImage: `url(${type.bgImage})` }}></div>
+                    <div className="card-overlay"></div>
+                    <div className="card-content">
+                      <h3 className="card-title">{type.title}</h3>
+                      <div className="card-underline"></div>
+                      <p className="card-description">{type.desc}</p>
+                      <button 
+                        onClick={(e) => { e.stopPropagation(); openEnquiryModal(type.title); }} 
+                        className="card-cta-btn"
+                        style={{ border: 'none', cursor: 'pointer' }}
+                      >
+                        Enquire Us
+                      </button>
+                    </div>
+                  </div>
+                );
+              })}
             </div>
           </div>
         </section>
@@ -700,7 +885,318 @@ export default function ServiceDetailPage({ params: paramsPromise }) {
         </div>
       </section>
 
+
       {/* Global Footer and Chat Widget */}
+      {/* Unlock Package Modal */}
+      {unlockModalOpen && (
+        <div 
+          className="modal-overlay" 
+          style={{ 
+            position: "fixed", 
+            inset: 0, 
+            background: "rgba(3,24,37,0.7)", 
+            backdropFilter: "blur(8px)", 
+            display: "flex", 
+            alignItems: "center", 
+            justifyContent: "center", 
+            zIndex: 99999, 
+            padding: "20px" 
+          }}
+          onClick={closeUnlockModal}
+        >
+          <div 
+            className="modal-content" 
+            style={{ 
+              background: "#ffffff", 
+              borderRadius: "20px", 
+              width: "100%", 
+              maxWidth: "480px", 
+              boxShadow: "0 25px 50px -12px rgba(0,0,0,0.5)", 
+              overflow: "hidden", 
+              position: "relative", 
+              animation: "modalSlideIn 0.3s ease-out" 
+            }}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button 
+              onClick={closeUnlockModal}
+              style={{ 
+                position: "absolute", 
+                top: "16px", 
+                right: "16px", 
+                background: "none", 
+                border: "none", 
+                fontSize: "20px", 
+                color: "var(--secondary-slate)", 
+                cursor: "pointer", 
+                fontWeight: "bold",
+                zIndex: 10
+              }}
+            >✕</button>
+            
+            <div style={{ padding: "40px 30px" }}>
+              {unlockSuccess ? (
+                <div style={{ textAlign: "center", padding: "20px 0" }}>
+                  <div style={{ fontSize: "50px", marginBottom: "15px" }}>🔓</div>
+                  <h3 style={{ fontFamily: "var(--font-headings)", color: "var(--dark-deep)", fontSize: "1.45rem", fontWeight: "800", marginBottom: "12px" }}>
+                    Package Unlocked!
+                  </h3>
+                  <p style={{ color: "var(--secondary-slate)", fontSize: "0.95rem", lineHeight: "1.5" }}>
+                    Redirecting you to our package plans for {selectedPackage.plan}...
+                  </p>
+                </div>
+              ) : (
+                <form onSubmit={handleUnlockSubmit}>
+                  <h3 style={{ fontFamily: "var(--font-headings)", color: "var(--dark-deep)", fontSize: "1.45rem", fontWeight: "800", marginBottom: "8px", textAlign: "center" }}>
+                    Unlock Packages
+                  </h3>
+                  <p style={{ color: "var(--secondary-slate)", fontSize: "0.9rem", textAlign: "center", marginBottom: "28px" }}>
+                    Please fill out the details below to unlock pricing and details for <strong>{selectedPackage.plan}</strong>.
+                  </p>
+                  
+                  {unlockError && (
+                    <div style={{ color: "#ef4444", background: "#fef2f2", border: "1px solid #fca5a5", borderRadius: "8px", padding: "10px 14px", fontSize: "0.85rem", marginBottom: "16px", textAlign: "center" }}>
+                      {unlockError}
+                    </div>
+                  )}
+
+                  <div style={{ display: "flex", flexDirection: "column", gap: "16px", marginBottom: "24px" }}>
+                    <div>
+                      <label style={{ display: "block", fontSize: "0.85rem", fontWeight: "700", color: "var(--dark-deep)", marginBottom: "6px" }}>Full Name *</label>
+                      <input 
+                        type="text" 
+                        name="name" 
+                        required 
+                        value={unlockFormData.name} 
+                        onChange={handleUnlockInputChange} 
+                        placeholder="e.g. John Doe" 
+                        style={{ width: "100%", padding: "12px 16px", border: "1px solid #cbd5e1", borderRadius: "8px", fontSize: "0.95rem", color: "var(--dark-deep)" }} 
+                      />
+                    </div>
+                    <div>
+                      <label style={{ display: "block", fontSize: "0.85rem", fontWeight: "700", color: "var(--dark-deep)", marginBottom: "6px" }}>Email Address *</label>
+                      <input 
+                        type="email" 
+                        name="email" 
+                        required 
+                        value={unlockFormData.email} 
+                        onChange={handleUnlockInputChange} 
+                        placeholder="e.g. john@company.com" 
+                        style={{ width: "100%", padding: "12px 16px", border: "1px solid #cbd5e1", borderRadius: "8px", fontSize: "0.95rem", color: "var(--dark-deep)" }} 
+                      />
+                    </div>
+                    <div>
+                      <label style={{ display: "block", fontSize: "0.85rem", fontWeight: "700", color: "var(--dark-deep)", marginBottom: "6px" }}>Phone Number *</label>
+                      <input 
+                        type="tel" 
+                        name="phone" 
+                        required 
+                        value={unlockFormData.phone} 
+                        onChange={handleUnlockInputChange} 
+                        placeholder="e.g. +91 98765 43210" 
+                        style={{ width: "100%", padding: "12px 16px", border: "1px solid #cbd5e1", borderRadius: "8px", fontSize: "0.95rem", color: "var(--dark-deep)" }} 
+                      />
+                    </div>
+                    <div>
+                      <label style={{ display: "block", fontSize: "0.85rem", fontWeight: "700", color: "var(--dark-deep)", marginBottom: "6px" }}>Company Name (Optional)</label>
+                      <input 
+                        type="text" 
+                        name="company" 
+                        value={unlockFormData.company} 
+                        onChange={handleUnlockInputChange} 
+                        placeholder="e.g. Acme Corp" 
+                        style={{ width: "100%", padding: "12px 16px", border: "1px solid #cbd5e1", borderRadius: "8px", fontSize: "0.95rem", color: "var(--dark-deep)" }} 
+                      />
+                    </div>
+                  </div>
+                  
+                  <button 
+                    type="submit" 
+                    disabled={unlockSubmitting}
+                    style={{ 
+                      width: "100%", 
+                      background: "var(--accent-orange)", 
+                      color: "var(--white)", 
+                      padding: "14px", 
+                      borderRadius: "8px", 
+                      fontWeight: "700", 
+                      fontSize: "0.95rem", 
+                      border: "none", 
+                      cursor: unlockSubmitting ? "not-allowed" : "pointer", 
+                      boxShadow: "var(--shadow-orange)", 
+                      opacity: unlockSubmitting ? 0.8 : 1, 
+                      transition: "all 0.2s" 
+                    }}
+                  >
+                    {unlockSubmitting ? "Unlocking..." : "Unlock Packages"}
+                  </button>
+                </form>
+              )}
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Enquire Us Modal */}
+      {enquiryModalOpen && (
+        <div 
+          className="modal-overlay" 
+          style={{ 
+            position: "fixed", 
+            inset: 0, 
+            background: "rgba(3,24,37,0.7)", 
+            backdropFilter: "blur(8px)", 
+            display: "flex", 
+            alignItems: "center", 
+            justifyContent: "center", 
+            zIndex: 99999, 
+            padding: "20px" 
+          }}
+          onClick={closeEnquiryModal}
+        >
+          <div 
+            className="modal-content" 
+            style={{ 
+              background: "#ffffff", 
+              borderRadius: "20px", 
+              width: "100%", 
+              maxWidth: "480px", 
+              boxShadow: "0 25px 50px -12px rgba(0,0,0,0.5)", 
+              overflow: "hidden", 
+              position: "relative", 
+              animation: "modalSlideIn 0.3s ease-out" 
+            }}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button 
+              onClick={closeEnquiryModal}
+              style={{ 
+                position: "absolute", 
+                top: "16px", 
+                right: "16px", 
+                background: "none", 
+                border: "none", 
+                fontSize: "20px", 
+                color: "var(--secondary-slate)", 
+                cursor: "pointer", 
+                fontWeight: "bold",
+                zIndex: 10
+              }}
+            >✕</button>
+            
+            <div style={{ padding: "40px 30px" }}>
+              {submitSuccess ? (
+                <div style={{ textAlign: "center", padding: "20px 0" }}>
+                  <div style={{ fontSize: "50px", marginBottom: "15px" }}>✅</div>
+                  <h3 style={{ fontFamily: "var(--font-headings)", color: "var(--dark-deep)", fontSize: "1.45rem", fontWeight: "800", marginBottom: "12px" }}>
+                    Enquiry Submitted!
+                  </h3>
+                  <p style={{ color: "var(--secondary-slate)", fontSize: "0.95rem", lineHeight: "1.5" }}>
+                    Thank you for your enquiry regarding {enquirySubject}. Our team will review your requirements and get back to you shortly.
+                  </p>
+                </div>
+              ) : (
+                <form onSubmit={handleEnquirySubmit}>
+                  <h3 style={{ fontFamily: "var(--font-headings)", color: "var(--dark-deep)", fontSize: "1.45rem", fontWeight: "800", marginBottom: "8px", textAlign: "center" }}>
+                    Enquire: {enquirySubject}
+                  </h3>
+                  <p style={{ color: "var(--secondary-slate)", fontSize: "0.9rem", textAlign: "center", marginBottom: "28px" }}>
+                    Please fill out the form below with your project requirements, and we will get back to you with a custom solution.
+                  </p>
+                  
+                  {submitError && (
+                    <div style={{ color: "#ef4444", background: "#fef2f2", border: "1px solid #fca5a5", borderRadius: "8px", padding: "10px 14px", fontSize: "0.85rem", marginBottom: "16px", textAlign: "center" }}>
+                      {submitError}
+                    </div>
+                  )}
+
+                  <div style={{ display: "flex", flexDirection: "column", gap: "16px", marginBottom: "24px" }}>
+                    <div>
+                      <label style={{ display: "block", fontSize: "0.85rem", fontWeight: "700", color: "var(--dark-deep)", marginBottom: "6px" }}>Full Name *</label>
+                      <input 
+                        type="text" 
+                        name="name" 
+                        required 
+                        value={formData.name} 
+                        onChange={handleInputChange} 
+                        placeholder="e.g. John Doe" 
+                        style={{ width: "100%", padding: "12px 16px", border: "1px solid #cbd5e1", borderRadius: "8px", fontSize: "0.95rem", color: "var(--dark-deep)" }} 
+                      />
+                    </div>
+                    <div>
+                      <label style={{ display: "block", fontSize: "0.85rem", fontWeight: "700", color: "var(--dark-deep)", marginBottom: "6px" }}>Email Address *</label>
+                      <input 
+                        type="email" 
+                        name="email" 
+                        required 
+                        value={formData.email} 
+                        onChange={handleInputChange} 
+                        placeholder="e.g. john@company.com" 
+                        style={{ width: "100%", padding: "12px 16px", border: "1px solid #cbd5e1", borderRadius: "8px", fontSize: "0.95rem", color: "var(--dark-deep)" }} 
+                      />
+                    </div>
+                    <div>
+                      <label style={{ display: "block", fontSize: "0.85rem", fontWeight: "700", color: "var(--dark-deep)", marginBottom: "6px" }}>Phone Number *</label>
+                      <input 
+                        type="tel" 
+                        name="phone" 
+                        required 
+                        value={formData.phone} 
+                        onChange={handleInputChange} 
+                        placeholder="e.g. +91 98765 43210" 
+                        style={{ width: "100%", padding: "12px 16px", border: "1px solid #cbd5e1", borderRadius: "8px", fontSize: "0.95rem", color: "var(--dark-deep)" }} 
+                      />
+                    </div>
+                    <div>
+                      <label style={{ display: "block", fontSize: "0.85rem", fontWeight: "700", color: "var(--dark-deep)", marginBottom: "6px" }}>Company Name (Optional)</label>
+                      <input 
+                        type="text" 
+                        name="company" 
+                        value={formData.company} 
+                        onChange={handleInputChange} 
+                        placeholder="e.g. Acme Corp" 
+                        style={{ width: "100%", padding: "12px 16px", border: "1px solid #cbd5e1", borderRadius: "8px", fontSize: "0.95rem", color: "var(--dark-deep)" }} 
+                      />
+                    </div>
+                    <div>
+                      <label style={{ display: "block", fontSize: "0.85rem", fontWeight: "700", color: "var(--dark-deep)", marginBottom: "6px" }}>Project Requirements (Optional)</label>
+                      <textarea 
+                        name="message" 
+                        value={formData.message} 
+                        onChange={handleInputChange} 
+                        placeholder="e.g. We want to develop a custom SaaS application for our logistics company..." 
+                        rows={3}
+                        style={{ width: "100%", padding: "12px 16px", border: "1px solid #cbd5e1", borderRadius: "8px", fontSize: "0.95rem", color: "var(--dark-deep)", resize: "vertical" }} 
+                      />
+                    </div>
+                  </div>
+                  
+                  <button 
+                    type="submit" 
+                    disabled={submitting}
+                    style={{ 
+                      width: "100%", 
+                      background: "var(--accent-orange)", 
+                      color: "var(--white)", 
+                      padding: "14px", 
+                      borderRadius: "8px", 
+                      fontWeight: "700", 
+                      fontSize: "0.95rem", 
+                      border: "none", 
+                      cursor: submitting ? "not-allowed" : "pointer", 
+                      boxShadow: "var(--shadow-orange)", 
+                      opacity: submitting ? 0.8 : 1, 
+                      transition: "all 0.2s" 
+                    }}
+                  >
+                    {submitting ? "Submitting..." : "Submit Enquiry"}
+                  </button>
+                </form>
+              )}
+            </div>
+          </div>
+        </div>
+      )}
       <GlobalFooter />
     </div>
   );

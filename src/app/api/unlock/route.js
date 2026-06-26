@@ -58,7 +58,8 @@ export async function POST(request) {
           }
         });
 
-        await transporter.sendMail({
+        // Send email asynchronously in the background to prevent blocking the client response
+        transporter.sendMail({
           from: smtpFrom,
           to: adminEmail,
           replyTo: email,
@@ -79,13 +80,16 @@ Package Viewed:
 
 Best Regards,
 Ananya Hi Solutions Support System`,
+        }).then(() => {
+          console.log(`[SMTP DISPATCH SYSTEM] Package unlock email successfully sent to ${adminEmail} via ${smtpHost}`);
+        }).catch((err) => {
+          console.error("[SMTP ERROR] Failed to send package unlock email via nodemailer:", err);
         });
 
         emailSent = true;
-        console.log(`[SMTP DISPATCH SYSTEM] Package unlock email successfully sent to ${adminEmail} via ${smtpHost}`);
       } catch (err) {
         emailError = err.message;
-        console.error("[SMTP ERROR] Failed to send package unlock email via nodemailer:", err);
+        console.error("[SMTP ERROR] Failed to initialize nodemailer transporter:", err);
       }
     }
 

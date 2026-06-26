@@ -657,16 +657,18 @@ export default function Home() {
               </div>
             ) : (
               services.map((item) => (
-                <div key={item.id} className="service-card glass">
+                <Link 
+                  key={item.id} 
+                  href={`/services/${item.id}`} 
+                  className="service-card glass"
+                  style={{ textDecoration: 'none' }}
+                >
                   <div className="service-icon-wrapper">
                     {renderServiceIcon(item.iconName)}
                   </div>
                   <h3 className="service-title">{item.title}</h3>
                   <p className="service-desc">{item.desc}</p>
-                  <Link href={`/services/${item.id}`} className="service-learn-more">
-                    Learn More <span>→</span>
-                  </Link>
-                </div>
+                </Link>
               ))
             )}
           </div>

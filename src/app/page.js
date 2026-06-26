@@ -946,33 +946,11 @@ export default function Home() {
 
           <div className="map-container" style={{ position: 'relative' }}>
             <img 
-              src="/world-map.svg?v=3" 
+              src="/images/world_map.png" 
               alt="World Map" 
               className="map-svg" 
               style={{ width: '100%', height: 'auto', display: 'block', opacity: 1 }} 
             />
-
-            {/* Headquarters Node - Hyderabad (Pulsing tech blue glow) */}
-            <div 
-              className="map-pin" 
-              style={{ 
-                position: 'absolute', 
-                left: '73.24%', 
-                top: '53.07%', 
-                transform: 'translate(-50%, -50%)',
-                zIndex: 10
-              }}
-            >
-              <svg width="60" height="60" viewBox="-30 -30 60 60" style={{ overflow: 'visible', display: 'block' }} xmlns="http://www.w3.org/2000/svg">
-                <circle cx="0" cy="0" r="25" className="map-pin-pulse-blue" />
-                <circle cx="0" cy="0" r="8" className="map-pin-core-blue" />
-                {/* Visual Label */}
-                <g transform="translate(12, -12)">
-                  <rect x="0" y="0" width="82" height="24" rx="4" fill="var(--dark-deep)" opacity="0.9" />
-                  <text x="6" y="16" fill="#ffffff" fontFamily="var(--font-sans)" fontWeight="700" fontSize="10">HYDERABAD</text>
-                </g>
-              </svg>
-            </div>
           </div>
         </div>
       </section>

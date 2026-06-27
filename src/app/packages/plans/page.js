@@ -11,14 +11,43 @@ import html2canvas from "html2canvas";
 // Common uniform font stack to ensure absolute visual consistency in rendering
 const UNIFORM_FONT_STACK = "system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Helvetica, Arial, sans-serif";
 
-// Clean Logo SVG matching the uniform font stack
+// Date formatting helper for issue date (e.g. 6th June 2026)
+const getOrdinalSuffix = (day) => {
+  if (day > 3 && day < 21) return 'th';
+  switch (day % 10) {
+    case 1:  return "st";
+    case 2:  return "nd";
+    case 3:  return "rd";
+    default: return "th";
+  }
+};
+
+const formatIssueDate = (date) => {
+  const day = date.getDate();
+  const month = date.toLocaleDateString('en-US', { month: 'long' });
+  const year = date.getFullYear();
+  return `${day}${getOrdinalSuffix(day)} ${month} ${year}`;
+};
+
+// Date formatting helper for browser print header (e.g. 06/06/2026, 11:02)
+const formatDownloadDateTime = (date) => {
+  const day = String(date.getDate()).padStart(2, '0');
+  const month = String(date.getMonth() + 1).padStart(2, '0');
+  const year = date.getFullYear();
+  const hours = String(date.getHours()).padStart(2, '0');
+  const minutes = String(date.getMinutes()).padStart(2, '0');
+  return `${day}/${month}/${year}, ${hours}:${minutes}`;
+};
+
+// Clean Logo SVG matching the uniform font stack and logo styling precisely
 const LogoSVG = () => (
-  <svg width="200" height="50" viewBox="0 0 200 50" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <text x="10" y="32" fill="#ffffff" fontFamily={UNIFORM_FONT_STACK} fontWeight="800" fontSize="24">Ananya Hi</text>
-    <text x="110" y="44" fill="#a8cbfb" fontFamily={UNIFORM_FONT_STACK} fontWeight="500" fontSize="13" letterSpacing="2">SOLUTIONS</text>
-    <path d="M140 14H152V26" stroke="#ffffff" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/>
-    <path d="M132 22H144V34" stroke="#a8cbfb" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/>
-    <path d="M128 26L152 14" stroke="#ffffff" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/>
+  <svg width="220" height="55" viewBox="0 0 220 55" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <text x="5" y="28" fill="#ffffff" fontFamily={UNIFORM_FONT_STACK} fontWeight="800" fontSize="24" letterSpacing="-0.5px">Ananya Hi</text>
+    <text x="60" y="45" fill="#ffffff" fontFamily={UNIFORM_FONT_STACK} fontWeight="400" fontSize="13" letterSpacing="3px">solutions</text>
+    <g transform="translate(125, 6)">
+      <path d="M0 12L12 0M12 0H5M12 0V7" stroke="#ffffff" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
+      <path d="M-5 17L7 5M7 5H0M7 5V12" stroke="#ffffff" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" opacity="0.8"/>
+    </g>
   </svg>
 );
 
@@ -29,7 +58,7 @@ function PlansContent() {
   // Default to empty array if no specific data exists yet for the package
   const plansData = PACKAGE_PLANS_DATA[packageTitle] || [];
 
-  // Client Details state (pulls dynamically from localStorage if populated)
+  // Client Details state (pulls dynamically from localStorage/URL parameters if populated)
   const [leadInfo, setLeadInfo] = useState({
     name: "Client Name",
     company: "",
@@ -38,6 +67,7 @@ function PlansContent() {
   });
 
   const [downloadDateTime, setDownloadDateTime] = useState("");
+  const [issueDate, setIssueDate] = useState("");
   const [generatingPdfId, setGeneratingPdfId] = useState(null);
 
   useEffect(() => {
@@ -86,11 +116,9 @@ function PlansContent() {
   };
 
   const handleDownloadInvoice = async (plan, idx) => {
-    // Generate and format current Date and Time of the download
     const now = new Date();
-    const formattedDate = now.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
-    const formattedTime = now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true });
-    setDownloadDateTime(`${formattedDate}, ${formattedTime}`);
+    setDownloadDateTime(formatDownloadDateTime(now));
+    setIssueDate(formatIssueDate(now));
 
     setGeneratingPdfId(idx);
     try {
@@ -261,7 +289,7 @@ function PlansContent() {
               style={{
                 width: "794px",
                 height: "1123px",
-                padding: "40px",
+                padding: "30px 40px 40px 40px",
                 boxSizing: "border-box",
                 backgroundColor: "#ffffff",
                 display: "flex",
@@ -271,11 +299,25 @@ function PlansContent() {
               }}
             >
               <div>
+                {/* Metadata Browser Print Header Strip */}
+                <div style={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  fontSize: "11px",
+                  color: "#333333",
+                  marginBottom: "12px",
+                  padding: "0 4px",
+                  fontFamily: UNIFORM_FONT_STACK
+                }}>
+                  <span>{downloadDateTime}</span>
+                  <span style={{ fontWeight: "600" }}>Ananya Hi Solutions - Quotation Overview</span>
+                </div>
+
                 {/* Header Banner */}
                 <div style={{
                   background: "linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%)",
                   padding: "20px 30px",
-                  borderRadius: "8px",
+                  borderRadius: "10px 10px 0 0",
                   display: "flex",
                   justifyContent: "space-between",
                   alignItems: "center",
@@ -283,8 +325,8 @@ function PlansContent() {
                 }}>
                   <LogoSVG />
                   <div style={{ textAlign: "right" }}>
-                    <div style={{ fontSize: "14px", fontWeight: "700" }}>Business Proposal: #{134 + idx}</div>
-                    <div style={{ fontSize: "11px", opacity: 0.9, marginTop: "4px" }}>Download Time: {downloadDateTime}</div>
+                    <div style={{ fontSize: "16px", fontWeight: "700" }}>Business Proposal: #{134 + idx}</div>
+                    <div style={{ fontSize: "13px", opacity: 0.95, marginTop: "4px" }}>Issue Date: {issueDate}</div>
                   </div>
                 </div>
                 
@@ -409,7 +451,7 @@ function PlansContent() {
               style={{
                 width: "794px",
                 height: "1123px",
-                padding: "40px",
+                padding: "30px 40px 40px 40px",
                 boxSizing: "border-box",
                 backgroundColor: "#ffffff",
                 display: "flex",
@@ -419,21 +461,20 @@ function PlansContent() {
               }}
             >
               <div>
-                {/* Header Strip */}
+                {/* Metadata Browser Print Header Strip */}
                 <div style={{
                   display: "flex",
                   justifyContent: "space-between",
-                  alignItems: "center",
-                  borderBottom: "2px solid #e2e8f0",
-                  paddingBottom: "10px",
-                  marginBottom: "20px",
-                  color: "#64748b",
-                  fontSize: "11px"
+                  fontSize: "11px",
+                  color: "#333333",
+                  marginBottom: "12px",
+                  padding: "0 4px",
+                  fontFamily: UNIFORM_FONT_STACK
                 }}>
-                  <span>Ananya Hi Solutions - Quotation Overview</span>
-                  <span>Proposal #{134 + idx}</span>
+                  <span>{downloadDateTime}</span>
+                  <span style={{ fontWeight: "600" }}>Ananya Hi Solutions - Quotation Overview</span>
                 </div>
-                
+
                 {/* Table Container */}
                 <div style={{
                   display: "grid",

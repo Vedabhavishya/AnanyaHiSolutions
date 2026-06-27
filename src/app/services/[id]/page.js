@@ -291,6 +291,18 @@ const SERVICES_DETAIL_DATA = {
         title: "Short Films & Web Series Production", 
         bgImage: "https://images.unsplash.com/photo-1517604931442-7e0c8ed2963c?auto=format&fit=crop&w=800&q=80",
         desc: "Script-to-screen drama, screenplays, professional color mastering, casting, and sound design." 
+      },
+      { 
+        id: "professional-dslr", 
+        title: "Professional DSLR", 
+        bgImage: "https://images.unsplash.com/photo-1502920917128-1aa500764cbd?auto=format&fit=crop&w=800&q=80",
+        desc: "High-resolution DSLR multi-camera video shoots for premium branding, interviews, and advertisements." 
+      },
+      { 
+        id: "iphone-shoot", 
+        title: "Iphone Shoot", 
+        bgImage: "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=800&q=80",
+        desc: "Dynamic 4K iPhone video shoots, perfect for social media reels, organic content, and rapid visual marketing." 
       }
     ],
     overviewTitle: "Professional Video Production and Storytelling in Hyderabad",
@@ -341,6 +353,12 @@ const SERVICES_DETAIL_DATA = {
         title: "Learning Management System", 
         bgImage: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=800&q=80",
         desc: "Scalable e-learning portals featuring interactive quiz components and live course video streams." 
+      },
+      { 
+        id: "hospital-management", 
+        title: "Hospital Management System", 
+        bgImage: "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=800&q=80",
+        desc: "Automated healthcare ERPs connecting patient registrations, doctor schedules, billing, and lab report workflows." 
       }
     ],
     overviewTitle: "Custom Software Engineering Services in Hyderabad",

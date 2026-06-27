@@ -42,6 +42,25 @@ function PlansContent() {
 
   useEffect(() => {
     if (typeof window !== "undefined") {
+      // 1. Try to read from URL search parameters first
+      const urlName = searchParams.get("name");
+      const urlEmail = searchParams.get("email");
+      const urlPhone = searchParams.get("phone");
+      const urlCompany = searchParams.get("company");
+      
+      if (urlName) {
+        const info = {
+          name: urlName,
+          email: urlEmail || "",
+          phone: urlPhone || "",
+          company: urlCompany || ""
+        };
+        setLeadInfo(info);
+        localStorage.setItem("ahs_lead_info", JSON.stringify(info));
+        return;
+      }
+
+      // 2. Fall back to localStorage
       const saved = localStorage.getItem("ahs_lead_info");
       if (saved) {
         try {
@@ -57,7 +76,7 @@ function PlansContent() {
         }
       }
     }
-  }, []);
+  }, [searchParams]);
 
   const handleWhatsAppClick = (planName) => {
     const phoneNumber = "917673935353";

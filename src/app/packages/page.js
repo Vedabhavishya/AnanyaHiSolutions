@@ -169,7 +169,14 @@ export default function PackagesPage() {
         }));
       }
       
-      router.push(`/packages/plans?package=${encodeURIComponent(selectedPackage.plan)}`);
+      const queryParams = new URLSearchParams({
+        package: selectedPackage.plan,
+        name: formData.name,
+        email: formData.email,
+        phone: formData.phone,
+        company: formData.company || ""
+      });
+      router.push(`/packages/plans?${queryParams.toString()}`);
     } catch (err) {
       alert(err.message);
     } finally {

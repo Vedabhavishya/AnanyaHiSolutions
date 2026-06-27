@@ -135,25 +135,6 @@ export const SUBSERVICES_DETAIL_DATA = {
       "Guest post distribution plan to authority publications"
     ]
   },
-  "email-marketing": {
-    title: "Email Marketing",
-    packageName: "Lifecycle Email Automations",
-    packageSubtitle: "Drive Customer Retention & Compounding Sales",
-    topVisual: "https://images.unsplash.com/photo-1557200134-90327ee9fafa?auto=format&fit=crop&w=1200&q=80",
-    bodyVisual: "https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?auto=format&fit=crop&w=800&q=80",
-    whyChoose: "Build loyal customer relationships and automate secondary sales. We set up behavioral email sequences, optimize subject line click rates, and design newsletters that drive consistent traffic to your services. Our targeted email workflows ensure your brand stays top-of-mind, turning one-time buyers into repeat customers.",
-    visibleFeatures: [
-      "Target list segmentation based on customer actions",
-      "A/B split testing of email subject lines",
-      "Automated welcome & lead-nurturing email flows",
-      "Monthly campaign analytics (Open, CTR, sales)"
-    ],
-    lockedFeatures: [
-      "Abandoned shopping cart auto-recovery sequences",
-      "Custom responsive HTML email template designs",
-      "CRM customer tag automation and syncing pipelines"
-    ]
-  },
 
   // Mobile App
   "ios": {

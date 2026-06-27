@@ -147,12 +147,6 @@ const SERVICES_DETAIL_DATA = {
         title: "Content Marketing", 
         bgImage: "https://images.unsplash.com/photo-1499750310107-5fef28a66643?auto=format&fit=crop&w=800&q=80",
         desc: "Position your brand as an industry authority with search-optimized copy, blogs, and creative infographics." 
-      },
-      { 
-        id: "email-marketing", 
-        title: "Email Marketing", 
-        bgImage: "https://images.unsplash.com/photo-1557200134-90327ee9fafa?auto=format&fit=crop&w=800&q=80",
-        desc: "Automate nurturing workflows, re-engage leads, and keep customers loyal with newsletters." 
       }
     ],
     overviewTitle: "Professional Digital Marketing Services in Hyderabad",

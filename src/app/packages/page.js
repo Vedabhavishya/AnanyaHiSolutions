@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import Header from "../components/Header";
 
@@ -121,10 +121,28 @@ const PACKAGE_CATEGORIES = [
 
 export default function PackagesPage() {
   const router = require("next/navigation").useRouter();
+  const [categories, setCategories] = useState(PACKAGE_CATEGORIES);
   const [modalOpen, setModalOpen] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [selectedPackage, setSelectedPackage] = useState({ category: "", plan: "" });
   const [formData, setFormData] = useState({ name: "", email: "", phone: "", company: "" });
+
+  useEffect(() => {
+    const fetchPackages = async () => {
+      try {
+        const res = await fetch("/api/packages");
+        if (res.ok) {
+          const data = await res.json();
+          if (data.packages) {
+            setCategories(data.packages);
+          }
+        }
+      } catch (err) {
+        console.error("Error fetching packages:", err);
+      }
+    };
+    fetchPackages();
+  }, []);
 
   const openModal = (category, plan) => {
     setSelectedPackage({ category, plan });
@@ -206,7 +224,7 @@ export default function PackagesPage() {
       </section>
 
       {/* 3. Package Sections */}
-      {PACKAGE_CATEGORIES.map((category, index) => {
+      {categories.map((category, index) => {
         // Alternate background colors (Light Gray -> White -> Light Gray)
         const isAltBg = index % 2 === 0;
         const bgClass = isAltBg ? "section section-bg-alt" : "section";
@@ -220,7 +238,7 @@ export default function PackagesPage() {
                 <div className="package-category-underline"></div>
               </div>
 
-              <div className={category.isSingleCard ? "packages-grid-single" : "packages-grid"}>
+              <div className={(category.isSingleCard || (category.cards && category.cards.length === 1)) ? "packages-grid-single" : "packages-grid"}>
                 {category.cards.map((card, cIdx) => (
                   <div key={cIdx} className="package-card-premium">
                     {/* Default Background Image */}

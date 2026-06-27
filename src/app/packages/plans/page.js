@@ -56,7 +56,29 @@ function PlansContent() {
   const packageTitle = searchParams.get("package") || "Selected Package";
   
   // Default to empty array if no specific data exists yet for the package
-  const plansData = PACKAGE_PLANS_DATA[packageTitle] || [];
+  const [plansData, setPlansData] = useState([]);
+
+  useEffect(() => {
+    const fetchPlans = async () => {
+      try {
+        const res = await fetch("/api/packages");
+        if (res.ok) {
+          const data = await res.json();
+          if (data.plans && data.plans[packageTitle]) {
+            setPlansData(data.plans[packageTitle]);
+          } else {
+            setPlansData(PACKAGE_PLANS_DATA[packageTitle] || []);
+          }
+        } else {
+          setPlansData(PACKAGE_PLANS_DATA[packageTitle] || []);
+        }
+      } catch (err) {
+        console.error("Error fetching plans:", err);
+        setPlansData(PACKAGE_PLANS_DATA[packageTitle] || []);
+      }
+    };
+    fetchPlans();
+  }, [packageTitle]);
 
   // Client Details state (pulls dynamically from localStorage/URL parameters if populated)
   const [leadInfo, setLeadInfo] = useState({

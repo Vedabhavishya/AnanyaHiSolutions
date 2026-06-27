@@ -8,11 +8,14 @@ import Link from "next/link";
 import jsPDF from "jspdf";
 import html2canvas from "html2canvas";
 
-// Crisp inline SVG Logo to use in the PDF
+// Common uniform font stack to ensure absolute visual consistency in rendering
+const UNIFORM_FONT_STACK = "system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Helvetica, Arial, sans-serif";
+
+// Clean Logo SVG matching the uniform font stack
 const LogoSVG = () => (
   <svg width="200" height="50" viewBox="0 0 200 50" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <text x="10" y="32" fill="#ffffff" fontFamily="'Outfit', sans-serif, Arial" fontWeight="800" fontSize="24">Ananya Hi</text>
-    <text x="110" y="44" fill="#a8cbfb" fontFamily="'Outfit', sans-serif, Arial" fontWeight="500" fontSize="13" letterSpacing="2">SOLUTIONS</text>
+    <text x="10" y="32" fill="#ffffff" fontFamily={UNIFORM_FONT_STACK} fontWeight="800" fontSize="24">Ananya Hi</text>
+    <text x="110" y="44" fill="#a8cbfb" fontFamily={UNIFORM_FONT_STACK} fontWeight="500" fontSize="13" letterSpacing="2">SOLUTIONS</text>
     <path d="M140 14H152V26" stroke="#ffffff" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/>
     <path d="M132 22H144V34" stroke="#a8cbfb" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/>
     <path d="M128 26L152 14" stroke="#ffffff" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/>
@@ -26,15 +29,15 @@ function PlansContent() {
   // Default to empty array if no specific data exists yet for the package
   const plansData = PACKAGE_PLANS_DATA[packageTitle] || [];
 
-  // Client Details state (pulls dynamically from localstorage if populated)
+  // Client Details state (pulls dynamically from localStorage if populated)
   const [leadInfo, setLeadInfo] = useState({
-    name: "Dr.Prasanth",
-    company: "Ridhira Decors",
-    phone: "9557599099",
-    email: "drgummalla@gmail.com",
-    city: "Miyapur"
+    name: "Client Name",
+    company: "",
+    phone: "",
+    email: ""
   });
 
+  const [downloadDateTime, setDownloadDateTime] = useState("");
   const [generatingPdfId, setGeneratingPdfId] = useState(null);
 
   useEffect(() => {
@@ -44,11 +47,10 @@ function PlansContent() {
         try {
           const parsed = JSON.parse(saved);
           setLeadInfo({
-            name: parsed.name || "Dr.Prasanth",
-            company: parsed.company || "Ridhira Decors",
-            phone: parsed.phone || "9557599099",
-            email: parsed.email || "drgummalla@gmail.com",
-            city: parsed.city || "Miyapur"
+            name: parsed.name || "Client Name",
+            company: parsed.company || "",
+            phone: parsed.phone || "",
+            email: parsed.email || ""
           });
         } catch (e) {
           console.error("Error parsing stored lead data:", e);
@@ -64,35 +66,16 @@ function PlansContent() {
     window.open(`https://wa.me/${phoneNumber}?text=${encodedMessage}`, '_blank');
   };
 
-  // Helper functions to parse and format prices
-  const parsePrice = (priceStr) => {
-    if (!priceStr) return 0;
-    const cleaned = priceStr.replace(/[^0-9]/g, '');
-    const num = parseInt(cleaned, 10);
-    return isNaN(num) ? 0 : num;
-  };
-
-  const formatPrice = (num) => {
-    return new Intl.NumberFormat('en-IN', {
-      style: 'currency',
-      currency: 'INR',
-      maximumFractionDigits: 0
-    }).format(num);
-  };
-
-  const formatPriceDecimal = (num) => {
-    return new Intl.NumberFormat('en-IN', {
-      style: 'currency',
-      currency: 'INR',
-      minimumFractionDigits: 2,
-      maximumFractionDigits: 2
-    }).format(num);
-  };
-
   const handleDownloadInvoice = async (plan, idx) => {
+    // Generate and format current Date and Time of the download
+    const now = new Date();
+    const formattedDate = now.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+    const formattedTime = now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true });
+    setDownloadDateTime(`${formattedDate}, ${formattedTime}`);
+
     setGeneratingPdfId(idx);
     try {
-      // Small delay to ensure the DOM elements render successfully
+      // Small delay to ensure state updates propagate to HTML elements
       await new Promise(r => setTimeout(r, 400));
       
       const page1 = document.getElementById(`proposal-page-1-${idx}`);
@@ -222,7 +205,7 @@ function PlansContent() {
                         <polyline points="7 10 12 15 17 10" />
                         <line x1="12" y1="15" x2="12" y2="3" />
                       </svg>
-                      {generatingPdfId === idx ? "Generating Proposal..." : "Download Proposal"}
+                      {generatingPdfId === idx ? "Generating PDF..." : "Download Proposal"}
                     </button>
                     
                     <p className="plan-expert-msg">One of our experts will contact you soon.</p>
@@ -248,18 +231,8 @@ function PlansContent() {
 
       {/* Hidden Templates for PDF Generation */}
       {plansData.length > 0 && plansData.map((plan, idx) => {
-        const originalPrice = parsePrice(plan.price);
-        const discountPercent = 29; // Matches 29% discount in screenshots
-        const payableAmount = Math.floor(originalPrice * (1 - discountPercent / 100));
-        const grandTotal = (originalPrice * (1 - discountPercent / 100)).toFixed(2);
-        
         const featuresPage1 = plan.features.slice(0, 15);
         const featuresPage2 = plan.features.slice(15);
-        
-        const formattedOriginal = formatPrice(originalPrice);
-        const formattedPayable = formatPrice(payableAmount);
-        const formattedGrandTotal = formatPriceDecimal(parseFloat(grandTotal));
-        const issueDate = new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
         
         return (
           <div key={`pdf-template-${idx}`} style={{ position: "absolute", left: "-9999px", top: "-9999px", zIndex: -100 }}>
@@ -275,7 +248,7 @@ function PlansContent() {
                 display: "flex",
                 flexDirection: "column",
                 justifyContent: "space-between",
-                fontFamily: "system-ui, -apple-system, sans-serif"
+                fontFamily: UNIFORM_FONT_STACK
               }}
             >
               <div>
@@ -292,7 +265,7 @@ function PlansContent() {
                   <LogoSVG />
                   <div style={{ textAlign: "right" }}>
                     <div style={{ fontSize: "14px", fontWeight: "700" }}>Business Proposal: #{134 + idx}</div>
-                    <div style={{ fontSize: "12px", opacity: 0.9, marginTop: "4px" }}>Issue Date: {issueDate}</div>
+                    <div style={{ fontSize: "11px", opacity: 0.9, marginTop: "4px" }}>Download Time: {downloadDateTime}</div>
                   </div>
                 </div>
                 
@@ -316,11 +289,12 @@ function PlansContent() {
                       letterSpacing: "0.5px"
                     }}>Business Proposal</span>
                     <h2 style={{ fontSize: "22px", fontWeight: "800", color: "#0f172a", margin: "10px 0 2px 0" }}>{leadInfo.name}</h2>
-                    <p style={{ color: "#64748b", fontSize: "14px", margin: "0 0 12px 0", fontWeight: "500" }}>{leadInfo.company}</p>
-                    <div style={{ fontSize: "13px", color: "#475569", lineHeight: "1.6" }}>
-                      <div>📞 {leadInfo.phone}</div>
-                      <div>✉️ {leadInfo.email}</div>
-                      <div>📍 {leadInfo.city}</div>
+                    {leadInfo.company && leadInfo.company !== "Company Name" && (
+                      <p style={{ color: "#64748b", fontSize: "14px", margin: "0 0 12px 0", fontWeight: "500" }}>{leadInfo.company}</p>
+                    )}
+                    <div style={{ fontSize: "13px", color: "#475569", lineHeight: "1.6", marginTop: "8px" }}>
+                      {leadInfo.phone && leadInfo.phone !== "Phone Number" && <div>📞 {leadInfo.phone}</div>}
+                      {leadInfo.email && leadInfo.email !== "Email Address" && <div>✉️ {leadInfo.email}</div>}
                     </div>
                   </div>
                   
@@ -374,19 +348,9 @@ function PlansContent() {
                   {/* Right Column - Price Summary */}
                   <div style={{ padding: "24px", background: "#eff6ff", borderLeft: "1px solid #e2e8f0", display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
                     <div>
-                      <div style={{ fontSize: "11px", color: "#64748b", textTransform: "uppercase", fontWeight: "600" }}>Original Amount</div>
-                      <div style={{ fontSize: "22px", color: "#ef4444", fontWeight: "700", textDecoration: "line-through", margin: "4px 0 12px 0" }}>
-                        Rs {originalPrice.toLocaleString('en-IN')}
-                      </div>
-                      <div style={{ fontSize: "13px", color: "#22c55e", fontWeight: "700", display: "inline-block", background: "#dcfce7", padding: "2px 8px", borderRadius: "4px" }}>
-                        Discount: {discountPercent}%
-                      </div>
-                      
-                      <div style={{ borderTop: "1px dashed #cbd5e1", margin: "20px 0" }}></div>
-                      
-                      <div style={{ fontSize: "11px", color: "#64748b", textTransform: "uppercase", fontWeight: "600" }}>Payable Amount</div>
-                      <div style={{ fontSize: "30px", color: "#1e3a8a", fontWeight: "800", margin: "4px 0 16px 0" }}>
-                        {formattedPayable}
+                      <div style={{ fontSize: "11px", color: "#64748b", textTransform: "uppercase", fontWeight: "700", letterSpacing: "0.5px" }}>Payable Amount</div>
+                      <div style={{ fontSize: "30px", color: "#1e3a8a", fontWeight: "800", margin: "10px 0 20px 0" }}>
+                        {plan.price}
                       </div>
                       
                       {/* Plan Card */}
@@ -394,11 +358,14 @@ function PlansContent() {
                         background: "#dbeafe",
                         border: "1px solid #bfdbfe",
                         borderRadius: "6px",
-                        padding: "12px",
-                        textAlign: "center"
+                        padding: "16px",
+                        textAlign: "center",
+                        marginTop: "40px"
                       }}>
-                        <div style={{ fontSize: "15px", fontWeight: "700", color: "#2563eb" }}>{plan.name}</div>
-                        <div style={{ fontSize: "11px", color: "#475569", marginTop: "2px" }}>{plan.billing.replace('+', '').replace('/', ' per ') || 'For 30 Days'}</div>
+                        <div style={{ fontSize: "16px", fontWeight: "700", color: "#2563eb" }}>{plan.name}</div>
+                        <div style={{ fontSize: "12px", color: "#475569", marginTop: "4px" }}>
+                          {plan.billing.replace('+', '').trim() || 'For 30 Days'}
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -429,7 +396,7 @@ function PlansContent() {
                 display: "flex",
                 flexDirection: "column",
                 justifyContent: "space-between",
-                fontFamily: "system-ui, -apple-system, sans-serif"
+                fontFamily: UNIFORM_FONT_STACK
               }}
             >
               <div>
@@ -504,7 +471,7 @@ function PlansContent() {
                   margin: "20px 0"
                 }}>
                   <span style={{ fontSize: "16px", fontWeight: "700" }}>Grand Total</span>
-                  <span style={{ fontSize: "22px", fontWeight: "800" }}>{formattedGrandTotal}</span>
+                  <span style={{ fontSize: "22px", fontWeight: "800" }}>{plan.price}</span>
                 </div>
                 
                 {/* Terms and Conditions */}
@@ -546,7 +513,7 @@ function PlansContent() {
               <div>
                 <div style={{ borderTop: "1px solid #e2e8f0", margin: "15px 0" }}></div>
                 <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", fontSize: "10px", color: "#64748b" }}>
-                  <span style={{ fontWeight: "700" }}>Thank you very much for doing business with us.</span>
+                  <span style={{ fontWeight: "600" }}>Thank you very much for doing business with us.</span>
                   <span>Page 2 of 2</span>
                 </div>
               </div>

@@ -6483,6 +6483,41 @@ button {
   box-shadow: 0 4px 15px rgba(245, 130, 32, 0.4);
 }
 
+.plan-pdf-btn {
+  width: 100%;
+  padding: 16px;
+  border-radius: 50px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-top: -16px;
+  margin-bottom: 24px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  border: 2px solid var(--dark-deep);
+  background-color: transparent;
+  color: var(--dark-deep);
+}
+
+.plan-pdf-btn:hover {
+  background-color: var(--dark-deep);
+  color: var(--white);
+  box-shadow: 0 4px 15px rgba(3, 24, 37, 0.2);
+}
+
+.plan-card-popular .plan-pdf-btn {
+  border: 2px solid var(--white);
+  color: var(--white);
+}
+
+.plan-card-popular .plan-pdf-btn:hover {
+  background-color: var(--white);
+  color: var(--dark-deep);
+  box-shadow: 0 4px 15px rgba(255, 255, 255, 0.2);
+}
+
 .plan-note {
   font-size: 0.875rem;
   margin-bottom: 24px;

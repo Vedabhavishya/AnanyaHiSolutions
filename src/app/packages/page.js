@@ -160,6 +160,15 @@ export default function PackagesPage() {
       const result = await response.json();
       if (!response.ok) throw new Error(result.error || "Failed to unlock.");
       
+      if (typeof window !== "undefined") {
+        localStorage.setItem("ahs_lead_info", JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          company: formData.company
+        }));
+      }
+      
       router.push(`/packages/plans?package=${encodeURIComponent(selectedPackage.plan)}`);
     } catch (err) {
       alert(err.message);

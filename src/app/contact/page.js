@@ -41,6 +41,48 @@ export default function ContactPage() {
   // FAQ Accordion State
   const [activeFaq, setActiveFaq] = useState(0);
 
+  const handleInputChange = (field, value) => {
+    setFormData((prev) => {
+      const updated = { ...prev, [field]: value };
+      if (typeof window !== "undefined") {
+        localStorage.setItem("ahs_contact_form_draft", JSON.stringify(updated));
+        if (["name", "email", "phone"].includes(field)) {
+          const savedLead = localStorage.getItem("ahs_lead_info");
+          const leadData = savedLead ? JSON.parse(savedLead) : {};
+          leadData[field] = value;
+          localStorage.setItem("ahs_lead_info", JSON.stringify(leadData));
+        }
+      }
+      return updated;
+    });
+  };
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const draft = localStorage.getItem("ahs_contact_form_draft");
+      const sharedLead = localStorage.getItem("ahs_lead_info");
+      let initialData = { name: "", phone: "", email: "", message: "" };
+      
+      if (sharedLead) {
+        try {
+          const parsedLead = JSON.parse(sharedLead);
+          initialData = { ...initialData, ...parsedLead };
+        } catch (e) {
+          console.error(e);
+        }
+      }
+      if (draft) {
+        try {
+          const parsedDraft = JSON.parse(draft);
+          initialData = { ...initialData, ...parsedDraft };
+        } catch (e) {
+          console.error(e);
+        }
+      }
+      setFormData(initialData);
+    }
+  }, []);
+
 
 
 
@@ -68,6 +110,14 @@ export default function ContactPage() {
       }
 
       setFormSubmitted(true);
+      if (typeof window !== "undefined") {
+        localStorage.setItem("ahs_lead_info", JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone
+        }));
+        localStorage.removeItem("ahs_contact_form_draft");
+      }
     } catch (err) {
       setFormError(err.message);
     } finally {
@@ -209,7 +259,7 @@ export default function ContactPage() {
                         placeholder="e.g. John Doe"
                         className="form-input"
                         value={formData.name}
-                        onChange={(e) => setFormData({...formData, name: e.target.value})}
+                        onChange={(e) => handleInputChange("name", e.target.value)}
                       />
                     </div>
                     <div className="form-group">
@@ -221,7 +271,7 @@ export default function ContactPage() {
                         placeholder="e.g. +91 98765 43210"
                         className="form-input"
                         value={formData.phone}
-                        onChange={(e) => setFormData({...formData, phone: e.target.value})}
+                        onChange={(e) => handleInputChange("phone", e.target.value)}
                       />
                     </div>
                     <div className="form-group form-group-full">
@@ -233,7 +283,7 @@ export default function ContactPage() {
                         placeholder="e.g. name@company.com"
                         className="form-input"
                         value={formData.email}
-                        onChange={(e) => setFormData({...formData, email: e.target.value})}
+                        onChange={(e) => handleInputChange("email", e.target.value)}
                       />
                     </div>
                     <div className="form-group form-group-full">
@@ -244,7 +294,7 @@ export default function ContactPage() {
                         placeholder="Tell us about your project, technology requirements, or business goals..."
                         className="form-textarea"
                         value={formData.message}
-                        onChange={(e) => setFormData({...formData, message: e.target.value})}
+                        onChange={(e) => handleInputChange("message", e.target.value)}
                       />
                     </div>
                   </div>

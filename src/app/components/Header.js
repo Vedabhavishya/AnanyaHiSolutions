@@ -35,8 +35,46 @@ export default function Header({ activePage = "" }) {
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
+    setFormData((prev) => {
+      const updated = { ...prev, [name]: value };
+      if (typeof window !== "undefined") {
+        localStorage.setItem("ahs_audit_form_draft", JSON.stringify(updated));
+        if (["name", "email", "phone", "company"].includes(name)) {
+          const savedLead = localStorage.getItem("ahs_lead_info");
+          const leadData = savedLead ? JSON.parse(savedLead) : {};
+          leadData[name] = value;
+          localStorage.setItem("ahs_lead_info", JSON.stringify(leadData));
+        }
+      }
+      return updated;
+    });
   };
+
+  useEffect(() => {
+    if (auditModalOpen && typeof window !== "undefined") {
+      const draft = localStorage.getItem("ahs_audit_form_draft");
+      const sharedLead = localStorage.getItem("ahs_lead_info");
+      let initialData = { name: "", email: "", phone: "", company: "", website: "" };
+      
+      if (sharedLead) {
+        try {
+          const parsedLead = JSON.parse(sharedLead);
+          initialData = { ...initialData, ...parsedLead };
+        } catch (e) {
+          console.error(e);
+        }
+      }
+      if (draft) {
+        try {
+          const parsedDraft = JSON.parse(draft);
+          initialData = { ...initialData, ...parsedDraft };
+        } catch (e) {
+          console.error(e);
+        }
+      }
+      setFormData(initialData);
+    }
+  }, [auditModalOpen]);
 
   const handleAuditSubmit = async (e) => {
     e.preventDefault();
@@ -57,6 +95,37 @@ export default function Header({ activePage = "" }) {
         throw new Error(result.error || "Failed to submit audit request.");
       }
       setSubmitSuccess(true);
+      
+      if (typeof window !== "undefined") {
+        localStorage.setItem("ahs_lead_info", JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          company: formData.company
+        }));
+        localStorage.removeItem("ahs_audit_form_draft");
+
+        // Log audit submission
+        try {
+          const existing = localStorage.getItem("ahs_actions_history");
+          const list = existing ? JSON.parse(existing) : [];
+          list.push({
+            type: "SUBMIT_AUDIT",
+            timestamp: new Date().toISOString(),
+            details: {
+              name: formData.name,
+              email: formData.email,
+              phone: formData.phone,
+              company: formData.company,
+              website: formData.website
+            }
+          });
+          localStorage.setItem("ahs_actions_history", JSON.stringify(list));
+        } catch (e) {
+          console.error("Error logging audit action to localStorage:", e);
+        }
+      }
+      
       setFormData({ name: "", email: "", phone: "", company: "", website: "" });
       setTimeout(() => {
         setAuditModalOpen(false);

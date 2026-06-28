@@ -222,6 +222,30 @@ function PlansContent() {
         }
         return next;
       });
+
+      // Log invoice download
+      if (typeof window !== "undefined") {
+        try {
+          const existing = localStorage.getItem("ahs_actions_history");
+          const list = existing ? JSON.parse(existing) : [];
+          list.push({
+            type: "DOWNLOAD_INVOICE",
+            timestamp: new Date().toISOString(),
+            details: {
+              name: leadInfo.name,
+              email: leadInfo.email,
+              phone: leadInfo.phone,
+              company: leadInfo.company,
+              planName: plan.name,
+              packageName: packageTitle,
+              price: plan.price
+            }
+          });
+          localStorage.setItem("ahs_actions_history", JSON.stringify(list));
+        } catch (e) {
+          console.error("Error logging invoice download to localStorage:", e);
+        }
+      }
     } catch (err) {
       console.error("PDF generation failed:", err);
       alert("Failed to generate PDF. Please try again.");

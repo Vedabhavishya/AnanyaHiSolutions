@@ -152,8 +152,33 @@ export default function PackagesPage() {
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
+    setFormData((prev) => {
+      const updated = { ...prev, [name]: value };
+      if (typeof window !== "undefined") {
+        localStorage.setItem("ahs_lead_info", JSON.stringify(updated));
+      }
+      return updated;
+    });
   };
+
+  useEffect(() => {
+    if (modalOpen && typeof window !== "undefined") {
+      const saved = localStorage.getItem("ahs_lead_info");
+      if (saved) {
+        try {
+          const parsed = JSON.parse(saved);
+          setFormData({
+            name: parsed.name || "",
+            email: parsed.email || "",
+            phone: parsed.phone || "",
+            company: parsed.company || ""
+          });
+        } catch (e) {
+          console.error(e);
+        }
+      }
+    }
+  }, [modalOpen]);
 
   const handleUnlockSubmit = async (e) => {
     e.preventDefault();
@@ -185,6 +210,27 @@ export default function PackagesPage() {
           phone: formData.phone,
           company: formData.company
         }));
+
+        // Log package unlock
+        try {
+          const existing = localStorage.getItem("ahs_actions_history");
+          const list = existing ? JSON.parse(existing) : [];
+          list.push({
+            type: "UNLOCK_PACKAGE",
+            timestamp: new Date().toISOString(),
+            details: {
+              name: formData.name,
+              email: formData.email,
+              phone: formData.phone,
+              company: formData.company,
+              packageTitle: selectedPackage.category,
+              plan: selectedPackage.plan
+            }
+          });
+          localStorage.setItem("ahs_actions_history", JSON.stringify(list));
+        } catch (e) {
+          console.error("Error logging package unlock to localStorage:", e);
+        }
       }
       
       const queryParams = new URLSearchParams({

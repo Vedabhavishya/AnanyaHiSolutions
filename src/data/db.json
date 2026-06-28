@@ -327,6 +327,36 @@
       "packageTitle": "Ecommerce Mobile Application",
       "subId": "Android Development",
       "submittedAt": "2026-06-27T06:36:42.699Z"
+    },
+    {
+      "id": "lead-1782555689307",
+      "name": "Veda Bhavishya Gudivaka",
+      "email": "vedabhavishya.gudivaka@gmail.com",
+      "phone": "919951484472",
+      "company": "",
+      "packageTitle": "Digital Marketing Packages",
+      "subId": "Google Ads/PPC Ads",
+      "submittedAt": "2026-06-27T10:21:29.308Z"
+    },
+    {
+      "id": "lead-1782571739774",
+      "name": "Veda Bhavishya Gudivaka",
+      "email": "vedabhavishya.gudivaka@gmail.com",
+      "phone": "919951484472",
+      "company": "",
+      "packageTitle": "Digital Marketing Packages",
+      "subId": "Google Ads/PPC Ads",
+      "submittedAt": "2026-06-27T14:48:59.774Z"
+    },
+    {
+      "id": "lead-1782627857843",
+      "name": "Veda Bhavishya Gudivaka",
+      "email": "vedabhavishya.gudivaka@gmail.com",
+      "phone": "919951484472",
+      "company": "",
+      "packageTitle": "Digital Marketing Packages",
+      "subId": "Google Ads/PPC Ads",
+      "submittedAt": "2026-06-28T06:24:17.843Z"
     }
   ],
   "audits": [],
@@ -1090,5 +1120,28 @@
         "note": "Campaign charge not included."
       }
     ]
-  }
+  },
+  "banners": [
+    {
+      "title": "",
+      "desc": "",
+      "path": "/contact#contact-form",
+      "bgImage": "/images/banner1.png",
+      "btnText": ""
+    },
+    {
+      "title": "",
+      "desc": "",
+      "path": "/packages",
+      "bgImage": "/images/banner2.png",
+      "btnText": ""
+    },
+    {
+      "title": "",
+      "desc": "",
+      "path": "/packages/plans?package=E-Commerce Website",
+      "bgImage": "/images/banner3.png",
+      "btnText": ""
+    }
+  ]
 }

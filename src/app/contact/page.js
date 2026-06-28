@@ -189,7 +189,7 @@ export default function ContactPage() {
       </section>
 
       {/* 4. Send Us a Message — White Background */}
-      <section className="contact-form-section">
+      <section id="contact-form" className="contact-form-section">
         <div className="container">
           <div className="contact-form-container">
             {!formSubmitted ? (

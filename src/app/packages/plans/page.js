@@ -9,7 +9,7 @@ import jsPDF from "jspdf";
 import html2canvas from "html2canvas";
 
 // Common uniform font stack to ensure absolute visual consistency in rendering
-const UNIFORM_FONT_STACK = "system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Helvetica, Arial, sans-serif";
+const UNIFORM_FONT_STACK = "'Times New Roman', Times, Baskerville, Georgia, serif";
 
 // Date formatting helper for issue date (e.g. 6th June 2026)
 const getOrdinalSuffix = (day) => {
@@ -39,17 +39,7 @@ const formatDownloadDateTime = (date) => {
   return `${day}/${month}/${year}, ${hours}:${minutes}`;
 };
 
-// Clean Logo SVG matching the uniform font stack and logo styling precisely
-const LogoSVG = () => (
-  <svg width="220" height="55" viewBox="0 0 220 55" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <text x="5" y="28" fill="#ffffff" fontFamily={UNIFORM_FONT_STACK} fontWeight="800" fontSize="24" letterSpacing="-0.5px">Ananya Hi</text>
-    <text x="60" y="45" fill="#ffffff" fontFamily={UNIFORM_FONT_STACK} fontWeight="400" fontSize="13" letterSpacing="3px">solutions</text>
-    <g transform="translate(125, 6)">
-      <path d="M0 12L12 0M12 0H5M12 0V7" stroke="#ffffff" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
-      <path d="M-5 17L7 5M7 5H0M7 5V12" stroke="#ffffff" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" opacity="0.8"/>
-    </g>
-  </svg>
-);
+
 
 function PlansContent() {
   const searchParams = useSearchParams();
@@ -57,6 +47,38 @@ function PlansContent() {
   
   // Default to empty array if no specific data exists yet for the package
   const [plansData, setPlansData] = useState([]);
+  const [whiteLogoSrc, setWhiteLogoSrc] = useState("");
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const img = new Image();
+      img.crossOrigin = "anonymous";
+      img.src = "/logo.png";
+      img.onload = () => {
+        const canvas = document.createElement("canvas");
+        canvas.width = img.width;
+        canvas.height = img.height;
+        const ctx = canvas.getContext("2d");
+        ctx.drawImage(img, 0, 0);
+        
+        try {
+          const imgData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+          const data = imgData.data;
+          
+          for (let i = 0; i < data.length; i += 4) {
+            data[i] = 255;     // R
+            data[i + 1] = 255; // G
+            data[i + 2] = 255; // B
+          }
+          
+          ctx.putImageData(imgData, 0, 0);
+          setWhiteLogoSrc(canvas.toDataURL());
+        } catch (e) {
+          console.error("Error creating white logo data url:", e);
+        }
+      };
+    }
+  }, []);
 
   useEffect(() => {
     const fetchPlans = async () => {
@@ -91,6 +113,18 @@ function PlansContent() {
   const [downloadDateTime, setDownloadDateTime] = useState("");
   const [issueDate, setIssueDate] = useState("");
   const [generatingPdfId, setGeneratingPdfId] = useState(null);
+  const [proposalCount, setProposalCount] = useState(135);
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const savedCount = localStorage.getItem("proposal_counter");
+      if (savedCount) {
+        setProposalCount(parseInt(savedCount, 10));
+      } else {
+        localStorage.setItem("proposal_counter", "135");
+      }
+    }
+  }, []);
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -179,6 +213,15 @@ function PlansContent() {
       const sanitizedName = plan.name.replace(/\s+/g, '_');
       const sanitizedPackage = packageTitle.replace(/\s+/g, '_');
       doc.save(`Proposal_${sanitizedPackage}_${sanitizedName}.pdf`);
+
+      // Increment proposal counter on success
+      setProposalCount(prev => {
+        const next = prev + 1;
+        if (typeof window !== "undefined") {
+          localStorage.setItem("proposal_counter", next.toString());
+        }
+        return next;
+      });
     } catch (err) {
       console.error("PDF generation failed:", err);
       alert("Failed to generate PDF. Please try again.");
@@ -338,17 +381,63 @@ function PlansContent() {
                 {/* Header Banner */}
                 <div style={{
                   background: "linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%)",
-                  padding: "20px 30px",
+                  padding: "24px 30px",
                   borderRadius: "10px 10px 0 0",
-                  display: "flex",
-                  justifyContent: "space-between",
-                  alignItems: "center",
                   color: "#ffffff"
                 }}>
-                  <LogoSVG />
-                  <div style={{ textAlign: "right" }}>
-                    <div style={{ fontSize: "16px", fontWeight: "700" }}>Business Proposal: #{134 + idx}</div>
-                    <div style={{ fontSize: "13px", opacity: 0.95, marginTop: "4px" }}>Issue Date: {issueDate}</div>
+                  {/* First Row: Logo & Proposal ID */}
+                  <div style={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    alignItems: "center"
+                  }}>
+                    <img 
+                      src={whiteLogoSrc || "/logo.png"} 
+                      alt="Ananya Hi Solutions" 
+                      style={{ 
+                        height: "42px", 
+                        width: "auto", 
+                        display: "block"
+                      }} 
+                    />
+                    <div style={{ fontSize: "16px", fontWeight: "700", textAlign: "right" }}>
+                      Business Proposal: #{proposalCount}
+                    </div>
+                  </div>
+
+                  {/* Small line between Logo and Collaboration text */}
+                  <div style={{ 
+                    width: "40px", 
+                    height: "1px", 
+                    background: "rgba(255, 255, 255, 0.35)", 
+                    margin: "3px 0" 
+                  }}></div>
+
+                  {/* Second Row: Collaboration & Issue Date */}
+                  <div style={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    alignItems: "center",
+                    marginTop: "1px"
+                  }}>
+                    <div style={{ 
+                      fontSize: "9px", 
+                      color: "rgba(255, 255, 255, 0.75)", 
+                      lineHeight: "1.3",
+                      fontFamily: UNIFORM_FONT_STACK,
+                      fontWeight: "400",
+                      textAlign: "left"
+                    }}>
+                      in collaboration with <span style={{ fontWeight: "700", color: "#ffffff", fontSize: "9.5px" }}>swetha solutions</span>
+                    </div>
+                    <div style={{ 
+                      fontSize: "12px", 
+                      opacity: 0.95, 
+                      textAlign: "right",
+                      fontFamily: UNIFORM_FONT_STACK
+                    }}>
+                      Issue Date: {issueDate}
+                    </div>
                   </div>
                 </div>
                 
@@ -429,11 +518,12 @@ function PlansContent() {
                   </div>
                   
                   {/* Right Column - Price Summary */}
-                  <div style={{ padding: "24px", background: "#eff6ff", borderLeft: "1px solid #e2e8f0", display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
-                    <div>
+                  <div style={{ padding: "24px", background: "#eff6ff", borderLeft: "1px solid #e2e8f0", display: "flex", flexDirection: "column", justifyContent: "space-between", alignItems: "center", textAlign: "center" }}>
+                    <div style={{ width: "100%" }}>
                       <div style={{ fontSize: "11px", color: "#64748b", textTransform: "uppercase", fontWeight: "700", letterSpacing: "0.5px" }}>Payable Amount</div>
                       <div style={{ fontSize: "30px", color: "#1e3a8a", fontWeight: "800", margin: "10px 0 20px 0" }}>
                         {plan.price}
+                        <span style={{ fontSize: "13px", fontWeight: "600", color: "#475569", marginLeft: "5px", verticalAlign: "middle" }}>+GST</span>
                       </div>
                       
                       {/* Plan Card */}
@@ -553,7 +643,10 @@ function PlansContent() {
                   margin: "20px 0"
                 }}>
                   <span style={{ fontSize: "16px", fontWeight: "700" }}>Grand Total</span>
-                  <span style={{ fontSize: "22px", fontWeight: "800" }}>{plan.price}</span>
+                  <span style={{ fontSize: "22px", fontWeight: "800" }}>
+                    {plan.price}
+                    <span style={{ fontSize: "12px", fontWeight: "600", color: "rgba(255, 255, 255, 0.8)", marginLeft: "4px", verticalAlign: "middle" }}>+GST</span>
+                  </span>
                 </div>
                 
                 {/* Terms and Conditions */}
@@ -574,7 +667,7 @@ function PlansContent() {
                     </li>
                     <li style={{ display: "flex", gap: "8px" }}>
                       <span>•</span>
-                      <span>All payments must be made directly to Ananya Hi Solutions account only.</span>
+                      <span>All payments must be made directly to Ananya Hi Solutions / Swetha Solutions account only.</span>
                     </li>
                   </ul>
                 </div>

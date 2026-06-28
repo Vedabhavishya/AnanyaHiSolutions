@@ -297,31 +297,82 @@ const specializationCategories = [
 ];
 
 export default function Home() {
+  // Intro Splash State
+  const [showSplash, setShowSplash] = useState(true);
+  const [fadeSplash, setFadeSplash] = useState(false);
+
+  // Splash Screen Intro Timer
+  useEffect(() => {
+    // Start fading out after 4.2 seconds
+    const fadeTimer = setTimeout(() => {
+      setFadeSplash(true);
+    }, 4200);
+
+    // Completely unmount the splash screen after the transition completes
+    const removeTimer = setTimeout(() => {
+      setShowSplash(false);
+    }, 4800);
+
+    return () => {
+      clearTimeout(fadeTimer);
+      clearTimeout(removeTimer);
+    };
+  }, []);
+
+  // Prevent scroll during splash intro
+  useEffect(() => {
+    if (showSplash) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [showSplash]);
+
   // Hero Carousel State
   const [activeSlide, setActiveSlide] = useState(0);
-  const carouselSlides = [
+  const [carouselSlides, setCarouselSlides] = useState([
     {
-      title: "Search Engine Dominance: <span>GEO, SEO, AEO, AIO, SXO</span>",
-      desc: "Drive high-intent customer traffic from Google Search, AI Overviews, Answer Engines, and experience-first search engines. Upgrade your organic reach today.",
-      path: "/packages",
-      bgImage: "/images/hero/digital-marketing.png",
-      btnText: "Upgrade Now",
+      title: "",
+      desc: "",
+      path: "/contact#contact-form",
+      bgImage: "/images/banner1.png",
+      btnText: ""
     },
     {
-      title: "Scale Your Brand on <span>Social Media</span>",
-      desc: "Maximize brand authority and acquire active leads across Meta, Instagram, and LinkedIn with premium design posts, Reels strategy, and paid campaigns.",
-      path: "/packages",
-      bgImage: "/images/hero/advanced-marketing.png",
-      btnText: "Upgrade Now",
-    },
+       title: "",
+       desc: "",
+       path: "/packages",
+       bgImage: "/images/banner2.png",
+       btnText: ""
+     },
     {
-      title: "Premium <span>E-Commerce Website Design</span>",
-      desc: "Launch robust, secure, and blazing-fast online storefronts integrated with inventory tracking, payment gateways, and seamless checkout flows.",
-      path: "/packages",
-      bgImage: "/images/hero/ecommerce-app.png",
-      btnText: "Upgrade Now",
+      title: "",
+      desc: "",
+      path: "/packages/plans?package=E-Commerce Website",
+      bgImage: "/images/banner3.png",
+      btnText: ""
     }
-  ];
+  ]);
+
+  useEffect(() => {
+    const fetchBanners = async () => {
+      try {
+        const res = await fetch("/api/banners");
+        if (res.ok) {
+          const data = await res.json();
+          if (Array.isArray(data) && data.length > 0) {
+            setCarouselSlides(data);
+          }
+        }
+      } catch (err) {
+        console.error("Error fetching banners:", err);
+      }
+    };
+    fetchBanners();
+  }, []);
 
   // Auto scroll carousel
   useEffect(() => {
@@ -582,35 +633,61 @@ export default function Home() {
 
   return (
     <div className="flex flex-col min-h-screen">
+      {showSplash && (
+        <div className={`splash-screen ${fadeSplash ? "fade-out" : ""}`}>
+          <div className="splash-bg-glow splash-glow-1"></div>
+          <div className="splash-bg-glow splash-glow-2"></div>
+          <div className="splash-content">
+            <h2 className="splash-welcome-text">Welcome to</h2>
+            <h1 className="splash-brand-title">
+              <span>Ananya Hi</span> Solutions
+            </h1>
+            <div className="splash-line"></div>
+          </div>
+        </div>
+      )}
+
       {/* 1. Header & Navigation Bar */}
       <Header activePage="home" />
 
       {/* 2. Hero Carousel Banners */}
       <section id="home" className="hero-carousel">
-        {carouselSlides.map((slide, index) => (
-          <Link
-            key={index}
-            href={slide.path}
-            className={`carousel-slide ${index === activeSlide ? "active" : ""}`}
-            style={{ textDecoration: 'none' }}
-          >
-            <div 
-              className="carousel-bg" 
-              style={{ backgroundImage: `url(${slide.bgImage})` }}
-            />
-            <div className="carousel-overlay"></div>
-            <div className="carousel-content">
-              <h1
-                className="carousel-title"
-                dangerouslySetInnerHTML={{ __html: slide.title }}
+        {carouselSlides.map((slide, index) => {
+          const hasText = !!(slide.title || slide.desc);
+          return (
+            <Link
+              key={index}
+              href={slide.path}
+              className={`carousel-slide ${index === activeSlide ? "active" : ""}`}
+              style={{ textDecoration: 'none' }}
+            >
+              <div 
+                className="carousel-bg" 
+                style={{ 
+                  backgroundImage: `url(${slide.bgImage})`,
+                  opacity: hasText ? undefined : 1
+                }}
               />
-              <p className="carousel-desc">{slide.desc}</p>
-              <div className="carousel-buttons">
-                <span className="btn btn-accent">{slide.btnText}</span>
-              </div>
-            </div>
-          </Link>
-        ))}
+              {hasText && <div className="carousel-overlay"></div>}
+              {hasText && (
+                <div className="carousel-content">
+                  {slide.title && (
+                    <h1
+                      className="carousel-title"
+                      dangerouslySetInnerHTML={{ __html: slide.title }}
+                    />
+                  )}
+                  {slide.desc && <p className="carousel-desc">{slide.desc}</p>}
+                  {slide.btnText && (
+                    <div className="carousel-buttons">
+                      <span className="btn btn-accent">{slide.btnText}</span>
+                    </div>
+                  )}
+                </div>
+              )}
+            </Link>
+          );
+        })}
 
         {/* Controls */}
         <button

@@ -357,6 +357,26 @@
       "packageTitle": "Digital Marketing Packages",
       "subId": "Google Ads/PPC Ads",
       "submittedAt": "2026-06-28T06:24:17.843Z"
+    },
+    {
+      "id": "lead-1782656226717",
+      "name": "Veda Bhavishya Gudivaka",
+      "email": "vedabhavishya.gudivaka@gmail.com",
+      "phone": "919951484472",
+      "company": "",
+      "packageTitle": "Website Packages",
+      "subId": "E-Commerce Website",
+      "submittedAt": "2026-06-28T14:17:06.717Z"
+    },
+    {
+      "id": "lead-1782656582658",
+      "name": "Veda Bhavishya Gudivaka",
+      "email": "vedabhavishya.gudivaka@gmail.com",
+      "phone": "919951484472",
+      "company": "",
+      "packageTitle": "Digital Marketing Packages",
+      "subId": "Google Ads/PPC Ads",
+      "submittedAt": "2026-06-28T14:23:02.658Z"
     }
   ],
   "audits": [
@@ -1152,6 +1172,13 @@
       "path": "/packages/plans?package=E-Commerce Website",
       "bgImage": "/images/banner3.png",
       "btnText": ""
+    },
+    {
+      "title": "New Slide: <span>Highlights</span>",
+      "desc": "Detailed description of your promotion or service.sdfghg",
+      "path": "/packages",
+      "bgImage": "/images/uploads/1782661503964_banner1_updated.png",
+      "btnText": "Upgrade Now"
     }
   ],
   "messages": [

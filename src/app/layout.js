@@ -31,9 +31,17 @@ export default function RootLayout({ children }) {
     <html
       lang="en"
       className={`${plusJakartaSans.variable} ${outfit.variable} h-full scroll-smooth`}
+      suppressHydrationWarning={true}
     >
       <head>
         <link rel="icon" href="/favicon.png" type="image/png" />
+        <script dangerouslySetInnerHTML={{ __html: `
+          try {
+            if (sessionStorage.getItem('ahs_splash_shown')) {
+              document.documentElement.classList.add('splash-skip');
+            }
+          } catch (e) {}
+        `}} />
       </head>
       <body className="min-h-full font-sans antialiased bg-slate-50 text-slate-900 transition-colors duration-300">
         <ServicesProvider>

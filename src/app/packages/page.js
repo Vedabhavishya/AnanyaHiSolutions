@@ -439,6 +439,40 @@ export default function PackagesPage() {
           </div>
         </div>
       )}
+      {/* Sticky floating Compare Button */}
+      <div style={{ position: "fixed", bottom: "30px", right: "30px", zIndex: 999 }}>
+        <Link href="/packages/compare" style={{ textDecoration: "none" }}>
+          <button 
+            style={{ 
+              display: "flex", 
+              alignItems: "center", 
+              gap: "10px", 
+              padding: "16px 24px", 
+              background: "#0f75bc", 
+              border: "none", 
+              borderRadius: "50px", 
+              color: "#ffffff", 
+              fontWeight: "800", 
+              fontSize: "0.95rem", 
+              boxShadow: "0 10px 25px -5px rgba(15, 117, 188, 0.4)", 
+              cursor: "pointer", 
+              transition: "all 0.3s cubic-bezier(0.16, 1, 0.3, 1)",
+              backdropFilter: "blur(4px)"
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.transform = "translateY(-4px) scale(1.05)";
+              e.currentTarget.style.boxShadow = "0 20px 35px -5px rgba(15, 117, 188, 0.5)";
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.transform = "translateY(0) scale(1)";
+              e.currentTarget.style.boxShadow = "0 10px 25px -5px rgba(15, 117, 188, 0.4)";
+            }}
+          >
+            <span style={{ fontSize: "1.2rem" }}>⚖️</span>
+            <span>Compare Plans</span>
+          </button>
+        </Link>
+      </div>
     </div>
   );
 }

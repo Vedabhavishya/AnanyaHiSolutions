@@ -303,20 +303,31 @@ export default function Home() {
 
   // Splash Screen Intro Timer
   useEffect(() => {
-    // Start fading out after 4.2 seconds
-    const fadeTimer = setTimeout(() => {
-      setFadeSplash(true);
-    }, 4200);
+    if (typeof window !== "undefined") {
+      const shown = sessionStorage.getItem("ahs_splash_shown");
+      if (shown) {
+        setShowSplash(false);
+        return;
+      }
+      
+      // First visit in session
+      sessionStorage.setItem("ahs_splash_shown", "true");
+      
+      // Start fading out after 4.8 seconds
+      const fadeTimer = setTimeout(() => {
+        setFadeSplash(true);
+      }, 4800);
 
-    // Completely unmount the splash screen after the transition completes
-    const removeTimer = setTimeout(() => {
-      setShowSplash(false);
-    }, 4800);
+      // Completely unmount the splash screen after the transition completes
+      const removeTimer = setTimeout(() => {
+        setShowSplash(false);
+      }, 5400);
 
-    return () => {
-      clearTimeout(fadeTimer);
-      clearTimeout(removeTimer);
-    };
+      return () => {
+        clearTimeout(fadeTimer);
+        clearTimeout(removeTimer);
+      };
+    }
   }, []);
 
   // Prevent scroll during splash intro
@@ -488,27 +499,27 @@ export default function Home() {
     if (cat.title === "Paid Marketing Tools") {
       // Split Paid Marketing Into 2 Orbit Layers: Inner (9 ads tools), Outer (5 analytics/SEO tools)
       if (tIdx < 9) {
-        // Inner Orbit: 9 core advertising platforms, r = 160px
+        // Inner Orbit: 9 core advertising platforms, r = 135px
         const angle = (tIdx * 2 * Math.PI) / 9;
         return {
-          x: Math.round(Math.cos(angle) * 160),
-          y: Math.round(Math.sin(angle) * 160)
+          x: Math.round(Math.cos(angle) * 135),
+          y: Math.round(Math.sin(angle) * 135)
         };
       } else {
-        // Outer Orbit: 5 analytics & SEO tools, r = 240px
+        // Outer Orbit: 5 analytics & SEO tools, r = 205px
         const offsetAngle = Math.PI / 5;
         const angle = ((tIdx - 9) * 2 * Math.PI) / 5 + offsetAngle;
         return {
-          x: Math.round(Math.cos(angle) * 240),
-          y: Math.round(Math.sin(angle) * 240)
+          x: Math.round(Math.cos(angle) * 205),
+          y: Math.round(Math.sin(angle) * 205)
         };
       }
     } else {
-      // Designing Tools & Certifications: 5 tools, r = 180px
+      // Designing Tools & Certifications: 5 tools, r = 145px
       const angle = (tIdx * 2 * Math.PI) / 5;
       return {
-        x: Math.round(Math.cos(angle) * 180),
-        y: Math.round(Math.sin(angle) * 180)
+        x: Math.round(Math.cos(angle) * 145),
+        y: Math.round(Math.sin(angle) * 145)
       };
     }
   };
@@ -852,97 +863,30 @@ export default function Home() {
             <p>Powering digital growth with industry-leading platforms, marketing technologies, creative tools, and certified expertise.</p>
           </div>
 
-          <div className="categories-orbit-grid">
-            {specializationCategories.map((cat, idx) => {
-              const isCatActive = hoveredCategory === idx || activeCategory === idx;
-              const isAnyCatActive = hoveredCategory !== null || activeCategory !== null;
-              const isCatDimmed = isAnyCatActive && !isCatActive;
-
-              return (
-                <div
-                  key={idx}
-                  className={`category-circle-wrapper ${isCatActive ? "active" : ""} ${isCatDimmed ? "dimmed" : ""}`}
-                  onMouseEnter={() => setHoveredCategory(idx)}
-                  onMouseLeave={() => {
-                    setHoveredCategory(null);
-                    setHoveredBadge(null);
-                  }}
-                  onFocus={() => setHoveredCategory(idx)}
-                  onBlur={() => {
-                    setHoveredCategory(null);
-                    setHoveredBadge(null);
-                  }}
-                  onClick={() => handleCategoryClick(idx)}
-                  tabIndex={0}
-                  onKeyDown={(e) => handleCategoryKeyDown(e, idx)}
-                  role="button"
-                  aria-expanded={isCatActive}
-                  aria-label={`${cat.title}. Contains ${cat.count} tools. Click to toggle.`}
-                  style={{
-                    "--entry-delay": `${idx * 200}ms`
-                  }}
-                >
-                  {/* Category Circle Card */}
-                  <div className="category-circle-card" style={{ zIndex: 4 }}>
-                    <div className="category-glow-pulse" style={{ backgroundColor: cat.color }}></div>
-                    <div className="category-circle-border"></div>
-                    <div className="category-content">
-                      <div className="category-icon-box" style={{ color: cat.color }}>
-                        {cat.icon}
-                      </div>
-                      <h3 className="category-title">{cat.title}</h3>
-                      <span className="category-count">{cat.count} Tools</span>
-                    </div>
-                  </div>
-
-                  {/* Desktop Orbits (Hidden/disabled on mobile via media queries) */}
-                  <div className="orbit-badges-container">
-                    {cat.tools.map((tool, tIdx) => {
-                      const coords = getToolCoords(cat, tIdx);
-                      const isBadgeActive = hoveredBadge?.catIdx === idx && hoveredBadge?.toolIdx === tIdx;
-                      return (
-                        <div
-                          key={tIdx}
-                          className={`orbit-badge-item ${isBadgeActive ? "badge-hovered" : ""}`}
-                          style={{
-                            "--x": `${coords.x}px`,
-                            "--y": `${coords.y}px`,
-                            transitionDelay: isCatActive ? `${tIdx * 40}ms` : "0ms",
-                            zIndex: 5
-                          }}
-                          onMouseEnter={() => setHoveredBadge({ catIdx: idx, toolIdx: tIdx })}
-                          onMouseLeave={() => setHoveredBadge(null)}
-                          tabIndex={isCatActive ? 0 : -1}
-                          aria-label={tool.name}
-                        >
-                          <div className="orbit-badge-icon">
-                            <ToolLogo type={tool.logo} name={tool.name} />
-                          </div>
-                          {/* Rich SaaS Tooltip */}
-                          <div className="orbit-tooltip" style={{ zIndex: 6 }}>
-                            <span className="tooltip-title">{tool.name}</span>
-                          </div>
-                        </div>
-                      );
-                    })}
-                  </div>
-
-                  {/* Mobile Accordion Panel */}
-                  <div className="mobile-accordion-content">
-                    <div className="mobile-tools-grid">
-                      {cat.tools.map((tool, tIdx) => (
-                        <div key={tIdx} className="mobile-tool-card" aria-label={tool.name}>
-                          <div className="mobile-tool-icon">
-                            <ToolLogo type={tool.logo} name={tool.name} isMobile={true} />
-                          </div>
-                          <span className="mobile-tool-name">{tool.name}</span>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
+          <div className="specialization-bento-grid">
+            {specializationCategories.map((cat, idx) => (
+              <div key={idx} className="spec-bento-column">
+                <div className="spec-category-header" style={{ borderColor: cat.color }}>
+                  <div className="spec-category-icon" style={{ color: cat.color }}>{cat.icon}</div>
+                  <h3 className="spec-category-title">{cat.title}</h3>
                 </div>
-              );
-            })}
+                <div className="spec-tools-flex">
+                  {cat.tools.map((tool, tIdx) => {
+                    const isLong = tool.name.length > 15;
+                    const sizeClass = isLong ? "spec-card-lg" : (tIdx % 2 === 0 ? "spec-card-md" : "spec-card-sm");
+                    
+                    return (
+                      <div key={tIdx} className={`spec-tool-rect-card ${sizeClass}`}>
+                        <div className="spec-tool-logo-wrapper">
+                          <ToolLogo type={tool.logo} name={tool.name} />
+                        </div>
+                        <span className="spec-tool-name-label">{tool.name}</span>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>

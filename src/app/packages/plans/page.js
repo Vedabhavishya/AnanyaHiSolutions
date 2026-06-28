@@ -11,6 +11,36 @@ import html2canvas from "html2canvas";
 // Common uniform font stack to ensure absolute visual consistency in rendering
 const UNIFORM_FONT_STACK = "'Times New Roman', Times, Baskerville, Georgia, serif";
 
+// Recursively expand "Everything in Basic" and "Everything in Standard" references to full features lists
+const getExpandedFeatures = (plan, allPlans, visited = new Set()) => {
+  if (!plan || !plan.features || visited.has(plan.name)) return [];
+  visited.add(plan.name);
+  
+  let expanded = [];
+  for (const feature of plan.features) {
+    const cleanFeature = feature.trim().toLowerCase();
+    
+    if (cleanFeature.startsWith("everything in basic")) {
+      const basicPlan = allPlans.find(p => p.name.toLowerCase().includes("basic"));
+      if (basicPlan) {
+        expanded = [...expanded, ...getExpandedFeatures(basicPlan, allPlans, visited)];
+      } else {
+        expanded.push(feature);
+      }
+    } else if (cleanFeature.startsWith("everything in standard")) {
+      const standardPlan = allPlans.find(p => p.name.toLowerCase().includes("standard"));
+      if (standardPlan) {
+        expanded = [...expanded, ...getExpandedFeatures(standardPlan, allPlans, visited)];
+      } else {
+        expanded.push(feature);
+      }
+    } else {
+      expanded.push(feature);
+    }
+  }
+  return expanded;
+};
+
 // Date formatting helper for issue date (e.g. 6th June 2026)
 const getOrdinalSuffix = (day) => {
   if (day > 3 && day < 21) return 'th';
@@ -184,8 +214,8 @@ function PlansContent() {
       const page1 = document.getElementById(`proposal-page-1-${idx}`);
       const page2 = document.getElementById(`proposal-page-2-${idx}`);
       
-      if (!page1 || !page2) {
-        alert("Error: Template elements not found.");
+      if (!page1) {
+        alert("Error: Template Page 1 element not found.");
         return;
       }
       
@@ -200,15 +230,17 @@ function PlansContent() {
       const imgData1 = canvas1.toDataURL('image/jpeg', 0.95);
       doc.addImage(imgData1, 'JPEG', 0, 0, 210, 297);
       
-      const canvas2 = await html2canvas(page2, {
-        scale: 2,
-        useCORS: true,
-        logging: false,
-        backgroundColor: '#ffffff'
-      });
-      const imgData2 = canvas2.toDataURL('image/jpeg', 0.95);
-      doc.addPage();
-      doc.addImage(imgData2, 'JPEG', 0, 0, 210, 297);
+      if (page2) {
+        const canvas2 = await html2canvas(page2, {
+          scale: 2,
+          useCORS: true,
+          logging: false,
+          backgroundColor: '#ffffff'
+        });
+        const imgData2 = canvas2.toDataURL('image/jpeg', 0.95);
+        doc.addPage();
+        doc.addImage(imgData2, 'JPEG', 0, 0, 210, 297);
+      }
       
       const sanitizedName = plan.name.replace(/\s+/g, '_');
       const sanitizedPackage = packageTitle.replace(/\s+/g, '_');
@@ -367,9 +399,28 @@ function PlansContent() {
 
       {/* Hidden Templates for PDF Generation */}
       {plansData.length > 0 && plansData.map((plan, idx) => {
-        const featuresPage1 = plan.features.slice(0, 15);
-        const featuresPage2 = plan.features.slice(15);
+        const expandedFeatures = getExpandedFeatures(plan, plansData);
+        const isSinglePage = expandedFeatures.length <= 13;
+        const featuresPage1 = isSinglePage ? expandedFeatures : expandedFeatures.slice(0, 14);
+        const featuresPage2 = isSinglePage ? [] : expandedFeatures.slice(14);
         
+        // Parse pricing for GST breakdown
+        const parsePrice = (priceStr) => {
+          if (!priceStr) return 0;
+          const cleanStr = priceStr.replace(/[^\d]/g, "");
+          return parseInt(cleanStr, 10) || 0;
+        };
+        const formatCurrency = (num) => {
+          return "₹" + num.toLocaleString("en-IN");
+        };
+        const rawAmount = parsePrice(plan.price);
+        const gstAmount = Math.round(rawAmount * 0.18);
+        const grandTotal = rawAmount + gstAmount;
+        
+        const planAmountStr = plan.price;
+        const gstStr = formatCurrency(gstAmount);
+        const grandTotalStr = formatCurrency(grandTotal);
+
         return (
           <div key={`pdf-template-${idx}`} style={{ position: "absolute", left: "-9999px", top: "-9999px", zIndex: -100 }}>
             {/* Page 1 */}
@@ -409,35 +460,23 @@ function PlansContent() {
                   borderRadius: "10px 10px 0 0",
                   color: "#ffffff"
                 }}>
-                  {/* First Row: Logo & Proposal ID */}
                   <div style={{
                     display: "flex",
                     justifyContent: "space-between",
                     alignItems: "center"
                   }}>
-                    <img 
-                      src={whiteLogoSrc || "/logo.png"} 
-                      alt="Ananya Hi Solutions" 
-                      style={{ 
-                        height: "42px", 
-                        width: "auto", 
-                        display: "block"
-                      }} 
-                    />
-                    <div style={{ fontSize: "16px", fontWeight: "700", textAlign: "right" }}>
-                      Business Proposal: #{proposalCount}
-                    </div>
+                    <span style={{ fontSize: "20px", fontWeight: "800", letterSpacing: "0.5px" }}>
+                      ANANYA HI SOLUTIONS
+                    </span>
+                    <span style={{ fontSize: "14px", fontWeight: "700" }}>
+                      Proposal ID: #{proposalCount + idx}
+                    </span>
                   </div>
+                  
+                  {/* Small Divider */}
+                  <div style={{ width: "40px", height: "1px", background: "rgba(255, 255, 255, 0.35)", margin: "3px 0" }}></div>
 
-                  {/* Small line between Logo and Collaboration text */}
-                  <div style={{ 
-                    width: "40px", 
-                    height: "1px", 
-                    background: "rgba(255, 255, 255, 0.35)", 
-                    margin: "3px 0" 
-                  }}></div>
-
-                  {/* Second Row: Collaboration & Issue Date */}
+                  {/* Second Row: Collaboration Subtext & Date */}
                   <div style={{
                     display: "flex",
                     justifyContent: "space-between",
@@ -445,12 +484,11 @@ function PlansContent() {
                     marginTop: "1px"
                   }}>
                     <div style={{ 
-                      fontSize: "9px", 
-                      color: "rgba(255, 255, 255, 0.75)", 
-                      lineHeight: "1.3",
-                      fontFamily: UNIFORM_FONT_STACK,
-                      fontWeight: "400",
-                      textAlign: "left"
+                      fontSize: "9.5px", 
+                      fontWeight: "500", 
+                      color: "rgba(255, 255, 255, 0.9)",
+                      fontStyle: "italic",
+                      fontFamily: UNIFORM_FONT_STACK
                     }}>
                       in collaboration with <span style={{ fontWeight: "700", color: "#ffffff", fontSize: "9.5px" }}>swetha solutions</span>
                     </div>
@@ -472,7 +510,6 @@ function PlansContent() {
                   gap: "30px",
                   margin: "30px 0"
                 }}>
-                  {/* Client Info */}
                   <div>
                     <span style={{
                       background: "#f1f5f9",
@@ -494,7 +531,6 @@ function PlansContent() {
                     </div>
                   </div>
                   
-                  {/* Agency Info */}
                   <div>
                     <h3 style={{ fontSize: "16px", fontWeight: "800", color: "#0f172a", margin: "0 0 8px 0" }}>Ananya Hi Solutions</h3>
                     <p style={{ color: "#475569", fontSize: "13px", margin: "0 0 10px 0", lineHeight: "1.4" }}>
@@ -508,7 +544,6 @@ function PlansContent() {
                   </div>
                 </div>
                 
-                {/* Package Title Bar */}
                 <div style={{
                   background: "#2563eb",
                   color: "#ffffff",
@@ -521,15 +556,13 @@ function PlansContent() {
                   {packageTitle}
                 </div>
                 
-                {/* Table Container */}
                 <div style={{
                   display: "grid",
                   gridTemplateColumns: "1.5fr 1fr",
                   border: "1px solid #e2e8f0",
                   borderTop: "none",
-                  minHeight: "560px"
+                  minHeight: "150px"
                 }}>
-                  {/* Left Column - Features */}
                   <div style={{ padding: "24px", background: "#f8fafc" }}>
                     <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
                       {featuresPage1.map((feat, fIdx) => (
@@ -541,7 +574,6 @@ function PlansContent() {
                     </ul>
                   </div>
                   
-                  {/* Right Column - Price Summary */}
                   <div style={{ padding: "24px", background: "#eff6ff", borderLeft: "1px solid #e2e8f0", display: "flex", flexDirection: "column", justifyContent: "space-between", alignItems: "center", textAlign: "center" }}>
                     <div style={{ width: "100%" }}>
                       <div style={{ fontSize: "11px", color: "#64748b", textTransform: "uppercase", fontWeight: "700", letterSpacing: "0.5px" }}>Payable Amount</div>
@@ -567,156 +599,249 @@ function PlansContent() {
                     </div>
                   </div>
                 </div>
-              </div>
-              
-              {/* Footer */}
-              <div style={{
-                textAlign: "center",
-                borderTop: "1px solid #e2e8f0",
-                paddingTop: "15px",
-                fontSize: "10px",
-                color: "#64748b"
-              }}>
-                Page 1 of 2
-              </div>
-            </div>
-            
-            {/* Page 2 */}
-            <div 
-              id={`proposal-page-2-${idx}`} 
-              style={{
-                width: "794px",
-                height: "1123px",
-                padding: "30px 40px 40px 40px",
-                boxSizing: "border-box",
-                backgroundColor: "#ffffff",
-                display: "flex",
-                flexDirection: "column",
-                justifyContent: "space-between",
-                fontFamily: UNIFORM_FONT_STACK
-              }}
-            >
-              <div>
-                {/* Metadata Browser Print Header Strip */}
-                <div style={{
-                  display: "flex",
-                  justifyContent: "space-between",
-                  fontSize: "11px",
-                  color: "#333333",
-                  marginBottom: "12px",
-                  padding: "0 4px",
-                  fontFamily: UNIFORM_FONT_STACK
-                }}>
-                  <span>{downloadDateTime}</span>
-                  <span style={{ fontWeight: "600" }}>Ananya Hi Solutions - Quotation Overview</span>
-                </div>
-
-                {/* Table Container */}
-                <div style={{
-                  display: "grid",
-                  gridTemplateColumns: "1.5fr 1fr",
-                  border: "1px solid #e2e8f0",
-                  minHeight: "450px",
-                  borderRadius: "8px 8px 0 0"
-                }}>
-                  {/* Left Column - Remaining Features */}
-                  <div style={{ padding: "24px", background: "#f8fafc" }}>
-                    <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
-                      {featuresPage2.map((feat, fIdx) => (
-                        <li key={fIdx} style={{ fontSize: "12.5px", color: "#334155", margin: "0 0 10px 0", display: "flex", alignItems: "flex-start", gap: "8px", lineHeight: "1.4" }}>
-                          <span style={{ color: "#22c55e", fontWeight: "bold" }}>✓</span>
-                          <span>{feat}</span>
-                        </li>
-                      ))}
-                      {featuresPage2.length === 0 && (
-                        <li style={{ fontSize: "12.5px", color: "#94a3b8", fontStyle: "italic" }}>
-                          All features listed on Page 1.
-                        </li>
-                      )}
-                    </ul>
-                  </div>
-                  
-                  {/* Right Column - Note Box */}
-                  <div style={{ padding: "24px", background: "#eff6ff", borderLeft: "1px solid #e2e8f0" }}>
+                
+                {isSinglePage && (
+                  <div style={{ marginTop: "20px" }}>
                     {plan.note && (
                       <div style={{
                         background: "#fffbeb",
                         border: "1px solid #fde68a",
                         color: "#b45309",
-                        padding: "12px",
+                        padding: "10px 15px",
                         borderRadius: "6px",
                         fontSize: "12px",
                         fontWeight: "600",
-                        lineHeight: "1.4"
+                        marginBottom: "15px",
+                        display: "inline-block"
                       }}>
-                        {plan.note}
+                        Note: {plan.note}
                       </div>
                     )}
+                    
+                    {/* Payment Summary Box (GST Breakdown) */}
+                    <div style={{ margin: "15px 0" }}>
+                      <div style={{
+                        border: "1px solid #bfdbfe",
+                        borderRadius: "6px",
+                        background: "#eff6ff",
+                        overflow: "hidden"
+                      }}>
+                        <div style={{
+                          background: "#2563eb",
+                          color: "#ffffff",
+                          padding: "10px 20px",
+                          display: "flex",
+                          justifyContent: "space-between",
+                          alignItems: "center"
+                        }}>
+                          <span style={{ fontSize: "14px", fontWeight: "700" }}>Payment Summary</span>
+                          <span style={{ fontSize: "11px", fontWeight: "700", textTransform: "uppercase" }}>{plan.name}</span>
+                        </div>
+                        <div style={{ padding: "12px 20px" }}>
+                          <div style={{ display: "flex", justifyContent: "space-between", fontSize: "12px", color: "#475569", margin: "4px 0" }}>
+                            <span>Plan Amount:</span>
+                            <span style={{ fontWeight: "700", color: "#1e293b" }}>{planAmountStr}</span>
+                          </div>
+                          <div style={{ display: "flex", justifyContent: "space-between", fontSize: "12px", color: "#475569", margin: "4px 0" }}>
+                            <span>GST (18%):</span>
+                            <span style={{ fontWeight: "700", color: "#1e293b" }}>{gstStr}</span>
+                          </div>
+                          <div style={{ borderTop: "1px solid #bfdbfe", margin: "8px 0 6px 0" }}></div>
+                          <div style={{ display: "flex", justifyContent: "space-between", fontSize: "16px", color: "#1e3a8a", fontWeight: "800", margin: "4px 0" }}>
+                            <span>Grand Total:</span>
+                            <span>{grandTotalStr}</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div style={{ margin: "10px 0" }}>
+                      <h4 style={{ fontSize: "13px", fontWeight: "700", color: "#0f172a", margin: "0 0 6px 0" }}>Terms And Condition :</h4>
+                      <ul style={{ listStyle: "none", padding: 0, margin: 0, fontSize: "11px", color: "#334155", lineHeight: "1.6" }}>
+                        <li style={{ display: "flex", gap: "8px" }}>
+                          <span>•</span>
+                          <span>Any extra work beyond this proposal will be charged extra.</span>
+                        </li>
+                        <li style={{ display: "flex", gap: "8px" }}>
+                          <span>•</span>
+                          <span>Campaign charges are not included.</span>
+                        </li>
+                        <li style={{ display: "flex", gap: "8px" }}>
+                          <span>•</span>
+                          <span>Quotation is valid for 15 days from the date of issue.</span>
+                        </li>
+                        <li style={{ display: "flex", gap: "8px" }}>
+                          <span>•</span>
+                          <span>All payments must be made directly to Ananya Hi Solutions / Swetha Solutions account only.</span>
+                        </li>
+                      </ul>
+                    </div>
+                    
+                    <p style={{
+                      fontSize: "10px",
+                      color: "#64748b",
+                      fontStyle: "italic",
+                      lineHeight: "1.4",
+                      margin: "12px 0 0 0"
+                    }}>
+                      If you have any questions about this quotation, please contact us. Thank you for choosing Ananya Hi Solutions — your growth partner in the digital world!
+                    </p>
                   </div>
-                </div>
-                
-                {/* Grand Total Bar */}
-                <div style={{
-                  background: "#2563eb",
-                  color: "#ffffff",
-                  padding: "15px 24px",
-                  borderRadius: "6px",
-                  display: "flex",
-                  justifyContent: "space-between",
-                  alignItems: "center",
-                  margin: "20px 0"
-                }}>
-                  <span style={{ fontSize: "16px", fontWeight: "700" }}>Grand Total</span>
-                  <span style={{ fontSize: "22px", fontWeight: "800" }}>
-                    {plan.price}
-                    <span style={{ fontSize: "12px", fontWeight: "600", color: "rgba(255, 255, 255, 0.8)", marginLeft: "4px", verticalAlign: "middle" }}>+GST</span>
-                  </span>
-                </div>
-                
-                {/* Terms and Conditions */}
-                <div style={{ margin: "24px 0" }}>
-                  <h4 style={{ fontSize: "14px", fontWeight: "700", color: "#0f172a", margin: "0 0 10px 0" }}>Terms And Condition :</h4>
-                  <ul style={{ listStyle: "none", padding: 0, margin: 0, fontSize: "12px", color: "#334155", lineHeight: "1.8" }}>
-                    <li style={{ display: "flex", gap: "8px" }}>
-                      <span>•</span>
-                      <span>Any extra work beyond this proposal will be charged extra.</span>
-                    </li>
-                    <li style={{ display: "flex", gap: "8px" }}>
-                      <span>•</span>
-                      <span>Campaign charges are not included.</span>
-                    </li>
-                    <li style={{ display: "flex", gap: "8px" }}>
-                      <span>•</span>
-                      <span>Quotation is valid for 15 days from the date of issue.</span>
-                    </li>
-                    <li style={{ display: "flex", gap: "8px" }}>
-                      <span>•</span>
-                      <span>All payments must be made directly to Ananya Hi Solutions / Swetha Solutions account only.</span>
-                    </li>
-                  </ul>
-                </div>
-                
-                {/* Closing Message */}
-                <p style={{
-                  fontSize: "11px",
-                  color: "#64748b",
-                  fontStyle: "italic",
-                  lineHeight: "1.5",
-                  margin: "20px 0 0 0"
-                }}>
-                  If you have any questions about this quotation, please contact us. Thank you for choosing Ananya Hi Solutions — your growth partner in the digital world!
-                </p>
+                )}
               </div>
               
-              {/* Footer */}
               <div>
-                <div style={{ borderTop: "1px solid #e2e8f0", margin: "15px 0" }}></div>
+                <div style={{ borderTop: "1px solid #e2e8f0", margin: "10px 0" }}></div>
                 <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", fontSize: "10px", color: "#64748b" }}>
                   <span style={{ fontWeight: "600" }}>Thank you very much for doing business with us.</span>
-                  <span>Page 2 of 2</span>
+                  <span>Page 1 of {isSinglePage ? "1" : "2"}</span>
                 </div>
               </div>
             </div>
+            
+            {!isSinglePage && (
+              <div 
+                id={`proposal-page-2-${idx}`} 
+                style={{
+                  width: "794px",
+                  height: "1123px",
+                  padding: "30px 40px 40px 40px",
+                  boxSizing: "border-box",
+                  backgroundColor: "#ffffff",
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "space-between",
+                  fontFamily: UNIFORM_FONT_STACK
+                }}
+              >
+                <div>
+                  <div style={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    fontSize: "11px",
+                    color: "#333333",
+                    marginBottom: "12px",
+                    padding: "0 4px",
+                    fontFamily: UNIFORM_FONT_STACK
+                  }}>
+                    <span>{downloadDateTime}</span>
+                    <span style={{ fontWeight: "600" }}>Ananya Hi Solutions - Quotation Overview</span>
+                  </div>
+
+                  <div style={{
+                    display: "grid",
+                    gridTemplateColumns: "1.5fr 1fr",
+                    border: "1px solid #e2e8f0",
+                    minHeight: "150px",
+                    borderRadius: "8px 8px 0 0"
+                  }}>
+                    <div style={{ padding: "24px", background: "#f8fafc" }}>
+                      <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
+                        {featuresPage2.map((feat, fIdx) => (
+                          <li key={fIdx} style={{ fontSize: "12.5px", color: "#334155", margin: "0 0 10px 0", display: "flex", alignItems: "flex-start", gap: "8px", lineHeight: "1.4" }}>
+                            <span style={{ color: "#22c55e", fontWeight: "bold" }}>✓</span>
+                            <span>{feat}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                    
+                    <div style={{ padding: "24px", background: "#eff6ff", borderLeft: "1px solid #e2e8f0" }}>
+                      {plan.note && (
+                        <div style={{
+                          background: "#fffbeb",
+                          border: "1px solid #fde68a",
+                          color: "#b45309",
+                          padding: "12px",
+                          borderRadius: "6px",
+                          fontSize: "12px",
+                          fontWeight: "600",
+                          lineHeight: "1.4"
+                        }}>
+                          Note: {plan.note}
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                  
+                  <div style={{ margin: "20px 0" }}>
+                    <div style={{
+                      border: "1px solid #bfdbfe",
+                      borderRadius: "6px",
+                      background: "#eff6ff",
+                      overflow: "hidden"
+                    }}>
+                      <div style={{
+                        background: "#2563eb",
+                        color: "#ffffff",
+                        padding: "12px 24px",
+                        display: "flex",
+                        justifyContent: "space-between",
+                        alignItems: "center"
+                      }}>
+                        <span style={{ fontSize: "15px", fontWeight: "700" }}>Payment Summary</span>
+                        <span style={{ fontSize: "11px", fontWeight: "700", textTransform: "uppercase" }}>{plan.name}</span>
+                      </div>
+                      <div style={{ padding: "16px 24px" }}>
+                        <div style={{ display: "flex", justifyContent: "space-between", fontSize: "13px", color: "#475569", margin: "6px 0" }}>
+                          <span>Plan Amount:</span>
+                          <span style={{ fontWeight: "700", color: "#1e293b" }}>{planAmountStr}</span>
+                        </div>
+                        <div style={{ display: "flex", justifyContent: "space-between", fontSize: "13px", color: "#475569", margin: "6px 0" }}>
+                          <span>GST (18%):</span>
+                          <span style={{ fontWeight: "700", color: "#1e293b" }}>{gstStr}</span>
+                        </div>
+                        <div style={{ borderTop: "1px solid #bfdbfe", margin: "10px 0 8px 0" }}></div>
+                        <div style={{ display: "flex", justifyContent: "space-between", fontSize: "18px", color: "#1e3a8a", fontWeight: "800", margin: "6px 0" }}>
+                          <span>Grand Total:</span>
+                          <span>{grandTotalStr}</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div style={{ margin: "24px 0" }}>
+                    <h4 style={{ fontSize: "14px", fontWeight: "700", color: "#0f172a", margin: "0 0 10px 0" }}>Terms And Condition :</h4>
+                    <ul style={{ listStyle: "none", padding: 0, margin: 0, fontSize: "12px", color: "#334155", lineHeight: "1.8" }}>
+                      <li style={{ display: "flex", gap: "8px" }}>
+                        <span>•</span>
+                        <span>Any extra work beyond this proposal will be charged extra.</span>
+                      </li>
+                      <li style={{ display: "flex", gap: "8px" }}>
+                        <span>•</span>
+                        <span>Campaign charges are not included.</span>
+                      </li>
+                      <li style={{ display: "flex", gap: "8px" }}>
+                        <span>•</span>
+                        <span>Quotation is valid for 15 days from the date of issue.</span>
+                      </li>
+                      <li style={{ display: "flex", gap: "8px" }}>
+                        <span>•</span>
+                        <span>All payments must be made directly to Ananya Hi Solutions / Swetha Solutions account only.</span>
+                      </li>
+                    </ul>
+                  </div>
+                  
+                  <p style={{
+                    fontSize: "11px",
+                    color: "#64748b",
+                    fontStyle: "italic",
+                    lineHeight: "1.5",
+                    margin: "20px 0 0 0"
+                  }}>
+                    If you have any questions about this quotation, please contact us. Thank you for choosing Ananya Hi Solutions — your growth partner in the digital world!
+                  </p>
+                </div>
+                
+                <div>
+                  <div style={{ borderTop: "1px solid #e2e8f0", margin: "15px 0" }}></div>
+                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", fontSize: "10px", color: "#64748b" }}>
+                    <span style={{ fontWeight: "600" }}>Thank you very much for doing business with us.</span>
+                    <span>Page 2 of 2</span>
+                  </div>
+                </div>
+              </div>
+            )}
           </div>
         );
       })}

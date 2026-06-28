@@ -177,14 +177,12 @@ export default function AdminDashboardPage() {
     };
     setPackages([...packages, newCat]);
     setNewCategoryTitle("");
-    showToast("Category added to list! Save changes to persist.", true);
   };
 
   const handleDeleteCategory = (catIdx) => {
     if (!window.confirm("Are you sure you want to delete this category? This will delete all cards inside it.")) return;
     const updated = packages.filter((_, idx) => idx !== catIdx);
     setPackages(updated);
-    showToast("Category removed! Save changes to persist.", true);
   };
 
   const handleAddCardClick = (catIdx) => {
@@ -221,7 +219,6 @@ export default function AdminDashboardPage() {
     
     setPackages(updatedCats);
     setPlans(updatedPlans);
-    showToast("Card deleted! Save changes to persist.", true);
   };
 
   const handleSaveCard = (e) => {
@@ -273,7 +270,6 @@ export default function AdminDashboardPage() {
     setPackages(updatedCats);
     setPlans(updatedPlans);
     setEditingCard(null);
-    showToast("Card changes kept in state! Save changes to persist.", true);
   };
 
   const handleEditPlansClick = (cardTitle) => {
@@ -292,7 +288,6 @@ export default function AdminDashboardPage() {
     updatedPlans[editingPlansCardTitle] = tempPlans;
     setPlans(updatedPlans);
     setEditingPlansCardTitle(null);
-    showToast("Plans kept in state! Save changes to persist.", true);
   };
 
   const handleSavePackages = async () => {
@@ -308,7 +303,7 @@ export default function AdminDashboardPage() {
       });
       const data = await response.json();
       if (response.ok && data.success) {
-        showToast("Packages and plans saved successfully!");
+        showToast("Changes saved successfully!");
         fetchData();
       } else {
         showToast(data.error || "Failed to save packages", false);
@@ -332,7 +327,6 @@ export default function AdminDashboardPage() {
     updated[targetIndex] = temp;
     
     setPackages(updated);
-    showToast("Category order changed! Save changes to persist.", true);
   };
 
   const moveCard = (catIdx, cardIdx, direction) => {
@@ -347,27 +341,24 @@ export default function AdminDashboardPage() {
     
     updatedCats[catIdx].cards = cards;
     setPackages(updatedCats);
-    showToast("Card order changed! Save changes to persist.", true);
   };
 
   // Banner Helpers
   const handleAddBanner = () => {
     const newBanner = {
-      title: "New Slide: <span>Highlights</span>",
-      desc: "Detailed description of your promotion or service.",
+      title: "",
+      desc: "",
       path: "/packages",
       bgImage: "/images/hero/digital-marketing.png",
-      btnText: "Upgrade Now"
+      btnText: ""
     };
     setBanners([...banners, newBanner]);
-    showToast("Banner slide added! Save changes to persist.", true);
   };
 
   const handleDeleteBanner = (idx) => {
     if (!window.confirm("Are you sure you want to delete this slide?")) return;
     const updated = banners.filter((_, i) => i !== idx);
     setBanners(updated);
-    showToast("Banner slide removed! Save changes to persist.", true);
   };
 
   const moveBanner = (idx, direction) => {
@@ -380,7 +371,6 @@ export default function AdminDashboardPage() {
     updated[targetIdx] = temp;
     
     setBanners(updated);
-    showToast("Banner slide order changed! Save changes to persist.", true);
   };
 
   const handleSaveBanners = async () => {
@@ -393,7 +383,7 @@ export default function AdminDashboardPage() {
       });
       const data = await response.json();
       if (response.ok && data.success) {
-        showToast("Homepage banners saved successfully!");
+        showToast("Changes saved successfully!");
         fetchData();
       } else {
         showToast(data.error || "Failed to save banners", false);
@@ -1301,132 +1291,81 @@ export default function AdminDashboardPage() {
                       </div>
 
                       <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "20px" }}>
-                        <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
-                          <div>
-                            <label style={{ display: "block", fontSize: "12px", fontWeight: "700", color: "#64748b", marginBottom: "6px" }}>Slide Title (supports &lt;span&gt; tags for highlighting)</label>
+                        <div>
+                          <label style={{ display: "block", fontSize: "12px", fontWeight: "700", color: "#64748b", marginBottom: "6px" }}>Background Image URL/Path</label>
+                          <div style={{ display: "flex", gap: "8px" }}>
                             <input 
                               type="text" 
-                              value={slide.title} 
+                              value={slide.bgImage} 
                               onChange={(e) => {
                                 const updated = [...banners];
-                                updated[idx].title = e.target.value;
+                                updated[idx].bgImage = e.target.value;
                                 setBanners(updated);
                               }}
-                              placeholder="e.g. Slide Title <span>Highlight</span>"
-                              style={{ width: "100%", padding: "10px 14px", border: "1px solid #cbd5e1", borderRadius: "6px", color: "#0f172a", fontSize: "14px" }}
+                              placeholder="e.g. /images/hero/digital-marketing.png"
+                              style={{ flex: 1, padding: "10px 14px", border: "1px solid #cbd5e1", borderRadius: "6px", color: "#0f172a", fontSize: "14px" }}
                             />
-                          </div>
-
-                          <div>
-                            <label style={{ display: "block", fontSize: "12px", fontWeight: "700", color: "#64748b", marginBottom: "6px" }}>Description Text</label>
-                            <textarea 
-                              rows={4}
-                              value={slide.desc} 
-                              onChange={(e) => {
-                                const updated = [...banners];
-                                updated[idx].desc = e.target.value;
-                                setBanners(updated);
-                              }}
-                              placeholder="Enter banner content description..."
-                              style={{ width: "100%", padding: "10px 14px", border: "1px solid #cbd5e1", borderRadius: "6px", color: "#0f172a", fontSize: "14px", lineHeight: "1.5" }}
-                            />
-                          </div>
-                        </div>
-
-                        <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
-                          <div>
-                            <label style={{ display: "block", fontSize: "12px", fontWeight: "700", color: "#64748b", marginBottom: "6px" }}>Background Image URL/Path</label>
-                            <div style={{ display: "flex", gap: "8px" }}>
+                            <label style={{ padding: "10px 16px", background: "#f1f5f9", border: "1px solid #cbd5e1", borderRadius: "6px", cursor: "pointer", fontSize: "13px", fontWeight: "600", color: "#475569", display: "inline-flex", alignItems: "center" }}>
+                              📁 Upload
                               <input 
-                                type="text" 
-                                value={slide.bgImage} 
-                                onChange={(e) => {
-                                  const updated = [...banners];
-                                  updated[idx].bgImage = e.target.value;
-                                  setBanners(updated);
-                                }}
-                                placeholder="e.g. /images/hero/digital-marketing.png"
-                                style={{ flex: 1, padding: "10px 14px", border: "1px solid #cbd5e1", borderRadius: "6px", color: "#0f172a", fontSize: "14px" }}
-                              />
-                              <label style={{ padding: "10px 16px", background: "#f1f5f9", border: "1px solid #cbd5e1", borderRadius: "6px", cursor: "pointer", fontSize: "13px", fontWeight: "600", color: "#475569", display: "inline-flex", alignItems: "center" }}>
-                                📁 Upload
-                                <input 
-                                  type="file" 
-                                  accept="image/*"
-                                  onChange={async (e) => {
-                                    const file = e.target.files[0];
-                                    if (!file) return;
-                                    showToast("Uploading image...", true);
-                                    const formData = new FormData();
-                                    formData.append("file", file);
-                                    try {
-                                      const res = await fetch("/api/upload", {
-                                        method: "POST",
-                                        headers: {
-                                          Authorization: `Bearer ${localStorage.getItem("ananya_admin_token")}`
-                                        },
-                                        body: formData
-                                      });
-                                      const data = await res.json();
-                                      if (res.ok && data.url) {
-                                        const updated = [...banners];
-                                        updated[idx].bgImage = data.url;
-                                        setBanners(updated);
-                                        showToast("Image uploaded successfully!", true);
-                                      } else {
-                                        showToast(data.error || "Failed to upload image", false);
-                                      }
-                                    } catch (err) {
-                                      showToast("Network error uploading image", false);
-                                      console.error(err);
+                                type="file" 
+                                accept="image/*"
+                                onChange={async (e) => {
+                                  const file = e.target.files[0];
+                                  if (!file) return;
+                                  showToast("Uploading image...", true);
+                                  const formData = new FormData();
+                                  formData.append("file", file);
+                                  try {
+                                    const res = await fetch("/api/upload", {
+                                      method: "POST",
+                                      headers: {
+                                        Authorization: `Bearer ${localStorage.getItem("ananya_admin_token")}`
+                                      },
+                                      body: formData
+                                    });
+                                    const data = await res.json();
+                                    if (res.ok && data.url) {
+                                      const updated = [...banners];
+                                      updated[idx].bgImage = data.url;
+                                      setBanners(updated);
+                                      showToast("Image uploaded successfully!", true);
+                                    } else {
+                                      showToast(data.error || "Failed to upload image", false);
                                     }
-                                  }}
-                                  style={{ display: "none" }}
-                                />
-                              </label>
-                            </div>
-                          </div>
-
-                          <div style={{ display: "grid", gridTemplateColumns: "1fr 1.5fr", gap: "15px" }}>
-                            <div>
-                              <label style={{ display: "block", fontSize: "12px", fontWeight: "700", color: "#64748b", marginBottom: "6px" }}>Button Text</label>
-                              <input 
-                                type="text" 
-                                value={slide.btnText} 
-                                onChange={(e) => {
-                                  const updated = [...banners];
-                                  updated[idx].btnText = e.target.value;
-                                  setBanners(updated);
+                                  } catch (err) {
+                                    showToast("Network error uploading image", false);
+                                    console.error(err);
+                                  }
                                 }}
-                                placeholder="e.g. Upgrade Now"
-                                style={{ width: "100%", padding: "10px 14px", border: "1px solid #cbd5e1", borderRadius: "6px", color: "#0f172a", fontSize: "14px" }}
+                                style={{ display: "none" }}
                               />
-                            </div>
-
-                            <div>
-                              <label style={{ display: "block", fontSize: "12px", fontWeight: "700", color: "#64748b", marginBottom: "6px" }}>Navigation Link Path (Route)</label>
-                              <input 
-                                type="text" 
-                                value={slide.path} 
-                                onChange={(e) => {
-                                  const updated = [...banners];
-                                  updated[idx].path = e.target.value;
-                                  setBanners(updated);
-                                }}
-                                placeholder="e.g. /packages or /services/digital-marketing/smm"
-                                style={{ width: "100%", padding: "10px 14px", border: "1px solid #cbd5e1", borderRadius: "6px", color: "#0f172a", fontSize: "14px" }}
-                              />
-                            </div>
-                          </div>
-
-                          <div style={{ marginTop: "10px", border: "1px solid #f1f5f9", borderRadius: "6px", overflow: "hidden", height: "80px", background: "#f8fafc", display: "flex", alignItems: "center", justifyContent: "center" }}>
-                            {slide.bgImage ? (
-                              <div style={{ width: "100%", height: "100%", backgroundSize: "cover", backgroundPosition: "center", backgroundImage: `url(${slide.bgImage})` }} />
-                            ) : (
-                              <span style={{ fontSize: "11px", color: "#94a3b8" }}>No background preview</span>
-                            )}
+                            </label>
                           </div>
                         </div>
+
+                        <div>
+                          <label style={{ display: "block", fontSize: "12px", fontWeight: "700", color: "#64748b", marginBottom: "6px" }}>Navigation Link Path (Route)</label>
+                          <input 
+                            type="text" 
+                            value={slide.path} 
+                            onChange={(e) => {
+                              const updated = [...banners];
+                              updated[idx].path = e.target.value;
+                              setBanners(updated);
+                            }}
+                            placeholder="e.g. /packages or /services/digital-marketing/smm"
+                            style={{ width: "100%", padding: "10px 14px", border: "1px solid #cbd5e1", borderRadius: "6px", color: "#0f172a", fontSize: "14px" }}
+                          />
+                        </div>
+                      </div>
+
+                      <div style={{ marginTop: "15px", border: "1px solid #e2e8f0", borderRadius: "8px", overflow: "hidden", height: "140px", background: "#f8fafc", display: "flex", alignItems: "center", justifyContent: "center", position: "relative" }}>
+                        {slide.bgImage ? (
+                          <div style={{ width: "100%", height: "100%", backgroundSize: "cover", backgroundPosition: "center", backgroundImage: `url(${slide.bgImage})` }} />
+                        ) : (
+                          <span style={{ fontSize: "13px", color: "#94a3b8", fontWeight: "650" }}>No background preview</span>
+                        )}
                       </div>
                     </div>
                   ))}

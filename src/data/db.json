@@ -1200,5 +1200,27 @@
       "message": "sxdf",
       "submittedAt": "2026-06-28T13:31:32.317Z"
     }
+  ],
+  "marqueeLogos": [
+    {
+      "src": "/portfolio_images/zuxa_logo.png",
+      "name": "Zuxa Beauty & Spa",
+      "row": 1
+    },
+    {
+      "src": "/portfolio_images/mad_academy_logo.png",
+      "name": "Mad Academy",
+      "row": 1
+    },
+    {
+      "src": "/portfolio_images/qpath_logo.png",
+      "name": "Q Path Diagnostics",
+      "row": 2
+    },
+    {
+      "src": "/portfolio_images/shanmukha_logo.png",
+      "name": "Shanmukha Gold",
+      "row": 2
+    }
   ]
 }

@@ -11,6 +11,15 @@ const COLUMN_2_IMAGES = Array.from({ length: 5 }, (_, i) => `/portfolio_images/m
 const COLUMN_3_IMAGES = Array.from({ length: 7 }, (_, i) => `/portfolio_images/qpath_page_${i + 1}.png`);
 const COLUMN_4_IMAGES = Array.from({ length: 4 }, (_, i) => `/portfolio_images/shanmukha_gold_portfolio_page_${i + 1}.png`);
 
+const padLogosArray = (logosList, minItems = 12) => {
+  if (!logosList || logosList.length === 0) return [];
+  let padded = [...logosList];
+  while (padded.length < minItems) {
+    padded = [...padded, ...logosList];
+  }
+  return padded;
+};
+
 const MARQUEE_LOGOS = [
   { src: "/portfolio_images/zuxa_logo.png", name: "Zuxa Beauty & Spa" },
   { src: "/portfolio_images/mad_academy_logo.png", name: "Mad Academy" },
@@ -326,13 +335,13 @@ export default function AboutPage() {
             <div className="marquee-wrapper">
               <div className="marquee-content rtl">
                 {/* First Set of Logos */}
-                {marqueeLogos.filter(l => !l.row || l.row === 1 || l.row === '1').map((logo, idx) => (
+                {padLogosArray(marqueeLogos.filter(l => !l.row || l.row === 1 || l.row === '1')).map((logo, idx) => (
                   <div className="marquee-logo-item" key={`logo-r1-1-${idx}`}>
                     <img src={logo.src} alt={logo.name} className="marquee-logo" />
                   </div>
                 ))}
                 {/* Second Set of Logos */}
-                {marqueeLogos.filter(l => !l.row || l.row === 1 || l.row === '1').map((logo, logoIdx) => (
+                {padLogosArray(marqueeLogos.filter(l => !l.row || l.row === 1 || l.row === '1')).map((logo, logoIdx) => (
                   <div className="marquee-logo-item" key={`logo-r1-2-${logoIdx}`}>
                     <img src={logo.src} alt={logo.name} className="marquee-logo" />
                   </div>
@@ -344,13 +353,13 @@ export default function AboutPage() {
             <div className="marquee-wrapper">
               <div className="marquee-content ltr">
                 {/* First Set of Logos */}
-                {marqueeLogos.filter(l => l.row === 2 || l.row === '2').map((logo, idx) => (
+                {padLogosArray(marqueeLogos.filter(l => l.row === 2 || l.row === '2')).map((logo, idx) => (
                   <div className="marquee-logo-item" key={`logo-r2-1-${idx}`}>
                     <img src={logo.src} alt={logo.name} className="marquee-logo" />
                   </div>
                 ))}
                 {/* Second Set of Logos */}
-                {marqueeLogos.filter(l => l.row === 2 || l.row === '2').map((logo, logoIdx) => (
+                {padLogosArray(marqueeLogos.filter(l => l.row === 2 || l.row === '2')).map((logo, logoIdx) => (
                   <div className="marquee-logo-item" key={`logo-r2-2-${logoIdx}`}>
                     <img src={logo.src} alt={logo.name} className="marquee-logo" />
                   </div>

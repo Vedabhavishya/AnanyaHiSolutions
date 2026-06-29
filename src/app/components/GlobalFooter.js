@@ -46,10 +46,10 @@ export default function GlobalFooter() {
             </ul>
           </div>
 
-          <div className="footer-column">
+          <div className="footer-column footer-services-column">
             <h4>Our Services</h4>
-            <ul className="footer-links">
-              {services && services.slice(0, 5).map((service) => (
+            <ul className="footer-links" style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: "10px 20px" }}>
+              {services && services.map((service) => (
                 <li key={service.id}>
                   <Link href={`/services/${service.id}`}>{service.title}</Link>
                 </li>

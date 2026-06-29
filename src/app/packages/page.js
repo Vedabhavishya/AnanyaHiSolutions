@@ -161,24 +161,6 @@ export default function PackagesPage() {
     });
   };
 
-  useEffect(() => {
-    if (modalOpen && typeof window !== "undefined") {
-      const saved = localStorage.getItem("ahs_lead_info");
-      if (saved) {
-        try {
-          const parsed = JSON.parse(saved);
-          setFormData({
-            name: parsed.name || "",
-            email: parsed.email || "",
-            phone: parsed.phone || "",
-            company: parsed.company || ""
-          });
-        } catch (e) {
-          console.error(e);
-        }
-      }
-    }
-  }, [modalOpen]);
 
   const handleUnlockSubmit = async (e) => {
     e.preventDefault();

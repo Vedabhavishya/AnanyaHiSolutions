@@ -11,6 +11,21 @@ import html2canvas from "html2canvas";
 // Common uniform font stack to ensure absolute visual consistency in rendering
 const UNIFORM_FONT_STACK = "'Times New Roman', Times, Baskerville, Georgia, serif";
 
+const renderPlanName = (name, subSize = "13px", subColor = "inherit", blockStyle = {}) => {
+  const match = name.match(/^(.*?)\s*\((.*?)\)$/);
+  if (match) {
+    return (
+      <span style={{ display: "inline-block", textAlign: "center", ...blockStyle }}>
+        <span style={{ display: "block" }}>{match[1]}</span>
+        <span style={{ display: "block", fontSize: subSize, fontWeight: "600", opacity: 0.8, color: subColor, marginTop: "4px", textTransform: "none" }}>
+          ({match[2]})
+        </span>
+      </span>
+    );
+  }
+  return name;
+};
+
 // Recursively expand "Everything in Basic" and "Everything in Standard" references to full features lists
 const getExpandedFeatures = (plan, allPlans, visited = new Set()) => {
   if (!plan || !plan.features || visited.has(plan.name)) return [];
@@ -313,9 +328,16 @@ function PlansContent() {
                 )}
                 
                 <div className="plan-card-content">
-                  <h3 className="plan-name">
-                    {plan.icon && <span style={{ marginRight: '8px' }}>{plan.icon}</span>}
-                    {plan.name}
+                  <h3 className="plan-name" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                    <span style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                      {plan.icon && <span style={{ marginRight: '8px' }}>{plan.icon}</span>}
+                      {plan.name.match(/^(.*?)\s*\(.*?\)$/) ? plan.name.match(/^(.*?)\s*\(.*?\)$/)[1] : plan.name}
+                    </span>
+                    {plan.name.match(/^(.*?)\s*\((.*?)\)$/) && (
+                      <span style={{ display: 'block', fontSize: '13px', fontWeight: '600', opacity: 0.75, marginTop: '4px', textTransform: 'none' }}>
+                        ({plan.name.match(/^(.*?)\s*\((.*?)\)$/)[2]})
+                      </span>
+                    )}
                   </h3>
                   <div className="plan-price-wrapper">
                     <span className="plan-price">{plan.price}</span>
@@ -591,7 +613,14 @@ function PlansContent() {
                         textAlign: "center",
                         marginTop: "40px"
                       }}>
-                        <div style={{ fontSize: "16px", fontWeight: "700", color: "#2563eb" }}>{plan.name}</div>
+                        <div style={{ fontSize: "16px", fontWeight: "700", color: "#2563eb" }}>
+                          {plan.name.match(/^(.*?)\s*\(.*?\)$/) ? plan.name.match(/^(.*?)\s*\(.*?\)$/)[1] : plan.name}
+                          {plan.name.match(/^(.*?)\s*\((.*?)\)$/) && (
+                            <div style={{ fontSize: "11px", fontWeight: "600", color: "#4b5563", marginTop: "2px", textTransform: "none" }}>
+                              ({plan.name.match(/^(.*?)\s*\((.*?)\)$/)[2]})
+                            </div>
+                          )}
+                        </div>
                         <div style={{ fontSize: "12px", color: "#475569", marginTop: "4px" }}>
                           {plan.billing.replace('+', '').trim() || 'For 30 Days'}
                         </div>
@@ -635,7 +664,9 @@ function PlansContent() {
                           alignItems: "center"
                         }}>
                           <span style={{ fontSize: "14px", fontWeight: "700" }}>Payment Summary</span>
-                          <span style={{ fontSize: "11px", fontWeight: "700", textTransform: "uppercase" }}>{plan.name}</span>
+                          <span style={{ fontSize: "11px", fontWeight: "700", textTransform: "uppercase" }}>
+                            {plan.name.match(/^(.*?)\s*\(.*?\)$/) ? plan.name.match(/^(.*?)\s*\(.*?\)$/)[1] : plan.name}
+                          </span>
                         </div>
                         <div style={{ padding: "12px 20px" }}>
                           <div style={{ display: "flex", justifyContent: "space-between", fontSize: "12px", color: "#475569", margin: "4px 0" }}>
@@ -780,7 +811,9 @@ function PlansContent() {
                         alignItems: "center"
                       }}>
                         <span style={{ fontSize: "15px", fontWeight: "700" }}>Payment Summary</span>
-                        <span style={{ fontSize: "11px", fontWeight: "700", textTransform: "uppercase" }}>{plan.name}</span>
+                        <span style={{ fontSize: "11px", fontWeight: "700", textTransform: "uppercase" }}>
+                          {plan.name.match(/^(.*?)\s*\(.*?\)$/) ? plan.name.match(/^(.*?)\s*\(.*?\)$/)[1] : plan.name}
+                        </span>
                       </div>
                       <div style={{ padding: "16px 24px" }}>
                         <div style={{ display: "flex", justifyContent: "space-between", fontSize: "13px", color: "#475569", margin: "6px 0" }}>

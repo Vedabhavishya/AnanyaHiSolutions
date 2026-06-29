@@ -57,31 +57,6 @@ export default function ContactPage() {
     });
   };
 
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      const draft = localStorage.getItem("ahs_contact_form_draft");
-      const sharedLead = localStorage.getItem("ahs_lead_info");
-      let initialData = { name: "", phone: "", email: "", message: "" };
-      
-      if (sharedLead) {
-        try {
-          const parsedLead = JSON.parse(sharedLead);
-          initialData = { ...initialData, ...parsedLead };
-        } catch (e) {
-          console.error(e);
-        }
-      }
-      if (draft) {
-        try {
-          const parsedDraft = JSON.parse(draft);
-          initialData = { ...initialData, ...parsedDraft };
-        } catch (e) {
-          console.error(e);
-        }
-      }
-      setFormData(initialData);
-    }
-  }, []);
 
 
 

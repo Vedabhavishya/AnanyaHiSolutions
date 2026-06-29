@@ -50,31 +50,6 @@ export default function Header({ activePage = "" }) {
     });
   };
 
-  useEffect(() => {
-    if (auditModalOpen && typeof window !== "undefined") {
-      const draft = localStorage.getItem("ahs_audit_form_draft");
-      const sharedLead = localStorage.getItem("ahs_lead_info");
-      let initialData = { name: "", email: "", phone: "", company: "", website: "" };
-      
-      if (sharedLead) {
-        try {
-          const parsedLead = JSON.parse(sharedLead);
-          initialData = { ...initialData, ...parsedLead };
-        } catch (e) {
-          console.error(e);
-        }
-      }
-      if (draft) {
-        try {
-          const parsedDraft = JSON.parse(draft);
-          initialData = { ...initialData, ...parsedDraft };
-        } catch (e) {
-          console.error(e);
-        }
-      }
-      setFormData(initialData);
-    }
-  }, [auditModalOpen]);
 
   const handleAuditSubmit = async (e) => {
     e.preventDefault();

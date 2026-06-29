@@ -2,10 +2,10 @@ import { NextResponse } from "next/server";
 import { readDb, writeDb, verifyToken } from "../db-helper";
 
 const DEFAULT_MARQUEE_LOGOS = [
-  { src: "/portfolio_images/zuxa_logo.png", name: "Zuxa Beauty & Spa" },
-  { src: "/portfolio_images/mad_academy_logo.png", name: "Mad Academy" },
-  { src: "/portfolio_images/qpath_logo.png", name: "Q Path Diagnostics" },
-  { src: "/portfolio_images/shanmukha_logo.png", name: "Shanmukha Gold" }
+  { src: "/portfolio_images/zuxa_logo.png", name: "Zuxa Beauty & Spa", row: 1 },
+  { src: "/portfolio_images/mad_academy_logo.png", name: "Mad Academy", row: 1 },
+  { src: "/portfolio_images/qpath_logo.png", name: "Q Path Diagnostics", row: 2 },
+  { src: "/portfolio_images/shanmukha_logo.png", name: "Shanmukha Gold", row: 2 }
 ];
 
 export async function GET() {

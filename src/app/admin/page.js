@@ -402,7 +402,7 @@ export default function AdminDashboardPage() {
 
   // Marquee Logos Helpers
   const handleAddMarqueeLogo = () => {
-    const newLogo = { src: "/portfolio_images/zuxa_logo.png", name: "" };
+    const newLogo = { src: "/portfolio_images/zuxa_logo.png", name: "", row: 1 };
     setMarqueeLogos([...marqueeLogos, newLogo]);
   };
 
@@ -1546,6 +1546,18 @@ export default function AdminDashboardPage() {
                           placeholder="e.g. Zuxa Beauty & Spa"
                           style={{ width: "100%", padding: "8px 10px", border: "1px solid #cbd5e1", borderRadius: "6px", color: "#0f172a", fontSize: "13px" }}
                         />
+                      </div>
+
+                      <div>
+                        <label style={{ display: "block", fontSize: "11px", fontWeight: "700", color: "#64748b", marginBottom: "4px" }}>Display Row / Scroll Line</label>
+                        <select 
+                          value={logo.row || 1} 
+                          onChange={(e) => updateMarqueeLogo(idx, "row", parseInt(e.target.value, 10))}
+                          style={{ width: "100%", padding: "8px 10px", border: "1px solid #cbd5e1", borderRadius: "6px", color: "#0f172a", fontSize: "13px", background: "#ffffff" }}
+                        >
+                          <option value={1}>Scroll Line 1 (Right to Left)</option>
+                          <option value={2}>Scroll Line 2 (Left to Right)</option>
+                        </select>
                       </div>
 
                       <div style={{ border: "1px solid #e2e8f0", borderRadius: "8px", overflow: "hidden", height: "80px", background: "#f8fafc", display: "flex", alignItems: "center", justifyContent: "center" }}>

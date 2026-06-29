@@ -326,14 +326,14 @@ export default function AboutPage() {
             <div className="marquee-wrapper">
               <div className="marquee-content rtl">
                 {/* First Set of Logos */}
-                {marqueeLogos.map((logo, idx) => (
+                {marqueeLogos.filter(l => !l.row || l.row === 1 || l.row === '1').map((logo, idx) => (
                   <div className="marquee-logo-item" key={`logo-r1-1-${idx}`}>
                     <img src={logo.src} alt={logo.name} className="marquee-logo" />
                   </div>
                 ))}
                 {/* Second Set of Logos */}
-                {marqueeLogos.map((logo, idx) => (
-                  <div className="marquee-logo-item" key={`logo-r1-2-${idx}`}>
+                {marqueeLogos.filter(l => !l.row || l.row === 1 || l.row === '1').map((logo, logoIdx) => (
+                  <div className="marquee-logo-item" key={`logo-r1-2-${logoIdx}`}>
                     <img src={logo.src} alt={logo.name} className="marquee-logo" />
                   </div>
                 ))}
@@ -344,14 +344,14 @@ export default function AboutPage() {
             <div className="marquee-wrapper">
               <div className="marquee-content ltr">
                 {/* First Set of Logos */}
-                {marqueeLogos.map((logo, idx) => (
+                {marqueeLogos.filter(l => l.row === 2 || l.row === '2').map((logo, idx) => (
                   <div className="marquee-logo-item" key={`logo-r2-1-${idx}`}>
                     <img src={logo.src} alt={logo.name} className="marquee-logo" />
                   </div>
                 ))}
                 {/* Second Set of Logos */}
-                {marqueeLogos.map((logo, idx) => (
-                  <div className="marquee-logo-item" key={`logo-r2-2-${idx}`}>
+                {marqueeLogos.filter(l => l.row === 2 || l.row === '2').map((logo, logoIdx) => (
+                  <div className="marquee-logo-item" key={`logo-r2-2-${logoIdx}`}>
                     <img src={logo.src} alt={logo.name} className="marquee-logo" />
                   </div>
                 ))}

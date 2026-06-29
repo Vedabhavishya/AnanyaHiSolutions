@@ -54,6 +54,12 @@ function renderParagraph(text, index, serviceId) {
     case "geo":
       htmlContent = text.replace("Google Engine Optimization", `<a href="/services/geo" style="color: var(--primary-blue); text-decoration: underline; font-weight: 600;">Google Engine Optimization</a>`);
       break;
+    case "aio":
+      htmlContent = text.replace("Artificial Intelligence Optimization", `<a href="/services/aio" style="color: var(--primary-blue); text-decoration: underline; font-weight: 600;">Artificial Intelligence Optimization</a>`);
+      break;
+    case "sxo":
+      htmlContent = text.replace("Search Experience Optimization", `<a href="/services/sxo" style="color: var(--primary-blue); text-decoration: underline; font-weight: 600;">Search Experience Optimization</a>`);
+      break;
     case "youtube-seo":
       htmlContent = text.replace("YouTube SEO", `<a href="/services/youtube-seo" style="color: var(--primary-blue); text-decoration: underline; font-weight: 600;">YouTube SEO</a>`);
       break;
@@ -419,6 +425,52 @@ const SERVICES_DETAIL_DATA = {
       { q: "What is GEO and SGE?", a: "SGE is Google's Search Generative Experience, which shows AI-generated answers above search results. GEO (Google Engine Optimization) optimizes your site to get cited inside those SGE boxes." },
       { q: "How does GEO differ from traditional SEO?", a: "GEO focuses on securing citations in Google's AI snapshots, whereas traditional SEO focuses on links ranking in the search index. GEO requires higher semantic density and clear factual declarations." },
       { q: "When will I see results from GEO optimization?", a: "Google SGE crawls and updates its snapshots continuously. Once we deploy structured semantic markup and optimized content, citations can appear within a few weeks." }
+    ]
+  },
+  "aio": {
+    title: "AIO (AI Optimization)",
+    bannerTitle: "Artificial Intelligence Optimization (AIO) in Hyderabad",
+    bannerDesc: "Optimize your brand's digital footprint so that leading AI models (like ChatGPT, Claude, Perplexity, and Gemini) cite and recommend your services.",
+    bannerBadge: "✓ AI Recommendation Engine Optimization | ⭐️ Rated 5/5 by Tech Brands",
+    heroVisual: "/images/hero/aeo.png",
+    subtypesTitle: "",
+    subtypesDesc: "",
+    row1Image: "https://images.unsplash.com/photo-1677442136019-21780efad99a?auto=format&fit=crop&w=800&q=80",
+    row2Image: "https://images.unsplash.com/photo-1684369175833-31126786a345?auto=format&fit=crop&w=800&q=80",
+    types: [],
+    overviewTitle: "Pioneering Artificial Intelligence Optimization",
+    paragraphs: [
+      "As consumer search habits shift from classic link lists to direct conversational queries, visibility on AI search platforms becomes essential. Artificial Intelligence Optimization (AIO) is the strategic process of preparing your brand to be recommended by LLMs.",
+      "We build advanced semantic structures, optimize cross-platform brand citations, and feed structured factual databases to ensure AI models recognize your organization as an authoritative industry leader.",
+      "Our early-adoption AIO strategies secure citations in ChatGPT Search, Claude references, and Gemini snapshots, creating lasting organic authority and driving high-converting users directly to your site."
+    ],
+    faqs: [
+      { q: "What is Artificial Intelligence Optimization (AIO)?", a: "AIO is the practice of structuring and optimizing your online presence so that conversational AI models cite, mention, and recommend your brand when answering user queries." },
+      { q: "Which AI engines do you optimize for?", a: "We optimize for all leading LLM recommendation engines, including OpenAI's ChatGPT Search, Microsoft Copilot, Anthropic's Claude, Perplexity AI, and Google Gemini." },
+      { q: "Why is AIO important?", a: "With millions of users querying AI directly for product and service recommendations, appearing as a top-cited source in AI summaries is the modern equivalent of ranking #1 on traditional search." }
+    ]
+  },
+  "sxo": {
+    title: "SXO (Search Experience)",
+    bannerTitle: "Search Experience Optimization (SXO) in Hyderabad",
+    bannerDesc: "Merge traditional search engine optimization with high-fidelity UX design to capture search traffic and convert visitors into active leads.",
+    bannerBadge: "✓ Higher Search CTR & Conversions | ⭐️ Rated 4.9/5 by Growth Marketers",
+    heroVisual: "/images/hero/geo.png",
+    subtypesTitle: "",
+    subtypesDesc: "",
+    row1Image: "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=800&q=80",
+    row2Image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80",
+    types: [],
+    overviewTitle: "Merging Search Performance and User Experience",
+    paragraphs: [
+      "Traditional SEO gets visitors to your website; SXO ensures they stay there and convert. Search Experience Optimization bridges search engine rankings with user experience engineering to align with Google's Core Web Vitals and user-satisfaction signals.",
+      "We design blazing-fast web interfaces, optimize customer conversion funnels, and build highly engaging page flows that satisfy both search spiders and human visitors.",
+      "By matching search intent with a frictionless page journey, SXO increases time-on-site, minimizes bounce rates, and maximizes conversion outcomes for all organic traffic."
+    ],
+    faqs: [
+      { q: "What is Search Experience Optimization (SXO)?", a: "SXO combines SEO and UX design. It focuses on satisfying user intent from the moment they search for a query to the final conversion action on your site." },
+      { q: "How does SXO help search engine rankings?", a: "Search engines like Google prioritize user experience signals (like page speed, dwell time, and low bounce rates). Satisfying users directly translates to higher and more stable rankings." },
+      { q: "What is the primary benefit of SXO?", a: "SXO increases conversion rates on organic search traffic, turning casual search visitors into customers and maximizing the ROI of your search campaigns." }
     ]
   },
   "youtube-seo": {

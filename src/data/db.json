@@ -59,6 +59,18 @@
       "title": "YouTube Ads",
       "desc": "High-impact video ad scripts, TrueView bumper placement architectures, and laser-targeted campaigns that convert viewers into clients.",
       "iconName": "award"
+    },
+    {
+      "id": "aio",
+      "title": "AIO (AI Optimization)",
+      "desc": "Optimize your brand footprint so that leading conversational AI models (like ChatGPT, Claude, and Gemini) recommend your business.",
+      "iconName": "cpu"
+    },
+    {
+      "id": "sxo",
+      "title": "SXO (Search Experience)",
+      "desc": "Merge search engine optimization with high-converting user experience design to turn search traffic into active leads and buyers.",
+      "iconName": "target"
     }
   ],
   "jobs": [

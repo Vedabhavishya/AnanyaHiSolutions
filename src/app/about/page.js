@@ -40,6 +40,25 @@ function Logo({ className = "", light = false }) {
 }
 
 export default function AboutPage() {
+  const [marqueeLogos, setMarqueeLogos] = useState(MARQUEE_LOGOS);
+  
+  useEffect(() => {
+    const fetchMarqueeLogos = async () => {
+      try {
+        const res = await fetch("/api/marquee-logos");
+        if (res.ok) {
+          const data = await res.json();
+          setMarqueeLogos(data);
+        } else {
+          setMarqueeLogos(MARQUEE_LOGOS);
+        }
+      } catch (err) {
+        console.error("Error loading marquee logos:", err);
+        setMarqueeLogos(MARQUEE_LOGOS);
+      }
+    };
+    fetchMarqueeLogos();
+  }, []);
 
   // FAQ State
   const [activeFaq, setActiveFaq] = useState(0);
@@ -301,19 +320,38 @@ export default function AboutPage() {
             </p>
           </div>
 
-          {/* Minimalist Logo Marquee */}
-          <div className="portfolio-marquee-container mb-12">
+          {/* Minimalist Logo Marquee (2 rows scroll!) */}
+          <div className="portfolio-marquee-container mb-12" style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+            {/* Row 1: Right to Left */}
             <div className="marquee-wrapper">
-              <div className="marquee-content">
+              <div className="marquee-content rtl">
                 {/* First Set of Logos */}
-                {MARQUEE_LOGOS.map((logo, idx) => (
-                  <div className="marquee-logo-item" key={`logo-1-${idx}`}>
+                {marqueeLogos.map((logo, idx) => (
+                  <div className="marquee-logo-item" key={`logo-r1-1-${idx}`}>
                     <img src={logo.src} alt={logo.name} className="marquee-logo" />
                   </div>
                 ))}
                 {/* Second Set of Logos */}
-                {MARQUEE_LOGOS.map((logo, idx) => (
-                  <div className="marquee-logo-item" key={`logo-2-${idx}`}>
+                {marqueeLogos.map((logo, idx) => (
+                  <div className="marquee-logo-item" key={`logo-r1-2-${idx}`}>
+                    <img src={logo.src} alt={logo.name} className="marquee-logo" />
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Row 2: Left to Right */}
+            <div className="marquee-wrapper">
+              <div className="marquee-content ltr">
+                {/* First Set of Logos */}
+                {marqueeLogos.map((logo, idx) => (
+                  <div className="marquee-logo-item" key={`logo-r2-1-${idx}`}>
+                    <img src={logo.src} alt={logo.name} className="marquee-logo" />
+                  </div>
+                ))}
+                {/* Second Set of Logos */}
+                {marqueeLogos.map((logo, idx) => (
+                  <div className="marquee-logo-item" key={`logo-r2-2-${idx}`}>
                     <img src={logo.src} alt={logo.name} className="marquee-logo" />
                   </div>
                 ))}

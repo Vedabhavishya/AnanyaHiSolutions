@@ -2060,8 +2060,15 @@ button {
 .marquee-content {
   display: inline-flex;
   gap: 80px;
-  animation: marqueeScroll 75s linear infinite;
   align-items: center;
+}
+
+.marquee-content.rtl {
+  animation: marqueeScrollRTL 35s linear infinite;
+}
+
+.marquee-content.ltr {
+  animation: marqueeScrollLTR 35s linear infinite;
 }
 
 .marquee-logo-item {
@@ -2084,12 +2091,21 @@ button {
   filter: grayscale(0%) contrast(100%);
 }
 
-@keyframes marqueeScroll {
+@keyframes marqueeScrollRTL {
   0% {
     transform: translateX(0);
   }
   100% {
     transform: translateX(-50%);
+  }
+}
+
+@keyframes marqueeScrollLTR {
+  0% {
+    transform: translateX(-50%);
+  }
+  100% {
+    transform: translateX(0);
   }
 }
 

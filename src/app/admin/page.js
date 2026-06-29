@@ -20,6 +20,7 @@ export default function AdminDashboardPage() {
   const [tempPlans, setTempPlans] = useState([]);
   const [newCategoryTitle, setNewCategoryTitle] = useState("");
   const [banners, setBanners] = useState([]);
+  const [marqueeLogos, setMarqueeLogos] = useState([]);
 
   // Loading & feedback states
   const [loading, setLoading] = useState(true);
@@ -74,24 +75,26 @@ export default function AdminDashboardPage() {
     setLoading(true);
     setError("");
     try {
-      const [resServices, resJobs, resBlogs, resPackages, resBanners] = await Promise.all([
+      const [resServices, resJobs, resBlogs, resPackages, resBanners, resLogos] = await Promise.all([
         fetch("/api/services"),
         fetch("/api/jobs"),
         fetch("/api/blogs"),
         fetch("/api/packages"),
         fetch("/api/banners"),
+        fetch("/api/marquee-logos"),
       ]);
 
-      if (!resServices.ok || !resJobs.ok || !resBlogs.ok || !resPackages.ok || !resBanners.ok) {
+      if (!resServices.ok || !resJobs.ok || !resBlogs.ok || !resPackages.ok || !resBanners.ok || !resLogos.ok) {
         throw new Error("Failed to load some resources.");
       }
 
-      const [dataServices, dataJobs, dataBlogs, dataPackages, dataBanners] = await Promise.all([
+      const [dataServices, dataJobs, dataBlogs, dataPackages, dataBanners, dataLogos] = await Promise.all([
         resServices.json(),
         resJobs.json(),
         resBlogs.json(),
         resPackages.json(),
         resBanners.json(),
+        resLogos.json(),
       ]);
 
       setServices(dataServices);
@@ -100,6 +103,7 @@ export default function AdminDashboardPage() {
       setPackages(dataPackages.packages || []);
       setPlans(dataPackages.plans || {});
       setBanners(dataBanners || []);
+      setMarqueeLogos(dataLogos || []);
     } catch (err) {
       setError("Error syncing with local database. Please refresh.");
       console.error(err);
@@ -390,6 +394,47 @@ export default function AdminDashboardPage() {
       }
     } catch (err) {
       showToast("Network error saving banners", false);
+      console.error(err);
+    } finally {
+      setActionLoading(false);
+    }
+  };
+
+  // Marquee Logos Helpers
+  const handleAddMarqueeLogo = () => {
+    const newLogo = { src: "/portfolio_images/zuxa_logo.png", name: "" };
+    setMarqueeLogos([...marqueeLogos, newLogo]);
+  };
+
+  const handleDeleteMarqueeLogo = (idx) => {
+    if (!window.confirm("Are you sure you want to delete this logo?")) return;
+    const updated = marqueeLogos.filter((_, i) => i !== idx);
+    setMarqueeLogos(updated);
+  };
+
+  const updateMarqueeLogo = (idx, field, value) => {
+    const updated = [...marqueeLogos];
+    updated[idx][field] = value;
+    setMarqueeLogos(updated);
+  };
+
+  const handleSaveMarqueeLogos = async () => {
+    setActionLoading(true);
+    try {
+      const response = await fetch("/api/marquee-logos", {
+        method: "POST",
+        headers: getAuthHeaders(),
+        body: JSON.stringify({ logos: marqueeLogos })
+      });
+      const data = await response.json();
+      if (response.ok && data.success) {
+        showToast("Changes saved successfully!");
+        fetchData();
+      } else {
+        showToast(data.error || "Failed to save marquee logos", false);
+      }
+    } catch (err) {
+      showToast("Network error saving marquee logos", false);
       console.error(err);
     } finally {
       setActionLoading(false);
@@ -712,6 +757,12 @@ export default function AdminDashboardPage() {
             onClick={() => setActiveTab("banners")}
           >
             <span className="nav-icon">🖼️</span> Homepage Banners
+          </button>
+          <button
+            className={`admin-nav-item ${activeTab === "marquee-logos" ? "active" : ""}`}
+            onClick={() => setActiveTab("marquee-logos")}
+          >
+            <span className="nav-icon">✨</span> Scroll Logos
           </button>
         </nav>
 
@@ -1393,6 +1444,149 @@ export default function AdminDashboardPage() {
                     disabled={actionLoading}
                   >
                     {actionLoading ? "💾 Saving Banners..." : "💾 Save Banners"}
+                  </button>
+                </div>
+              </div>
+            )}
+
+            {activeTab === "marquee-logos" && (
+              <div className="dashboard-tab-panel animate-fade-in">
+                <div className="panel-header">
+                  <div className="panel-title-desc">
+                    <h2>Scrolling Logos Manager</h2>
+                    <p>Add, edit, or remove the client/portfolio logos that scroll above the portfolio section on the About page.</p>
+                  </div>
+                  <button 
+                    className="admin-btn btn-primary-custom"
+                    onClick={handleSaveMarqueeLogos}
+                    disabled={actionLoading}
+                  >
+                    {actionLoading ? "💾 Saving..." : "💾 Save Changes"}
+                  </button>
+                </div>
+
+                <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))", gap: "20px", marginTop: "20px" }}>
+                  {marqueeLogos.map((logo, idx) => (
+                    <div key={idx} style={{
+                      background: "white",
+                      border: "1px solid #e2e8f0",
+                      borderRadius: "12px",
+                      padding: "20px",
+                      boxShadow: "0 1px 3px rgba(0,0,0,0.05)",
+                      display: "flex",
+                      flexDirection: "column",
+                      gap: "12px",
+                      position: "relative"
+                    }}>
+                      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                        <span style={{ fontSize: "12px", fontWeight: "800", color: "#64748b" }}>LOGO #{idx + 1}</span>
+                        <button 
+                          type="button"
+                          className="btn-action delete"
+                          onClick={() => handleDeleteMarqueeLogo(idx)}
+                          style={{ padding: "4px 8px", fontSize: "11px" }}
+                        >
+                          🗑️ Delete
+                        </button>
+                      </div>
+
+                      <div>
+                        <label style={{ display: "block", fontSize: "11px", fontWeight: "700", color: "#64748b", marginBottom: "4px" }}>Logo Image URL/Path</label>
+                        <div style={{ display: "flex", gap: "6px" }}>
+                          <input 
+                            type="text" 
+                            value={logo.src} 
+                            onChange={(e) => updateMarqueeLogo(idx, "src", e.target.value)}
+                            placeholder="/portfolio_images/logo.png"
+                            style={{ flex: 1, padding: "8px 10px", border: "1px solid #cbd5e1", borderRadius: "6px", color: "#0f172a", fontSize: "13px" }}
+                          />
+                          <label style={{ padding: "8px 12px", background: "#f1f5f9", border: "1px solid #cbd5e1", borderRadius: "6px", cursor: "pointer", fontSize: "12px", fontWeight: "600", color: "#475569", display: "inline-flex", alignItems: "center" }}>
+                            📁 Upload
+                            <input 
+                              type="file" 
+                              accept="image/*"
+                              onChange={async (e) => {
+                                const file = e.target.files[0];
+                                if (!file) return;
+                                showToast("Uploading logo...", true);
+                                const formData = new FormData();
+                                formData.append("file", file);
+                                try {
+                                  const res = await fetch("/api/upload", {
+                                    method: "POST",
+                                    headers: {
+                                      Authorization: `Bearer ${localStorage.getItem("ananya_admin_token")}`
+                                    },
+                                    body: formData
+                                  });
+                                  const data = await res.json();
+                                  if (res.ok && data.url) {
+                                    updateMarqueeLogo(idx, "src", data.url);
+                                    showToast("Logo uploaded successfully!", true);
+                                  } else {
+                                    showToast(data.error || "Failed to upload image", false);
+                                  }
+                                } catch (err) {
+                                  showToast("Network error uploading image", false);
+                                  console.error(err);
+                                }
+                              }}
+                              style={{ display: "none" }}
+                            />
+                          </label>
+                        </div>
+                      </div>
+
+                      <div>
+                        <label style={{ display: "block", fontSize: "11px", fontWeight: "700", color: "#64748b", marginBottom: "4px" }}>Company/Client Name</label>
+                        <input 
+                          type="text" 
+                          value={logo.name} 
+                          onChange={(e) => updateMarqueeLogo(idx, "name", e.target.value)}
+                          placeholder="e.g. Zuxa Beauty & Spa"
+                          style={{ width: "100%", padding: "8px 10px", border: "1px solid #cbd5e1", borderRadius: "6px", color: "#0f172a", fontSize: "13px" }}
+                        />
+                      </div>
+
+                      <div style={{ border: "1px solid #e2e8f0", borderRadius: "8px", overflow: "hidden", height: "80px", background: "#f8fafc", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                        {logo.src ? (
+                          <img src={logo.src} alt={logo.name || "Logo preview"} style={{ height: "40px", width: "auto", objectFit: "contain" }} />
+                        ) : (
+                          <span style={{ fontSize: "11px", color: "#94a3b8", fontWeight: "650" }}>No Logo Preview</span>
+                        )}
+                      </div>
+                    </div>
+                  ))}
+
+                  {/* Add Logo button */}
+                  <button 
+                    type="button"
+                    onClick={handleAddMarqueeLogo}
+                    style={{ border: "2px dashed #cbd5e1", borderRadius: "12px", background: "#f8fafc", color: "#475569", fontWeight: "700", cursor: "pointer", fontSize: "14px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: "10px", minHeight: "260px" }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.borderColor = "#0f75bc";
+                      e.currentTarget.style.color = "#0f75bc";
+                      e.currentTarget.style.background = "#ffffff";
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.borderColor = "#cbd5e1";
+                      e.currentTarget.style.color = "#475569";
+                      e.currentTarget.style.background = "#f8fafc";
+                    }}
+                  >
+                    <span style={{ fontSize: "24px" }}>➕</span>
+                    <span>Add New Logo</span>
+                  </button>
+                </div>
+
+                <div style={{ display: "flex", justifyContent: "flex-end", marginTop: "30px" }}>
+                  <button 
+                    className="admin-btn btn-primary-custom"
+                    style={{ padding: "15px 30px", fontSize: "16px" }}
+                    onClick={handleSaveMarqueeLogos}
+                    disabled={actionLoading}
+                  >
+                    {actionLoading ? "💾 Saving Changes..." : "💾 Save Changes"}
                   </button>
                 </div>
               </div>

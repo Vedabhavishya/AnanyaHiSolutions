@@ -7280,3 +7280,64 @@ button {
     }
   }
 }
+
+/* Splash Screen Bubble Pop & Blast Styles */
+.splash-bubbles {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.splash-bubble {
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.45) 0%, rgba(255, 255, 255, 0.08) 65%, rgba(255, 255, 255, 0.28) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.2), 0 0 15px rgba(27, 138, 219, 0.4);
+  opacity: 0;
+  transform: scale(0.1);
+  animation: bubblePopBlast 4.2s cubic-bezier(0.1, 0.8, 0.3, 1) infinite;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.bubble-icon {
+  width: 48%;
+  height: 48%;
+  color: rgba(255, 255, 255, 0.75);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.3));
+}
+
+.bubble-icon svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+@keyframes bubblePopBlast {
+  0% {
+    bottom: var(--bubble-start-y, -10%);
+    left: var(--bubble-left, 50%);
+    transform: scale(0.3) translateY(0);
+    opacity: 0;
+  }
+  15% {
+    opacity: 0.85;
+    transform: scale(1.0) translateY(calc(var(--bubble-travel-y, -70vh) * 0.15));
+  }
+  80% {
+    opacity: 0.8;
+    transform: scale(1.0) translateY(calc(var(--bubble-travel-y, -70vh) * 0.8)) translateX(var(--bubble-drift, 20px));
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.0) translateY(var(--bubble-travel-y, -70vh)) translateX(calc(var(--bubble-drift, 20px) * -1));
+  }
+}

@@ -296,6 +296,27 @@ const specializationCategories = [
   }
 ];
 
+const BUBBLE_ICONS = [
+  // 1. Chart / SEO growth
+  <svg key="1" width="100%" height="100%" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>,
+  // 2. Chip / AI / Tech
+  <svg key="2" width="100%" height="100%" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><rect x="4" y="4" width="16" height="16" rx="2" ry="2"></rect><rect x="9" y="9" width="6" height="6"></rect><line x1="9" y1="1" x2="9" y2="4"></line><line x1="15" y1="1" x2="15" y2="4"></line><line x1="9" y1="20" x2="9" y2="23"></line><line x1="15" y1="20" x2="15" y2="23"></line><line x1="20" y1="9" x2="23" y2="9"></line><line x1="20" y1="15" x2="23" y2="15"></line><line x1="1" y1="9" x2="4" y2="9"></line><line x1="1" y1="15" x2="4" y2="15"></line></svg>,
+  // 3. Code / Web Dev
+  <svg key="3" width="100%" height="100%" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>,
+  // 4. Gear / System Settings
+  <svg key="4" width="100%" height="100%" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>,
+  // 5. Globe / World / GEO
+  <svg key="5" width="100%" height="100%" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>,
+  // 6. Search / SEO
+  <svg key="6" width="100%" height="100%" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>,
+  // 7. Chat / AEO / Support
+  <svg key="7" width="100%" height="100%" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>,
+  // 8. Pulse / UX Conversion / SXO
+  <svg key="8" width="100%" height="100%" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>,
+  // 9. Cloud / Database / Networks
+  <svg key="9" width="100%" height="100%" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M18 10h-.79A4.8 4.8 0 0 0 12 8a4.8 4.8 0 0 0-5.21 2H6a5 5 0 0 0 0 10h12a5 5 0 0 0 0-10z"></path></svg>
+];
+
 export default function Home() {
   // Intro Splash State
   const [showSplash, setShowSplash] = useState(true);
@@ -313,15 +334,15 @@ export default function Home() {
       // First visit in session
       sessionStorage.setItem("ahs_splash_shown", "true");
       
-      // Start fading out after 4.8 seconds
+      // Start fading out after 3.4 seconds (0.5s after Ananya Hi Solutions text fully renders)
       const fadeTimer = setTimeout(() => {
         setFadeSplash(true);
-      }, 4800);
+      }, 3400);
 
       // Completely unmount the splash screen after the transition completes
       const removeTimer = setTimeout(() => {
         setShowSplash(false);
-      }, 5400);
+      }, 3800);
 
       return () => {
         clearTimeout(fadeTimer);
@@ -648,6 +669,43 @@ export default function Home() {
         <div className={`splash-screen ${fadeSplash ? "fade-out" : ""}`}>
           <div className="splash-bg-glow splash-glow-1"></div>
           <div className="splash-bg-glow splash-glow-2"></div>
+          
+          {/* Dynamic Bubble pop-and-blast animation! */}
+          <div className="splash-bubbles">
+            {Array.from({ length: 48 }).map((_, i) => {
+              const left = `${5 + (i * 4.3) % 90}%`;
+              const size = `${20 + (i * 9) % 35}px`;
+              const delay = `${(i * 0.08) % 2.5}s`;
+              const drift = `${-35 + (i * 19) % 70}px`;
+              const duration = `${1.6 + (i * 0.3) % 1.4}s`;
+              const startY = `${-15 + (i * 13) % 65}%`;
+              const travelY = `-${35 + (i * 17) % 55}vh`;
+              const iconIndex = i % BUBBLE_ICONS.length;
+              const IconComponent = BUBBLE_ICONS[iconIndex];
+              return (
+                <div
+                  key={i}
+                  className="splash-bubble"
+                  style={{
+                    left,
+                    width: size,
+                    height: size,
+                    animationDelay: delay,
+                    animationDuration: duration,
+                    "--bubble-left": left,
+                    "--bubble-drift": drift,
+                    "--bubble-start-y": startY,
+                    "--bubble-travel-y": travelY,
+                  }}
+                >
+                  <div className="bubble-icon">
+                    {IconComponent}
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+
           <div className="splash-content">
             <h2 className="splash-welcome-text">Welcome to</h2>
             <h1 className="splash-brand-title">

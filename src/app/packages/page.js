@@ -259,7 +259,7 @@ export default function PackagesPage() {
         const bgStyle = isAltBg ? {} : { backgroundColor: "var(--white)" };
 
         return (
-          <section key={category.key} className={bgClass} style={bgStyle}>
+          <section key={category.key} id={category.key} className={bgClass} style={bgStyle}>
             <div className="container">
               <div className="package-category-header">
                 <h2 className="package-category-title">{category.title}</h2>

@@ -714,19 +714,48 @@ User Comments: ${formData.message || "None"}`;
       {/* 1. Navigation Header */}
       <Header activePage="services" />
 
-      {/* 2. Custom Service Banner for Web Design */}
+      {/* 2. Custom Service Banner for Web Design & Mobile Application */}
       {id === "web-design" && (
         <div style={{ width: "100%", marginTop: "76px", overflow: "hidden", position: "relative" }}>
+          <Link href="/packages#websites" style={{ cursor: "pointer", display: "block" }}>
+            <img 
+              src="/images/website_design_banner.png" 
+              alt="Website Design Banner" 
+              style={{ width: "100%", height: "auto", display: "block" }}
+            />
+          </Link>
+        </div>
+      )}
+      {id === "mobile-app" && (
+        <div style={{ width: "100%", marginTop: "76px", overflow: "hidden", position: "relative" }}>
           <img 
-            src="/images/website_design_banner.png" 
-            alt="Website Design Banner" 
+            src="/images/mobile_development_banner.png" 
+            alt="Mobile App Banner" 
+            style={{ width: "100%", height: "auto", display: "block" }}
+          />
+        </div>
+      )}
+      {id === "video-production" && (
+        <div style={{ width: "100%", marginTop: "76px", overflow: "hidden", position: "relative" }}>
+          <img 
+            src="/images/video_production_banner.png" 
+            alt="Video Production Banner" 
+            style={{ width: "100%", height: "auto", display: "block" }}
+          />
+        </div>
+      )}
+      {id === "digital-marketing" && (
+        <div style={{ width: "100%", marginTop: "76px", overflow: "hidden", position: "relative" }}>
+          <img 
+            src="/images/digital_marketing_banner.png" 
+            alt="Digital Marketing Banner" 
             style={{ width: "100%", height: "auto", display: "block" }}
           />
         </div>
       )}
 
       {/* 3. Redesigned Hero Section */}
-      {id !== "web-design" && (
+      {id !== "web-design" && id !== "mobile-app" && id !== "video-production" && id !== "digital-marketing" && (
         <section className="premium-service-hero">
           <div className="hero-glow-blob-1"></div>
           <div className="hero-glow-blob-2"></div>

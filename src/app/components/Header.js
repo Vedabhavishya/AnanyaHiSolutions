@@ -201,7 +201,7 @@ export default function Header({ activePage = "" }) {
       {/* Mobile Menu Overlay */}
       {mobileMenuOpen && (
         <div 
-          className="md:hidden animate-slide-in"
+          className="lg:hidden animate-slide-in"
           style={{
             position: "fixed",
             left: 0,

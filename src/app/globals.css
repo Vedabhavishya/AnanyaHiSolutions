@@ -1317,7 +1317,21 @@ button {
   }
 }
 
-@media (max-width: 768px) {
+/* Intermediate viewports: shrink spacing and gaps */
+@media (max-width: 1200px) {
+  .nav-links {
+    gap: 15px;
+  }
+  .nav-cta {
+    gap: 10px;
+  }
+  .navbar {
+    padding: 16px 3%;
+  }
+}
+
+/* Mobile & Tablet navigation: collapse to hamburger menu */
+@media (max-width: 1024px) {
   .navbar {
     padding: 15px 5%;
   }
@@ -1327,6 +1341,9 @@ button {
   .mobile-menu-btn {
     display: block;
   }
+}
+
+@media (max-width: 768px) {
   .section {
     padding: 70px 5%;
   }

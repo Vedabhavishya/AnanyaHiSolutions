@@ -1,34 +1,16 @@
 "use client";
 
+import Header from "../../components/Header";
 import GlobalFooter from "../../components/GlobalFooter";
 import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
-
-// Crisp Inline SVG Logo Component
-function Logo({ className = "", light = false }) {
-  return (
-    <img
-      src="/logo.png"
-      alt="Ananya Hi Solutions"
-      className={`nav-logo-img ${className}`}
-      style={{
-        height: "42px",
-        width: "auto",
-        objectFit: "contain",
-        display: "block"
-      }}
-    />
-  );
-}
 
 // Wrapper component to safely access search params inside Suspense context
 function ApplyFormContent() {
   const searchParams = useSearchParams();
   const jobIdParam = searchParams.get("jobId");
 
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [jobs, setJobs] = useState([]);
   const [targetJob, setTargetJob] = useState(null);
 
@@ -45,19 +27,6 @@ function ApplyFormContent() {
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
   const [formError, setFormError] = useState("");
-
-  // Handle scroll event for Header
-  useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 50) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
-      }
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
 
   // Fetch jobs to resolve jobIdParam details
   useEffect(() => {
@@ -159,46 +128,7 @@ function ApplyFormContent() {
   return (
     <div className="flex flex-col min-h-screen">
       {/* Navbar */}
-      <header className={`navbar ${isScrolled ? "scrolled" : ""}`}>
-        <div className="navbar-container">
-          <Link href="/" className="flex items-center">
-            <Logo />
-          </Link>
-
-          <ul className="nav-links">
-            <li><Link href="/" className="nav-link">Home</Link></li>
-            <li><Link href="/about" className="nav-link">About</Link></li>
-            <li><Link href="/services" className="nav-link">Services</Link></li>
-            <li><Link href="/careers" className="nav-link active">Careers</Link></li>
-            <li><Link href="/blog" className="nav-link">Blog</Link></li>
-            <li><Link href="/contact" className="nav-link">Contact us</Link></li>
-          </ul>
-
-          <div className="nav-cta">
-            <Link href="/packages" className="btn btn-primary">Choose Package</Link>
-          </div>
-
-          <button
-            className="mobile-menu-btn"
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            aria-label="Toggle menu"
-          >
-            {mobileMenuOpen ? "✕" : "☰"}
-          </button>
-        </div>
-
-        {mobileMenuOpen && (
-          <div className="fixed inset-0 top-[70px] bg-white z-[999] flex flex-col p-6 gap-6 shadow-lg md:hidden animate-slide-in">
-            <Link href="/" onClick={() => setMobileMenuOpen(false)} className="text-xl font-bold border-b pb-2">Home</Link>
-            <Link href="/about" onClick={() => setMobileMenuOpen(false)} className="text-xl font-bold border-b pb-2">About</Link>
-            <Link href="/services" onClick={() => setMobileMenuOpen(false)} className="text-xl font-bold border-b pb-2">Services</Link>
-            <Link href="/careers" onClick={() => setMobileMenuOpen(false)} className="text-xl font-bold border-b pb-2">Careers</Link>
-            <Link href="/blog" onClick={() => setMobileMenuOpen(false)} className="text-xl font-bold border-b pb-2">Blog</Link>
-            <Link href="/contact" onClick={() => setMobileMenuOpen(false)} className="text-xl font-bold border-b pb-2">Contact us</Link>
-            <Link href="/packages" onClick={() => setMobileMenuOpen(false)} className="btn btn-accent text-center mt-4">Choose Package</Link>
-          </div>
-        )}
-      </header>
+      <Header activePage="careers" />
 
       {/* Hero Banner Section */}
       <section className="page-hero">

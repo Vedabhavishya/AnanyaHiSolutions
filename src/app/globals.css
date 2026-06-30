@@ -7139,26 +7139,26 @@ button {
 }
 .splash-bg-glow {
   position: absolute;
-  width: 500px;
-  height: 500px;
   border-radius: 50%;
-  filter: blur(100px);
-  opacity: 0.15;
-  z-index: 0;
+  filter: blur(120px);
   pointer-events: none;
+  z-index: 0;
+  opacity: 0.25;
 }
 .splash-glow-1 {
-  background: #ffffff;
-  opacity: 0.12;
-  top: -100px;
-  left: -100px;
-  animation: floatGlow1 8s infinite alternate ease-in-out;
+  background: radial-gradient(circle, #0f75bc 0%, transparent 70%);
+  width: 600px;
+  height: 600px;
+  top: -10%;
+  left: -10%;
+  animation: floatGlow1 12s infinite alternate ease-in-out;
 }
 .splash-glow-2 {
-  background: #031e30;
-  opacity: 0.28;
-  bottom: -150px;
-  right: -150px;
+  background: radial-gradient(circle, #f58220 0%, transparent 70%);
+  width: 500px;
+  height: 500px;
+  bottom: -10%;
+  right: -10%;
   animation: floatGlow2 10s infinite alternate ease-in-out;
 }
 .splash-content {
@@ -7281,7 +7281,7 @@ button {
   }
 }
 
-/* Splash Screen Bubble Pop & Blast Styles */
+/* Splash Screen Hexagon and Cyber Grid Styles */
 .splash-bubbles {
   position: absolute;
   inset: 0;
@@ -7290,29 +7290,41 @@ button {
   pointer-events: none;
 }
 
-.splash-bubble {
+.splash-hexagon {
   position: absolute;
-  border-radius: 50%;
-  background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.45) 0%, rgba(255, 255, 255, 0.08) 65%, rgba(255, 255, 255, 0.28) 100%);
-  border: 1px solid rgba(255, 255, 255, 0.35);
-  box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.2), 0 0 15px rgba(27, 138, 219, 0.4);
-  opacity: 0;
-  transform: scale(0.1);
-  animation: bubblePopBlast 4.2s cubic-bezier(0.1, 0.8, 0.3, 1) infinite;
   display: flex;
   align-items: center;
   justify-content: center;
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+  opacity: 0;
+  animation: bubblePopBlast 6.0s linear infinite;
+}
+
+/* Neon glow border outline */
+.splash-hexagon::after {
+  content: '';
+  position: absolute;
+  inset: 1.5px;
+  clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+  border: 1.5px solid var(--neon-color, #0f75bc);
+  background: transparent;
+  pointer-events: none;
+  opacity: 0.8;
+  filter: drop-shadow(0 0 5px var(--neon-color, #0f75bc));
 }
 
 .bubble-icon {
-  width: 48%;
-  height: 48%;
-  color: rgba(255, 255, 255, 0.75);
+  width: 50%;
+  height: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   pointer-events: none;
-  filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.3));
+  filter: drop-shadow(0 0 6px currentColor);
+  z-index: 2;
 }
 
 .bubble-icon svg {
@@ -7321,23 +7333,66 @@ button {
   display: block;
 }
 
+/* Perspective Grid styles */
+.splash-grid {
+  position: absolute;
+  inset: 0;
+  background-image: 
+    linear-gradient(rgba(15, 117, 188, 0.08) 1.5px, transparent 1.5px),
+    linear-gradient(90deg, rgba(15, 117, 188, 0.08) 1.5px, transparent 1.5px);
+  background-size: 60px 60px;
+  background-position: center;
+  transform: perspective(600px) rotateX(65deg) translateY(-25%) scale(2.2);
+  transform-origin: top center;
+  opacity: 0.65;
+  animation: gridScroll 15s linear infinite;
+  pointer-events: none;
+  z-index: 0;
+}
+
+@keyframes gridScroll {
+  0% {
+    background-position-y: 0px;
+  }
+  100% {
+    background-position-y: 60px;
+  }
+}
+
+/* Glowing orbs details */
+.splash-glow-3 {
+  background: radial-gradient(circle, #10b981 0%, transparent 70%);
+  width: 500px;
+  height: 500px;
+  top: 35%;
+  left: 45%;
+  transform: translate(-50%, -50%);
+  animation: floatGlow3 14s infinite alternate ease-in-out;
+  opacity: 0.25;
+}
+
+@keyframes floatGlow3 {
+  0% { transform: translate(-30px, -20px) scale(0.95); }
+  100% { transform: translate(40px, 30px) scale(1.05); }
+}
+
 @keyframes bubblePopBlast {
   0% {
-    bottom: var(--bubble-start-y, -10%);
+    top: var(--bubble-start-y, -10%);
     left: var(--bubble-left, 50%);
     transform: scale(0.3) translateY(0);
     opacity: 0;
   }
   15% {
     opacity: 0.85;
-    transform: scale(1.0) translateY(calc(var(--bubble-travel-y, -70vh) * 0.15));
+    transform: scale(1.0) translateY(calc(var(--bubble-travel-y, 70vh) * 0.15));
   }
   80% {
     opacity: 0.8;
-    transform: scale(1.0) translateY(calc(var(--bubble-travel-y, -70vh) * 0.8)) translateX(var(--bubble-drift, 20px));
+    transform: scale(1.0) translateY(calc(var(--bubble-travel-y, 70vh) * 0.8)) translateX(var(--bubble-drift, 20px));
   }
   100% {
     opacity: 0;
-    transform: scale(1.0) translateY(var(--bubble-travel-y, -70vh)) translateX(calc(var(--bubble-drift, 20px) * -1));
+    transform: scale(1.0) translateY(var(--bubble-travel-y, 70vh)) translateX(calc(var(--bubble-drift, 20px) * -1));
   }
 }

@@ -101,6 +101,37 @@ export default function PackageComparePage() {
     ]);
   };
 
+  // Helper to parse numeric price
+  const parsePrice = (priceStr) => {
+    if (!priceStr) return 0;
+    const cleanStr = priceStr.replace(/[^\d]/g, "");
+    return parseInt(cleanStr, 10) || 0;
+  };
+
+  // Compile selected combo plans and final grand total
+  const selectedComboItems = comparisonSlots.map((slot) => {
+    if (!slot.packageTitle || !slot.planName) return null;
+    const categoryPlans = allPlansData[slot.packageTitle] || [];
+    const selectedPlan = categoryPlans.find(p => p.name === slot.planName);
+    if (!selectedPlan) return null;
+
+    const basePrice = parsePrice(selectedPlan.price);
+    const gstAmount = Math.round(basePrice * 0.18);
+    const totalWithGst = basePrice + gstAmount;
+
+    return {
+      packageTitle: slot.packageTitle,
+      planName: slot.planName,
+      basePrice,
+      gstAmount,
+      totalWithGst
+    };
+  }).filter(Boolean);
+
+  const totalBase = selectedComboItems.reduce((sum, item) => sum + item.basePrice, 0);
+  const totalGst = selectedComboItems.reduce((sum, item) => sum + item.gstAmount, 0);
+  const finalGrandTotal = totalBase + totalGst;
+
   return (
     <div className="flex flex-col min-h-screen bg-slate-50">
       {/* 1. Navbar */}
@@ -111,9 +142,9 @@ export default function PackageComparePage() {
         <div className="page-hero-overlay" style={{ position: "absolute", inset: 0, background: "rgba(15, 117, 188, 0.05)", mixBlendMode: "overlay" }} />
         <div className="container" style={{ position: "relative", zIndex: 2 }}>
           <span style={{ fontSize: "0.85rem", fontWeight: "800", color: "#f58220", textTransform: "uppercase", tracking: "wider", display: "block", marginBottom: "8px" }}>Interactive Plan Matrix</span>
-          <h1 style={{ fontSize: "2.75rem", fontWeight: "800", marginBottom: "12px", fontFamily: "var(--font-headings)", color: "#ffffff" }}>Compare Service Packages</h1>
+          <h1 style={{ fontSize: "2.75rem", fontWeight: "800", marginBottom: "12px", fontFamily: "var(--font-headings)", color: "#ffffff" }}>Combo Plans Builder</h1>
           <p style={{ fontSize: "1.1rem", color: "#e0f2fe", maxWidth: "600px", margin: "0 auto", lineHeight: "1.6" }}>
-            Select multiple marketing and website development packages to compare custom checklists, inclusions, GST breakdowns, and final payable rates.
+            Select multiple service packages to customize your own combo plan and calculate combined pricing with detailed GST breakdowns.
           </p>
         </div>
       </section>
@@ -225,8 +256,8 @@ export default function PackageComparePage() {
                         {selectedPlan ? (
                           <div style={{ flex: 1, display: "flex", flexDirection: "column" }}>
                             
-                            {/* Features Scroll area */}
-                            <div style={{ flex: 1, padding: "20px", overflowY: "auto", maxHeight: "380px", borderBottom: "1px solid #f1f5f9" }}>
+                            {/* Features area */}
+                            <div style={{ flex: 1, padding: "20px", borderBottom: "1px solid #f1f5f9" }}>
                               <h4 style={{ margin: "0 0 12px 0", fontSize: "0.85rem", fontWeight: "800", color: "#1e293b" }}>Included Features:</h4>
                               <ul style={{ margin: 0, padding: 0, listStyle: "none", display: "flex", flexDirection: "column", gap: "10px" }}>
                                 {expandedFeatures.map((feat, fIdx) => (
@@ -269,6 +300,43 @@ export default function PackageComparePage() {
                   })}
 
                 </div>
+              </div>
+
+              {/* Combo Plans Summary Card */}
+              <div style={{ background: "#ffffff", borderRadius: "16px", border: "1px solid #e2e8f0", padding: "30px", marginTop: "30px", boxShadow: "0 10px 25px -5px rgba(0,0,0,0.03)" }}>
+                <h3 style={{ fontFamily: "var(--font-headings)", fontSize: "1.4rem", fontWeight: "800", color: "#0f75bc", margin: "0 0 20px 0", display: "flex", alignItems: "center", gap: "10px" }}>
+                  <span>📦</span> Combo Price Breakdown
+                </h3>
+                
+                {selectedComboItems.length === 0 ? (
+                  <p style={{ color: "#94a3b8", fontSize: "0.95rem", textAlign: "center", margin: "20px 0" }}>
+                    Select package categories and plans above to generate your combo breakdown and grand total.
+                  </p>
+                ) : (
+                  <div style={{ display: "flex", flexDirection: "column", gap: "14px" }}>
+                    <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
+                      {selectedComboItems.map((item, idx) => (
+                        <div key={idx} style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "10px", padding: "14px 20px", background: "#f8fafc", borderRadius: "10px", border: "1px solid #f1f5f9" }}>
+                          <span style={{ fontSize: "1rem", fontWeight: "700", color: "#1e293b" }}>
+                            {item.packageTitle} ({item.planName})
+                          </span>
+                          <span style={{ fontSize: "1.05rem", color: "#0f75bc", fontWeight: "800" }}>
+                            ₹{item.totalWithGst.toLocaleString("en-IN")}
+                          </span>
+                        </div>
+                      ))}
+                    </div>
+                    
+                    <div style={{ height: "1px", background: "#e2e8f0", margin: "10px 0" }} />
+                    
+                    <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "16px 20px", background: "linear-gradient(90deg, #f0fdf4 0%, #dcfce7 100%)", borderRadius: "10px", border: "1px solid #bbf7d0" }}>
+                      <span style={{ fontSize: "1.15rem", fontWeight: "800", color: "#166534" }}>Final Combo Grand Total:</span>
+                      <span style={{ fontSize: "1.5rem", fontWeight: "900", color: "#166534" }}>
+                        ₹{finalGrandTotal.toLocaleString("en-IN")} <span style={{ fontSize: "0.85rem", fontWeight: "600", color: "#15803d" }}>(incl. GST)</span>
+                      </span>
+                    </div>
+                  </div>
+                )}
               </div>
 
             </div>

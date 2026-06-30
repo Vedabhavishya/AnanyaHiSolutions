@@ -669,23 +669,31 @@ export default function Home() {
         <div className={`splash-screen ${fadeSplash ? "fade-out" : ""}`}>
           <div className="splash-bg-glow splash-glow-1"></div>
           <div className="splash-bg-glow splash-glow-2"></div>
+          <div className="splash-bg-glow splash-glow-3"></div>
           
-          {/* Dynamic Bubble pop-and-blast animation! */}
+          {/* Animated 3D cyber perspective grid */}
+          <div className="splash-grid"></div>
+          
+          {/* Dynamic glassmorphic neon hexagon falling service elements */}
           <div className="splash-bubbles">
-            {Array.from({ length: 48 }).map((_, i) => {
-              const left = `${5 + (i * 4.3) % 90}%`;
-              const size = `${20 + (i * 9) % 35}px`;
-              const delay = `${(i * 0.08) % 2.5}s`;
-              const drift = `${-35 + (i * 19) % 70}px`;
-              const duration = `${1.6 + (i * 0.3) % 1.4}s`;
-              const startY = `${-15 + (i * 13) % 65}%`;
-              const travelY = `-${35 + (i * 17) % 55}vh`;
+            {Array.from({ length: 28 }).map((_, i) => {
+              const left = `${5 + (i * 7.7) % 90}%`;
+              const size = `${38 + (i * 13) % 25}px`;
+              const delay = `${(i * 0.15) % 3.5}s`;
+              const drift = `${-25 + (i * 17) % 50}px`;
+              const duration = `${4.5 + (i * 0.5) % 2.5}s`;
+              const startY = `${-15 + (i * 2.3) % 8}%`;
+              const travelY = `${112 + (i * 1.5) % 6}vh`;
+              
+              const NEON_COLORS = ["#0f75bc", "#10b981", "#f58220", "#a855f7", "#06b6d4"];
+              const neonColor = NEON_COLORS[i % NEON_COLORS.length];
+              
               const iconIndex = i % BUBBLE_ICONS.length;
               const IconComponent = BUBBLE_ICONS[iconIndex];
               return (
                 <div
                   key={i}
-                  className="splash-bubble"
+                  className="splash-hexagon"
                   style={{
                     left,
                     width: size,
@@ -696,9 +704,10 @@ export default function Home() {
                     "--bubble-drift": drift,
                     "--bubble-start-y": startY,
                     "--bubble-travel-y": travelY,
+                    "--neon-color": neonColor,
                   }}
                 >
-                  <div className="bubble-icon">
+                  <div className="bubble-icon" style={{ color: neonColor, width: "55%", height: "55%" }}>
                     {IconComponent}
                   </div>
                 </div>

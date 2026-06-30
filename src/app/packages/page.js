@@ -421,7 +421,7 @@ export default function PackagesPage() {
           </div>
         </div>
       )}
-      {/* Sticky floating Compare Button */}
+      {/* Sticky floating Combo Button */}
       <div style={{ position: "fixed", bottom: "30px", right: "30px", zIndex: 999 }}>
         <Link href="/packages/compare" style={{ textDecoration: "none" }}>
           <button 
@@ -450,8 +450,8 @@ export default function PackagesPage() {
               e.currentTarget.style.boxShadow = "0 10px 25px -5px rgba(15, 117, 188, 0.4)";
             }}
           >
-            <span style={{ fontSize: "1.2rem" }}>⚖️</span>
-            <span>Compare Plans</span>
+            <span style={{ fontSize: "1.2rem" }}>📦</span>
+            <span>Combo Plans</span>
           </button>
         </Link>
       </div>

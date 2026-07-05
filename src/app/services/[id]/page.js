@@ -89,7 +89,7 @@ const SERVICES_DETAIL_DATA = {
       { 
         id: "static", 
         title: "Static Website Design", 
-        bgImage: "https://images.unsplash.com/photo-1541462608143-67571c6738dd?auto=format&fit=crop&w=800&q=80",
+        bgImage: "/images/static_website_mockup.jpg",
         desc: "Perfect for startups & small businesses. Fast loading, fully responsive, and SEO-friendly landing pages." 
       },
       { 
@@ -864,37 +864,94 @@ User Comments: ${formData.message || "None"}`;
       <section className="alternating-section bg-white" style={{ padding: "100px 0" }}>
         <div className="container" style={{ maxWidth: "1150px", margin: "0 auto", padding: "0 20px" }}>
           
-          {/* Row 1: Image Left + Content Right */}
-          <div className="alternating-row">
-            <div className="row-image-container">
-              <img src={data.row1Image} alt={`${data.title} Overview`} className="row-image" />
-            </div>
-            <div className="row-content-container">
-              <h2 className="row-heading text-3xl font-extrabold text-slate-900 mb-6" style={{ fontFamily: "var(--font-headings)" }}>
-                {data.overviewTitle}
-              </h2>
-              <div className="row-text text-slate-600 text-base md:text-lg leading-relaxed flex flex-col gap-6" style={{ textAlign: "justify" }}>
-                {renderParagraph(data.paragraphs[0], 0, id)}
-                {data.paragraphs[1] && <p>{data.paragraphs[1]}</p>}
-              </div>
-            </div>
-          </div>
-
-          {/* Row 2: Content Left + Image Right */}
-          {data.paragraphs[2] && (
-            <div className="alternating-row row-reverse" style={{ marginTop: "80px" }}>
-              <div className="row-image-container">
-                <img src={data.row2Image} alt={`${data.title} Capabilities`} className="row-image" />
-              </div>
-              <div className="row-content-container">
-                <h2 className="row-heading text-3xl font-extrabold text-slate-900 mb-6" style={{ fontFamily: "var(--font-headings)" }}>
-                  Unlocking Premium Growth & Value
-                </h2>
-                <div className="row-text text-slate-600 text-base md:text-lg leading-relaxed flex flex-col gap-6" style={{ textAlign: "justify" }}>
-                  <p>{data.paragraphs[2]}</p>
+          {id === "web-design" ? (
+            <>
+              {/* Row 1: Static Website Design */}
+              <div className="alternating-row">
+                <div className="row-image-container">
+                  <img src="/images/subservices/static_web_detail.jpg" alt="Static Website Design Details" className="row-image" />
+                </div>
+                <div className="row-content-container">
+                  <h2 className="row-heading text-3xl font-extrabold text-slate-900 mb-6" style={{ fontFamily: "var(--font-headings)" }}>
+                    Static Website Design
+                  </h2>
+                  <div className="row-text text-slate-600 text-base md:text-lg leading-relaxed flex flex-col gap-6" style={{ textAlign: "justify" }}>
+                    <p>
+                      Static website design is ideal for startups and small businesses seeking a fast, secure, and search-optimized online presence. Built with lightweight HTML and CSS, these responsive pages load almost instantly and require zero database maintenance, offering a professional storefront that converts visitors from day one.
+                    </p>
+                  </div>
                 </div>
               </div>
-            </div>
+
+              {/* Row 2: Dynamic Website */}
+              <div className="alternating-row row-reverse" style={{ marginTop: "80px" }}>
+                <div className="row-image-container">
+                  <img src="/images/subservices/dynamic_web_detail.jpg" alt="Dynamic Website Details" className="row-image" />
+                </div>
+                <div className="row-content-container">
+                  <h2 className="row-heading text-3xl font-extrabold text-slate-900 mb-6" style={{ fontFamily: "var(--font-headings)" }}>
+                    Dynamic Website
+                  </h2>
+                  <div className="row-text text-slate-600 text-base md:text-lg leading-relaxed flex flex-col gap-6" style={{ textAlign: "justify" }}>
+                    <p>
+                      For businesses requiring real-time content updates, user interactive portals, or custom logins, dynamic websites are the perfect solution. Powered by modern frameworks like React and Node.js, we build custom systems with user-friendly admin dashboards that allow your team to manage data feeds effortlessly.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Row 3: E-Commerce Website */}
+              <div className="alternating-row" style={{ marginTop: "80px" }}>
+                <div className="row-image-container">
+                  <img src="/images/subservices/ecommerce_web_detail.jpg" alt="E-Commerce Website Details" className="row-image" />
+                </div>
+                <div className="row-content-container">
+                  <h2 className="row-heading text-3xl font-extrabold text-slate-900 mb-6" style={{ fontFamily: "var(--font-headings)" }}>
+                    E-Commerce Website
+                  </h2>
+                  <div className="row-text text-slate-600 text-base md:text-lg leading-relaxed flex flex-col gap-6" style={{ textAlign: "justify" }}>
+                    <p>
+                      Launch and scale your online store with custom shopping pipelines, secure checkout sequences, and dynamic search filters. Our e-commerce builds integrate secure payment gateways, order tracking, and live inventory management, ensuring friction-free customer transactions even under high traffic.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </>
+          ) : (
+            <>
+              {/* Default Row 1: Image Left + Content Right */}
+              <div className="alternating-row">
+                <div className="row-image-container">
+                  <img src={data.row1Image} alt={`${data.title} Overview`} className="row-image" />
+                </div>
+                <div className="row-content-container">
+                  <h2 className="row-heading text-3xl font-extrabold text-slate-900 mb-6" style={{ fontFamily: "var(--font-headings)" }}>
+                    {data.overviewTitle}
+                  </h2>
+                  <div className="row-text text-slate-600 text-base md:text-lg leading-relaxed flex flex-col gap-6" style={{ textAlign: "justify" }}>
+                    {renderParagraph(data.paragraphs[0], 0, id)}
+                    {data.paragraphs[1] && <p>{data.paragraphs[1]}</p>}
+                  </div>
+                </div>
+              </div>
+
+              {/* Default Row 2: Content Left + Image Right */}
+              {data.paragraphs[2] && (
+                <div className="alternating-row row-reverse" style={{ marginTop: "80px" }}>
+                  <div className="row-image-container">
+                    <img src={data.row2Image} alt={`${data.title} Capabilities`} className="row-image" />
+                  </div>
+                  <div className="row-content-container">
+                    <h2 className="row-heading text-3xl font-extrabold text-slate-900 mb-6" style={{ fontFamily: "var(--font-headings)" }}>
+                      Unlocking Premium Growth & Value
+                    </h2>
+                    <div className="row-text text-slate-600 text-base md:text-lg leading-relaxed flex flex-col gap-6" style={{ textAlign: "justify" }}>
+                      <p>{data.paragraphs[2]}</p>
+                    </div>
+                  </div>
+                </div>
+              )}
+            </>
           )}
 
         </div>

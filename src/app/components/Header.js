@@ -11,7 +11,7 @@ function Logo({ className = "" }) {
       alt="Ananya Hi Solutions"
       className="nav-logo-img"
       style={{
-        height: "42px",
+        height: "56px",
         width: "auto",
         objectFit: "contain",
         display: "block"

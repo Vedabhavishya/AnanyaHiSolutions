@@ -12,7 +12,7 @@ function Logo({ className = "", light = false }) {
       alt="Ananya Hi Solutions"
       className={`nav-logo-img ${className}`}
       style={{
-        height: "42px",
+        height: "56px",
         width: "auto",
         objectFit: "contain",
         display: "block"

@@ -80,7 +80,7 @@ const SERVICES_DETAIL_DATA = {
     bannerTitle: "Website Design Company in Hyderabad",
     bannerDesc: "Ananya Hi Solutions is your trusted partner for affordable, SEO-friendly & mobile-optimized website design in Hyderabad. We create websites that not only look stunning but also bring you more traffic, leads & sales.",
     bannerBadge: "✓ 100+ Websites Delivered in Hyderabad | ⭐️ Rated 5/5 by Local Businesses",
-    heroVisual: null,
+    heroVisual: "/images/hero/web-design.jpg",
     subtypesTitle: "Website Development Agency in Hyderabad for Startups & Brands",
     subtypesDesc: "Get SEO-friendly static, dynamic, and e-commerce websites that drive traffic, leads & sales. Trusted by startups & brands in Hyderabad.",
     row1Image: "/images/web-design-overview.png",

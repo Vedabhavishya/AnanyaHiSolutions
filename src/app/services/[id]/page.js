@@ -917,6 +917,42 @@ User Comments: ${formData.message || "None"}`;
                 </div>
               </div>
             </>
+          ) : id === "mobile-app" ? (
+            <>
+              {/* Row 1: iOS App Development */}
+              <div className="alternating-row">
+                <div className="row-image-container">
+                  <img src="/images/subservices/ios_app_detail.jpg" alt="iOS App Development Details" className="row-image" />
+                </div>
+                <div className="row-content-container">
+                  <h2 className="row-heading text-3xl font-extrabold text-slate-900 mb-6" style={{ fontFamily: "var(--font-headings)" }}>
+                    iOS App Development
+                  </h2>
+                  <div className="row-text text-slate-600 text-base md:text-lg leading-relaxed flex flex-col gap-6" style={{ textAlign: "justify" }}>
+                    <p>
+                      We engineer premium iOS applications using Swift and Xcode, designed to deliver native performance and buttery-smooth user interfaces. Following Apple's Human Interface Guidelines and App Store best practices, our developments ensure optimal memory utilization, robust security, and full ecosystem compatibility.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Row 2: Android App Development */}
+              <div className="alternating-row row-reverse" style={{ marginTop: "80px" }}>
+                <div className="row-image-container">
+                  <img src="/images/subservices/android_app_detail.jpg" alt="Android App Development Details" className="row-image" />
+                </div>
+                <div className="row-content-container">
+                  <h2 className="row-heading text-3xl font-extrabold text-slate-900 mb-6" style={{ fontFamily: "var(--font-headings)" }}>
+                    Android App Development
+                  </h2>
+                  <div className="row-text text-slate-600 text-base md:text-lg leading-relaxed flex flex-col gap-6" style={{ textAlign: "justify" }}>
+                    <p>
+                      Our Android engineering team builds robust, high-performance applications using Kotlin and Java, tailored to fit the diverse device ecosystem. We integrate secure databases, real-time sync architectures, and intuitive Material Design interfaces that scale flawlessly across multiple screen sizes and devices.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </>
           ) : (
             <>
               {/* Default Row 1: Image Left + Content Right */}

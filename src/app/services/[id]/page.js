@@ -80,7 +80,7 @@ const SERVICES_DETAIL_DATA = {
     bannerTitle: "Website Design Company in Hyderabad",
     bannerDesc: "Ananya Hi Solutions is your trusted partner for affordable, SEO-friendly & mobile-optimized website design in Hyderabad. We create websites that not only look stunning but also bring you more traffic, leads & sales.",
     bannerBadge: "✓ 100+ Websites Delivered in Hyderabad | ⭐️ Rated 5/5 by Local Businesses",
-    heroVisual: null,
+    heroVisual: "/images/hero/web-design.png",
     subtypesTitle: "Website Development Agency in Hyderabad for Startups & Brands",
     subtypesDesc: "Get SEO-friendly static, dynamic, and e-commerce websites that drive traffic, leads & sales. Trusted by startups & brands in Hyderabad.",
     row1Image: "/images/web-design-overview.png",
@@ -714,88 +714,46 @@ User Comments: ${formData.message || "None"}`;
       {/* 1. Navigation Header */}
       <Header activePage="services" />
 
-      {/* 2. Custom Service Banner for Web Design & Mobile Application */}
-      {id === "web-design" && (
-        <div style={{ width: "100%", marginTop: "76px", overflow: "hidden", position: "relative" }}>
-          <Link href="/packages#websites" style={{ cursor: "pointer", display: "block" }}>
-            <img 
-              src="/images/website_design_banner.png" 
-              alt="Website Design Banner" 
-              style={{ width: "100%", height: "auto", display: "block" }}
-            />
-          </Link>
-        </div>
-      )}
-      {id === "mobile-app" && (
-        <div style={{ width: "100%", marginTop: "76px", overflow: "hidden", position: "relative" }}>
-          <img 
-            src="/images/mobile_development_banner.png" 
-            alt="Mobile App Banner" 
-            style={{ width: "100%", height: "auto", display: "block" }}
-          />
-        </div>
-      )}
-      {id === "video-production" && (
-        <div style={{ width: "100%", marginTop: "76px", overflow: "hidden", position: "relative" }}>
-          <img 
-            src="/images/video_production_banner.png" 
-            alt="Video Production Banner" 
-            style={{ width: "100%", height: "auto", display: "block" }}
-          />
-        </div>
-      )}
-      {id === "digital-marketing" && (
-        <div style={{ width: "100%", marginTop: "76px", overflow: "hidden", position: "relative" }}>
-          <img 
-            src="/images/digital_marketing_banner.png" 
-            alt="Digital Marketing Banner" 
-            style={{ width: "100%", height: "auto", display: "block" }}
-          />
-        </div>
-      )}
-
       {/* 3. Redesigned Hero Section */}
-      {id !== "web-design" && id !== "mobile-app" && id !== "video-production" && id !== "digital-marketing" && (
-        <section className="premium-service-hero">
-          <div className="hero-glow-blob-1"></div>
-          <div className="hero-glow-blob-2"></div>
-          <div className="hero-shapes-container">
-            <div className="hero-shape hero-shape-1"></div>
-            <div className="hero-shape hero-shape-2"></div>
+      <section className="premium-service-hero">
+        <div className="hero-glow-blob-1"></div>
+        <div className="hero-glow-blob-2"></div>
+        <div className="hero-shapes-container">
+          <div className="hero-shape hero-shape-1"></div>
+          <div className="hero-shape hero-shape-2"></div>
+        </div>
+        <div className="container hero-split-container animate-slide-in">
+          {/* Left Column: Text & CTAs */}
+          <div className="hero-left-content" style={!data.heroVisual ? { flex: 1, maxWidth: "850px", margin: "0 auto", textAlign: "center" } : {}}>
+            <h1 className="hero-title" style={!data.heroVisual ? { textAlign: "center" } : {}}>{data.bannerTitle}</h1>
+            <p className="hero-subtitle" style={!data.heroVisual ? { textAlign: "center", margin: "0 auto 30px auto" } : {}}>{data.bannerDesc}</p>
+            <div className="hero-actions" style={!data.heroVisual ? { justifyContent: "center" } : {}}>
+              <a 
+                href={`https://wa.me/917673935353?text=Hello%20Ananya%20Hi%20Solutions,%20I%20would%20like%20to%20get%20a%20free%20consultation%20regarding%20your%20${encodeURIComponent(data.title)}%20services.`} 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="btn btn-accent hero-cta-btn"
+              >
+                Get Free Consultation
+              </a>
+            </div>
           </div>
-          <div className="container hero-split-container animate-slide-in">
-            {/* Left Column: Text & CTAs */}
-            <div className="hero-left-content" style={!data.heroVisual ? { flex: 1, maxWidth: "850px", margin: "0 auto", textAlign: "center" } : {}}>
-              <h1 className="hero-title" style={!data.heroVisual ? { textAlign: "center" } : {}}>{data.bannerTitle}</h1>
-              <p className="hero-subtitle" style={!data.heroVisual ? { textAlign: "center", margin: "0 auto 30px auto" } : {}}>{data.bannerDesc}</p>
-              <div className="hero-actions" style={!data.heroVisual ? { justifyContent: "center" } : {}}>
-                <a 
-                  href={`https://wa.me/917673935353?text=Hello%20Ananya%20Hi%20Solutions,%20I%20would%20like%20to%20get%20a%20free%20consultation%20regarding%20your%20${encodeURIComponent(data.title)}%20services.`} 
-                  target="_blank" 
-                  rel="noopener noreferrer" 
-                  className="btn btn-accent hero-cta-btn"
-                >
-                  Get Free Consultation
-                </a>
+          
+          {/* Right Column: Floating Visual Frame */}
+          {data.heroVisual && (
+            <div className="hero-right-visual">
+              <div className="hero-image-frame">
+                <div className="hero-frame-glow"></div>
+                <img 
+                  src={data.heroVisual} 
+                  alt={`${data.title} Presentation`} 
+                  className="hero-frame-image"
+                />
               </div>
             </div>
-            
-            {/* Right Column: Floating Visual Frame */}
-            {data.heroVisual && (
-              <div className="hero-right-visual">
-                <div className="hero-image-frame">
-                  <div className="hero-frame-glow"></div>
-                  <img 
-                    src={data.heroVisual} 
-                    alt={`${data.title} Presentation`} 
-                    className="hero-frame-image"
-                  />
-                </div>
-              </div>
-            )}
-          </div>
-        </section>
-      )}
+          )}
+        </div>
+      </section>
 
       {/* 3. Sub-services Cards Section */}
       {data.types && data.types.length > 0 && (

@@ -419,6 +419,16 @@
       "packageTitle": "Website Packages",
       "subId": "Dynamic Website",
       "submittedAt": "2026-06-29T17:10:53.537Z"
+    },
+    {
+      "id": "lead-1783354870156",
+      "name": "P.Pavani Swetha",
+      "email": "swethapavani36@gmail.com",
+      "phone": "07207059273",
+      "company": "fghj",
+      "packageTitle": "Digital Marketing Packages",
+      "subId": "YouTube Production",
+      "submittedAt": "2026-07-06T16:21:10.156Z"
     }
   ],
   "audits": [
@@ -469,6 +479,17 @@
             "High-Quality Backlink Building."
           ],
           "link": "/services/digital-marketing/seo"
+        },
+        {
+          "title": "YouTube Production",
+          "image": "/images/hero/youtube-seo.png",
+          "features": [
+            "Basic, Standard & Premium Plans.",
+            "Channel Setup & Optimisation.",
+            "Cinematic 4K Video Shoots.",
+            "YouTube SEO & Audience Building."
+          ],
+          "link": "/services/youtube-seo"
         }
       ]
     },
@@ -1190,6 +1211,77 @@
           "Video Shoots & Management"
         ],
         "note": "Campaign charge not included."
+      }
+    ],
+    "YouTube Production": [
+      {
+        "name": "Basic Plan",
+        "icon": "🎯",
+        "price": "₹6,999",
+        "billing": "+ GST/Month",
+        "isPopular": false,
+        "features": [
+          "High-Engaging Reels / Shorts",
+          "Video Posting",
+          "YouTube SEO Optimisation",
+          "Channel Setup & Professional Optimisation",
+          "Community Management",
+          "Performance Analytics & Monthly Reporting",
+          "Monetisation Strategy & Guidance",
+          "Custom Thumbnails",
+          "Hashtag Strategy",
+          "Content Calendar Planning",
+          "Strategy Planning"
+        ],
+        "note": "Ads Campaign charges not included."
+      },
+      {
+        "name": "Standard Plan",
+        "icon": "🚀",
+        "price": "₹39,999",
+        "billing": "+ GST/Month",
+        "isPopular": true,
+        "features": [
+          "4K Shoots (2 Professional shoots with Mic & Camera)",
+          "12-15 Edited YouTube Videos",
+          "16-20 Engaging Reels / Shorts",
+          "Custom Thumbnails",
+          "YouTube SEO + Content Promotion & Distribution",
+          "Performance Analytics & Monthly Reporting",
+          "Channel Setup & Optimisation",
+          "Community Management",
+          "Monetisation Strategy & Guidance",
+          "Free & Paid Traffic Strategy"
+        ],
+        "note": "Ads Campaign charges not included."
+      },
+      {
+        "name": "Premium Plan",
+        "icon": "👑",
+        "price": "₹79,999",
+        "billing": "+ GST/Month",
+        "isPopular": false,
+        "features": [
+          "4 Professional 4K Shoots",
+          "20-25 Edited YouTube Videos",
+          "25-30 High-Engaging Reels / Shorts",
+          "Advanced Video Production & Editing",
+          "Premium Custom Thumbnails",
+          "Complete Content Calendar Planning",
+          "Advanced YouTube SEO Optimisation",
+          "Channel Setup & Professional Optimisation",
+          "Competitor Analysis & Growth Strategy",
+          "Content Promotion & Distribution",
+          "Community Management",
+          "Weekly Performance Review Meetings",
+          "Detailed Performance Analytics",
+          "Monetisation & Revenue Growth Guidance",
+          "Free & Paid Traffic Strategy",
+          "Keyword Research & Hashtag Strategy",
+          "YouTube Shorts Growth Strategy",
+          "Brand Positioning & Audience Building"
+        ],
+        "note": "Priority Support & Consultation Included. Ads Campaign charges not included."
       }
     ]
   },

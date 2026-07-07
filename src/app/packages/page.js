@@ -57,6 +57,17 @@ const PACKAGE_CATEGORIES = [
           "High-Quality Backlink Building."
         ],
         link: "/services/digital-marketing/seo"
+      },
+      {
+        title: "YouTube Production",
+        image: "/images/hero/youtube-seo.png",
+        features: [
+          "Basic, Standard & Premium Plans.",
+          "Channel Setup & Optimisation.",
+          "Cinematic 4K Video Shoots.",
+          "YouTube SEO & Audience Building."
+        ],
+        link: "/services/youtube-seo"
       }
     ]
   },

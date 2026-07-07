@@ -4697,7 +4697,7 @@ button {
   justify-content: center;
   padding: 160px 0 100px 0;
   overflow: hidden;
-  background: radial-gradient(circle at 80% 20%, #f8fafc 0%, #e2e8f0 70%);
+  background: radial-gradient(circle at 80% 20%, #f0f7fc 0%, #d9e9f6 70%);
 }
 
 .hero-glow-blob-1 {

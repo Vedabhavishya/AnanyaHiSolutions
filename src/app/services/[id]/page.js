@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect, useRef, use } from "react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { useRouter, useParams } from "next/navigation";
 import Header from "../../components/Header";
 import GlobalFooter from "../../components/GlobalFooter";
 // Crisp Inline SVG Logo Component for Footer
@@ -478,7 +478,7 @@ const SERVICES_DETAIL_DATA = {
     bannerTitle: "YouTube SEO Company in Hyderabad",
     bannerDesc: "Dominate video recommendation algorithms. We optimize metadata, playlists, descriptions, and closed captions to rank your channel organically.",
     bannerBadge: "✓ YouTube Search Domination | ⭐️ Rated 5/5 by Creators & Brands",
-    heroVisual: "/images/hero/youtube-seo.png",
+    heroVisual: "/images/hero/youtube-seo.jpg",
     subtypesTitle: "",
     subtypesDesc: "",
     row1Image: "https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?auto=format&fit=crop&w=800&q=80",
@@ -501,7 +501,7 @@ const SERVICES_DETAIL_DATA = {
     bannerTitle: "YouTube Ads Management Agency in Hyderabad",
     bannerDesc: "Build and scale high-ROAS visual video campaigns. We manage scripthooks, precise channel placements, and landing page conversion funnels.",
     bannerBadge: "✓ High-ROI YouTube Ads Setup | ⭐️ Rated 5/5 by E-commerce Brands",
-    heroVisual: "/images/hero/youtube-ads.png",
+    heroVisual: "/images/hero/youtube-ads.jpg",
     subtypesTitle: "",
     subtypesDesc: "",
     row1Image: "https://images.unsplash.com/photo-1551836022-8b2858c9c69b?auto=format&fit=crop&w=800&q=80",
@@ -531,10 +531,10 @@ const PACKAGE_MAPPING = {
   "google-ads": { category: "Digital Marketing Packages", plan: "Google Ads/PPC Ads" }
 };
 
-export default function ServiceDetailPage({ params: paramsPromise }) {
+export default function ServiceDetailPage() {
   const router = useRouter();
-  const params = use(paramsPromise);
-  const { id } = params;
+  const params = useParams();
+  const id = params?.id;
   const [activeFaq, setActiveFaq] = useState(0);
 
   // Package Unlock Modal States

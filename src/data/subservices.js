@@ -4,7 +4,7 @@ export const SUBSERVICES_DETAIL_DATA = {
     title: "Static Website Design",
     packageName: "Starter Static Package",
     packageSubtitle: "Perfect for Small Businesses & Personal Brands",
-    topVisual: "https://images.unsplash.com/photo-1541462608143-67571c6738dd?auto=format&fit=crop&w=1200&q=80",
+    topVisual: "/images/static_website_mockup.jpg",
     bodyVisual: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80",
     whyChoose: "At Ananya Hi Solutions, our static website designs combine lightning-fast loading speeds with robust mobile responsiveness. We specialize in building lightweight, clean, and search-optimized landing pages or multi-page sites that act as high-converting storefronts. This approach ensures your business establishes a highly professional, secure online presence with minimal maintenance overhead.",
     visibleFeatures: [

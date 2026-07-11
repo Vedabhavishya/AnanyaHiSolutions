@@ -1317,7 +1317,21 @@ button {
   }
 }
 
-@media (max-width: 768px) {
+/* Intermediate viewports: shrink spacing and gaps */
+@media (max-width: 1200px) {
+  .nav-links {
+    gap: 15px;
+  }
+  .nav-cta {
+    gap: 10px;
+  }
+  .navbar {
+    padding: 16px 3%;
+  }
+}
+
+/* Mobile & Tablet navigation: collapse to hamburger menu */
+@media (max-width: 1024px) {
   .navbar {
     padding: 15px 5%;
   }
@@ -1327,6 +1341,9 @@ button {
   .mobile-menu-btn {
     display: block;
   }
+}
+
+@media (max-width: 768px) {
   .section {
     padding: 70px 5%;
   }
@@ -4680,7 +4697,7 @@ button {
   justify-content: center;
   padding: 160px 0 100px 0;
   overflow: hidden;
-  background: radial-gradient(circle at 80% 20%, #083c5d 0%, var(--dark-deep) 70%);
+  background: radial-gradient(circle at 80% 20%, #f0f7fc 0%, #d9e9f6 70%);
 }
 
 .hero-glow-blob-1 {
@@ -4787,10 +4804,10 @@ button {
   font-family: var(--font-headings);
   font-size: 2.5rem;
   font-weight: 800;
-  color: var(--white);
+  color: var(--dark-deep);
   line-height: 1.2;
   margin-bottom: 24px;
-  text-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  text-shadow: none;
 }
 
 @media (min-width: 768px) {
@@ -4801,7 +4818,7 @@ button {
 
 .hero-subtitle {
   font-size: 1.05rem;
-  color: rgba(255, 255, 255, 0.85);
+  color: #334155;
   max-width: 650px;
   margin: 0 auto 35px auto;
   line-height: 1.65;
@@ -4847,8 +4864,8 @@ button {
 
 .hero-portfolio-btn {
   background: transparent !important;
-  color: var(--white) !important;
-  border: 2px solid rgba(255, 255, 255, 0.3) !important;
+  color: var(--dark-deep) !important;
+  border: 2px solid rgba(15, 117, 188, 0.25) !important;
   padding: 13px 32px !important;
   font-weight: 700 !important;
   border-radius: var(--radius-md) !important;
@@ -4856,8 +4873,8 @@ button {
 }
 
 .hero-portfolio-btn:hover {
-  border-color: var(--white) !important;
-  background: rgba(255, 255, 255, 0.08) !important;
+  border-color: var(--primary-blue) !important;
+  background: rgba(15, 117, 188, 0.06) !important;
   transform: translateY(-4px) !important;
 }
 
@@ -4877,9 +4894,9 @@ button {
   aspect-ratio: 4/3;
   border-radius: 20px;
   padding: 8px;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.02) 100%);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0.3) 100%);
+  border: 1px solid rgba(15, 117, 188, 0.12);
+  box-shadow: 0 30px 60px rgba(15, 117, 188, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.6);
   backdrop-filter: blur(12px);
   animation: floatingFrame 6s ease-in-out infinite;
   overflow: hidden;

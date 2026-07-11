@@ -11,7 +11,7 @@ function Logo({ className = "" }) {
       alt="Ananya Hi Solutions"
       className="nav-logo-img"
       style={{
-        height: "42px",
+        height: "56px",
         width: "auto",
         objectFit: "contain",
         display: "block"
@@ -201,7 +201,7 @@ export default function Header({ activePage = "" }) {
       {/* Mobile Menu Overlay */}
       {mobileMenuOpen && (
         <div 
-          className="md:hidden animate-slide-in"
+          className="lg:hidden animate-slide-in"
           style={{
             position: "fixed",
             left: 0,

@@ -604,5 +604,76 @@ export const PACKAGE_PLANS_DATA = {
       ],
       note: "Campaign charge not included.\nOne of our experts will contact you soon."
     }
+  ],
+  "YouTube Production": [
+    {
+      name: "Basic Plan",
+      icon: "🎯",
+      price: "₹6,999",
+      billing: "+ GST/Month",
+      isPopular: false,
+      features: [
+        "High-Engaging Reels / Shorts",
+        "Video Posting",
+        "YouTube SEO Optimisation",
+        "Channel Setup & Professional Optimisation",
+        "Community Management",
+        "Performance Analytics & Monthly Reporting",
+        "Monetisation Strategy & Guidance",
+        "Custom Thumbnails",
+        "Hashtag Strategy",
+        "Content Calendar Planning",
+        "Strategy Planning"
+      ],
+      note: "Ads Campaign charges not included."
+    },
+    {
+      name: "Standard Plan",
+      icon: "🚀",
+      price: "₹39,999",
+      billing: "+ GST/Month",
+      isPopular: true,
+      features: [
+        "4K Shoots (2 Professional shoots with Mic & Camera)",
+        "12-15 Edited YouTube Videos",
+        "16-20 Engaging Reels / Shorts",
+        "Custom Thumbnails",
+        "YouTube SEO + Content Promotion & Distribution",
+        "Performance Analytics & Monthly Reporting",
+        "Channel Setup & Optimisation",
+        "Community Management",
+        "Monetisation Strategy & Guidance",
+        "Free & Paid Traffic Strategy"
+      ],
+      note: "Ads Campaign charges not included."
+    },
+    {
+      name: "Premium Plan",
+      icon: "👑",
+      price: "₹79,999",
+      billing: "+ GST/Month",
+      isPopular: false,
+      features: [
+        "4 Professional 4K Shoots",
+        "20-25 Edited YouTube Videos",
+        "25-30 High-Engaging Reels / Shorts",
+        "Advanced Video Production & Editing",
+        "Premium Custom Thumbnails",
+        "Complete Content Calendar Planning",
+        "Advanced YouTube SEO Optimisation",
+        "Channel Setup & Professional Optimisation",
+        "Competitor Analysis & Growth Strategy",
+        "Content Promotion & Distribution",
+        "Community Management",
+        "Weekly Performance Review Meetings",
+        "Detailed Performance Analytics",
+        "Monetisation & Revenue Growth Guidance",
+        "Free & Paid Traffic Strategy",
+        "Keyword Research & Hashtag Strategy",
+        "YouTube Shorts Growth Strategy",
+        "Brand Positioning & Audience Building"
+      ],
+      note: "Priority Support & Consultation Included. Ads Campaign charges not included."
+    }
   ]
 };

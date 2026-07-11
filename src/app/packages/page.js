@@ -57,6 +57,17 @@ const PACKAGE_CATEGORIES = [
           "High-Quality Backlink Building."
         ],
         link: "/services/digital-marketing/seo"
+      },
+      {
+        title: "YouTube Production",
+        image: "/images/hero/youtube-seo.png",
+        features: [
+          "Basic, Standard & Premium Plans.",
+          "Channel Setup & Optimisation.",
+          "Cinematic 4K Video Shoots.",
+          "YouTube SEO & Audience Building."
+        ],
+        link: "/services/youtube-seo"
       }
     ]
   },
@@ -66,7 +77,7 @@ const PACKAGE_CATEGORIES = [
     cards: [
       {
         title: "Static Website Design",
-        image: "https://images.unsplash.com/photo-1541462608143-67571c6738dd?auto=format&fit=crop&w=800&q=80",
+        image: "/images/static_website_mockup.jpg",
         features: [
           "Delivery Within 3 Working Days.",
           "FREE Web Hosting & SSL for 1 year.",
@@ -259,7 +270,7 @@ export default function PackagesPage() {
         const bgStyle = isAltBg ? {} : { backgroundColor: "var(--white)" };
 
         return (
-          <section key={category.key} className={bgClass} style={bgStyle}>
+          <section key={category.key} id={category.key} className={bgClass} style={bgStyle}>
             <div className="container">
               <div className="package-category-header">
                 <h2 className="package-category-title">{category.title}</h2>

@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect, useRef, use } from "react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { useRouter, useParams } from "next/navigation";
 import Header from "../../components/Header";
 import GlobalFooter from "../../components/GlobalFooter";
 // Crisp Inline SVG Logo Component for Footer
@@ -80,7 +80,7 @@ const SERVICES_DETAIL_DATA = {
     bannerTitle: "Website Design Company in Hyderabad",
     bannerDesc: "Ananya Hi Solutions is your trusted partner for affordable, SEO-friendly & mobile-optimized website design in Hyderabad. We create websites that not only look stunning but also bring you more traffic, leads & sales.",
     bannerBadge: "✓ 100+ Websites Delivered in Hyderabad | ⭐️ Rated 5/5 by Local Businesses",
-    heroVisual: null,
+    heroVisual: "/images/hero/web-design.jpg",
     subtypesTitle: "Website Development Agency in Hyderabad for Startups & Brands",
     subtypesDesc: "Get SEO-friendly static, dynamic, and e-commerce websites that drive traffic, leads & sales. Trusted by startups & brands in Hyderabad.",
     row1Image: "/images/web-design-overview.png",
@@ -89,7 +89,7 @@ const SERVICES_DETAIL_DATA = {
       { 
         id: "static", 
         title: "Static Website Design", 
-        bgImage: "https://images.unsplash.com/photo-1541462608143-67571c6738dd?auto=format&fit=crop&w=800&q=80",
+        bgImage: "/images/static_website_mockup.jpg",
         desc: "Perfect for startups & small businesses. Fast loading, fully responsive, and SEO-friendly landing pages." 
       },
       { 
@@ -124,7 +124,7 @@ const SERVICES_DETAIL_DATA = {
     bannerTitle: "Digital Marketing Agency in Hyderabad",
     bannerDesc: "Ananya Hi Solutions is a top-rated digital marketing company in Hyderabad. We build data-driven organic search campaigns, paid ad pipelines, and viral social campaigns designed to multiply your sales and ROI.",
     bannerBadge: "✓ 50+ Growth Campaigns Managed | ⭐️ Rated 4.9/5 by Brand Managers",
-    heroVisual: "/images/hero/digital-marketing.png",
+    heroVisual: "/images/hero/digital-marketing.jpg",
     subtypesTitle: "Digital Marketing Services in Hyderabad for Startups & Brands",
     subtypesDesc: "Drive high-intent traffic, build active communities, and generate consistent leads with targeted digital campaigns.",
     row1Image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80",
@@ -174,7 +174,7 @@ const SERVICES_DETAIL_DATA = {
     bannerTitle: "Mobile App Development Company in Hyderabad",
     bannerDesc: "Ananya Hi Solutions engineers elite mobile applications for iOS and Android platforms. We design fluid, high-performance apps that drive user engagement and scale your services.",
     bannerBadge: "✓ 30+ Custom Apps Launched | ⭐️ Rated 5/5 by Product Owners",
-    heroVisual: "/images/hero/mobile-app.png",
+    heroVisual: "/images/hero/mobile-app.jpg",
     subtypesTitle: "Mobile App Development Services in Hyderabad",
     subtypesDesc: "Deploy high-performance Swift, Kotlin, or cross-platform mobile applications tailored to your business specifications.",
     row1Image: "https://images.unsplash.com/photo-1522542550221-31fd19575a2d?auto=format&fit=crop&w=800&q=80",
@@ -212,7 +212,7 @@ const SERVICES_DETAIL_DATA = {
     bannerTitle: "Ecommerce Development Company in Hyderabad",
     bannerDesc: "Scale your retail sales with high-converting eCommerce stores. Ananya Hi Solutions builds blazing-fast multi-vendor marketplaces and single-brand storefronts.",
     bannerBadge: "✓ 40+ E-Commerce Platforms Built | ⭐️ Rated 5/5 by Online Retailers",
-    heroVisual: "/images/hero/ecommerce-app.png",
+    heroVisual: "/images/hero/ecommerce-app.jpg",
     subtypesTitle: "eCommerce Store Development in Hyderabad",
     subtypesDesc: "Deploy highly secure, scalable, and fast shopping pipelines with inventory systems and payment integrations.",
     row1Image: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=800&q=80",
@@ -250,7 +250,7 @@ const SERVICES_DETAIL_DATA = {
     bannerTitle: "Video Production Company in Hyderabad",
     bannerDesc: "Ananya Hi Solutions delivers premium cinematic video production. We script, film, and edit corporate profiles, social media loops, and product explainers that captivate audiences.",
     bannerBadge: "✓ 200+ Videos Produced | ⭐️ Rated 4.9/5 by Corporate Clients",
-    heroVisual: "/images/hero/video-production.png",
+    heroVisual: "/images/hero/video-production.jpg",
     subtypesTitle: "Professional Video Production Services in Hyderabad",
     subtypesDesc: "High-definition corporate profiles, marketing promotions, explainers, event highlights, and social loops.",
     row1Image: "https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?auto=format&fit=crop&w=800&q=80",
@@ -478,7 +478,7 @@ const SERVICES_DETAIL_DATA = {
     bannerTitle: "YouTube SEO Company in Hyderabad",
     bannerDesc: "Dominate video recommendation algorithms. We optimize metadata, playlists, descriptions, and closed captions to rank your channel organically.",
     bannerBadge: "✓ YouTube Search Domination | ⭐️ Rated 5/5 by Creators & Brands",
-    heroVisual: "/images/hero/youtube-seo.png",
+    heroVisual: "/images/hero/youtube-seo.jpg",
     subtypesTitle: "",
     subtypesDesc: "",
     row1Image: "https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?auto=format&fit=crop&w=800&q=80",
@@ -501,7 +501,7 @@ const SERVICES_DETAIL_DATA = {
     bannerTitle: "YouTube Ads Management Agency in Hyderabad",
     bannerDesc: "Build and scale high-ROAS visual video campaigns. We manage scripthooks, precise channel placements, and landing page conversion funnels.",
     bannerBadge: "✓ High-ROI YouTube Ads Setup | ⭐️ Rated 5/5 by E-commerce Brands",
-    heroVisual: "/images/hero/youtube-ads.png",
+    heroVisual: "/images/hero/youtube-ads.jpg",
     subtypesTitle: "",
     subtypesDesc: "",
     row1Image: "https://images.unsplash.com/photo-1551836022-8b2858c9c69b?auto=format&fit=crop&w=800&q=80",
@@ -531,10 +531,10 @@ const PACKAGE_MAPPING = {
   "google-ads": { category: "Digital Marketing Packages", plan: "Google Ads/PPC Ads" }
 };
 
-export default function ServiceDetailPage({ params: paramsPromise }) {
+export default function ServiceDetailPage() {
   const router = useRouter();
-  const params = use(paramsPromise);
-  const { id } = params;
+  const params = useParams();
+  const id = params?.id;
   const [activeFaq, setActiveFaq] = useState(0);
 
   // Package Unlock Modal States
@@ -714,19 +714,8 @@ User Comments: ${formData.message || "None"}`;
       {/* 1. Navigation Header */}
       <Header activePage="services" />
 
-      {/* 2. Custom Service Banner for Web Design */}
-      {id === "web-design" && (
-        <div style={{ width: "100%", marginTop: "76px", overflow: "hidden", position: "relative" }}>
-          <img 
-            src="/images/website_design_banner.png" 
-            alt="Website Design Banner" 
-            style={{ width: "100%", height: "auto", display: "block" }}
-          />
-        </div>
-      )}
-
       {/* 3. Redesigned Hero Section */}
-      {id !== "web-design" && (
+      {true && (
         <section className="premium-service-hero">
           <div className="hero-glow-blob-1"></div>
           <div className="hero-glow-blob-2"></div>
@@ -835,37 +824,130 @@ User Comments: ${formData.message || "None"}`;
       <section className="alternating-section bg-white" style={{ padding: "100px 0" }}>
         <div className="container" style={{ maxWidth: "1150px", margin: "0 auto", padding: "0 20px" }}>
           
-          {/* Row 1: Image Left + Content Right */}
-          <div className="alternating-row">
-            <div className="row-image-container">
-              <img src={data.row1Image} alt={`${data.title} Overview`} className="row-image" />
-            </div>
-            <div className="row-content-container">
-              <h2 className="row-heading text-3xl font-extrabold text-slate-900 mb-6" style={{ fontFamily: "var(--font-headings)" }}>
-                {data.overviewTitle}
-              </h2>
-              <div className="row-text text-slate-600 text-base md:text-lg leading-relaxed flex flex-col gap-6" style={{ textAlign: "justify" }}>
-                {renderParagraph(data.paragraphs[0], 0, id)}
-                {data.paragraphs[1] && <p>{data.paragraphs[1]}</p>}
-              </div>
-            </div>
-          </div>
-
-          {/* Row 2: Content Left + Image Right */}
-          {data.paragraphs[2] && (
-            <div className="alternating-row row-reverse" style={{ marginTop: "80px" }}>
-              <div className="row-image-container">
-                <img src={data.row2Image} alt={`${data.title} Capabilities`} className="row-image" />
-              </div>
-              <div className="row-content-container">
-                <h2 className="row-heading text-3xl font-extrabold text-slate-900 mb-6" style={{ fontFamily: "var(--font-headings)" }}>
-                  Unlocking Premium Growth & Value
-                </h2>
-                <div className="row-text text-slate-600 text-base md:text-lg leading-relaxed flex flex-col gap-6" style={{ textAlign: "justify" }}>
-                  <p>{data.paragraphs[2]}</p>
+          {id === "web-design" ? (
+            <>
+              {/* Row 1: Static Website Design */}
+              <div className="alternating-row">
+                <div className="row-image-container">
+                  <img src="/images/subservices/static_web_detail.jpg" alt="Static Website Design Details" className="row-image" />
+                </div>
+                <div className="row-content-container">
+                  <h2 className="row-heading text-3xl font-extrabold text-slate-900 mb-6" style={{ fontFamily: "var(--font-headings)" }}>
+                    Static Website Design
+                  </h2>
+                  <div className="row-text text-slate-600 text-base md:text-lg leading-relaxed flex flex-col gap-6" style={{ textAlign: "justify" }}>
+                    <p>
+                      Static website design is ideal for startups and small businesses seeking a fast, secure, and search-optimized online presence. Built with lightweight HTML and CSS, these responsive pages load almost instantly and require zero database maintenance, offering a professional storefront that converts visitors from day one.
+                    </p>
+                  </div>
                 </div>
               </div>
-            </div>
+
+              {/* Row 2: Dynamic Website */}
+              <div className="alternating-row row-reverse" style={{ marginTop: "80px" }}>
+                <div className="row-image-container">
+                  <img src="/images/subservices/dynamic_web_detail.jpg" alt="Dynamic Website Details" className="row-image" />
+                </div>
+                <div className="row-content-container">
+                  <h2 className="row-heading text-3xl font-extrabold text-slate-900 mb-6" style={{ fontFamily: "var(--font-headings)" }}>
+                    Dynamic Website
+                  </h2>
+                  <div className="row-text text-slate-600 text-base md:text-lg leading-relaxed flex flex-col gap-6" style={{ textAlign: "justify" }}>
+                    <p>
+                      For businesses requiring real-time content updates, user interactive portals, or custom logins, dynamic websites are the perfect solution. Powered by modern frameworks like React and Node.js, we build custom systems with user-friendly admin dashboards that allow your team to manage data feeds effortlessly.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Row 3: E-Commerce Website */}
+              <div className="alternating-row" style={{ marginTop: "80px" }}>
+                <div className="row-image-container">
+                  <img src="/images/subservices/ecommerce_web_detail.jpg" alt="E-Commerce Website Details" className="row-image" />
+                </div>
+                <div className="row-content-container">
+                  <h2 className="row-heading text-3xl font-extrabold text-slate-900 mb-6" style={{ fontFamily: "var(--font-headings)" }}>
+                    E-Commerce Website
+                  </h2>
+                  <div className="row-text text-slate-600 text-base md:text-lg leading-relaxed flex flex-col gap-6" style={{ textAlign: "justify" }}>
+                    <p>
+                      Launch and scale your online store with custom shopping pipelines, secure checkout sequences, and dynamic search filters. Our e-commerce builds integrate secure payment gateways, order tracking, and live inventory management, ensuring friction-free customer transactions even under high traffic.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </>
+          ) : id === "mobile-app" ? (
+            <>
+              {/* Row 1: iOS App Development */}
+              <div className="alternating-row">
+                <div className="row-image-container">
+                  <img src="/images/subservices/ios_app_detail.jpg" alt="iOS App Development Details" className="row-image" />
+                </div>
+                <div className="row-content-container">
+                  <h2 className="row-heading text-3xl font-extrabold text-slate-900 mb-6" style={{ fontFamily: "var(--font-headings)" }}>
+                    iOS App Development
+                  </h2>
+                  <div className="row-text text-slate-600 text-base md:text-lg leading-relaxed flex flex-col gap-6" style={{ textAlign: "justify" }}>
+                    <p>
+                      We engineer premium iOS applications using Swift and Xcode, designed to deliver native performance and buttery-smooth user interfaces. Following Apple's Human Interface Guidelines and App Store best practices, our developments ensure optimal memory utilization, robust security, and full ecosystem compatibility.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Row 2: Android App Development */}
+              <div className="alternating-row row-reverse" style={{ marginTop: "80px" }}>
+                <div className="row-image-container">
+                  <img src="/images/subservices/android_app_detail.jpg" alt="Android App Development Details" className="row-image" />
+                </div>
+                <div className="row-content-container">
+                  <h2 className="row-heading text-3xl font-extrabold text-slate-900 mb-6" style={{ fontFamily: "var(--font-headings)" }}>
+                    Android App Development
+                  </h2>
+                  <div className="row-text text-slate-600 text-base md:text-lg leading-relaxed flex flex-col gap-6" style={{ textAlign: "justify" }}>
+                    <p>
+                      Our Android engineering team builds robust, high-performance applications using Kotlin and Java, tailored to fit the diverse device ecosystem. We integrate secure databases, real-time sync architectures, and intuitive Material Design interfaces that scale flawlessly across multiple screen sizes and devices.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </>
+          ) : (
+            <>
+              {/* Default Row 1: Image Left + Content Right */}
+              <div className="alternating-row">
+                <div className="row-image-container">
+                  <img src={data.row1Image} alt={`${data.title} Overview`} className="row-image" />
+                </div>
+                <div className="row-content-container">
+                  <h2 className="row-heading text-3xl font-extrabold text-slate-900 mb-6" style={{ fontFamily: "var(--font-headings)" }}>
+                    {data.overviewTitle}
+                  </h2>
+                  <div className="row-text text-slate-600 text-base md:text-lg leading-relaxed flex flex-col gap-6" style={{ textAlign: "justify" }}>
+                    {renderParagraph(data.paragraphs[0], 0, id)}
+                    {data.paragraphs[1] && <p>{data.paragraphs[1]}</p>}
+                  </div>
+                </div>
+              </div>
+
+              {/* Default Row 2: Content Left + Image Right */}
+              {data.paragraphs[2] && (
+                <div className="alternating-row row-reverse" style={{ marginTop: "80px" }}>
+                  <div className="row-image-container">
+                    <img src={data.row2Image} alt={`${data.title} Capabilities`} className="row-image" />
+                  </div>
+                  <div className="row-content-container">
+                    <h2 className="row-heading text-3xl font-extrabold text-slate-900 mb-6" style={{ fontFamily: "var(--font-headings)" }}>
+                      Unlocking Premium Growth & Value
+                    </h2>
+                    <div className="row-text text-slate-600 text-base md:text-lg leading-relaxed flex flex-col gap-6" style={{ textAlign: "justify" }}>
+                      <p>{data.paragraphs[2]}</p>
+                    </div>
+                  </div>
+                </div>
+              )}
+            </>
           )}
 
         </div>

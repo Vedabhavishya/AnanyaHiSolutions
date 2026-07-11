@@ -3,6 +3,11 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import Header from "../../components/Header";
+import jsPDF from "jspdf";
+import html2canvas from "html2canvas";
+
+// Common uniform font stack to ensure absolute visual consistency in rendering
+const UNIFORM_FONT_STACK = "'Times New Roman', Times, Baskerville, Georgia, serif";
 
 function FooterLogo() {
   return (
@@ -57,51 +62,17 @@ export default function PackageComparePage() {
   ]);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    const fetchPackages = async () => {
-      try {
-        const res = await fetch("/api/packages");
-        if (res.ok) {
-          const data = await res.json();
-          if (data.plans) {
-            setAllPlansData(data.plans);
-          }
-        }
-      } catch (err) {
-        console.error("Error fetching packages:", err);
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchPackages();
-  }, []);
+  // PDF Generator States
+  const [leadModalOpen, setLeadModalOpen] = useState(false);
+  const [modalFormData, setModalFormData] = useState({ name: "", company: "", phone: "", email: "" });
+  const [modalError, setModalError] = useState("");
+  const [generatingPdf, setGeneratingPdf] = useState(false);
+  const [leadInfo, setLeadInfo] = useState({ name: "Valued Client", company: "", phone: "", email: "" });
+  const [downloadDateTime, setDownloadDateTime] = useState("");
+  const [issueDate, setIssueDate] = useState("");
+  const [proposalCount, setProposalCount] = useState(101);
 
-  const addComparisonSlot = () => {
-    setComparisonSlots([...comparisonSlots, { packageTitle: "", planName: "" }]);
-  };
-
-  const updateComparisonSlot = (idx, field, value) => {
-    const updated = [...comparisonSlots];
-    updated[idx][field] = value;
-    if (field === "packageTitle") {
-      updated[idx].planName = "";
-    }
-    setComparisonSlots(updated);
-  };
-
-  const removeComparisonSlot = (idx) => {
-    const updated = comparisonSlots.filter((_, i) => i !== idx);
-    setComparisonSlots(updated.length > 0 ? updated : [{ packageTitle: "", planName: "" }]);
-  };
-
-  const clearAllSlots = () => {
-    setComparisonSlots([
-      { packageTitle: "", planName: "" },
-      { packageTitle: "", planName: "" }
-    ]);
-  };
-
-  // Helper to parse numeric price
+  // Helpers to parse numeric price
   const parsePrice = (priceStr) => {
     if (!priceStr) return 0;
     const cleanStr = priceStr.replace(/[^\d]/g, "");
@@ -131,6 +102,276 @@ export default function PackageComparePage() {
   const totalBase = selectedComboItems.reduce((sum, item) => sum + item.basePrice, 0);
   const totalGst = selectedComboItems.reduce((sum, item) => sum + item.gstAmount, 0);
   const finalGrandTotal = totalBase + totalGst;
+
+  // Helper to estimate height of a plan block in pixels
+  const estimatePlanHeight = (item) => {
+    const categoryPlans = allPlansData[item.packageTitle] || [];
+    const selectedPlan = categoryPlans.find(p => p.name === item.planName);
+    const expandedFeatures = selectedPlan ? getExpandedFeatures(selectedPlan, categoryPlans) : [];
+    const numFeat = expandedFeatures.length;
+    const rows = Math.ceil(numFeat / 3); // 3-column grid
+    const deliverablesHeight = 40 + rows * 20; // Title header (40px) + rows * 20px
+    const pricingHeight = 100; // Pricing box height
+    return deliverablesHeight + pricingHeight + 16; // +16px margin
+  };
+
+  // Dynamically divide selected items and pricing summary into pages
+  const generateProposalPages = () => {
+    const pages = [];
+    let currentPageContent = [];
+    let currentHeight = 230; // Page 1 starts with Cover Header (230px)
+    const PAGE_MAX_HEIGHT = 940; // Leaving 80px safety margin at the bottom
+
+    selectedComboItems.forEach((item) => {
+      const planHeight = estimatePlanHeight(item);
+      
+      if (currentHeight + planHeight > PAGE_MAX_HEIGHT) {
+        // Doesn't fit on current page. Save current page and start a new one!
+        pages.push(currentPageContent);
+        currentPageContent = [item];
+        currentHeight = planHeight; // Reset height for new page
+      } else {
+        currentPageContent.push(item);
+        currentHeight += planHeight;
+      }
+    });
+
+    // Now check for Pricing Summary + T&C (estimated height: 410px)
+    const summaryHeight = 410;
+    if (currentHeight + summaryHeight > PAGE_MAX_HEIGHT) {
+      pages.push(currentPageContent);
+      pages.push([{ type: "SUMMARY" }]);
+    } else {
+      currentPageContent.push({ type: "SUMMARY" });
+      pages.push(currentPageContent);
+    }
+
+    return pages;
+  };
+
+  const proposalPages = selectedComboItems.length > 0 ? generateProposalPages() : [];
+
+  // Date formatting helpers
+  const formatDownloadDateTime = (date) => {
+    return date.toLocaleString("en-US", {
+      month: "short",
+      day: "numeric",
+      year: "numeric",
+      hour: "2-digit",
+      minute: "2-digit",
+      second: "2-digit",
+      hour12: true
+    });
+  };
+
+  const formatIssueDate = (date) => {
+    return date.toLocaleDateString("en-US", {
+      month: "long",
+      day: "numeric",
+      year: "numeric"
+    });
+  };
+
+  useEffect(() => {
+    const fetchPackages = async () => {
+      try {
+        const res = await fetch("/api/packages");
+        if (res.ok) {
+          const data = await res.json();
+          if (data.plans) {
+            setAllPlansData(data.plans);
+          }
+        }
+      } catch (err) {
+        console.error("Error fetching packages:", err);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchPackages();
+
+    // Load proposal counter and lead details from localStorage
+    if (typeof window !== "undefined") {
+      const savedCounter = localStorage.getItem("proposal_counter");
+      if (savedCounter) {
+        setProposalCount(parseInt(savedCounter, 10));
+      } else {
+        setProposalCount(101);
+      }
+      
+      const savedLead = localStorage.getItem("ahs_lead_info");
+      if (savedLead) {
+        try {
+          const parsed = JSON.parse(savedLead);
+          setLeadInfo({
+            name: parsed.name || "Valued Client",
+            company: parsed.company || "",
+            phone: parsed.phone || "",
+            email: parsed.email || ""
+          });
+        } catch (e) {
+          console.error("Error parsing lead info:", e);
+        }
+      }
+    }
+  }, []);
+
+  const addComparisonSlot = () => {
+    setComparisonSlots([...comparisonSlots, { packageTitle: "", planName: "" }]);
+  };
+
+  const updateComparisonSlot = (idx, field, value) => {
+    const updated = [...comparisonSlots];
+    updated[idx][field] = value;
+    if (field === "packageTitle") {
+      updated[idx].planName = "";
+    }
+    setComparisonSlots(updated);
+  };
+
+  const removeComparisonSlot = (idx) => {
+    const updated = comparisonSlots.filter((_, i) => i !== idx);
+    setComparisonSlots(updated.length > 0 ? updated : [{ packageTitle: "", planName: "" }]);
+  };
+
+  const clearAllSlots = () => {
+    setComparisonSlots([
+      { packageTitle: "", planName: "" },
+      { packageTitle: "", planName: "" }
+    ]);
+  };
+
+  const handleModalInputChange = (e) => {
+    const { name, value } = e.target;
+    setModalFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleDownloadClick = () => {
+    setModalFormData({ name: "", company: "", phone: "", email: "" });
+    setModalError("");
+    setLeadModalOpen(true);
+  };
+
+  const handleModalSubmit = (e) => {
+    e.preventDefault();
+    if (!modalFormData.name || !modalFormData.phone || !modalFormData.email) {
+      setModalError("Please fill in all required fields.");
+      return;
+    }
+
+    const info = {
+      name: modalFormData.name,
+      company: modalFormData.company,
+      phone: modalFormData.phone,
+      email: modalFormData.email
+    };
+
+    if (typeof window !== "undefined") {
+      localStorage.setItem("ahs_lead_info", JSON.stringify(info));
+    }
+    setLeadInfo(info);
+    setLeadModalOpen(false);
+    setModalError("");
+
+    // Submit lead in background
+    fetch("/api/unlock", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        name: info.name,
+        email: info.email,
+        phone: info.phone,
+        company: info.company,
+        packageTitle: "Combo Plans Builder",
+        subId: selectedComboItems.map(item => `${item.packageTitle} (${item.planName})`).join(", ")
+      })
+    }).catch(err => {
+      console.error("Error submitting lead in background:", err);
+    });
+
+    triggerPdfGeneration(info);
+  };
+
+  const triggerPdfGeneration = async (currentLeadInfo) => {
+    console.log("Starting triggerPdfGeneration...");
+    const now = new Date();
+    setDownloadDateTime(formatDownloadDateTime(now));
+    setIssueDate(formatIssueDate(now));
+    setGeneratingPdf(true);
+
+    try {
+      console.log("Waiting for re-render...");
+      await new Promise(r => setTimeout(r, 650));
+
+      console.log("Initializing jsPDF...");
+      const doc = new jsPDF('p', 'mm', 'a4');
+
+      // Loop over each calculated page
+      for (let i = 0; i < proposalPages.length; i++) {
+        const pageElId = `combo-proposal-page-${i + 1}`;
+        console.log(`Getting page element ${pageElId}...`);
+        const pageEl = document.getElementById(pageElId);
+        if (!pageEl) {
+          console.error(`${pageElId} not found!`);
+          alert(`Error: Page ${i + 1} template element not found.`);
+          return;
+        }
+
+        console.log(`Rendering page ${i + 1} with html2canvas...`);
+        const canvas = await html2canvas(pageEl, {
+          scale: 2,
+          useCORS: true,
+          logging: true,
+          backgroundColor: '#ffffff'
+        });
+        console.log(`Page ${i + 1} rendered successfully. Adding to PDF...`);
+        const imgData = canvas.toDataURL('image/jpeg', 0.95);
+        if (i > 0) {
+          doc.addPage();
+        }
+        doc.addImage(imgData, 'JPEG', 0, 0, 210, 297);
+      }
+
+      const fileName = `Combo_Proposal_${currentLeadInfo.name.replace(/\s+/g, '_')}.pdf`;
+      console.log(`Saving PDF as ${fileName}...`);
+      doc.save(fileName);
+      console.log("PDF saved successfully!");
+
+      setProposalCount(prev => {
+        const next = prev + 1;
+        if (typeof window !== "undefined") {
+          localStorage.setItem("proposal_counter", next.toString());
+        }
+        return next;
+      });
+
+      if (typeof window !== "undefined") {
+        try {
+          const existing = localStorage.getItem("ahs_actions_history");
+          const list = existing ? JSON.parse(existing) : [];
+          list.push({
+            type: "DOWNLOAD_COMBO_PROPOSAL",
+            timestamp: new Date().toISOString(),
+            details: {
+              name: currentLeadInfo.name,
+              email: currentLeadInfo.email,
+              phone: currentLeadInfo.phone,
+              company: currentLeadInfo.company,
+              items: selectedComboItems.map(item => `${item.packageTitle} (${item.planName})`)
+            }
+          });
+          localStorage.setItem("ahs_actions_history", JSON.stringify(list));
+        } catch (e) {
+          console.error("Error logging combo proposal download to localStorage:", e);
+        }
+      }
+    } catch (err) {
+      console.error("PDF generation failed:", err);
+      alert("Failed to generate PDF: " + err.message);
+    } finally {
+      setGeneratingPdf(false);
+    }
+  };
 
   return (
     <div className="flex flex-col min-h-screen bg-slate-50">
@@ -335,6 +576,18 @@ export default function PackageComparePage() {
                         ₹{finalGrandTotal.toLocaleString("en-IN")} <span style={{ fontSize: "0.85rem", fontWeight: "600", color: "#15803d" }}>(incl. GST)</span>
                       </span>
                     </div>
+
+                    {/* Download Proposal Button */}
+                    <div style={{ display: "flex", justifyContent: "center", marginTop: "10px" }}>
+                      <button
+                        onClick={handleDownloadClick}
+                        disabled={generatingPdf}
+                        className="btn btn-primary"
+                        style={{ display: "inline-flex", alignItems: "center", gap: "8px", padding: "14px 36px", fontSize: "1rem", fontWeight: "700", cursor: "pointer", border: "none", borderRadius: "8px", width: "100%", justifyContent: "center" }}
+                      >
+                        {generatingPdf ? "Generating PDF Proposal..." : "📥 Download Combo Proposal PDF"}
+                      </button>
+                    </div>
                   </div>
                 )}
               </div>
@@ -408,6 +661,353 @@ export default function PackageComparePage() {
           <p>© 2026 Ananya Hi Solutions. All Rights Reserved.</p>
         </div>
       </footer>
+
+      {/* Lead Capture Modal for PDF Generation */}
+      {leadModalOpen && (
+        <div 
+          className="modal-overlay" 
+          style={{ 
+            position: "fixed", 
+            inset: 0, 
+            background: "rgba(3,24,37,0.7)", 
+            backdropFilter: "blur(8px)", 
+            display: "flex", 
+            alignItems: "center", 
+            justifyContent: "center", 
+            zIndex: 99999, 
+            padding: "20px" 
+          }}
+          onClick={() => setLeadModalOpen(false)}
+        >
+          <div 
+            className="modal-content animate-slide-in"
+            style={{ 
+              background: "#ffffff", 
+              borderRadius: "20px", 
+              width: "100%", 
+              maxWidth: "480px", 
+              boxShadow: "0 25px 50px -12px rgba(0,0,0,0.5)", 
+              overflow: "hidden", 
+              position: "relative", 
+              padding: "40px 30px"
+            }}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="modal-header" style={{ padding: "0 0 12px 0", borderBottom: "1px solid #f1f5f9", display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "20px" }}>
+              <h3 style={{ fontSize: "1.25rem", fontWeight: "800", color: "#0f75bc", margin: 0 }}>Personalize Your Combo Proposal</h3>
+              <button 
+                onClick={() => setLeadModalOpen(false)}
+                style={{ 
+                  background: "none", 
+                  border: "none", 
+                  fontSize: "20px", 
+                  color: "var(--secondary-slate)", 
+                  cursor: "pointer", 
+                  fontWeight: "bold"
+                }}
+              >✕</button>
+            </div>
+            
+            <p style={{ fontSize: "0.875rem", color: "#64748b", marginBottom: "20px", lineHeight: "1.4" }}>
+              Please enter your business details to customize your Combo Package Proposal PDF document.
+            </p>
+
+            {modalError && (
+              <div className="modal-error-alert" style={{ marginBottom: "16px", color: "#ef4444", fontSize: "0.85rem", background: "#fef2f2", padding: "8px 12px", borderRadius: "6px", border: "1px solid #fee2e2" }}>
+                {modalError}
+              </div>
+            )}
+
+            <form onSubmit={handleModalSubmit} className="modal-form" style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
+              <div className="modal-form-group" style={{ display: "flex", flexDirection: "column", gap: "6px" }}>
+                <label style={{ fontSize: "0.85rem", fontWeight: "700", color: "#475569" }}>Contact Name *</label>
+                <input 
+                  type="text" 
+                  name="name" 
+                  value={modalFormData.name}
+                  onChange={handleModalInputChange}
+                  placeholder="Your full name"
+                  required
+                  style={{ width: "100%", padding: "10px 12px", border: "1px solid #cbd5e1", borderRadius: "8px", fontSize: "0.9rem" }}
+                />
+              </div>
+
+              <div className="modal-form-group" style={{ display: "flex", flexDirection: "column", gap: "6px" }}>
+                <label style={{ fontSize: "0.85rem", fontWeight: "700", color: "#475569" }}>Company Name</label>
+                <input 
+                  type="text" 
+                  name="company" 
+                  value={modalFormData.company}
+                  onChange={handleModalInputChange}
+                  placeholder="Your organization name"
+                  style={{ width: "100%", padding: "10px 12px", border: "1px solid #cbd5e1", borderRadius: "8px", fontSize: "0.9rem" }}
+                />
+              </div>
+
+              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "16px" }}>
+                <div className="modal-form-group" style={{ display: "flex", flexDirection: "column", gap: "6px" }}>
+                  <label style={{ fontSize: "0.85rem", fontWeight: "700", color: "#475569" }}>Phone Number *</label>
+                  <input 
+                    type="tel" 
+                    name="phone" 
+                    value={modalFormData.phone}
+                    onChange={handleModalInputChange}
+                    placeholder="Phone number"
+                    required
+                    style={{ width: "100%", padding: "10px 12px", border: "1px solid #cbd5e1", borderRadius: "8px", fontSize: "0.9rem" }}
+                  />
+                </div>
+
+                <div className="modal-form-group" style={{ display: "flex", flexDirection: "column", gap: "6px" }}>
+                  <label style={{ fontSize: "0.85rem", fontWeight: "700", color: "#475569" }}>Email Address *</label>
+                  <input 
+                    type="email" 
+                    name="email" 
+                    value={modalFormData.email}
+                    onChange={handleModalInputChange}
+                    placeholder="Your email"
+                    required
+                    style={{ width: "100%", padding: "10px 12px", border: "1px solid #cbd5e1", borderRadius: "8px", fontSize: "0.9rem" }}
+                  />
+                </div>
+              </div>
+
+              <div style={{ display: "flex", justifyContent: "flex-end", gap: "12px", marginTop: "12px" }}>
+                <button 
+                  type="button" 
+                  className="modal-btn btn-secondary" 
+                  onClick={() => setLeadModalOpen(false)}
+                  style={{ cursor: "pointer", padding: "10px 20px", border: "1px solid #cbd5e1", background: "#ffffff", borderRadius: "8px", color: "#475569", fontSize: "0.9rem", fontWeight: "700" }}
+                >
+                  Cancel
+                </button>
+                <button 
+                  type="submit" 
+                  className="modal-btn btn-primary"
+                  style={{ cursor: "pointer", padding: "10px 20px", border: "none", background: "#0f75bc", borderRadius: "8px", color: "#ffffff", fontSize: "0.9rem", fontWeight: "700" }}
+                >
+                  Generate PDF
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
+
+      {/* Hidden Templates for PDF Generation */}
+      {proposalPages.length > 0 && (
+        <div style={{ position: "absolute", left: "-9999px", top: "-9999px", zIndex: -100 }}>
+          {proposalPages.map((pageContent, pIdx) => {
+            return (
+              <div 
+                key={`combo-page-${pIdx}`}
+                id={`combo-proposal-page-${pIdx + 1}`}
+                style={{
+                  width: "794px",
+                  height: "1123px",
+                  padding: "40px 40px 80px 40px",
+                  boxSizing: "border-box",
+                  backgroundColor: "#ffffff",
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "space-between",
+                  fontFamily: UNIFORM_FONT_STACK
+                }}
+              >
+                <div>
+                  {/* Top Meta Header */}
+                  <div style={{ display: "flex", justifyContent: "space-between", fontSize: "11px", color: "#64748b", marginBottom: "12px" }}>
+                    <span>{downloadDateTime}</span>
+                    <span style={{ fontWeight: "700" }}>ANANYA HI SOLUTIONS — CUSTOM COMBO PROPOSAL</span>
+                  </div>
+
+                  {/* Render Cover Header if page 1 */}
+                  {pIdx === 0 && (
+                    <>
+                      {/* Banner */}
+                      <div style={{
+                        background: "linear-gradient(135deg, #0f75bc 0%, #1d4ed8 100%)",
+                        padding: "20px 30px",
+                        borderRadius: "10px",
+                        color: "#ffffff"
+                      }}>
+                        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                          <h1 style={{ fontSize: "21px", fontWeight: "900", margin: 0, letterSpacing: "0.5px" }}>ANANYA HI SOLUTIONS</h1>
+                          <span style={{ fontSize: "11px", fontWeight: "700", background: "rgba(255, 255, 255, 0.15)", padding: "3px 10px", borderRadius: "20px" }}>
+                            Proposal ID: #AHS-C-{proposalCount}
+                          </span>
+                        </div>
+                        <div style={{ width: "50px", height: "2px", background: "#f58220", margin: "8px 0 4px 0" }} />
+                        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", fontSize: "10.5px", opacity: 0.9 }}>
+                          <span>in collaboration with <strong>swetha solutions</strong></span>
+                          <span>Issue Date: {issueDate}</span>
+                        </div>
+                      </div>
+
+                      {/* Info Grid */}
+                      <div style={{ display: "grid", gridTemplateColumns: "1.2fr 1fr", gap: "30px", margin: "20px 0" }}>
+                        <div>
+                          <span style={{ background: "#eff6ff", color: "#1e40af", padding: "3px 8px", borderRadius: "4px", fontSize: "9px", fontWeight: "800", textTransform: "uppercase", letterSpacing: "0.5px" }}>Prepared For</span>
+                          <h2 style={{ fontSize: "17px", fontWeight: "800", color: "#0f172a", margin: "8px 0 2px 0" }}>{leadInfo.name}</h2>
+                          {leadInfo.company && <p style={{ color: "#475569", fontSize: "12px", margin: "0 0 10px 0", fontWeight: "600" }}>{leadInfo.company}</p>}
+                          <div style={{ fontSize: "11.5px", color: "#475569", lineHeight: "1.5" }}>
+                            {leadInfo.phone && <div>📞 {leadInfo.phone}</div>}
+                            {leadInfo.email && <div>✉️ {leadInfo.email}</div>}
+                          </div>
+                        </div>
+                        <div>
+                          <span style={{ background: "#f8fafc", color: "#475569", padding: "3px 8px", borderRadius: "4px", fontSize: "9px", fontWeight: "800", textTransform: "uppercase", letterSpacing: "0.5px" }}>Service Provider</span>
+                          <h3 style={{ fontSize: "14px", fontWeight: "800", color: "#0f172a", margin: "8px 0 2px 0" }}>Ananya Hi Solutions</h3>
+                          <p style={{ color: "#475569", fontSize: "11px", margin: "0 0 8px 0", lineHeight: "1.3" }}>
+                            401 Sravya Vatika, Greenlands,<br />Begumpet, Hyderabad, Telangana - 500016
+                          </p>
+                          <div style={{ fontSize: "11.5px", color: "#0f75bc", fontWeight: "700", lineHeight: "1.5" }}>
+                            <div>🌐 www.ananyahisolutions.com</div>
+                            <div>✉️ info@ananyahisolutions.com</div>
+                            <div>📞 (+91) 76739-35353</div>
+                          </div>
+                        </div>
+                      </div>
+                    </>
+                  )}
+
+                  {/* Render Page Contents */}
+                  <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
+                    {pageContent.map((item, itemIdx) => {
+                      if (item.type === "SUMMARY") {
+                        // Render Pricing Summary + T&C
+                        return (
+                          <div key={`summary-block`} style={{ display: "flex", flexDirection: "column", gap: "16px", borderTop: "1px solid #e2e8f0", paddingTop: "14px" }}>
+                            {/* Table of selected items */}
+                            <h3 style={{ fontSize: "13px", fontWeight: "800", color: "#0f172a", textTransform: "uppercase", letterSpacing: "0.5px", margin: "0 0 4px 0", borderBottom: "2px solid #e2e8f0", paddingBottom: "4px" }}>Combo Pricing Overview</h3>
+                            <table style={{ width: "100%", borderCollapse: "collapse", fontSize: "11.5px" }}>
+                              <thead>
+                                <tr style={{ background: "#f8fafc" }}>
+                                  <th style={{ padding: "8px 10px", textAlign: "left", fontWeight: "700", borderBottom: "2px solid #e2e8f0", color: "#475569" }}>Sl.</th>
+                                  <th style={{ padding: "8px 10px", textAlign: "left", fontWeight: "700", borderBottom: "2px solid #e2e8f0", color: "#475569" }}>Service Package & Selected Plan</th>
+                                  <th style={{ padding: "8px 10px", textAlign: "right", fontWeight: "700", borderBottom: "2px solid #e2e8f0", color: "#475569" }}>Base Cost</th>
+                                  <th style={{ padding: "8px 10px", textAlign: "right", fontWeight: "700", borderBottom: "2px solid #e2e8f0", color: "#475569" }}>GST (18%)</th>
+                                  <th style={{ padding: "8px 10px", textAlign: "right", fontWeight: "700", borderBottom: "2px solid #e2e8f0", color: "#475569" }}>Total Cost</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                {selectedComboItems.map((cItem, cIdx) => (
+                                  <tr key={cIdx} style={{ borderBottom: "1px solid #e2e8f0" }}>
+                                    <td style={{ padding: "8px 10px", color: "#475569" }}>{cIdx + 1}</td>
+                                    <td style={{ padding: "8px 10px", fontWeight: "700", color: "#0f172a" }}>
+                                      {cItem.packageTitle} — <span style={{ color: "#0f75bc" }}>{cItem.planName}</span>
+                                    </td>
+                                    <td style={{ padding: "8px 10px", textAlign: "right", color: "#334155" }}>₹{cItem.basePrice.toLocaleString("en-IN")}</td>
+                                    <td style={{ padding: "8px 10px", textAlign: "right", color: "#334155" }}>₹{cItem.gstAmount.toLocaleString("en-IN")}</td>
+                                    <td style={{ padding: "8px 10px", textAlign: "right", fontWeight: "700", color: "#0f75bc" }}>₹{cItem.totalWithGst.toLocaleString("en-IN")}</td>
+                                  </tr>
+                                ))}
+                              </tbody>
+                            </table>
+
+                            {/* Grand Total box */}
+                            <div style={{
+                              display: "flex",
+                              justifyContent: "space-between",
+                              alignItems: "center",
+                              background: "#f0fdf4",
+                              border: "1px solid #bbf7d0",
+                              borderRadius: "8px",
+                              padding: "12px 16px"
+                            }}>
+                              <span style={{ fontSize: "12px", fontWeight: "800", color: "#166534", textTransform: "uppercase", letterSpacing: "0.5px" }}>Final Combo Grand Total:</span>
+                              <span style={{ fontSize: "18px", fontWeight: "900", color: "#166534" }}>
+                                ₹{finalGrandTotal.toLocaleString("en-IN")} <span style={{ fontSize: "10px", fontWeight: "600" }}>(incl. 18% GST)</span>
+                              </span>
+                            </div>
+
+                            {/* T&C Strip */}
+                            <div style={{ background: "#f8fafc", padding: "12px 16px", borderRadius: "8px", border: "1px solid #cbd5e1" }}>
+                              <h4 style={{ fontSize: "11px", fontWeight: "800", color: "#1e293b", margin: "0 0 6px 0", letterSpacing: "0.5px" }}>Terms And Condition :</h4>
+                              <ul style={{ fontSize: "10px", color: "#475569", margin: 0, paddingLeft: "14px", lineHeight: "1.5", listStyleType: "disc" }}>
+                                <li>Any extra work beyond this proposal will be charged extra.</li>
+                                <li>Campaign charges are not included.</li>
+                                <li>Quotation is valid for 15 days from the date of issue.</li>
+                                <li>All payments must be made directly to Ananya Hi Solutions / Swetha Solutions account only.</li>
+                              </ul>
+                            </div>
+                          </div>
+                        );
+                      } else {
+                        // Render Plan deliverables list + pricing box
+                        const categoryPlans = allPlansData[item.packageTitle] || [];
+                        const selectedPlan = categoryPlans.find(p => p.name === item.planName);
+                        const expandedFeatures = selectedPlan ? getExpandedFeatures(selectedPlan, categoryPlans) : [];
+                        const planIndex = selectedComboItems.findIndex(p => p.packageTitle === item.packageTitle && p.planName === item.planName) + 1;
+
+                        return (
+                          <div key={`plan-block-${itemIdx}`} style={{ borderTop: planIndex > 1 ? "1px solid #e2e8f0" : "none", paddingTop: planIndex > 1 ? "14px" : "0px" }}>
+                            {/* Plan title strip */}
+                            <div style={{
+                              background: "#0f75bc",
+                              padding: "6px 12px",
+                              borderRadius: "4px",
+                              color: "#ffffff",
+                              marginBottom: "10px",
+                              display: "flex",
+                              justifyContent: "space-between",
+                              alignItems: "center"
+                            }}>
+                              <h3 style={{ fontSize: "12px", fontWeight: "900", margin: 0 }}>
+                                {planIndex}. {item.packageTitle} — {item.planName}
+                              </h3>
+                              <span style={{ fontSize: "8.5px", fontWeight: "800", textTransform: "uppercase", letterSpacing: "0.5px", color: "#e0f2fe" }}>Scope of Work</span>
+                            </div>
+
+                            {/* Features grid (3 columns) */}
+                            <div style={{ background: "#f8fafc", border: "1px solid #e2e8f0", borderRadius: "6px", padding: "12px 16px" }}>
+                              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: "8px 16px" }}>
+                                {expandedFeatures.map((feat, fIdx) => (
+                                  <div key={fIdx} style={{ fontSize: "10.5px", color: "#334155", display: "flex", alignItems: "flex-start", gap: "4px", lineHeight: "1.25" }}>
+                                    <span style={{ color: "#10b981", fontWeight: "bold" }}>✓</span>
+                                    <span>{feat}</span>
+                                  </div>
+                                ))}
+                              </div>
+                            </div>
+
+                            {/* Individual pricing box like Image 2 */}
+                            <div style={{ marginTop: "8px" }}>
+                              <div style={{ background: "#f8fafc", border: "1px solid #e2e8f0", borderRadius: "6px", padding: "8px 12px" }}>
+                                <div style={{ display: "flex", flexDirection: "column", gap: "4px" }}>
+                                  <div style={{ display: "flex", justifyContent: "space-between", fontSize: "10.5px", color: "#475569" }}>
+                                    <span>Plan Amount:</span>
+                                    <span style={{ fontWeight: "600", color: "#0f172a" }}>₹{item.basePrice.toLocaleString("en-IN")}</span>
+                                  </div>
+                                  <div style={{ display: "flex", justifyContent: "space-between", fontSize: "10.5px", color: "#475569" }}>
+                                    <span>GST (18%):</span>
+                                    <span style={{ fontWeight: "600", color: "#0f172a" }}>₹{item.gstAmount.toLocaleString("en-IN")}</span>
+                                  </div>
+                                  <div style={{ height: "1px", background: "#cbd5e1", margin: "3px 0" }} />
+                                  <div style={{ display: "flex", justifyContent: "space-between", fontSize: "11.5px", fontWeight: "800" }}>
+                                    <span style={{ color: "#0f75bc" }}>Grand Total:</span>
+                                    <span style={{ color: "#0f75bc" }}>₹{item.totalWithGst.toLocaleString("en-IN")}</span>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        );
+                      }
+                    })}
+                  </div>
+                </div>
+
+                {/* Footer */}
+                <div style={{ display: "flex", justifyContent: "space-between", fontSize: "10px", color: "#94a3b8", borderTop: "1px solid #f1f5f9", paddingTop: "12px" }}>
+                  <span>Page {pIdx + 1} of {proposalPages.length}</span>
+                  <span>Ananya Hi Solutions © 2026. All Rights Reserved.</span>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      )}
     </div>
   );
 }

@@ -767,21 +767,7 @@ export default function Home() {
           );
         })}
 
-        {/* Controls */}
-        <button
-          className="carousel-nav-btn carousel-prev"
-          onClick={() => setActiveSlide((prev) => (prev === 0 ? carouselSlides.length - 1 : prev - 1))}
-          aria-label="Previous Slide"
-        >
-          ‹
-        </button>
-        <button
-          className="carousel-nav-btn carousel-next"
-          onClick={() => setActiveSlide((prev) => (prev + 1) % carouselSlides.length)}
-          aria-label="Next Slide"
-        >
-          ›
-        </button>
+
 
         {/* Indicators */}
         <div className="carousel-dots">

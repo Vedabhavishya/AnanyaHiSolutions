@@ -265,7 +265,7 @@ const SERVICES_DETAIL_DATA = {
       { 
         id: "promo", 
         title: "Promotional Marketing Videos", 
-        bgImage: "https://images.unsplash.com/photo-1536240478700-b869070f9279?auto=format&fit=crop&w=800&q=80",
+        bgImage: "/images/subservices/promo-video.jpg",
         desc: "Hook-oriented visual ad creatives and product campaigns designed to maximize CTR and conversions." 
       },
       { 
@@ -277,7 +277,7 @@ const SERVICES_DETAIL_DATA = {
       { 
         id: "explainer", 
         title: "Product Explainer Videos", 
-        bgImage: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=800&q=80",
+        bgImage: "/images/subservices/explainer-video.jpg",
         desc: "Custom 2D/3D explainers outlining custom workflows, features, and complex software platforms." 
       },
       { 
@@ -390,7 +390,8 @@ const SERVICES_DETAIL_DATA = {
     subtypesTitle: "",
     subtypesDesc: "",
     row1Image: "https://images.unsplash.com/photo-1677442136019-21780efad99a?auto=format&fit=crop&w=800&q=80",
-    row2Image: "https://images.unsplash.com/photo-1684369175833-31126786a345?auto=format&fit=crop&w=800&q=80",
+    row2Image: "/images/subservices/aeo-capabilities.jpg",
+    row2Title: "Maximize AI Search Engine Visibility",
     types: [],
     overviewTitle: "Pioneering Answer Engine Optimization",
     paragraphs: [
@@ -409,7 +410,7 @@ const SERVICES_DETAIL_DATA = {
     bannerTitle: "Google Engine Optimization (GEO) in Hyderabad",
     bannerDesc: "Secure SGE citations. We optimize your website content and structure to occupy AI summary panels and snapshot recommendations in Google SGE.",
     bannerBadge: "✓ Google SGE Citations Strategy | ⭐️ Rated 4.9/5 by Brand Managers",
-    heroVisual: "/images/hero/geo.png",
+    heroVisual: "/images/hero/geo.jpg",
     subtypesTitle: "",
     subtypesDesc: "",
     row1Image: "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=800&q=80",
@@ -432,17 +433,18 @@ const SERVICES_DETAIL_DATA = {
     bannerTitle: "Artificial Intelligence Optimization (AIO) in Hyderabad",
     bannerDesc: "Optimize your brand's digital footprint so that leading AI models (like ChatGPT, Claude, Perplexity, and Gemini) cite and recommend your services.",
     bannerBadge: "✓ AI Recommendation Engine Optimization | ⭐️ Rated 5/5 by Tech Brands",
-    heroVisual: "/images/hero/aeo.png",
+    heroVisual: "/images/hero/aio.jpg",
     subtypesTitle: "",
     subtypesDesc: "",
-    row1Image: "https://images.unsplash.com/photo-1677442136019-21780efad99a?auto=format&fit=crop&w=800&q=80",
-    row2Image: "https://images.unsplash.com/photo-1684369175833-31126786a345?auto=format&fit=crop&w=800&q=80",
+    row1Image: "/images/subservices/aio-detail.jpg",
+    row2Image: "/images/subservices/aio-capabilities.jpg",
+    row2Title: "Driving AI-Powered Business Growth",
     types: [],
-    overviewTitle: "Pioneering Artificial Intelligence Optimization",
+    overviewTitle: "Optimize for AI Search Recommendations",
     paragraphs: [
-      "As consumer search habits shift from classic link lists to direct conversational queries, visibility on AI search platforms becomes essential. Artificial Intelligence Optimization (AIO) is the strategic process of preparing your brand to be recommended by LLMs.",
-      "We build advanced semantic structures, optimize cross-platform brand citations, and feed structured factual databases to ensure AI models recognize your organization as an authoritative industry leader.",
-      "Our early-adoption AIO strategies secure citations in ChatGPT Search, Claude references, and Gemini snapshots, creating lasting organic authority and driving high-converting users directly to your site."
+      "We optimize your brand's digital presence to ensure conversational AI engines (like ChatGPT, Claude, Perplexity, and Gemini) cite and recommend your services. By structuring semantic content and building trusted citations, we position your business as a preferred answer for high-intent queries.",
+      "",
+      "By aligning your content with LLM patterns and indexing snapshots, we maximize your visibility on recommendation engines. Early AIO adoption drives pre-qualified traffic directly to your site, bypassing traditional search competition."
     ],
     faqs: [
       { q: "What is Artificial Intelligence Optimization (AIO)?", a: "AIO is the practice of structuring and optimizing your online presence so that conversational AI models cite, mention, and recommend your brand when answering user queries." },
@@ -455,7 +457,7 @@ const SERVICES_DETAIL_DATA = {
     bannerTitle: "Search Experience Optimization (SXO) in Hyderabad",
     bannerDesc: "Merge traditional search engine optimization with high-fidelity UX design to capture search traffic and convert visitors into active leads.",
     bannerBadge: "✓ Higher Search CTR & Conversions | ⭐️ Rated 4.9/5 by Growth Marketers",
-    heroVisual: "/images/hero/geo.png",
+    heroVisual: "/images/hero/sxo.jpg",
     subtypesTitle: "",
     subtypesDesc: "",
     row1Image: "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=800&q=80",
@@ -939,7 +941,7 @@ User Comments: ${formData.message || "None"}`;
                   </div>
                   <div className="row-content-container">
                     <h2 className="row-heading text-3xl font-extrabold text-slate-900 mb-6" style={{ fontFamily: "var(--font-headings)" }}>
-                      Unlocking Premium Growth & Value
+                      {data.row2Title || "Unlocking Premium Growth & Value"}
                     </h2>
                     <div className="row-text text-slate-600 text-base md:text-lg leading-relaxed flex flex-col gap-6" style={{ textAlign: "justify" }}>
                       <p>{data.paragraphs[2]}</p>

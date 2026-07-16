@@ -418,7 +418,19 @@ export default function PackageComparePage() {
                   </button>
                   <button 
                     onClick={addComparisonSlot}
-                    style={{ padding: "10px 20px", border: "none", background: "#f58220", borderRadius: "8px", color: "#ffffff", fontSize: "0.9rem", fontWeight: "700", cursor: "pointer", transition: "all 0.2s", boxShadow: "0 4px 6px -1px rgba(245, 130, 32, 0.2)" }}
+                    disabled={Object.keys(allPlansData).length > 0 && comparisonSlots.length >= Object.keys(allPlansData).length}
+                    style={{ 
+                      padding: "10px 20px", 
+                      border: "none", 
+                      background: Object.keys(allPlansData).length > 0 && comparisonSlots.length >= Object.keys(allPlansData).length ? "#cbd5e1" : "#f58220", 
+                      borderRadius: "8px", 
+                      color: Object.keys(allPlansData).length > 0 && comparisonSlots.length >= Object.keys(allPlansData).length ? "#94a3b8" : "#ffffff", 
+                      fontSize: "0.9rem", 
+                      fontWeight: "700", 
+                      cursor: Object.keys(allPlansData).length > 0 && comparisonSlots.length >= Object.keys(allPlansData).length ? "not-allowed" : "pointer", 
+                      transition: "all 0.2s", 
+                      boxShadow: Object.keys(allPlansData).length > 0 && comparisonSlots.length >= Object.keys(allPlansData).length ? "none" : "0 4px 6px -1px rgba(245, 130, 32, 0.2)" 
+                    }}
                   >
                     ➕ Add Another Package
                   </button>
@@ -471,9 +483,13 @@ export default function PackageComparePage() {
                               style={{ width: "100%", padding: "10px 12px", border: "1px solid #cbd5e1", borderRadius: "8px", fontSize: "0.875rem", color: "#0f172a", background: "#ffffff" }}
                             >
                               <option value="">-- Choose Package --</option>
-                              {Object.keys(allPlansData).map((title, pIdx) => (
-                                <option key={pIdx} value={title}>{title}</option>
-                              ))}
+                              {Object.keys(allPlansData).map((title, pIdx) => {
+                                const isSelectedElsewhere = comparisonSlots.some((s, sIdx) => sIdx !== idx && s.packageTitle === title);
+                                if (isSelectedElsewhere && title !== slot.packageTitle) return null;
+                                return (
+                                  <option key={pIdx} value={title}>{title}</option>
+                                );
+                              })}
                             </select>
                           </div>
 

@@ -675,5 +675,164 @@ export const PACKAGE_PLANS_DATA = {
       ],
       note: "Priority Support & Consultation Included. Ads Campaign charges not included."
     }
+  ],
+  "App Development": [
+    {
+      name: "Basic Package",
+      icon: "📱",
+      price: "₹1,75,000",
+      billing: "+ GST",
+      isPopular: false,
+      features: [
+        "Android & iOS App",
+        "Email OTP Login",
+        "Product Catalog",
+        "Categories",
+        "Search",
+        "Cart",
+        "Checkout",
+        "One Payment Gateway (Razorpay/PhonePe)",
+        "Order Management",
+        "Basic Admin Panel",
+        "Play Store Deployment",
+        "1 Month Support"
+      ]
+    },
+    {
+      name: "Standard Package",
+      icon: "⚡",
+      price: "₹2,50,000",
+      billing: "+ GST",
+      isPopular: true,
+      features: [
+        "Everything in Basic Package",
+        "Android + iOS",
+        "Wishlist",
+        "Coupons",
+        "Product Reviews",
+        "Push Notifications",
+        "Advanced Admin Panel",
+        "Inventory Management",
+        "WhatsApp Chat",
+        "Firebase Analytics",
+        "Multiple Payment Options",
+        "Advanced Order Tracking",
+        "3 Months Support"
+      ]
+    },
+    {
+      name: "Premium Package",
+      icon: "💎",
+      price: "₹7,80,000",
+      billing: "+ GST",
+      isPopular: false,
+      features: [
+        "Everything in Standard Package",
+        "Premium UI/UX",
+        "Social Login (Google, Apple)",
+        "Loyalty Rewards",
+        "Referral Program",
+        "Multi-language",
+        "Multi-currency",
+        "Delivery Partner Integration",
+        "Advanced Reports & Analytics",
+        "Personalized Push Notifications",
+        "Live Chat Support",
+        "Source Code Included",
+        "App Store & Play Store Publishing",
+        "6 Months Support"
+      ]
+    }
+  ],
+  "AEO, GEO, AIO, SXO": [
+    {
+      name: "Basic Plan",
+      icon: "🟢",
+      price: "₹18,999",
+      billing: "+ GST/Month",
+      isPopular: false,
+      features: [
+        "Complete Website SEO Audit",
+        "Keyword Research (10–15 Target Keywords)",
+        "Meta Title & Description Optimization",
+        "Header Tag Optimization (H1–H6)",
+        "Image Alt Tag Optimization",
+        "XML Sitemap Setup & Submission",
+        "Robots.txt Setup",
+        "Google Search Console Setup",
+        "Google Analytics Setup",
+        "Internal Linking Optimization",
+        "FAQ Optimization",
+        "FAQ Schema Implementation",
+        "Basic Featured Snippet Optimization",
+        "AI-Friendly Content Structure Optimization",
+        "Entity-Based SEO Optimization",
+        "Mobile Usability Optimization",
+        "Basic Page Experience Review",
+        "Social Profile Optimization",
+        "Monthly Ranking Report",
+        "Best For: Small Businesses, Startups & Local Service Providers"
+      ]
+    },
+    {
+      name: "Standard Plan",
+      icon: "🟡",
+      price: "₹28,999",
+      billing: "+ GST/Month",
+      isPopular: true,
+      features: [
+        "Everything in Basic",
+        "Keyword Research (20–30 Keywords)",
+        "Advanced On-Page SEO Optimization",
+        "Technical SEO Audit & Fix Recommendations",
+        "Local SEO Optimization",
+        "Google Business Profile Optimization",
+        "Citation Building (10–15 Listings)",
+        "Quality Backlink Building (10 Links/Month)",
+        "FAQ Content Development",
+        "Featured Snippet Optimization",
+        "People Also Ask (PAA) Optimization",
+        "AI Search Visibility Optimization",
+        "ChatGPT, Gemini & Perplexity-Friendly Content Structuring",
+        "Core Web Vitals Analysis",
+        "User Journey & UX Recommendations",
+        "Social Sharing Optimization",
+        "4 SEO-Optimized Blog Posts / Month",
+        "Monthly SEO Performance Report",
+        "Best For: Clinics, Educational Institutes, Real Estate & Service Businesses"
+      ]
+    },
+    {
+      name: "Premium Plan",
+      icon: "🔴",
+      price: "₹48,999",
+      billing: "+ GST/Month",
+      isPopular: false,
+      features: [
+        "Everything in Standard",
+        "Keyword Research (40+ Keywords)",
+        "Advanced Technical SEO Optimization",
+        "Competitor Gap Analysis",
+        "High Authority Backlink Building (15–20 Links/Month)",
+        "Local SEO Growth Strategy",
+        "Service Page / E-Commerce SEO Optimization",
+        "Advanced Featured Snippet Strategy",
+        "Topic Cluster Development",
+        "Comprehensive FAQ Ecosystem",
+        "AI Citation Optimization",
+        "AI Search Visibility Strategy",
+        "Generative Engine Optimization (GEO)",
+        "Conversion Rate Optimization (CRO) Recommendations",
+        "Advanced UX Improvement Strategy",
+        "Continuous Core Web Vitals Monitoring",
+        "Complete Social Presence Optimization",
+        "Brand Mention Monitoring",
+        "4 SEO-Optimized Blog Posts / Month",
+        "Landing Page Optimization",
+        "Detailed Monthly SEO Growth Report",
+        "Monthly Strategy Review Call",
+        "Best For: E-Commerce Stores, Multi-Location Businesses & Competitive Niches"
+      ]
+    }
   ]
 };

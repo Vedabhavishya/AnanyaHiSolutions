@@ -950,13 +950,15 @@ export default function PackageComparePage() {
                               color: "#ffffff",
                               marginBottom: "10px",
                               display: "flex",
-                              justifyContent: "space-between",
-                              alignItems: "center"
+                              alignItems: "center",
+                              gap: "8px"
                             }}>
                               <h3 style={{ fontSize: "12px", fontWeight: "900", margin: 0 }}>
                                 {planIndex}. {item.packageTitle} — {item.planName}
                               </h3>
-                              <span style={{ fontSize: "8.5px", fontWeight: "800", textTransform: "uppercase", letterSpacing: "0.5px", color: "#e0f2fe" }}>Scope of Work</span>
+                              <span style={{ fontSize: "8.5px", fontWeight: "800", textTransform: "uppercase", letterSpacing: "0.5px", color: "#e0f2fe", background: "rgba(255, 255, 255, 0.15)", padding: "2px 6px", borderRadius: "3px" }}>
+                                Scope of Work
+                              </span>
                             </div>
 
                             {/* Features grid (3 columns) */}

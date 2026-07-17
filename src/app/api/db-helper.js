@@ -9,8 +9,8 @@ export function getDbPath() {
 
 // Get Turso client if configured
 function getTursoClient() {
-  let url = process.env.TURSO_DATABASE_URL?.replace(/^["']|["']$/g, "");
-  const authToken = process.env.TURSO_AUTH_TOKEN?.replace(/^["']|["']$/g, "");
+  let url = process.env.TURSO_DATABASE_URL?.replace(/^["']|["']$/g, "")?.trim()?.split(/[\s\r\n]+/)[0];
+  let authToken = process.env.TURSO_AUTH_TOKEN?.replace(/^["']|["']$/g, "")?.trim()?.split(/[\s\r\n]+/)[0];
 
   if (url && authToken) {
     // Convert libsql:// to https:// for serverless environments (Vercel)

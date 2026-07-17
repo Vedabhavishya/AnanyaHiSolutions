@@ -209,6 +209,76 @@
       "packageTitle": "Digital Marketing Packages",
       "subId": "AEO, GEO, AIO, SXO",
       "submittedAt": "2026-07-17T10:20:08.437Z"
+    },
+    {
+      "id": "lead-1784291808463",
+      "name": "Veda Bhavishya Gudivaka",
+      "email": "vedabhavishya.gudivaka@gmail.com",
+      "phone": "919951484472",
+      "company": "",
+      "packageTitle": "Digital Marketing Packages",
+      "subId": "AEO, GEO, AIO, SXO",
+      "submittedAt": "2026-07-17T12:36:48.463Z"
+    },
+    {
+      "id": "lead-1784291844587",
+      "name": "Veda Bhavishya Gudivaka",
+      "email": "vedabhavishya.gudivaka@gmail.com",
+      "phone": "919951484472",
+      "company": "",
+      "packageTitle": "Digital Marketing Packages",
+      "subId": "YouTube Production",
+      "submittedAt": "2026-07-17T12:37:24.588Z"
+    },
+    {
+      "id": "lead-1784291853714",
+      "name": "Veda Bhavishya Gudivaka",
+      "email": "vedabhavishya.gudivaka@gmail.com",
+      "phone": "919951484472",
+      "company": "",
+      "packageTitle": "Digital Marketing Packages",
+      "subId": "Search Engine Optimization (SEO)",
+      "submittedAt": "2026-07-17T12:37:33.714Z"
+    },
+    {
+      "id": "lead-1784291865140",
+      "name": "Veda Bhavishya Gudivaka",
+      "email": "vedabhavishya.gudivaka@gmail.com",
+      "phone": "919951484472",
+      "company": "",
+      "packageTitle": "Digital Marketing Packages",
+      "subId": "Google Ads/PPC Ads",
+      "submittedAt": "2026-07-17T12:37:45.140Z"
+    },
+    {
+      "id": "lead-1784293267130",
+      "name": "Veda Bhavishya Gudivaka",
+      "email": "vedabhavishya.gudivaka@gmail.com",
+      "phone": "919951484472",
+      "company": "",
+      "packageTitle": "Video Production",
+      "subId": "Video Production",
+      "submittedAt": "2026-07-17T13:01:07.131Z"
+    },
+    {
+      "id": "lead-1784293459306",
+      "name": "Veda Bhavishya Gudivaka",
+      "email": "vedabhavishya.gudivaka@gmail.com",
+      "phone": "919951484472",
+      "company": "",
+      "packageTitle": "Digital Marketing Packages",
+      "subId": "Social Media Marketing",
+      "submittedAt": "2026-07-17T13:04:19.306Z"
+    },
+    {
+      "id": "lead-1784293466987",
+      "name": "Veda Bhavishya Gudivaka",
+      "email": "vedabhavishya.gudivaka@gmail.com",
+      "phone": "919951484472",
+      "company": "",
+      "packageTitle": "Digital Marketing Packages",
+      "subId": "AEO, GEO, AIO, SXO",
+      "submittedAt": "2026-07-17T13:04:26.987Z"
     }
   ],
   "audits": [
@@ -338,6 +408,23 @@
             "6 Months Support & Maintenance."
           ],
           "link": "/services/mobile-app"
+        }
+      ]
+    },
+    {
+      "title": "Video Production",
+      "key": "video-production",
+      "cards": [
+        {
+          "title": "Video Production",
+          "image": "https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?auto=format&fit=crop&w=800&q=80",
+          "features": [
+            "Professional Video Production Services.",
+            "High-Quality Cinematic Content.",
+            "Creative Direction & Shoot Planning.",
+            "Fast Editing & Timely Delivery."
+          ],
+          "link": "/services/video-production"
         }
       ]
     },
@@ -507,7 +594,7 @@
           "Brand Typography & Color Code",
           "Complete Deployment"
         ],
-        "note": "Campaign charge not included."
+        "note": ""
       },
       {
         "name": "Standard Plan",
@@ -529,7 +616,7 @@
           "Delivery Within 5–7 Working Days",
           "Great for Local Businesses & Agencies"
         ],
-        "note": "Campaign charge not included."
+        "note": ""
       },
       {
         "name": "Premium Plan",
@@ -560,7 +647,7 @@
           "Minified CSS/JS",
           "Perfect for Professionals & Established Businesses"
         ],
-        "note": "Campaign charge not included."
+        "note": ""
       }
     ],
     "Google Ads/PPC Ads": [
@@ -584,7 +671,7 @@
           "Click & Conversion Analysis",
           "Monthly Report & Insights"
         ],
-        "note": "Campaign charge not included.\nOne of our experts will contact you soon."
+        "note": ""
       },
       {
         "name": "Standard Plan",
@@ -607,7 +694,7 @@
           "Monthly Performance Report & ROI Insights",
           "Dedicated Google Ads Manager"
         ],
-        "note": "Campaign charge not included.\nOne of our experts will contact you soon."
+        "note": ""
       },
       {
         "name": "Premium Plan",
@@ -636,7 +723,7 @@
           "Dedicated Senior Google Ads Specialist",
           "High Conversion Strategy & Planning"
         ],
-        "note": "Campaign charge not included.\nOne of our experts will contact you soon."
+        "note": ""
       }
     ],
     "Search Engine Optimization (SEO)": [
@@ -661,7 +748,7 @@
           "Competitor Keyword Overview",
           "Best ROI-Focused SEO Strategy"
         ],
-        "note": "One of our experts will contact you soon."
+        "note": ""
       },
       {
         "name": "Standard Plan",
@@ -686,7 +773,7 @@
           "Dedicated SEO Account Manager",
           "Best ROI-Focused SEO Strategy"
         ],
-        "note": "One of our experts will contact you soon."
+        "note": ""
       },
       {
         "name": "Premium Plan",
@@ -712,7 +799,7 @@
           "High Conversion SEO Strategy & Continuous Monitoring",
           "Best ROI-Focused SEO Campaign"
         ],
-        "note": "One of our experts will contact you soon."
+        "note": ""
       }
     ],
     "Dynamic Website": [
@@ -740,7 +827,7 @@
           "Complete Deployment",
           "Perfect for Local Businesses & Startups"
         ],
-        "note": "One of our experts will contact you soon."
+        "note": ""
       },
       {
         "name": "Standard Plan",
@@ -765,7 +852,7 @@
           "2 Weeks Free Support After Deployment",
           "Ideal for Growing Businesses & Agencies"
         ],
-        "note": "One of our experts will contact you soon."
+        "note": ""
       },
       {
         "name": "Premium Plan",
@@ -794,7 +881,7 @@
           "Error-Free, Well-Commented Code",
           "Best for Professional & Corporate Websites"
         ],
-        "note": "One of our experts will contact you soon."
+        "note": ""
       }
     ],
     "E-Commerce Website": [
@@ -827,7 +914,7 @@
           "Complete Deployment",
           "Perfect for Small Businesses & Startups"
         ],
-        "note": "One of our experts will contact you soon."
+        "note": ""
       },
       {
         "name": "Standard Plan",
@@ -853,7 +940,7 @@
           "Delivery Within 20–30 Working Days",
           "Ideal for Growing Online Stores & Local Businesses"
         ],
-        "note": "One of our experts will contact you soon."
+        "note": ""
       },
       {
         "name": "Premium Plan (Multi Vendor)",
@@ -884,7 +971,7 @@
           "Minified CSS/JS",
           "Perfect for Professional Businesses & Growing eCommerce Stores"
         ],
-        "note": "One of our experts will contact you soon."
+        "note": ""
       }
     ],
     "Spa Packages": [
@@ -911,7 +998,7 @@
           "Best ROI & Campaign Objectives",
           "Social Media Audit for All Platforms"
         ],
-        "note": "Campaign charge not included.\nOne of our experts will contact you soon."
+        "note": ""
       },
       {
         "name": "Standard Plan",
@@ -937,7 +1024,7 @@
           "Best ROI & Campaign Objectives",
           "Social Media Audit for All Platforms"
         ],
-        "note": "Campaign charge not included.\nOne of our experts will contact you soon."
+        "note": ""
       },
       {
         "name": "Premium Plan",
@@ -964,7 +1051,7 @@
           "Best ROI & Campaign Objectives",
           "Social Media Audit for All Platforms"
         ],
-        "note": "Campaign charge not included.\nOne of our experts will contact you soon."
+        "note": ""
       }
     ],
     "YouTube Production": [
@@ -987,7 +1074,7 @@
           "Content Calendar Planning",
           "Strategy Planning"
         ],
-        "note": "Ads Campaign charges not included."
+        "note": ""
       },
       {
         "name": "Standard Plan",
@@ -1007,7 +1094,7 @@
           "Monetisation Strategy & Guidance",
           "Free & Paid Traffic Strategy"
         ],
-        "note": "Ads Campaign charges not included."
+        "note": ""
       },
       {
         "name": "Premium Plan",
@@ -1035,7 +1122,7 @@
           "YouTube Shorts Growth Strategy",
           "Brand Positioning & Audience Building"
         ],
-        "note": "Priority Support & Consultation Included. Ads Campaign charges not included."
+        "note": ""
       }
     ],
     "App Development": [
@@ -1135,7 +1222,7 @@
           "Monthly Ranking Report",
           "Best For: Small Businesses, Startups & Local Service Providers"
         ],
-        "note": "Campaign charge not included"
+        "note": ""
       },
       {
         "name": "Standard Plan",
@@ -1178,7 +1265,7 @@
           "Monthly SEO Performance Report",
           "Best For: Clinics, Educational Institutes, Real Estate & Service Businesses"
         ],
-        "note": "Campaign charge not included"
+        "note": ""
       },
       {
         "name": "Premium Plan",
@@ -1229,7 +1316,37 @@
           "Monthly Strategy Review Call",
           "Best For: E-Commerce Stores, Multi-Location Businesses & Competitive Niches"
         ],
-        "note": "Campaign charge not included"
+        "note": ""
+      }
+    ],
+    "Video Production": [
+      {
+        "name": "iPhone Shoot",
+        "icon": "🎯",
+        "price": "₹3,000",
+        "billing": "+ GST/Month",
+        "isPopular": false,
+        "features": [
+          "3–4 Hours On-Site Shoot",
+          "High-Quality iPhone 4K Recording",
+          "Basic Color Correction",
+          "Optimized for Social Media Platforms"
+        ],
+        "note": ""
+      },
+      {
+        "name": "Professional DSLR Shoot ",
+        "icon": "🚀",
+        "price": "₹10,000",
+        "billing": "+ GST/Month",
+        "isPopular": true,
+        "features": [
+          "Up to 6 Hours Professional Shoot",
+          "DSLR Camera with Cinematic Quality",
+          "Advanced Color Grading",
+          "Multiple Angles & Creative Shots"
+        ],
+        "note": ""
       }
     ]
   },

@@ -2077,22 +2077,57 @@ export default function AdminDashboardPage() {
                     background: plan.isPopular ? "#eff6ff" : "white",
                     borderColor: plan.isPopular ? "#bfdbfe" : "#e2e8f0"
                   }}>
-                    <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "12px" }}>
-                      <h4 style={{ margin: "0", fontSize: "16px", fontWeight: "800", color: "#1e3a8a" }}>
-                        {plan.name}
-                      </h4>
-                      <label style={{ display: "flex", alignItems: "center", gap: "6px", fontSize: "12px", cursor: "pointer", fontWeight: "600", color: "#475569" }}>
+                    <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", marginBottom: "12px", gap: "10px" }}>
+                      <div style={{ flex: 1 }}>
+                        <label style={{ display: "block", fontSize: "11px", fontWeight: "700", color: "#64748b", marginBottom: "4px" }}>Plan Name</label>
                         <input 
-                          type="checkbox" 
-                          checked={plan.isPopular} 
+                          type="text" 
+                          required
+                          value={plan.name} 
                           onChange={(e) => {
                             const updated = [...tempPlans];
-                            updated[pIdx].isPopular = e.target.checked;
+                            updated[pIdx].name = e.target.value;
                             setTempPlans(updated);
                           }}
+                          placeholder="e.g. Basic Plan"
+                          style={{ width: "100%", padding: "6px 10px", border: "1px solid #cbd5e1", borderRadius: "6px", fontWeight: "700", color: "#1e3a8a", fontSize: "13px" }}
                         />
-                        Popular
-                      </label>
+                      </div>
+                      <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-end", gap: "6px" }}>
+                        {tempPlans.length > 1 && (
+                          <button
+                            type="button"
+                            onClick={() => {
+                              const updated = tempPlans.filter((_, idx) => idx !== pIdx);
+                              setTempPlans(updated);
+                            }}
+                            style={{
+                              background: "#fef2f2",
+                              border: "1px solid #fee2e2",
+                              color: "#ef4444",
+                              fontSize: "11px",
+                              fontWeight: "700",
+                              cursor: "pointer",
+                              padding: "4px 8px",
+                              borderRadius: "4px"
+                            }}
+                          >
+                            ✕ Delete
+                          </button>
+                        )}
+                        <label style={{ display: "flex", alignItems: "center", gap: "6px", fontSize: "12px", cursor: "pointer", fontWeight: "600", color: "#475569" }}>
+                          <input 
+                            type="checkbox" 
+                            checked={plan.isPopular} 
+                            onChange={(e) => {
+                              const updated = [...tempPlans];
+                              updated[pIdx].isPopular = e.target.checked;
+                              setTempPlans(updated);
+                            }}
+                          />
+                          Popular
+                        </label>
+                      </div>
                     </div>
 
                     <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
@@ -2179,13 +2214,34 @@ export default function AdminDashboardPage() {
                 ))}
               </div>
 
-              <div style={{ display: "flex", gap: "12px", justifyContent: "flex-end" }}>
-                <button type="button" className="admin-btn btn-secondary-custom" style={{ padding: "10px 20px" }} onClick={() => setEditingPlansCardTitle(null)}>
-                  Cancel
+              <div style={{ display: "flex", gap: "12px", justifyContent: "space-between", alignItems: "center" }}>
+                <button 
+                  type="button" 
+                  className="admin-btn btn-primary-custom" 
+                  style={{ padding: "10px 20px", display: "flex", alignItems: "center", gap: "6px", background: "#10b981", borderColor: "#10b981" }}
+                  onClick={() => {
+                    const newPlan = { 
+                      name: `Plan ${tempPlans.length + 1}`, 
+                      icon: "🎯", 
+                      price: "₹9,999", 
+                      billing: "+ GST/Month", 
+                      isPopular: false, 
+                      features: ["Setup Ads Campaign"], 
+                      note: "" 
+                    };
+                    setTempPlans([...tempPlans, newPlan]);
+                  }}
+                >
+                  ➕ Add New Plan
                 </button>
-                <button type="submit" className="admin-btn btn-primary-custom" style={{ padding: "10px 25px" }}>
-                  Save Plans in State
-                </button>
+                <div style={{ display: "flex", gap: "12px" }}>
+                  <button type="button" className="admin-btn btn-secondary-custom" style={{ padding: "10px 20px" }} onClick={() => setEditingPlansCardTitle(null)}>
+                    Cancel
+                  </button>
+                  <button type="submit" className="admin-btn btn-primary-custom" style={{ padding: "10px 25px" }}>
+                    Save Plans in State
+                  </button>
+                </div>
               </div>
             </form>
           </div>

@@ -599,6 +599,76 @@
       "packageTitle": "Combo Plans Builder",
       "subId": "Static Website Design (Basic Plan), Search Engine Optimization (SEO) (Basic Plan)",
       "submittedAt": "2026-07-16T08:57:13.214Z"
+    },
+    {
+      "id": "lead-1784214342204",
+      "name": "Veda Bhavishya Gudivaka",
+      "email": "vedabhavishya.gudivaka@gmail.com",
+      "phone": "919951484472",
+      "company": "",
+      "packageTitle": "Digital Marketing Packages",
+      "subId": "Social Media Marketing",
+      "submittedAt": "2026-07-16T15:05:42.205Z"
+    },
+    {
+      "id": "lead-1784214950108",
+      "name": "Veda Bhavishya Gudivaka",
+      "email": "vedabhavishya.gudivaka@gmail.com",
+      "phone": "919951484472",
+      "company": "",
+      "packageTitle": "Digital Marketing Packages",
+      "subId": "Google Ads/PPC Ads",
+      "submittedAt": "2026-07-16T15:15:50.108Z"
+    },
+    {
+      "id": "lead-1784215140521",
+      "name": "Veda Bhavishya Gudivaka",
+      "email": "vedabhavishya.gudivaka@gmail.com",
+      "phone": "919951484472",
+      "company": "",
+      "packageTitle": "Digital Marketing Packages",
+      "subId": "YouTube Production",
+      "submittedAt": "2026-07-16T15:19:00.521Z"
+    },
+    {
+      "id": "lead-1784215158618",
+      "name": "Veda Bhavishya Gudivaka",
+      "email": "vedabhavishya.gudivaka@gmail.com",
+      "phone": "919951484472",
+      "company": "",
+      "packageTitle": "Website Packages",
+      "subId": "Static Website Design",
+      "submittedAt": "2026-07-16T15:19:18.618Z"
+    },
+    {
+      "id": "lead-1784270885623",
+      "name": "Veda Bhavishya Gudivaka",
+      "email": "vedabhavishya.gudivaka@gmail.com",
+      "phone": "919951484472",
+      "company": "",
+      "packageTitle": "Digital Marketing Packages",
+      "subId": "Social Media Marketing",
+      "submittedAt": "2026-07-17T06:48:05.623Z"
+    },
+    {
+      "id": "lead-1784270970508",
+      "name": "Veda Bhavishya Gudivaka",
+      "email": "vedabhavishya.gudivaka@gmail.com",
+      "phone": "919951484472",
+      "company": "",
+      "packageTitle": "Digital Marketing Packages",
+      "subId": "Google Ads/PPC Ads",
+      "submittedAt": "2026-07-17T06:49:30.508Z"
+    },
+    {
+      "id": "lead-1784270986955",
+      "name": "Veda Bhavishya Gudivaka",
+      "email": "vedabhavishya.gudivaka@gmail.com",
+      "phone": "919951484472",
+      "company": "",
+      "packageTitle": "Digital Marketing Packages",
+      "subId": "YouTube Production",
+      "submittedAt": "2026-07-17T06:49:46.955Z"
     }
   ],
   "audits": [
@@ -703,23 +773,6 @@
       ]
     },
     {
-      "title": "Ecommerce Mobile Application",
-      "key": "ecommerce-mobile-application",
-      "cards": [
-        {
-          "title": "Android Development",
-          "image": "https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?auto=format&fit=crop&w=800&q=80",
-          "features": [
-            "Feature 1",
-            "Feature 2",
-            "Feature 3",
-            "Feature 4"
-          ],
-          "link": "/services/app-development/android"
-        }
-      ]
-    },
-    {
       "title": "Special Packages",
       "key": "special",
       "isSingleCard": true,
@@ -777,7 +830,6 @@
         "billing": "+ GST/Month",
         "isPopular": true,
         "features": [
-          "Everything in Basic",
           "Facebook, Instagram Platforms & Google Business Profile",
           "Social Media Audit for All Platforms",
           "Standard 10 to 12 Creative Design Per Month",
@@ -810,7 +862,7 @@
           "Strategy & Planning",
           "High Conversion",
           "Ad Placement (Optimize Auto/Manual Placements Across Mobile/ Tablet and Computer)",
-          "All the festival posters are included in the given commitment."
+          "All the festival posters are included in the given commitment"
         ],
         "note": "Campaign charge not included."
       },
@@ -821,7 +873,6 @@
         "billing": "+ GST/Month",
         "isPopular": false,
         "features": [
-          "Everything in Standard",
           "Facebook, Instagram, Google Business Profile & YouTube",
           "Social Media Audit for All Platforms",
           "Premium 12 to 15 Creative Design Per Month",
@@ -871,21 +922,21 @@
           "Single Page Website (Scrolling Layout)",
           "Modern Mobile-Friendly Design",
           "Eye-Catching Hero Banner with CTA Button",
-          "Business Info, Services, Gallery & Contact Section",
+          "Business Info, Services, Gallery & Contact Sections",
           "WhatsApp & Call Button Integration",
           "Free Contact Form Setup (Email or WhatsApp Lead)",
           "Social Media Links Integration",
-          "Basic SEO Setup (Meta Title, Description, Keywords)",
-          "Google Map Embed for Location",
+          "Basic SEO Setup (Meta Title, Description & Keywords)",
+          "Google Maps Embed",
           "Delivery Within 3 Working Days",
           "1 Free Revision",
           "Perfect for Startups, Freelancers & Local Businesses",
-          "Mobile-Friendly/Responsive Design",
-          "Effective Call-To-Actions & Easy Navigation",
-          "Brand Typography & Color Code",
-          "Complete Deployment"
+          "Mobile-Friendly Responsive Design",
+          "Effective Call-to-Actions & Easy Navigation",
+          "Brand Typography & Color Setup",
+          "Complete Website Deployment"
         ],
-        "note": "Campaign charge not included."
+        "note": ""
       },
       {
         "name": "Standard Plan",
@@ -894,20 +945,20 @@
         "billing": "+ GST",
         "isPopular": true,
         "features": [
-          "Everything in Basic",
+          "Multi-Page Website (Up to 5 Pages)",
           "Free Hosting & SSL for 1 Year",
-          "Up to 5 Pages, Extra Per Page Cost not Included (Home, About, Services, Gallery, Contact)",
           "Custom Brand-Based Design & Color Theme",
-          "Optimized Image & Banner Design",
-          "Basic On-Page SEO Optimization",
+          "Optimized Images & Banner Design",
+          "Enhanced On-Page SEO Optimization",
           "Google Analytics & Search Console Integration",
-          "Faster Loading (Speed Optimization)",
-          "Lead Capture Form with Email Alerts",
+          "Faster Loading & Performance Optimization",
+          "Lead Capture Forms with Email Alerts",
+          "Basic UI/UX Enhancements",
           "1 Month Free Maintenance Support",
           "Delivery Within 5–7 Working Days",
-          "Great for Local Businesses & Agencies"
+          "Ideal for Growing Businesses & Agencies"
         ],
-        "note": "Campaign charge not included."
+        "note": ""
       },
       {
         "name": "Premium Plan",
@@ -916,29 +967,26 @@
         "billing": "+ GST",
         "isPopular": false,
         "features": [
-          "Everything in Standard",
-          "Up to 8 Static Website Pages (Extra Per Page Cost not Included)",
-          "Advanced UI/UX Design with Animation & Motion Effects",
-          "SEO-Optimized Structure for Higher Google Ranking",
-          "Content Writing Support (Up to 800 Words)",
-          "Interactive Elements (Counters, Sliders, Reviews, etc.)",
-          "Call-to-Action Strategy for More Leads",
+          "Custom Website (Up to 8 Static Pages)",
+          "Advanced UI/UX Design with Animations & Modern Effects",
+          "SEO-Optimized Website Structure for Higher Rankings",
+          "Professional Content Writing Support (Up to 800 Words)",
+          "Interactive Elements (Counters, Sliders, Reviews & Testimonials)",
+          "High-Converting Call-to-Action Strategy",
           "Google Business Profile Setup Assistance",
           "Priority Support with Faster Delivery",
-          "Delivery Within 10–15 Working Days",
-          "Google Page Speed Optimized (Loads Fast Even on Weak Networks)",
-          "Unlimited Copyright-Free Stock Images",
-          "Copyright-Free Unique Website Content",
-          "SEO Optimized Code (Semantic Tags & Meta Tags)",
-          "Secure & Error-Free Coding",
-          "Unique User Interactive UI/UX",
-          "UI/UX Testing",
-          "Browser Compatibility Testing",
-          "Less Scroll for Better User Experience",
-          "Minified CSS/JS",
-          "Perfect for Professionals & Established Businesses"
+          "Advanced Performance Optimization (Core Web Vitals)",
+          "Unlimited Copyright-Free Premium Stock Images",
+          "Unique Copyright-Free Website Content",
+          "Advanced SEO Optimization (Schema, Meta Tags & Technical SEO)",
+          "Secure, Error-Free & Clean Code",
+          "Premium User Experience (UI/UX)",
+          "Cross-Browser & Cross-Device Compatibility Testing",
+          "Optimized Navigation with Reduced Scrolling",
+          "Minified CSS & JavaScript for Better Performance",
+          "Ideal for Established Businesses & Professional Brands"
         ],
-        "note": "Campaign charge not included."
+        "note": ""
       }
     ],
     "Google Ads/PPC Ads": [
@@ -952,17 +1000,16 @@
           "Campaign Setup for Search Ads",
           "Daily Ads Optimization",
           "Budget Optimization Guidance",
-          "Basic Keyword Research (8–10 keywords)",
+          "Basic Keyword Research (8–10 Keywords)",
           "Ad Copywriting (Up to 3 Ad Variations)",
           "Location Targeting Setup",
-          "Ad Extensions Setup (Call, Location, Sitelink)",
+          "Ad Extensions Setup (Call, Location & Sitelink)",
           "Conversion Tracking Setup",
           "Weekly Performance Report",
-          "Budget Optimization Guidance",
           "Click & Conversion Analysis",
           "Monthly Report & Insights"
         ],
-        "note": "Campaign charge not included.\nOne of our experts will contact you soon."
+        "note": ""
       },
       {
         "name": "Standard Plan",
@@ -971,21 +1018,22 @@
         "billing": "+ GST/Month",
         "isPopular": true,
         "features": [
-          "Everything in Basic",
           "Campaign Setup for Search & Display Ads",
-          "Advanced Keyword Research (15–20 keywords)",
+          "Advanced Keyword Research (15–20 Keywords)",
           "Ad Copywriting (Up to 5 Ad Variations)",
           "Location & Device Targeting Setup",
-          "Ad Extensions Setup (Call, Location, Sitelink, Callout)",
+          "Ad Extensions Setup (Call, Location, Sitelink & Callout)",
           "Conversion Tracking Setup",
           "Daily Ads Optimization & Bid Adjustments",
+          "Budget Optimization Guidance",
+          "Click & Conversion Analysis",
           "A/B Testing for Ads & Landing Pages",
           "Competitor Ads Analysis",
           "Advanced Negative Keywords Optimization",
-          "Monthly Performance Report & ROI Insights",
-          "Dedicated Google Ads Manager"
+          "Dedicated Google Ads Manager",
+          "Monthly Performance Report & ROI Insights"
         ],
-        "note": "Campaign charge not included.\nOne of our experts will contact you soon."
+        "note": ""
       },
       {
         "name": "Premium Plan",
@@ -994,27 +1042,27 @@
         "billing": "+ GST/Month",
         "isPopular": false,
         "features": [
-          "Everything in Standard",
           "Campaign Setup for Search, Display & Shopping Ads",
-          "Comprehensive Keyword Research (50+ keywords)",
+          "Comprehensive Keyword Research (50+ Keywords)",
           "Ad Copywriting & Creative Banner Design",
           "Audience Segmentation & Demographic Targeting",
-          "A/B Testing for Ads, Landing Pages & CTAs",
-          "CRO Suggestions",
-          "Remarketing Setup (Visitors Retargeting)",
-          "Conversion Rate Optimization Suggestions",
-          "Advanced Negative Keywords Optimization",
+          "Location, Device & Audience Targeting",
+          "Advanced Ad Extensions Optimization",
           "Pixel & Conversion Tracking Setup",
           "Daily Ads Optimization & Bid Management",
+          "Advanced Negative Keywords Optimization",
+          "A/B Testing for Ads, Landing Pages & CTAs",
+          "Conversion Rate Optimization (CRO) Suggestions",
+          "Remarketing Setup (Visitors Retargeting)",
           "Competitor & Market Analysis",
-          "Weekly Performance Reports & Recommendations",
+          "Weekly Performance Reports & Strategic Recommendations",
           "ROI Funnel Strategy & Scaling Consultation",
-          "Shopping Ads (for eCommerce)",
+          "Shopping Ads Setup (for eCommerce)",
           "YouTube Video Ads Setup (Optional)",
           "Dedicated Senior Google Ads Specialist",
           "High Conversion Strategy & Planning"
         ],
-        "note": "Campaign charge not included.\nOne of our experts will contact you soon."
+        "note": ""
       }
     ],
     "Search Engine Optimization (SEO)": [
@@ -1027,19 +1075,19 @@
         "features": [
           "Website SEO Audit & Report",
           "Basic Keyword Research (10–15 Keywords)",
-          "On-Page Optimization (Meta Tags, Titles, Descriptions)",
-          "Technical SEO Setup (Robots.txt, Sitemap, Canonical Tags)",
+          "On-Page Optimization (Meta Tags, Titles & Descriptions)",
+          "Technical SEO Setup (Robots.txt, Sitemap & Canonical Tags)",
           "Google Search Console & Analytics Setup",
           "Mobile & Page Speed Optimization",
           "Image Optimization (Alt Tags & Compression)",
           "Internal Linking Optimization",
-          "Local SEO Setup (Google My Business Optimization)",
+          "Local SEO Setup (Google Business Profile Optimization)",
           "Monthly Ranking Performance Report",
           "Basic Backlink Suggestions",
           "Competitor Keyword Overview",
           "Best ROI-Focused SEO Strategy"
         ],
-        "note": "One of our experts will contact you soon."
+        "note": ""
       },
       {
         "name": "Standard Plan",
@@ -1048,23 +1096,23 @@
         "billing": "+ GST/Month",
         "isPopular": true,
         "features": [
-          "Everything in Basic",
+          "Website SEO Audit & Action Plan",
           "Advanced Keyword Research (20–30 Keywords)",
-          "Comprehensive On-Page SEO (Schema, Structured Data, OG Tags)",
-          "Technical SEO Audit & Fixes",
+          "Comprehensive On-Page SEO (Schema, Structured Data & OG Tags)",
+          "Technical SEO Audit & Issue Fixes",
           "Off-Page SEO",
           "High-Quality Backlink Building (10–15 Links/Month)",
-          "Local SEO Optimization",
-          "Google My Business Optimization & Posting (4 Posts/Month)",
+          "Google Business Profile Optimization & Monthly Posting (4 Posts)",
           "Content Optimization for Existing Pages",
           "Landing Page SEO Recommendations",
+          "Local SEO Optimization",
           "Monthly Keyword Ranking Report",
           "Competitor SEO Analysis & Strategy",
           "Image, Video & Blog SEO Optimization",
           "Dedicated SEO Account Manager",
           "Best ROI-Focused SEO Strategy"
         ],
-        "note": "One of our experts will contact you soon."
+        "note": ""
       },
       {
         "name": "Premium Plan",
@@ -1073,16 +1121,16 @@
         "billing": "+ GST/Month",
         "isPopular": false,
         "features": [
-          "Everything in Standard",
+          "Complete SEO Growth Strategy",
           "Advanced Keyword Research (40+ Keywords)",
           "Content Strategy & Blog Writing (Up to 4 Blogs/Month)",
           "Authority Backlink Building (30+ High-DA Links/Month)",
           "Guest Posting & Outreach Campaigns",
-          "Advanced Technical SEO (Core Web Vitals, Crawl Budget Optimization)",
-          "Local SEO Domination for Hyderabad (Citations, Reviews, NAP Consistency)",
+          "Advanced Technical SEO (Core Web Vitals & Crawl Budget Optimization)",
+          "Local SEO Domination (Citations, Reviews & NAP Consistency)",
           "Competitor Gap Analysis & Content Clusters",
           "Conversion Rate Optimization (CRO) Suggestions",
-          "Schema Markup Implementation (FAQ, Product, Review, Local)",
+          "Advanced Schema Markup Implementation (FAQ, Product, Review & Local)",
           "Monthly Detailed SEO Reports & Growth Insights",
           "E-commerce / Service Page SEO Optimization",
           "Brand Visibility & Reputation Management",
@@ -1090,7 +1138,7 @@
           "High Conversion SEO Strategy & Continuous Monitoring",
           "Best ROI-Focused SEO Campaign"
         ],
-        "note": "One of our experts will contact you soon."
+        "note": ""
       }
     ],
     "Dynamic Website": [
@@ -1104,21 +1152,21 @@
           "Dynamic 4–5 Page Website",
           "Free SSL Certificate for 1 Year",
           "Free Web Hosting for 1 Year",
-          "Effective Call-To-Actions & Easy Navigation",
-          "Mobile-Friendly / Responsive Design",
-          "Google PageSpeed Optimized",
-          "Google Map, WhatsApp & Social Media Integration",
-          "SEO Optimized Code (Meta Title, Description, Keywords)",
+          "Effective Call-to-Actions & Easy Navigation",
+          "Mobile-Friendly Responsive Design",
+          "Google PageSpeed Optimization",
+          "Google Maps, WhatsApp & Social Media Integration",
+          "Basic SEO Optimization (Meta Title, Description & Keywords)",
           "Copyright-Free Stock Images",
           "Contact Form for Capturing Business Leads",
           "Secure & Error-Free Coding",
           "Fast Loading Speed Optimization",
           "1 Week Free Support After Deployment",
           "Delivery Within 10–15 Working Days",
-          "Complete Deployment",
+          "Complete Website Deployment",
           "Perfect for Local Businesses & Startups"
         ],
-        "note": "One of our experts will contact you soon."
+        "note": ""
       },
       {
         "name": "Standard Plan",
@@ -1127,23 +1175,22 @@
         "billing": "+ GST",
         "isPopular": true,
         "features": [
-          "Everything in Basic",
-          "Up to 10 Dynamic Pages (Extra Page Cost ₹800/Page)",
+          "Dynamic Website (Up to 10 Pages)",
           "Advanced Admin Panel with User Management",
           "Unlimited Dynamic Web Pages (CMS Ready)",
-          "Dynamic Content Rendering (Real-Time Updates)",
-          "Brand Typography & Color Code Customization",
+          "Dynamic Content Rendering & Real-Time Updates",
+          "Brand Typography & Color Theme Customization",
           "Google Analytics & Search Console Integration",
-          "Effective Call-To-Actions & Lead Conversion Layouts",
-          "Content Optimization for Better Search Ranking",
-          "Browser Compatibility Testing (All Devices)",
-          "Minified CSS/JS for Faster Performance",
-          "Database Integration with Error-Free Validation",
+          "Lead Conversion Focused Layouts",
+          "Content Optimization for Better Search Rankings",
+          "Cross-Browser & Cross-Device Compatibility",
+          "Minified CSS & JavaScript for Better Performance",
+          "Database Integration with Error Validation",
           "Secure Admin Authentication & Authorization",
           "2 Weeks Free Support After Deployment",
           "Ideal for Growing Businesses & Agencies"
         ],
-        "note": "One of our experts will contact you soon."
+        "note": ""
       },
       {
         "name": "Premium Plan",
@@ -1152,27 +1199,26 @@
         "billing": "+ GST",
         "isPopular": false,
         "features": [
-          "Everything in Standard",
+          "Fully Custom Dynamic Website",
           "Custom UI/UX Design with Interactive Animations",
-          "Dynamic Modules (Blogs, Services, Testimonials, Gallery, etc.)",
-          "Admin Dashboard with Full CRUD Functionality",
-          "Role-Based Admin Access (Multiple User Levels)",
-          "SEO-Friendly URL Structure & Schema Markup",
-          "Unlimited Dynamic Content & Media Uploads",
-          "Comprehensive Security (Form Validation, CSRF, XSS Protection)",
-          "Website UI/UX Testing for Better User Experience",
-          "Less Scroll, Better Engagement Layout",
-          "Conversion-Focused Call-To-Action Strategy",
-          "Copyright-Free Unique Website Content",
-          "Analytics & Performance Monitoring Dashboard",
+          "Advanced Dynamic Modules (Blogs, Services, Testimonials, Gallery & More)",
+          "Complete Admin Dashboard with Full CRUD Functionality",
+          "Role-Based Access Control (Multiple User Levels)",
+          "SEO-Optimized URL Structure & Advanced Schema Markup",
+          "Unlimited Dynamic Content & Media Management",
+          "Enterprise-Level Security (Validation, CSRF & XSS Protection)",
+          "Premium UI/UX for Better User Experience",
+          "Conversion-Focused Layout & Call-to-Action Strategy",
+          "Unique Copyright-Free Website Content",
+          "Analytics Dashboard & Performance Monitoring",
           "1 Month Free Maintenance & Technical Support",
-          "Unique UI/UX",
-          "Faster Delivery (Within 15–20 Working Days)",
-          "Dynamic Content Rendering",
-          "Error-Free, Well-Commented Code",
+          "Advanced UI/UX Optimization",
+          "Faster Delivery (15–20 Working Days)",
+          "Optimized Dynamic Content Rendering",
+          "Well-Documented, Error-Free & Maintainable Code",
           "Best for Professional & Corporate Websites"
         ],
-        "note": "One of our experts will contact you soon."
+        "note": ""
       }
     ],
     "E-Commerce Website": [
@@ -1184,28 +1230,28 @@
         "isPopular": false,
         "features": [
           "Dynamic eCommerce Website with 5–10 Products",
-          "Wordpress Technology",
+          "WordPress Technology",
           "Free SSL Certificate for 1 Year",
           "Free Web Hosting for 1 Year",
           "Copyright-Free Unique Website Content & Stock Images",
-          "Unique & User Interactive UI/UX",
-          "Effective Call-To-Actions & Easy Navigation",
-          "Mobile-Friendly / Responsive Design",
-          "Google Page Speed Optimized",
+          "Responsive UI/UX Design",
+          "Effective Call-to-Actions & Easy Navigation",
+          "Mobile-Friendly Design",
+          "Google PageSpeed Optimization",
           "Shopping Cart & Checkout System",
-          "Customer Login / Signup",
-          "Admin Dashboard for Basic Store Management",
-          "1 Contact Form for Capturing Leads",
-          "Social Media & WhatsApp Integration",
-          "SEO Optimized Code for Homepage & Product Pages",
+          "Customer Login & Signup",
+          "Basic Admin Dashboard",
+          "Contact Form for Lead Generation",
+          "WhatsApp & Social Media Integration",
+          "Basic SEO Optimization (Homepage & Product Pages)",
           "Secure & Error-Free Coding",
-          "Browser Compatibility Testing",
+          "Cross-Browser Compatibility",
           "1 Week Free Support After Deployment",
           "Delivery Within 15–20 Working Days",
-          "Complete Deployment",
+          "Complete Website Deployment",
           "Perfect for Small Businesses & Startups"
         ],
-        "note": "One of our experts will contact you soon."
+        "note": ""
       },
       {
         "name": "Standard Plan",
@@ -1214,24 +1260,23 @@
         "billing": "+ GST",
         "isPopular": true,
         "features": [
-          "Everything in Basic",
-          "Up to 50 Products",
-          "Framework Technology",
-          "Advanced Admin Dashboard (Add/Edit/Delete Products, Categories)",
-          "Payment Gateway Integration (Razorpay, PayPal, etc.)",
+          "Dynamic eCommerce Website with Up to 50 Products",
+          "Framework Technology (Laravel / React / Next.js)",
+          "Advanced Admin Dashboard (Add/Edit/Delete Products & Categories)",
+          "Payment Gateway Integration (Razorpay, PayPal, Stripe, etc.)",
           "Order & Customer Management System",
-          "Discount Coupons & Promo Code Setup",
+          "Discount Coupons & Promo Code Management",
           "Product Filters & Search Functionality",
           "Google Analytics & Search Console Integration",
-          "SEO Optimized Product & Category Pages",
-          "Brand Typography & Color Customization",
-          "Unlimited Stock Images for Products",
+          "SEO Optimization for Product & Category Pages",
+          "Brand Typography & Theme Customization",
           "Lead Capture Forms for Marketing",
+          "Unlimited Product Images",
           "2 Weeks Free Support After Deployment",
           "Delivery Within 20–30 Working Days",
           "Ideal for Growing Online Stores & Local Businesses"
         ],
-        "note": "One of our experts will contact you soon."
+        "note": ""
       },
       {
         "name": "Premium Plan (Multi Vendor)",
@@ -1240,29 +1285,28 @@
         "billing": "+ GST",
         "isPopular": false,
         "features": [
-          "Everything in Standard",
           "Unlimited Products & Categories",
-          "React JS & NextJS",
+          "React.js & Next.js Technology",
           "Advanced UI/UX Design with Animations",
-          "Multiple Payment & Shipping Options",
-          "Delivery Order Confirmation",
-          "Customer Wishlist & Reviews Integration",
-          "Advanced Product Filters & Sorting",
-          "Dynamic Offers",
-          "Inventory & Stock Management Automation",
-          "Email/SMS Notifications for Orders",
-          "Analytics Dashboard for Sales & Revenue",
-          "Conversion-Oriented Landing Pages for Products",
-          "Advanced SEO (On-Page + Schema Markup)",
-          "Security & Backup Setup",
-          "UI/UX Testing",
-          "1 Month Free Maintenance & Support",
-          "Shopping Cart & Checkout System",
-          "Customer, Delivery Boy & Owner Login / Signup",
-          "Minified CSS/JS",
-          "Perfect for Professional Businesses & Growing eCommerce Stores"
+          "Multiple Payment & Shipping Integrations",
+          "Order Confirmation & Tracking System",
+          "Customer Wishlist & Product Reviews",
+          "Advanced Product Filters & Smart Search",
+          "Dynamic Offers & Promotional Campaigns",
+          "Automated Inventory & Stock Management",
+          "Email & SMS Notifications for Orders",
+          "Sales & Revenue Analytics Dashboard",
+          "High-Converting Product Landing Pages",
+          "Advanced SEO (On-Page, Technical SEO & Schema Markup)",
+          "Security Hardening & Backup Setup",
+          "Complete UI/UX Testing",
+          "1 Month Free Maintenance & Technical Support",
+          "Optimized Shopping Cart & Checkout Experience",
+          "Customer, Delivery Boy & Owner Login System",
+          "Minified CSS & JavaScript for Faster Performance",
+          "Perfect for Professional Businesses & Growing eCommerce Brands"
         ],
-        "note": "One of our experts will contact you soon."
+        "note": ""
       }
     ],
     "Spa Packages": [
@@ -1273,23 +1317,23 @@
         "billing": "+ GST/Month",
         "isPopular": false,
         "features": [
-          "Facebook & Instagram Platforms",
-          "8 posters",
-          "1 Ad Setup",
+          "Facebook & Instagram Management",
+          "8 Creative Posts per Month",
+          "1 Ad Campaign Setup",
           "1 Revision per Post",
           "Monthly Performance Report",
           "Trending-Based Creative Posts",
-          "Description, Hashtag Research & Optimization",
-          "AI-Powered Creative",
+          "Caption Writing, Hashtag Research & Optimization",
+          "AI-Powered Creative Design",
           "Profile Optimization",
-          "Ad Manager (Setup)",
-          "Audience Targeting",
-          "Ad Budget Management(Daily/weekly Budget Allocation & Ad Optimization)",
-          "Audience Research(Demographics, Interests & Behavior Insights)",
-          "Best ROI & Campaign Objectives",
-          "Social Media Audit for All Platforms"
+          "Meta Ads Manager Setup",
+          "Basic Audience Targeting",
+          "Basic Ad Budget Guidance",
+          "Audience Research (Demographics, Interests & Behaviors)",
+          "Campaign Goal Strategy",
+          "Social Media Profile Audit"
         ],
-        "note": "Campaign charge not included.\nOne of our experts will contact you soon."
+        "note": ""
       },
       {
         "name": "Standard Plan",
@@ -1298,24 +1342,22 @@
         "billing": "+ GST/Month",
         "isPopular": true,
         "features": [
-          "Everything in Basic",
-          "Facebook & Instagram Platforms",
-          "10 posters",
-          "2 Ads Setup",
-          "1 Revision per Post",
-          "Monthly Performance Report",
-          "Trending-Based Creative Posts",
-          "Description, Hashtag Research & Optimization",
-          "AI-Powered Creative",
-          "Profile Optimization",
-          "Ad Manager (Setup)",
-          "Audience Targeting",
-          "Ad Budget Management(Daily/weekly Budget Allocation & Ad Optimization)",
-          "Audience Research(Demographics, Interests & Behavior Insights)",
-          "Best ROI & Campaign Objectives",
-          "Social Media Audit for All Platforms"
+          "Facebook & Instagram Management",
+          "10 Creative Posts per Month",
+          "2 Ad Campaign Setups",
+          "Custom Content Calendar Planning",
+          "Advanced Audience Targeting & Segmentation",
+          "Advanced Ad Budget Optimization",
+          "A/B Testing for Ad Creatives",
+          "Lead Generation Campaign Setup",
+          "Conversion Tracking with Meta Pixel",
+          "Competitor Social Media Analysis",
+          "Content Performance Optimization",
+          "Dedicated Account Manager",
+          "Priority Support",
+          "Monthly Performance Report with Actionable Insights"
         ],
-        "note": "Campaign charge not included.\nOne of our experts will contact you soon."
+        "note": ""
       },
       {
         "name": "Premium Plan",
@@ -1324,63 +1366,26 @@
         "billing": "+ GST/Month",
         "isPopular": false,
         "features": [
-          "Everything in Standard",
-          "Facebook & Instagram Platforms",
-          "12 posters",
-          "3 Ads Setup",
-          "1 AI Reels",
-          "1 Revision per Post",
-          "Monthly Performance Report",
-          "Trending-Based Creative Posts",
-          "Description, Hashtag Research & Optimization",
-          "AI-Powered Creative",
-          "Profile Optimization",
-          "Ad Manager (Setup)",
-          "Audience Targeting",
-          "Ad Budget Management(Daily/weekly Budget Allocation & Ad Optimization)",
-          "Audience Research(Demographics, Interests & Behavior Insights)",
-          "Best ROI & Campaign Objectives",
-          "Social Media Audit for All Platforms"
+          "Facebook & Instagram Management",
+          "12 Creative Posts per Month",
+          "3 Ad Campaign Setups",
+          "1 AI-Generated Reel per Month",
+          "Complete Social Media Growth Strategy",
+          "Advanced Content Calendar & Campaign Planning",
+          "Advanced Audience Segmentation & Retargeting",
+          "Meta Pixel & Conversion API Setup",
+          "Lead Generation & Sales Funnel Optimization",
+          "Remarketing Campaign Setup",
+          "Creative A/B Testing & Performance Optimization",
+          "Influencer Collaboration Strategy (Guidance)",
+          "Advanced Competitor & Market Analysis",
+          "Brand Reputation Monitoring",
+          "Weekly Performance Reports & Monthly Growth Insights",
+          "Dedicated Senior Social Media Manager",
+          "Priority Support with Faster Response",
+          "High ROI Campaign Scaling Strategy"
         ],
-        "note": "Campaign charge not included.\nOne of our experts will contact you soon."
-      }
-    ],
-    "Android Development": [
-      {
-        "name": "Basic Plan",
-        "icon": "🎯",
-        "price": "₹1,80,000",
-        "billing": "+ GST/Month",
-        "isPopular": false,
-        "features": [
-          "Setup Ads Campaign",
-          "Monthly Reports"
-        ],
-        "note": "Campaign charge not included."
-      },
-      {
-        "name": "Standard Plan",
-        "icon": "🚀",
-        "price": "₹2,50,000",
-        "billing": "+ GST/Month",
-        "isPopular": true,
-        "features": [
-          "Everything in Basic",
-          "Advanced Campaign Setup"
-        ],
-        "note": "Campaign charge not included."
-      },
-      {
-        "name": "Premium Plan",
-        "icon": "👑",
-        "price": "₹4,80,000",
-        "billing": "+ GST/Month",
-        "isPopular": false,
-        "features": [
-          "Everything in Standard",
-          "Video Shoots & Management"
-        ],
-        "note": "Campaign charge not included."
+        "note": ""
       }
     ],
     "YouTube Production": [
@@ -1403,7 +1408,7 @@
           "Content Calendar Planning",
           "Strategy Planning"
         ],
-        "note": "Ads Campaign charges not included."
+        "note": ""
       },
       {
         "name": "Standard Plan",
@@ -1423,7 +1428,7 @@
           "Monetisation Strategy & Guidance",
           "Free & Paid Traffic Strategy"
         ],
-        "note": "Ads Campaign charges not included."
+        "note": ""
       },
       {
         "name": "Premium Plan",
@@ -1451,7 +1456,7 @@
           "YouTube Shorts Growth Strategy",
           "Brand Positioning & Audience Building"
         ],
-        "note": "Priority Support & Consultation Included. Ads Campaign charges not included."
+        "note": ""
       }
     ]
   },

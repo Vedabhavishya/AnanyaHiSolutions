@@ -369,9 +369,11 @@ function PlansContent() {
                     })}
                   </ul>
 
-                  <div className="plan-alert-note">
-                    {plan.note}
-                  </div>
+                  {plan.note && plan.note.trim() && (
+                    <div className="plan-alert-note">
+                      {plan.note}
+                    </div>
+                  )}
 
                   <div className="plan-action-area" style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
                     <button 
@@ -631,7 +633,7 @@ function PlansContent() {
                 
                 {isSinglePage && (
                   <div style={{ marginTop: "20px" }}>
-                    {plan.note && (
+                    {plan.note && plan.note.trim() && (
                       <div style={{
                         background: "#fffbeb",
                         border: "1px solid #fde68a",
@@ -778,7 +780,7 @@ function PlansContent() {
                     </div>
                     
                     <div style={{ padding: "24px", background: "#eff6ff", borderLeft: "1px solid #e2e8f0" }}>
-                      {plan.note && (
+                      {plan.note && plan.note.trim() && (
                         <div style={{
                           background: "#fffbeb",
                           border: "1px solid #fde68a",

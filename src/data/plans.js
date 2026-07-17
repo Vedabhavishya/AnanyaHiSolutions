@@ -28,7 +28,7 @@ export const PACKAGE_PLANS_DATA = {
         "Campaign Objectives",
         "All the festival posters are included in the given commitment."
       ],
-      note: "Campaign charge not included."
+      note: ""
     },
     {
       name: "Standard Plan",
@@ -72,7 +72,7 @@ export const PACKAGE_PLANS_DATA = {
         "Ad Placement (Optimize Auto/Manual Placements Across Mobile/ Tablet and Computer)",
         "All the festival posters are included in the given commitment."
       ],
-      note: "Campaign charge not included."
+      note: ""
     },
     {
       name: "Premium Plan",
@@ -117,7 +117,7 @@ export const PACKAGE_PLANS_DATA = {
         "Ad Placement (Optimize Auto/Manual Placements Across Mobile/ Tablet and Computer)",
         "All the festival posters are included in the given commitment."
       ],
-      note: "Campaign charge not included."
+      note: ""
     }
   ],
   "Static Website Design": [
@@ -145,7 +145,7 @@ export const PACKAGE_PLANS_DATA = {
         "Brand Typography & Color Code",
         "Complete Deployment"
       ],
-      note: "Campaign charge not included."
+      note: ""
     },
     {
       name: "Standard Plan",
@@ -167,7 +167,7 @@ export const PACKAGE_PLANS_DATA = {
         "Delivery Within 5–7 Working Days",
         "Great for Local Businesses & Agencies"
       ],
-      note: "Campaign charge not included."
+      note: ""
     },
     {
       name: "Premium Plan",
@@ -198,7 +198,7 @@ export const PACKAGE_PLANS_DATA = {
         "Minified CSS/JS",
         "Perfect for Professionals & Established Businesses"
       ],
-      note: "Campaign charge not included."
+      note: ""
     }
   ],
   "Google Ads/PPC Ads": [
@@ -222,7 +222,7 @@ export const PACKAGE_PLANS_DATA = {
         "Click & Conversion Analysis",
         "Monthly Report & Insights"
       ],
-      note: "Campaign charge not included.\nOne of our experts will contact you soon."
+      note: ""
     },
     {
       name: "Standard Plan",
@@ -245,7 +245,7 @@ export const PACKAGE_PLANS_DATA = {
         "Monthly Performance Report & ROI Insights",
         "Dedicated Google Ads Manager"
       ],
-      note: "Campaign charge not included.\nOne of our experts will contact you soon."
+      note: ""
     },
     {
       name: "Premium Plan",
@@ -274,7 +274,7 @@ export const PACKAGE_PLANS_DATA = {
         "Dedicated Senior Google Ads Specialist",
         "High Conversion Strategy & Planning"
       ],
-      note: "Campaign charge not included.\nOne of our experts will contact you soon."
+      note: ""
     }
   ],
   "Search Engine Optimization (SEO)": [
@@ -299,7 +299,7 @@ export const PACKAGE_PLANS_DATA = {
         "Competitor Keyword Overview",
         "Best ROI-Focused SEO Strategy"
       ],
-      note: "One of our experts will contact you soon."
+      note: ""
     },
     {
       name: "Standard Plan",
@@ -324,7 +324,7 @@ export const PACKAGE_PLANS_DATA = {
         "Dedicated SEO Account Manager",
         "Best ROI-Focused SEO Strategy"
       ],
-      note: "One of our experts will contact you soon."
+      note: ""
     },
     {
       name: "Premium Plan",
@@ -350,7 +350,7 @@ export const PACKAGE_PLANS_DATA = {
         "High Conversion SEO Strategy & Continuous Monitoring",
         "Best ROI-Focused SEO Campaign"
       ],
-      note: "One of our experts will contact you soon."
+      note: ""
     }
   ],
   "Dynamic Website": [
@@ -378,7 +378,7 @@ export const PACKAGE_PLANS_DATA = {
         "Complete Deployment",
         "Perfect for Local Businesses & Startups"
       ],
-      note: "One of our experts will contact you soon."
+      note: ""
     },
     {
       name: "Standard Plan",
@@ -403,7 +403,7 @@ export const PACKAGE_PLANS_DATA = {
         "2 Weeks Free Support After Deployment",
         "Ideal for Growing Businesses & Agencies"
       ],
-      note: "One of our experts will contact you soon."
+      note: ""
     },
     {
       name: "Premium Plan",
@@ -432,7 +432,7 @@ export const PACKAGE_PLANS_DATA = {
         "Error-Free, Well-Commented Code",
         "Best for Professional & Corporate Websites"
       ],
-      note: "One of our experts will contact you soon."
+      note: ""
     }
   ],
   "E-Commerce Website": [
@@ -465,7 +465,7 @@ export const PACKAGE_PLANS_DATA = {
         "Complete Deployment",
         "Perfect for Small Businesses & Startups"
       ],
-      note: "One of our experts will contact you soon."
+      note: ""
     },
     {
       name: "Standard Plan",
@@ -491,7 +491,7 @@ export const PACKAGE_PLANS_DATA = {
         "Delivery Within 20–30 Working Days",
         "Ideal for Growing Online Stores & Local Businesses"
       ],
-      note: "One of our experts will contact you soon."
+      note: ""
     },
     {
       name: "Premium Plan (Multi Vendor)",
@@ -522,7 +522,7 @@ export const PACKAGE_PLANS_DATA = {
         "Minified CSS/JS",
         "Perfect for Professional Businesses & Growing eCommerce Stores"
       ],
-      note: "One of our experts will contact you soon."
+      note: ""
     }
   ],
   "Spa Packages": [
@@ -549,7 +549,7 @@ export const PACKAGE_PLANS_DATA = {
         "Best ROI & Campaign Objectives",
         "Social Media Audit for All Platforms"
       ],
-      note: "Campaign charge not included.\nOne of our experts will contact you soon."
+      note: ""
     },
     {
       name: "Standard Plan",
@@ -575,7 +575,7 @@ export const PACKAGE_PLANS_DATA = {
         "Best ROI & Campaign Objectives",
         "Social Media Audit for All Platforms"
       ],
-      note: "Campaign charge not included.\nOne of our experts will contact you soon."
+      note: ""
     },
     {
       name: "Premium Plan",
@@ -602,7 +602,7 @@ export const PACKAGE_PLANS_DATA = {
         "Best ROI & Campaign Objectives",
         "Social Media Audit for All Platforms"
       ],
-      note: "Campaign charge not included.\nOne of our experts will contact you soon."
+      note: ""
     }
   ],
   "YouTube Production": [
@@ -625,7 +625,7 @@ export const PACKAGE_PLANS_DATA = {
         "Content Calendar Planning",
         "Strategy Planning"
       ],
-      note: "Ads Campaign charges not included."
+      note: ""
     },
     {
       name: "Standard Plan",
@@ -645,7 +645,7 @@ export const PACKAGE_PLANS_DATA = {
         "Monetisation Strategy & Guidance",
         "Free & Paid Traffic Strategy"
       ],
-      note: "Ads Campaign charges not included."
+      note: ""
     },
     {
       name: "Premium Plan",
@@ -673,7 +673,7 @@ export const PACKAGE_PLANS_DATA = {
         "YouTube Shorts Growth Strategy",
         "Brand Positioning & Audience Building"
       ],
-      note: "Priority Support & Consultation Included. Ads Campaign charges not included."
+      note: ""
     }
   ]
 };

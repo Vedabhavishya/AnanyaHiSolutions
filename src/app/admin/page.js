@@ -256,9 +256,9 @@ export default function AdminDashboardPage() {
       
       if (!updatedPlans[card.title]) {
         updatedPlans[card.title] = [
-          { name: "Basic Plan", icon: "🎯", price: "₹9,999", billing: "+ GST/Month", isPopular: false, features: ["Setup Ads Campaign", "Monthly Reports"], note: "Campaign charge not included." },
-          { name: "Standard Plan", icon: "🚀", price: "₹19,999", billing: "+ GST/Month", isPopular: true, features: ["Everything in Basic", "Advanced Campaign Setup"], note: "Campaign charge not included." },
-          { name: "Premium Plan", icon: "👑", price: "₹29,999", billing: "+ GST/Month", isPopular: false, features: ["Everything in Standard", "Video Shoots & Management"], note: "Campaign charge not included." }
+          { name: "Basic Plan", icon: "🎯", price: "₹9,999", billing: "+ GST/Month", isPopular: false, features: ["Setup Ads Campaign", "Monthly Reports"], note: "" },
+          { name: "Standard Plan", icon: "🚀", price: "₹19,999", billing: "+ GST/Month", isPopular: true, features: ["Everything in Basic", "Advanced Campaign Setup"], note: "" },
+          { name: "Premium Plan", icon: "👑", price: "₹29,999", billing: "+ GST/Month", isPopular: false, features: ["Everything in Standard", "Video Shoots & Management"], note: "" }
         ];
       }
     } else {
@@ -278,9 +278,9 @@ export default function AdminDashboardPage() {
 
   const handleEditPlansClick = (cardTitle) => {
     const existingPlans = plans[cardTitle] || [
-      { name: "Basic Plan", icon: "🎯", price: "₹9,999", billing: "+ GST/Month", isPopular: false, features: ["Setup Ads Campaign"], note: "Campaign charge not included." },
-      { name: "Standard Plan", icon: "🚀", price: "₹19,999", billing: "+ GST/Month", isPopular: true, features: ["Everything in Basic"], note: "Campaign charge not included." },
-      { name: "Premium Plan", icon: "👑", price: "₹29,999", billing: "+ GST/Month", isPopular: false, features: ["Everything in Standard"], note: "Campaign charge not included." }
+      { name: "Basic Plan", icon: "🎯", price: "₹9,999", billing: "+ GST/Month", isPopular: false, features: ["Setup Ads Campaign"], note: "" },
+      { name: "Standard Plan", icon: "🚀", price: "₹19,999", billing: "+ GST/Month", isPopular: true, features: ["Everything in Basic"], note: "" },
+      { name: "Premium Plan", icon: "👑", price: "₹29,999", billing: "+ GST/Month", isPopular: false, features: ["Everything in Standard"], note: "" }
     ];
     setEditingPlansCardTitle(cardTitle);
     setTempPlans(JSON.parse(JSON.stringify(existingPlans)));

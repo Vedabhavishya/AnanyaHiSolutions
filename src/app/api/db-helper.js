@@ -9,10 +9,14 @@ export function getDbPath() {
 
 // Get Turso client if configured
 function getTursoClient() {
-  const url = process.env.TURSO_DATABASE_URL?.replace(/^["']|["']$/g, "");
+  let url = process.env.TURSO_DATABASE_URL?.replace(/^["']|["']$/g, "");
   const authToken = process.env.TURSO_AUTH_TOKEN?.replace(/^["']|["']$/g, "");
 
   if (url && authToken) {
+    // Convert libsql:// to https:// for serverless environments (Vercel)
+    if (url.startsWith("libsql://")) {
+      url = url.replace("libsql://", "https://");
+    }
     return createClient({
       url: url,
       authToken: authToken

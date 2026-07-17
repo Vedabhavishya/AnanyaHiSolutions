@@ -730,6 +730,17 @@
             "YouTube SEO & Audience Building."
           ],
           "link": "/services/youtube-seo"
+        },
+        {
+          "title": "AEO, GEO, AIO, SXO",
+          "image": "/images/hero/aio.jpg",
+          "features": [
+            "Complete Website SEO & Audit.",
+            "Answer Engine & AI Visibility.",
+            "Search Experience Optimisation (SXO).",
+            "Social Profile & Brand Mentions."
+          ],
+          "link": "/services/aeo"
         }
       ]
     },
@@ -769,6 +780,24 @@
             "Secure Payment Gateway Integration."
           ],
           "link": "/services/web-design/ecommerce"
+        }
+      ]
+    },
+    {
+      "title": "App Development Packages",
+      "key": "app-development",
+      "isSingleCard": true,
+      "cards": [
+        {
+          "title": "App Development",
+          "image": "/images/subservices/ios_app_detail.jpg",
+          "features": [
+            "Basic, Standard & Premium Plans.",
+            "Android & iOS App Development.",
+            "Play Store & App Store Publishing.",
+            "6 Months Support & Maintenance."
+          ],
+          "link": "/services/mobile-app"
         }
       ]
     },
@@ -1458,8 +1487,189 @@
         ],
         "note": ""
       }
+    ],
+    "App Development": [
+      {
+        "name": "Basic Package",
+        "icon": "📱",
+        "price": "₹1,75,000",
+        "billing": "+ GST",
+        "isPopular": false,
+        "features": [
+          "Android & iOS App",
+          "Email OTP Login",
+          "Product Catalog",
+          "Categories",
+          "Search",
+          "Cart",
+          "Checkout",
+          "One Payment Gateway (Razorpay/PhonePe)",
+          "Order Management",
+          "Basic Admin Panel",
+          "Play Store Deployment",
+          "1 Month Support"
+        ]
+      },
+      {
+        "name": "Standard Package",
+        "icon": "⚡",
+        "price": "₹2,50,000",
+        "billing": "+ GST",
+        "isPopular": true,
+        "features": [
+          "Everything in Basic Package",
+          "Android + iOS",
+          "Wishlist",
+          "Coupons",
+          "Product Reviews",
+          "Push Notifications",
+          "Advanced Admin Panel",
+          "Inventory Management",
+          "WhatsApp Chat",
+          "Firebase Analytics",
+          "Multiple Payment Options",
+          "Advanced Order Tracking",
+          "3 Months Support"
+        ]
+      },
+      {
+        "name": "Premium Package",
+        "icon": "💎",
+        "price": "₹7,80,000",
+        "billing": "+ GST",
+        "isPopular": false,
+        "features": [
+          "Everything in Standard Package",
+          "Premium UI/UX",
+          "Social Login (Google, Apple)",
+          "Loyalty Rewards",
+          "Referral Program",
+          "Multi-language",
+          "Multi-currency",
+          "Delivery Partner Integration",
+          "Advanced Reports & Analytics",
+          "Personalized Push Notifications",
+          "Live Chat Support",
+          "Source Code Included",
+          "App Store & Play Store Publishing",
+          "6 Months Support"
+        ]
+      }
+    ],
+    "AEO, GEO, AIO, SXO": [
+      {
+        "name": "Basic Plan",
+        "icon": "🟢",
+        "price": "₹18,999",
+        "billing": "+ GST/Month",
+        "isPopular": false,
+        "features": [
+          "Complete Website SEO Audit",
+          "Keyword Research (10–15 Target Keywords)",
+          "Meta Title & Description Optimization",
+          "Header Tag Optimization (H1–H6)",
+          "Image Alt Tag Optimization",
+          "XML Sitemap Setup & Submission",
+          "Robots.txt Setup",
+          "Google Search Console Setup",
+          "Google Analytics Setup",
+          "Internal Linking Optimization",
+          "FAQ Optimization",
+          "FAQ Schema Implementation",
+          "Basic Featured Snippet Optimization",
+          "AI-Friendly Content Structure Optimization",
+          "Entity-Based SEO Optimization",
+          "Mobile Usability Optimization",
+          "Basic Page Experience Review",
+          "Social Profile Optimization",
+          "Monthly Ranking Report",
+          "Best For: Small Businesses, Startups & Local Service Providers"
+        ]
+      },
+      {
+        "name": "Standard Plan",
+        "icon": "🟡",
+        "price": "₹28,999",
+        "billing": "+ GST/Month",
+        "isPopular": true,
+        "features": [
+          "Everything in Basic",
+          "Keyword Research (20–30 Keywords)",
+          "Advanced On-Page SEO Optimization",
+          "Technical SEO Audit & Fix Recommendations",
+          "Local SEO Optimization",
+          "Google Business Profile Optimization",
+          "Citation Building (10–15 Listings)",
+          "Quality Backlink Building (10 Links/Month)",
+          "FAQ Content Development",
+          "Featured Snippet Optimization",
+          "People Also Ask (PAA) Optimization",
+          "AI Search Visibility Optimization",
+          "ChatGPT, Gemini & Perplexity-Friendly Content Structuring",
+          "Core Web Vitals Analysis",
+          "User Journey & UX Recommendations",
+          "Social Sharing Optimization",
+          "4 SEO-Optimized Blog Posts / Month",
+          "Monthly SEO Performance Report",
+          "Best For: Clinics, Educational Institutes, Real Estate & Service Businesses"
+        ]
+      },
+      {
+        "name": "Premium Plan",
+        "icon": "🔴",
+        "price": "₹48,999",
+        "billing": "+ GST/Month",
+        "isPopular": false,
+        "features": [
+          "Everything in Standard",
+          "Keyword Research (40+ Keywords)",
+          "Advanced Technical SEO Optimization",
+          "Competitor Gap Analysis",
+          "High Authority Backlink Building (15–20 Links/Month)",
+          "Local SEO Growth Strategy",
+          "Service Page / E-Commerce SEO Optimization",
+          "Advanced Featured Snippet Strategy",
+          "Topic Cluster Development",
+          "Comprehensive FAQ Ecosystem",
+          "AI Citation Optimization",
+          "AI Search Visibility Strategy",
+          "Generative Engine Optimization (GEO)",
+          "Conversion Rate Optimization (CRO) Recommendations",
+          "Advanced UX Improvement Strategy",
+          "Continuous Core Web Vitals Monitoring",
+          "Complete Social Presence Optimization",
+          "Brand Mention Monitoring",
+          "4 SEO-Optimized Blog Posts / Month",
+          "Landing Page Optimization",
+          "Detailed Monthly SEO Growth Report",
+          "Monthly Strategy Review Call",
+          "Best For: E-Commerce Stores, Multi-Location Businesses & Competitive Niches"
+        ]
+      }
     ]
   },
+  "marqueeLogos": [
+    {
+      "src": "/portfolio_images/zuxa_logo.png",
+      "name": "Zuxa Beauty & Spa",
+      "row": 1
+    },
+    {
+      "src": "/portfolio_images/mad_academy_logo.png",
+      "name": "Mad Academy",
+      "row": 1
+    },
+    {
+      "src": "/portfolio_images/qpath_logo.png",
+      "name": "Q Path Diagnostics",
+      "row": 2
+    },
+    {
+      "src": "/portfolio_images/shanmukha_logo.png",
+      "name": "Shanmukha Gold",
+      "row": 2
+    }
+  ],
   "banners": [
     {
       "title": "",
@@ -1481,53 +1691,28 @@
       "path": "/packages/plans?package=E-Commerce Website",
       "bgImage": "/images/banner3.png",
       "btnText": ""
-    },
-    {
-      "title": "",
-      "desc": "",
-      "path": "/packages",
-      "bgImage": "/images/uploads/1782753210289_banner1_updated.png",
-      "btnText": ""
     }
   ],
-  "messages": [
+  "unlockedPackages": [
     {
-      "id": "msg-1782653492317",
-      "name": "Veda Bhavishya Gudivaka",
-      "phone": "919951484472",
-      "email": "vedabhavishya.gudivaka@gmail.com",
-      "message": "sxdf",
-      "submittedAt": "2026-06-28T13:31:32.317Z"
+      "id": "lead-1784217345400",
+      "name": "P.Pavani Swetha",
+      "email": "swethapavani36@gmail.com",
+      "phone": "07207059273",
+      "company": "",
+      "packageTitle": "Digital Marketing Packages",
+      "subId": "AEO, GEO, AIO, SXO",
+      "submittedAt": "2026-07-16T15:55:45.400Z"
     },
     {
-      "id": "msg-1782753081075",
-      "name": "Veda Bhavishya Gudivaka",
-      "phone": "919951484472",
-      "email": "vedabhavishya.gudivaka@gmail.com",
-      "message": "ufdsa",
-      "submittedAt": "2026-06-29T17:11:21.075Z"
-    }
-  ],
-  "marqueeLogos": [
-    {
-      "src": "/portfolio_images/zuxa_logo.png",
-      "name": "Zuxa Beauty & Spa",
-      "row": 1
-    },
-    {
-      "src": "/portfolio_images/mad_academy_logo.png",
-      "name": "Mad Academy",
-      "row": 1
-    },
-    {
-      "src": "/portfolio_images/qpath_logo.png",
-      "name": "Q Path Diagnostics",
-      "row": 2
-    },
-    {
-      "src": "/portfolio_images/shanmukha_logo.png",
-      "name": "Shanmukha Gold",
-      "row": 2
+      "id": "lead-1784217359337",
+      "name": "P.Pavani Swetha",
+      "email": "swethapavani36@gmail.com",
+      "phone": "07207059273",
+      "company": "",
+      "packageTitle": "Digital Marketing Packages",
+      "subId": "YouTube Production",
+      "submittedAt": "2026-07-16T15:55:59.337Z"
     }
   ]
 }

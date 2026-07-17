@@ -68,6 +68,17 @@ const PACKAGE_CATEGORIES = [
           "YouTube SEO & Audience Building."
         ],
         link: "/services/youtube-seo"
+      },
+      {
+        title: "AEO, GEO, AIO, SXO",
+        image: "/images/hero/aio.jpg",
+        features: [
+          "Complete Website SEO & Audit.",
+          "Answer Engine & AI Visibility.",
+          "Search Experience Optimisation (SXO).",
+          "Social Profile & Brand Mentions."
+        ],
+        link: "/services/aeo"
       }
     ]
   },
@@ -107,6 +118,24 @@ const PACKAGE_CATEGORIES = [
           "Secure Payment Gateway Integration."
         ],
         link: "/services/web-design/ecommerce"
+      }
+    ]
+  },
+  {
+    title: "App Development Packages",
+    key: "app-development",
+    isSingleCard: true,
+    cards: [
+      {
+        title: "App Development",
+        image: "/images/subservices/ios_app_detail.jpg",
+        features: [
+          "Basic, Standard & Premium Plans.",
+          "Android & iOS App Development.",
+          "Play Store & App Store Publishing.",
+          "6 Months Support & Maintenance."
+        ],
+        link: "/services/mobile-app"
       }
     ]
   },

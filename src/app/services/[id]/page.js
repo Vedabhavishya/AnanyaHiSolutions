@@ -181,16 +181,10 @@ const SERVICES_DETAIL_DATA = {
     row2Image: "https://images.unsplash.com/photo-1531498860502-7c67cf02f657?auto=format&fit=crop&w=800&q=80",
     types: [
       { 
-        id: "ios", 
-        title: "iOS Development", 
-        bgImage: "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=800&q=80",
-        desc: "Native iOS app designs leveraging Swift and SwiftUI for buttery-smooth performances on Apple devices." 
-      },
-      { 
-        id: "android", 
-        title: "Android App Development", 
-        bgImage: "https://images.unsplash.com/photo-1551650975-87deedd944c3?auto=format&fit=crop&w=800&q=80",
-        desc: "Custom Kotlin-based Android apps designed for reliability, speed, and maximum device compatibility." 
+        id: "app-dev", 
+        title: "App Development", 
+        bgImage: "/images/subservices/ios_app_detail.jpg",
+        desc: "We engineer fluid, native, and cross-platform mobile apps for iOS and Android using Swift, Kotlin, Flutter, or React Native." 
       }
     ],
     overviewTitle: "Professional Mobile App Development in Hyderabad",
@@ -530,7 +524,12 @@ const PACKAGE_MAPPING = {
   "spa": { category: "Special Packages", plan: "Spa Packages" },
   "seo": { category: "Digital Marketing Packages", plan: "Search Engine Optimization (SEO)" },
   "smm": { category: "Digital Marketing Packages", plan: "Social Media Marketing" },
-  "google-ads": { category: "Digital Marketing Packages", plan: "Google Ads/PPC Ads" }
+  "google-ads": { category: "Digital Marketing Packages", plan: "Google Ads/PPC Ads" },
+  "app-dev": { category: "App Development Packages", plan: "App Development" },
+  "aeo": { category: "Digital Marketing Packages", plan: "AEO, GEO, AIO, SXO" },
+  "geo": { category: "Digital Marketing Packages", plan: "AEO, GEO, AIO, SXO" },
+  "aio": { category: "Digital Marketing Packages", plan: "AEO, GEO, AIO, SXO" },
+  "sxo": { category: "Digital Marketing Packages", plan: "AEO, GEO, AIO, SXO" }
 };
 
 export default function ServiceDetailPage() {

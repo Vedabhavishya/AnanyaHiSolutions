@@ -9,8 +9,8 @@ export function getDbPath() {
 
 // Get Turso client if configured
 function getTursoClient() {
-  const url = process.env.TURSO_DATABASE_URL;
-  const authToken = process.env.TURSO_AUTH_TOKEN;
+  const url = process.env.TURSO_DATABASE_URL?.replace(/^["']|["']$/g, "");
+  const authToken = process.env.TURSO_AUTH_TOKEN?.replace(/^["']|["']$/g, "");
 
   if (url && authToken) {
     return createClient({
@@ -50,8 +50,8 @@ export async function readDb() {
   }
 
   // 2. Try Supabase if configured
-  const supabaseUrl = process.env.SUPABASE_URL;
-  const supabaseKey = process.env.SUPABASE_ANON_KEY;
+  const supabaseUrl = process.env.SUPABASE_URL?.replace(/^["']|["']$/g, "");
+  const supabaseKey = process.env.SUPABASE_ANON_KEY?.replace(/^["']|["']$/g, "");
   if (supabaseUrl && supabaseKey) {
     try {
       const url = `${supabaseUrl.replace(/\/$/, "")}/rest/v1/site_data?key=eq.db_root`;
@@ -113,8 +113,8 @@ export async function writeDb(data) {
   }
 
   // 2. Try Supabase if configured
-  const supabaseUrl = process.env.SUPABASE_URL;
-  const supabaseKey = process.env.SUPABASE_ANON_KEY;
+  const supabaseUrl = process.env.SUPABASE_URL?.replace(/^["']|["']$/g, "");
+  const supabaseKey = process.env.SUPABASE_ANON_KEY?.replace(/^["']|["']$/g, "");
   if (supabaseUrl && supabaseKey) {
     try {
       const baseUrl = supabaseUrl.replace(/\/$/, "");

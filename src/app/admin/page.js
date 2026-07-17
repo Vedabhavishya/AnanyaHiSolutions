@@ -796,7 +796,7 @@ export default function AdminDashboardPage() {
         {loading ? (
           <div className="admin-tab-loading">
             <span className="spinner-dashboard"></span>
-            <p>Syncing local JSON database files...</p>
+            <p>Loading database settings...</p>
           </div>
         ) : (
           <div className="admin-tab-content animate-fade-in">

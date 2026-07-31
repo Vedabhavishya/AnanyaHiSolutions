@@ -2081,11 +2081,15 @@ button {
 }
 
 .marquee-content.rtl {
-  animation: marqueeScrollRTL 35s linear infinite;
+  animation: marqueeScrollRTL 80s linear infinite;
 }
 
 .marquee-content.ltr {
-  animation: marqueeScrollLTR 35s linear infinite;
+  animation: marqueeScrollLTR 80s linear infinite;
+}
+
+.marquee-wrapper:hover .marquee-content {
+  animation-play-state: paused;
 }
 
 .marquee-logo-item {

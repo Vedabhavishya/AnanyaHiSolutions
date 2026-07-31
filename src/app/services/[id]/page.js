@@ -383,7 +383,7 @@ const SERVICES_DETAIL_DATA = {
     heroVisual: "/images/hero/aeo.png",
     subtypesTitle: "",
     subtypesDesc: "",
-    row1Image: "https://images.unsplash.com/photo-1677442136019-21780efad99a?auto=format&fit=crop&w=800&q=80",
+    row1Image: "/images/subservices/aeo-overview.jpg",
     row2Image: "/images/subservices/aeo-capabilities.jpg",
     row2Title: "Maximize AI Search Engine Visibility",
     types: [],

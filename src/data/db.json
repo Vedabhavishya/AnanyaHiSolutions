@@ -1352,6 +1352,126 @@
   },
   "marqueeLogos": [
     {
+      "src": "/client_logos/Adrustar/Adrustar logo.png",
+      "name": "Adrustar",
+      "row": 1
+    },
+    {
+      "src": "/client_logos/AHC logo/AHS Course Logo (1).png",
+      "name": "AHC logo",
+      "row": 1
+    },
+    {
+      "src": "/client_logos/AHS logo/AHS LOGO (1).png",
+      "name": "AHS logo",
+      "row": 1
+    },
+    {
+      "src": "/client_logos/ANNU SPA LOGO/Annu Spa logo.jpg",
+      "name": "ANNU SPA LOGO",
+      "row": 1
+    },
+    {
+      "src": "/client_logos/Anvesh Group Logo/Anvesh Logo.png",
+      "name": "Anvesh Group Logo",
+      "row": 1
+    },
+    {
+      "src": "/client_logos/AR unisex spa/AR unisex spa logo.jpg",
+      "name": "AR unisex spa",
+      "row": 1
+    },
+    {
+      "src": "/client_logos/Ashwaah logo/Ashwaah Logo 1.jpg",
+      "name": "Ashwaah logo",
+      "row": 1
+    },
+    {
+      "src": "/client_logos/AYBIL LOGO/AYBIL Logo 3d 1.jpg",
+      "name": "AYBIL LOGO",
+      "row": 1
+    },
+    {
+      "src": "/client_logos/B3 Communications/B3 Communications logo 1.jpg",
+      "name": "B3 Communications",
+      "row": 1
+    },
+    {
+      "src": "/client_logos/Bhuvana dharmi logo png/bhuvana dhaarmi final logo (1).png",
+      "name": "Bhuvana dharmi logo png",
+      "row": 1
+    },
+    {
+      "src": "/client_logos/Blueridge logo/Blueridge Logo 2.png",
+      "name": "Blueridge logo",
+      "row": 1
+    },
+    {
+      "src": "/client_logos/BRIGHTSTONE LOGO/Brightstone logo 2.jpg",
+      "name": "BRIGHTSTONE LOGO",
+      "row": 1
+    },
+    {
+      "src": "/client_logos/career edu group/WhatsApp Image 2026-02-09 at 12.57.33 (1).jpeg",
+      "name": "career edu group",
+      "row": 1
+    },
+    {
+      "src": "/client_logos/Dhanateja logo/dhanateja logo.png",
+      "name": "Dhanateja logo",
+      "row": 1
+    },
+    {
+      "src": "/client_logos/Dr Rajeshwari logo/dr logo (1).jpg",
+      "name": "Dr Rajeshwari logo",
+      "row": 1
+    },
+    {
+      "src": "/client_logos/Feel good spa/Feel good spa logo png.png",
+      "name": "Feel good spa",
+      "row": 1
+    },
+    {
+      "src": "/client_logos/fermilet logo/fermillet kitchen logo.jpg",
+      "name": "fermilet logo",
+      "row": 1
+    },
+    {
+      "src": "/client_logos/Iconic infra logo/Iconic Logo.png",
+      "name": "Iconic infra logo",
+      "row": 1
+    },
+    {
+      "src": "/client_logos/IGF LOGO/IGF LOGO.png",
+      "name": "IGF LOGO",
+      "row": 1
+    },
+    {
+      "src": "/client_logos/Jai hanuman logo/Jai hanuman logo.png",
+      "name": "Jai hanuman logo",
+      "row": 1
+    },
+    {
+      "src": "/client_logos/Kavitha Logo/kavitha logo.png",
+      "name": "Kavitha Logo",
+      "row": 1
+    },
+    {
+      "src": "/client_logos/kunnath logo/3377_261125_Kunnath House_BS-JPG-06.jpg",
+      "name": "kunnath logo",
+      "row": 1
+    },
+    {
+      "src": "/client_logos/Luxe Glow Logo/Luxe Glow.jpg",
+      "name": "Luxe Glow Logo",
+      "row": 1
+    },
+    {
+      "src": "/client_logos/Luxera logo/Luxera Logo.jpg",
+      "name": "Luxera logo",
+      "row": 1
+    },
+    {
       "src": "/portfolio_images/zuxa_logo.png",
       "name": "Zuxa Beauty & Spa",
       "row": 1
@@ -1360,6 +1480,126 @@
       "src": "/portfolio_images/mad_academy_logo.png",
       "name": "Mad Academy",
       "row": 1
+    },
+    {
+      "src": "/client_logos/Mahadari/Mahadhari logo png.png",
+      "name": "Mahadari",
+      "row": 2
+    },
+    {
+      "src": "/client_logos/maverick spa logo/marverick spa logo png.png",
+      "name": "maverick spa logo",
+      "row": 2
+    },
+    {
+      "src": "/client_logos/Mr Properties/mr Properties Logo.png",
+      "name": "Mr Properties",
+      "row": 2
+    },
+    {
+      "src": "/client_logos/Neom School/Neoam school logo.png",
+      "name": "Neom School",
+      "row": 2
+    },
+    {
+      "src": "/client_logos/nirantara spa logo/557590655_122095991103054567_3669368729955744710_n (1).jpg",
+      "name": "nirantara spa logo",
+      "row": 2
+    },
+    {
+      "src": "/client_logos/nut spices logo/Nutspice co Logo.png",
+      "name": "nut spices logo",
+      "row": 2
+    },
+    {
+      "src": "/client_logos/OAK spa/OAK logo.jpg.jpeg",
+      "name": "OAK spa",
+      "row": 2
+    },
+    {
+      "src": "/client_logos/Ohrange/WhatsApp Image 2026-03-18 at 4.06.09 PM.jpeg",
+      "name": "Ohrange",
+      "row": 2
+    },
+    {
+      "src": "/client_logos/pink spa logo/WhatsApp Image 2025-11-07 at 12.12.31 PM (1).jpeg",
+      "name": "pink spa logo",
+      "row": 2
+    },
+    {
+      "src": "/client_logos/Pragathi yoga logo/Pragathi yoga logo.png",
+      "name": "Pragathi yoga logo",
+      "row": 2
+    },
+    {
+      "src": "/client_logos/Rich Look spa/Rich Look Spa logo.png",
+      "name": "Rich Look spa",
+      "row": 2
+    },
+    {
+      "src": "/client_logos/Shubham shoppee/Shubham shoppee Logo 133.png",
+      "name": "Shubham shoppee",
+      "row": 2
+    },
+    {
+      "src": "/client_logos/Silk touch spa/Logo (3).png",
+      "name": "Silk touch spa",
+      "row": 2
+    },
+    {
+      "src": "/client_logos/Spring board/Spring Board logo.png",
+      "name": "Spring board",
+      "row": 2
+    },
+    {
+      "src": "/client_logos/SR Properties/sr projects-logo.png",
+      "name": "SR Properties",
+      "row": 2
+    },
+    {
+      "src": "/client_logos/Sri vayuputra logo/SRI VAYUPUTRA LOGO 2.png",
+      "name": "Sri vayuputra logo",
+      "row": 2
+    },
+    {
+      "src": "/client_logos/touch & bliss spa logo/touch wellness spa logo (2).png",
+      "name": "touch & bliss spa logo",
+      "row": 2
+    },
+    {
+      "src": "/client_logos/TRB logo/TRB Events Logo (2).jpg",
+      "name": "TRB logo",
+      "row": 2
+    },
+    {
+      "src": "/client_logos/Tripura infra/Tripura infra logo.jpg",
+      "name": "Tripura infra",
+      "row": 2
+    },
+    {
+      "src": "/client_logos/TVYYAA Interiors logo/TVYYAA interiors.png",
+      "name": "TVYYAA Interiors logo",
+      "row": 2
+    },
+    {
+      "src": "/client_logos/Uni planet/A4 size.pdf_25.png",
+      "name": "Uni planet",
+      "row": 2
+    },
+    {
+      "src": "/client_logos/vsoft logo/LOGONEW.png",
+      "name": "vsoft logo",
+      "row": 2
+    },
+    {
+      "src": "/client_logos/world wellness spa logo/unnamed.png",
+      "name": "world wellness spa logo",
+      "row": 2
+    },
+    {
+      "src": "/client_logos/Xtraliving logo/Xtraliving Logo.png",
+      "name": "Xtraliving logo",
+      "row": 2
     },
     {
       "src": "/portfolio_images/qpath_logo.png",

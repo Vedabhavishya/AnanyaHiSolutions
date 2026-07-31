@@ -2097,17 +2097,18 @@ button {
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
+  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+}
+
+.marquee-logo-item:hover {
+  transform: scale(1.22);
 }
 
 .marquee-logo {
   height: 28px;
   width: auto;
   opacity: 1;
-  transition: transform 0.3s ease;
-}
-
-.marquee-logo:hover {
-  transform: scale(1.05);
 }
 
 @keyframes marqueeScrollRTL {

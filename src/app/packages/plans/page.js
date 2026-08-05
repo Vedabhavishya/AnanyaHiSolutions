@@ -90,10 +90,8 @@ function PlansContent() {
   const searchParams = useSearchParams();
   const packageTitle = searchParams.get("package") || "Selected Package";
   
-  // Initialize with local plans data to load instantly, then revalidate from database
-  const [plansData, setPlansData] = useState(() => {
-    return PACKAGE_PLANS_DATA[packageTitle] || [];
-  });
+  // Initialize plansData to empty to show the loading spinner while fetching updated plans from database
+  const [plansData, setPlansData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [whiteLogoSrc, setWhiteLogoSrc] = useState("");
 
@@ -108,11 +106,11 @@ function PlansContent() {
   const [generatingPdfId, setGeneratingPdfId] = useState(null);
   const [proposalCount, setProposalCount] = useState(135);
 
-  // Reset state during render when packageTitle changes to avoid displaying stale data
+  // Reset state during render when packageTitle changes to show loading spinner instantly
   const [prevPackageTitle, setPrevPackageTitle] = useState(packageTitle);
   if (packageTitle !== prevPackageTitle) {
     setPrevPackageTitle(packageTitle);
-    setPlansData(PACKAGE_PLANS_DATA[packageTitle] || []);
+    setPlansData([]);
     setLoading(true);
     setGeneratingPdfId(null);
   }

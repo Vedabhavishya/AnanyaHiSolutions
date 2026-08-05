@@ -41,6 +41,23 @@ export default function ContactPage() {
   // FAQ Accordion State
   const [activeFaq, setActiveFaq] = useState(0);
 
+  const handleInputChange = (field, value) => {
+    setFormData((prev) => {
+      const updated = { ...prev, [field]: value };
+      if (typeof window !== "undefined") {
+        localStorage.setItem("ahs_contact_form_draft", JSON.stringify(updated));
+        if (["name", "email", "phone"].includes(field)) {
+          const savedLead = localStorage.getItem("ahs_lead_info");
+          const leadData = savedLead ? JSON.parse(savedLead) : {};
+          leadData[field] = value;
+          localStorage.setItem("ahs_lead_info", JSON.stringify(leadData));
+        }
+      }
+      return updated;
+    });
+  };
+
+
 
 
 
@@ -68,6 +85,14 @@ export default function ContactPage() {
       }
 
       setFormSubmitted(true);
+      if (typeof window !== "undefined") {
+        localStorage.setItem("ahs_lead_info", JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone
+        }));
+        localStorage.removeItem("ahs_contact_form_draft");
+      }
     } catch (err) {
       setFormError(err.message);
     } finally {
@@ -189,7 +214,7 @@ export default function ContactPage() {
       </section>
 
       {/* 4. Send Us a Message — White Background */}
-      <section className="contact-form-section">
+      <section id="contact-form" className="contact-form-section">
         <div className="container">
           <div className="contact-form-container">
             {!formSubmitted ? (
@@ -209,7 +234,7 @@ export default function ContactPage() {
                         placeholder="e.g. John Doe"
                         className="form-input"
                         value={formData.name}
-                        onChange={(e) => setFormData({...formData, name: e.target.value})}
+                        onChange={(e) => handleInputChange("name", e.target.value)}
                       />
                     </div>
                     <div className="form-group">
@@ -221,7 +246,7 @@ export default function ContactPage() {
                         placeholder="e.g. +91 98765 43210"
                         className="form-input"
                         value={formData.phone}
-                        onChange={(e) => setFormData({...formData, phone: e.target.value})}
+                        onChange={(e) => handleInputChange("phone", e.target.value)}
                       />
                     </div>
                     <div className="form-group form-group-full">
@@ -233,7 +258,7 @@ export default function ContactPage() {
                         placeholder="e.g. name@company.com"
                         className="form-input"
                         value={formData.email}
-                        onChange={(e) => setFormData({...formData, email: e.target.value})}
+                        onChange={(e) => handleInputChange("email", e.target.value)}
                       />
                     </div>
                     <div className="form-group form-group-full">
@@ -244,7 +269,7 @@ export default function ContactPage() {
                         placeholder="Tell us about your project, technology requirements, or business goals..."
                         className="form-textarea"
                         value={formData.message}
-                        onChange={(e) => setFormData({...formData, message: e.target.value})}
+                        onChange={(e) => handleInputChange("message", e.target.value)}
                       />
                     </div>
                   </div>
@@ -376,6 +401,12 @@ export default function ContactPage() {
               <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
                 <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z" />
                 <circle cx="4" cy="4" r="2" />
+              </svg>
+            </a>
+            {/* YouTube */}
+            <a href="#" target="_blank" rel="noopener noreferrer" className="sc-icon-link" aria-label="YouTube">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M23.498 6.163c-.272-.98-1.04-1.748-2.02-2.02C19.716 3.75 12 3.75 12 3.75s-7.718 0-9.478.393c-.98.272-1.748 1.04-2.02 2.02C.1 7.925.1 12 .1 12s0 4.075.393 5.837c.272.98 1.04 1.748 2.02 2.02C4.282 20.25 12 20.25 12 20.25s7.716 0 9.478-.393c.98-.272 1.748-1.04 2.02-2.02.393-1.762.393-5.837.393-5.837s0-4.075-.393-5.837zm-14.73 9.077V8.76l6.4 3.74-6.4 3.74z" />
               </svg>
             </a>
           </div>

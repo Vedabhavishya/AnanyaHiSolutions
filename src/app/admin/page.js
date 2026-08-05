@@ -13,6 +13,14 @@ export default function AdminDashboardPage() {
   const [services, setServices] = useState([]);
   const [jobs, setJobs] = useState([]);
   const [blogs, setBlogs] = useState([]);
+  const [packages, setPackages] = useState([]);
+  const [plans, setPlans] = useState({});
+  const [editingCard, setEditingCard] = useState(null);
+  const [editingPlansCardTitle, setEditingPlansCardTitle] = useState(null);
+  const [tempPlans, setTempPlans] = useState([]);
+  const [newCategoryTitle, setNewCategoryTitle] = useState("");
+  const [banners, setBanners] = useState([]);
+  const [marqueeLogos, setMarqueeLogos] = useState([]);
 
   // Loading & feedback states
   const [loading, setLoading] = useState(true);
@@ -67,25 +75,35 @@ export default function AdminDashboardPage() {
     setLoading(true);
     setError("");
     try {
-      const [resServices, resJobs, resBlogs] = await Promise.all([
+      const [resServices, resJobs, resBlogs, resPackages, resBanners, resLogos] = await Promise.all([
         fetch("/api/services"),
         fetch("/api/jobs"),
         fetch("/api/blogs"),
+        fetch("/api/packages"),
+        fetch("/api/banners"),
+        fetch("/api/marquee-logos"),
       ]);
 
-      if (!resServices.ok || !resJobs.ok || !resBlogs.ok) {
+      if (!resServices.ok || !resJobs.ok || !resBlogs.ok || !resPackages.ok || !resBanners.ok || !resLogos.ok) {
         throw new Error("Failed to load some resources.");
       }
 
-      const [dataServices, dataJobs, dataBlogs] = await Promise.all([
+      const [dataServices, dataJobs, dataBlogs, dataPackages, dataBanners, dataLogos] = await Promise.all([
         resServices.json(),
         resJobs.json(),
         resBlogs.json(),
+        resPackages.json(),
+        resBanners.json(),
+        resLogos.json(),
       ]);
 
       setServices(dataServices);
       setJobs(dataJobs);
       setBlogs(dataBlogs);
+      setPackages(dataPackages.packages || []);
+      setPlans(dataPackages.plans || {});
+      setBanners(dataBanners || []);
+      setMarqueeLogos(dataLogos || []);
     } catch (err) {
       setError("Error syncing with local database. Please refresh.");
       console.error(err);
@@ -144,6 +162,333 @@ export default function AdminDashboardPage() {
   const handleLogout = () => {
     localStorage.removeItem("ananya_admin_token");
     router.push("/admin/login");
+  };
+
+  // Packages Category & Plans Handlers
+  const handleAddCategory = () => {
+    if (!newCategoryTitle.trim()) return;
+    const key = newCategoryTitle.trim().toLowerCase().replace(/\s+/g, "-");
+    
+    if (packages.some(c => c.key === key)) {
+      showToast("Category key already exists", false);
+      return;
+    }
+
+    const newCat = {
+      title: newCategoryTitle.trim(),
+      key: key,
+      cards: []
+    };
+    setPackages([...packages, newCat]);
+    setNewCategoryTitle("");
+  };
+
+  const handleDeleteCategory = (catIdx) => {
+    if (!window.confirm("Are you sure you want to delete this category? This will delete all cards inside it.")) return;
+    const updated = packages.filter((_, idx) => idx !== catIdx);
+    setPackages(updated);
+  };
+
+  const handleAddCardClick = (catIdx) => {
+    setEditingCard({
+      categoryIdx: catIdx,
+      cardIdx: -1,
+      card: {
+        title: "",
+        image: "https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?auto=format&fit=crop&w=800&q=80",
+        features: ["Feature 1", "Feature 2", "Feature 3", "Feature 4"],
+        link: ""
+      }
+    });
+  };
+
+  const handleEditCardClick = (catIdx, cardIdx) => {
+    setEditingCard({
+      categoryIdx: catIdx,
+      cardIdx: cardIdx,
+      card: { ...packages[catIdx].cards[cardIdx] }
+    });
+  };
+
+  const handleDeleteCard = (catIdx, cardIdx) => {
+    if (!window.confirm("Are you sure you want to delete this card? This will also clean up its plans data.")) return;
+    const updatedCats = [...packages];
+    const cardTitle = updatedCats[catIdx].cards[cardIdx].title;
+    updatedCats[catIdx].cards.splice(cardIdx, 1);
+    
+    const updatedPlans = { ...plans };
+    if (updatedPlans[cardTitle]) {
+      delete updatedPlans[cardTitle];
+    }
+    
+    setPackages(updatedCats);
+    setPlans(updatedPlans);
+  };
+
+  const handleSaveCard = async (e) => {
+    e.preventDefault();
+    const { categoryIdx, cardIdx, card } = editingCard;
+    
+    if (!card.title.trim()) {
+      showToast("Card title is required", false);
+      return;
+    }
+
+    const updatedCats = [...packages];
+    const updatedPlans = { ...plans };
+    
+    if (cardIdx === -1) {
+      let duplicate = false;
+      updatedCats.forEach(c => {
+        if (c.cards && c.cards.some(cd => cd.title.toLowerCase() === card.title.toLowerCase())) {
+          duplicate = true;
+        }
+      });
+      if (duplicate) {
+        showToast("Card title already exists in another category", false);
+        return;
+      }
+
+      if (!updatedCats[categoryIdx].cards) {
+        updatedCats[categoryIdx].cards = [];
+      }
+      updatedCats[categoryIdx].cards.push(card);
+      
+      if (!updatedPlans[card.title]) {
+        updatedPlans[card.title] = [
+          { name: "Basic Plan", icon: "🎯", price: "₹9,999", billing: "+ GST/Month", isPopular: false, features: ["Setup Ads Campaign", "Monthly Reports"], note: "" },
+          { name: "Standard Plan", icon: "🚀", price: "₹19,999", billing: "+ GST/Month", isPopular: true, features: ["Everything in Basic", "Advanced Campaign Setup"], note: "" },
+          { name: "Premium Plan", icon: "👑", price: "₹29,999", billing: "+ GST/Month", isPopular: false, features: ["Everything in Standard", "Video Shoots & Management"], note: "" }
+        ];
+      }
+    } else {
+      const oldTitle = updatedCats[categoryIdx].cards[cardIdx].title;
+      updatedCats[categoryIdx].cards[cardIdx] = card;
+      
+      if (oldTitle !== card.title && updatedPlans[oldTitle]) {
+        updatedPlans[card.title] = updatedPlans[oldTitle];
+        delete updatedPlans[oldTitle];
+      }
+    }
+    
+    setPackages(updatedCats);
+    setPlans(updatedPlans);
+    setEditingCard(null);
+
+    // Save directly to the database!
+    setActionLoading(true);
+    try {
+      const response = await fetch("/api/packages", {
+        method: "POST",
+        headers: getAuthHeaders(),
+        body: JSON.stringify({
+          packages: updatedCats,
+          plans: updatedPlans
+        })
+      });
+      const data = await response.json();
+      if (response.ok && data.success) {
+        showToast("Card saved to database successfully!");
+        fetchData();
+      } else {
+        showToast(data.error || "Failed to save card to database", false);
+      }
+    } catch (err) {
+      showToast("Network error saving card", false);
+      console.error(err);
+    } finally {
+      setActionLoading(false);
+    }
+  };
+
+  const handleEditPlansClick = (cardTitle) => {
+    const existingPlans = plans[cardTitle] || [
+      { name: "Basic Plan", icon: "🎯", price: "₹9,999", billing: "+ GST/Month", isPopular: false, features: ["Setup Ads Campaign"], note: "" },
+      { name: "Standard Plan", icon: "🚀", price: "₹19,999", billing: "+ GST/Month", isPopular: true, features: ["Everything in Basic"], note: "" },
+      { name: "Premium Plan", icon: "👑", price: "₹29,999", billing: "+ GST/Month", isPopular: false, features: ["Everything in Standard"], note: "" }
+    ];
+    setEditingPlansCardTitle(cardTitle);
+    setTempPlans(JSON.parse(JSON.stringify(existingPlans)));
+  };
+
+  const handleSavePlansTemp = async (e) => {
+    e.preventDefault();
+    const updatedPlans = { ...plans };
+    updatedPlans[editingPlansCardTitle] = tempPlans;
+    setPlans(updatedPlans);
+    setEditingPlansCardTitle(null);
+
+    // Save directly to the database!
+    setActionLoading(true);
+    try {
+      const response = await fetch("/api/packages", {
+        method: "POST",
+        headers: getAuthHeaders(),
+        body: JSON.stringify({
+          packages: packages,
+          plans: updatedPlans
+        })
+      });
+      const data = await response.json();
+      if (response.ok && data.success) {
+        showToast("Plans saved directly to database successfully!");
+        fetchData();
+      } else {
+        showToast(data.error || "Failed to save plans to database", false);
+      }
+    } catch (err) {
+      showToast("Network error saving plans", false);
+      console.error(err);
+    } finally {
+      setActionLoading(false);
+    }
+  };
+
+  const handleSavePackages = async () => {
+    setActionLoading(true);
+    try {
+      const response = await fetch("/api/packages", {
+        method: "POST",
+        headers: getAuthHeaders(),
+        body: JSON.stringify({
+          packages: packages,
+          plans: plans
+        })
+      });
+      const data = await response.json();
+      if (response.ok && data.success) {
+        showToast("Changes saved successfully!");
+        fetchData();
+      } else {
+        showToast(data.error || "Failed to save packages", false);
+      }
+    } catch (err) {
+      showToast("Network error saving packages", false);
+      console.error(err);
+    } finally {
+      setActionLoading(false);
+    }
+  };
+
+  // Reordering packages and cards
+  const moveCategory = (index, direction) => {
+    const updated = [...packages];
+    const targetIndex = direction === "up" ? index - 1 : index + 1;
+    if (targetIndex < 0 || targetIndex >= updated.length) return;
+    
+    const temp = updated[index];
+    updated[index] = updated[targetIndex];
+    updated[targetIndex] = temp;
+    
+    setPackages(updated);
+  };
+
+  const moveCard = (catIdx, cardIdx, direction) => {
+    const updatedCats = [...packages];
+    const cards = [...updatedCats[catIdx].cards];
+    const targetIndex = direction === "left" ? cardIdx - 1 : cardIdx + 1;
+    if (targetIndex < 0 || targetIndex >= cards.length) return;
+    
+    const temp = cards[cardIdx];
+    cards[cardIdx] = cards[targetIndex];
+    cards[targetIndex] = temp;
+    
+    updatedCats[catIdx].cards = cards;
+    setPackages(updatedCats);
+  };
+
+  // Banner Helpers
+  const handleAddBanner = () => {
+    const newBanner = {
+      title: "",
+      desc: "",
+      path: "/packages",
+      bgImage: "/images/hero/digital-marketing.png",
+      btnText: ""
+    };
+    setBanners([...banners, newBanner]);
+  };
+
+  const handleDeleteBanner = (idx) => {
+    if (!window.confirm("Are you sure you want to delete this slide?")) return;
+    const updated = banners.filter((_, i) => i !== idx);
+    setBanners(updated);
+  };
+
+  const moveBanner = (idx, direction) => {
+    const updated = [...banners];
+    const targetIdx = direction === "up" ? idx - 1 : idx + 1;
+    if (targetIdx < 0 || targetIdx >= updated.length) return;
+    
+    const temp = updated[idx];
+    updated[idx] = updated[targetIdx];
+    updated[targetIdx] = temp;
+    
+    setBanners(updated);
+  };
+
+  const handleSaveBanners = async () => {
+    setActionLoading(true);
+    try {
+      const response = await fetch("/api/banners", {
+        method: "POST",
+        headers: getAuthHeaders(),
+        body: JSON.stringify({ banners })
+      });
+      const data = await response.json();
+      if (response.ok && data.success) {
+        showToast("Changes saved successfully!");
+        fetchData();
+      } else {
+        showToast(data.error || "Failed to save banners", false);
+      }
+    } catch (err) {
+      showToast("Network error saving banners", false);
+      console.error(err);
+    } finally {
+      setActionLoading(false);
+    }
+  };
+
+  // Marquee Logos Helpers
+  const handleAddMarqueeLogo = () => {
+    const newLogo = { src: "/portfolio_images/zuxa_logo.png", name: "", row: 1 };
+    setMarqueeLogos([...marqueeLogos, newLogo]);
+  };
+
+  const handleDeleteMarqueeLogo = (idx) => {
+    if (!window.confirm("Are you sure you want to delete this logo?")) return;
+    const updated = marqueeLogos.filter((_, i) => i !== idx);
+    setMarqueeLogos(updated);
+  };
+
+  const updateMarqueeLogo = (idx, field, value) => {
+    const updated = [...marqueeLogos];
+    updated[idx][field] = value;
+    setMarqueeLogos(updated);
+  };
+
+  const handleSaveMarqueeLogos = async () => {
+    setActionLoading(true);
+    try {
+      const response = await fetch("/api/marquee-logos", {
+        method: "POST",
+        headers: getAuthHeaders(),
+        body: JSON.stringify({ logos: marqueeLogos })
+      });
+      const data = await response.json();
+      if (response.ok && data.success) {
+        showToast("Changes saved successfully!");
+        fetchData();
+      } else {
+        showToast(data.error || "Failed to save marquee logos", false);
+      }
+    } catch (err) {
+      showToast("Network error saving marquee logos", false);
+      console.error(err);
+    } finally {
+      setActionLoading(false);
+    }
   };
 
   // Modal controls
@@ -451,6 +796,24 @@ export default function AdminDashboardPage() {
           >
             <span className="nav-icon">📰</span> News & Blogs
           </button>
+          <button
+            className={`admin-nav-item ${activeTab === "packages" ? "active" : ""}`}
+            onClick={() => setActiveTab("packages")}
+          >
+            <span className="nav-icon">📦</span> Packages & Plans
+          </button>
+          <button
+            className={`admin-nav-item ${activeTab === "banners" ? "active" : ""}`}
+            onClick={() => setActiveTab("banners")}
+          >
+            <span className="nav-icon">🖼️</span> Homepage Banners
+          </button>
+          <button
+            className={`admin-nav-item ${activeTab === "marquee-logos" ? "active" : ""}`}
+            onClick={() => setActiveTab("marquee-logos")}
+          >
+            <span className="nav-icon">✨</span> Scroll Logos
+          </button>
         </nav>
 
         <div className="admin-sidebar-footer">
@@ -483,7 +846,7 @@ export default function AdminDashboardPage() {
         {loading ? (
           <div className="admin-tab-loading">
             <span className="spinner-dashboard"></span>
-            <p>Syncing local JSON database files...</p>
+            <p>Loading database settings...</p>
           </div>
         ) : (
           <div className="admin-tab-content animate-fade-in">
@@ -742,6 +1105,551 @@ export default function AdminDashboardPage() {
                       )}
                     </tbody>
                   </table>
+                </div>
+              </div>
+            )}
+
+            {/* PACKAGES & PLANS TAB */}
+            {activeTab === "packages" && (
+              <div className="dashboard-tab-panel animate-fade-in">
+                <div className="panel-header">
+                  <div className="panel-title-desc">
+                    <h2>Packages & Plans Management</h2>
+                    <p>Manage categories, service cards, and pricing plans dynamically without touching code.</p>
+                  </div>
+                  <button 
+                    className="admin-btn btn-primary-custom"
+                    onClick={handleSavePackages}
+                    disabled={actionLoading}
+                  >
+                    {actionLoading ? "💾 Saving..." : "💾 Save All Changes"}
+                  </button>
+                </div>
+
+                {/* Category List */}
+                <div style={{ display: "flex", flexDirection: "column", gap: "30px", marginTop: "20px" }}>
+                  {packages.map((category, catIdx) => (
+                    <div key={catIdx} style={{
+                      background: "white",
+                      border: "1px solid #e2e8f0",
+                      borderRadius: "12px",
+                      padding: "24px",
+                      boxShadow: "0 1px 3px rgba(0,0,0,0.05)"
+                    }}>
+                       {/* Category Header */}
+                      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", borderBottom: "1px solid #f1f5f9", paddingBottom: "16px", marginBottom: "20px" }}>
+                        <div style={{ display: "flex", alignItems: "center", gap: "12px", width: "60%" }}>
+                          <span style={{ fontSize: "14px", fontWeight: "700", color: "#64748b" }}>Category Title:</span>
+                          <input 
+                            type="text" 
+                            value={category.title} 
+                            onChange={(e) => {
+                              const updated = [...packages];
+                              updated[catIdx].title = e.target.value;
+                              updated[catIdx].key = e.target.value.toLowerCase().replace(/\s+/g, "-");
+                              setPackages(updated);
+                            }}
+                            style={{
+                              padding: "8px 12px",
+                              border: "1px solid #cbd5e1",
+                              borderRadius: "6px",
+                              fontSize: "16px",
+                              fontWeight: "700",
+                              color: "#0f172a",
+                              width: "100%"
+                            }}
+                          />
+                        </div>
+                        <div style={{ display: "flex", gap: "4px" }}>
+                          <button 
+                            disabled={catIdx === 0}
+                            onClick={() => moveCategory(catIdx, "up")}
+                            style={{ padding: "6px 10px", background: catIdx === 0 ? "#cbd5e1" : "#f1f5f9", border: "1px solid #cbd5e1", borderRadius: "6px", cursor: catIdx === 0 ? "not-allowed" : "pointer", fontSize: "12px", color: "#475569" }}
+                            title="Move Category Up"
+                          >
+                            ▲ Up
+                          </button>
+                          <button 
+                            disabled={catIdx === packages.length - 1}
+                            onClick={() => moveCategory(catIdx, "down")}
+                            style={{ padding: "6px 10px", background: catIdx === packages.length - 1 ? "#cbd5e1" : "#f1f5f9", border: "1px solid #cbd5e1", borderRadius: "6px", cursor: catIdx === packages.length - 1 ? "not-allowed" : "pointer", fontSize: "12px", color: "#475569" }}
+                            title="Move Category Down"
+                          >
+                            ▼ Down
+                          </button>
+                        </div>
+                        <div style={{ display: "flex", gap: "10px" }}>
+                          <button 
+                            className="btn-action edit"
+                            onClick={() => handleAddCardClick(catIdx)}
+                          >
+                            ➕ Add Card
+                          </button>
+                          <button 
+                            className="btn-action delete"
+                            onClick={() => handleDeleteCategory(catIdx)}
+                          >
+                            🗑️ Delete Category
+                          </button>
+                        </div>
+                      </div>
+
+                      {/* Cards Grid */}
+                      <div style={{
+                        display: "grid",
+                        gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))",
+                        gap: "20px"
+                      }}>
+                        {category.cards && category.cards.map((card, cardIdx) => (
+                          <div key={cardIdx} style={{
+                            border: "1px solid #f1f5f9",
+                            borderRadius: "8px",
+                            padding: "16px",
+                            background: "#f8fafc",
+                            display: "flex",
+                            flexDirection: "column",
+                            justifyContent: "space-between",
+                            gap: "12px"
+                          }}>
+                            <div>
+                              <div style={{ height: "120px", borderRadius: "6px", backgroundSize: "cover", backgroundPosition: "center", backgroundImage: `url(${card.image})`, marginBottom: "12px" }} />
+                              <h4 style={{ margin: "0 0 4px 0", fontSize: "15px", fontWeight: "700", color: "#0f172a" }}>{card.title}</h4>
+                              <p style={{ margin: "0", fontSize: "11px", color: "#64748b" }}>Link: {card.link || "N/A"}</p>
+                              
+                              <div style={{ marginTop: "10px" }}>
+                                <span style={{ fontSize: "11px", fontWeight: "700", color: "#64748b" }}>Visible Points:</span>
+                                <ul style={{ margin: "4px 0 0 0", paddingLeft: "16px", fontSize: "11px", color: "#475569" }}>
+                                  {card.features && card.features.map((f, fIdx) => (
+                                    <li key={fIdx} style={{ display: "list-item", listStyleType: "disc" }}>{f}</li>
+                                  ))}
+                                </ul>
+                              </div>
+                            </div>
+
+                            <div style={{ display: "flex", flexDirection: "column", gap: "8px", marginTop: "12px" }}>
+                              <div style={{ display: "flex", gap: "8px" }}>
+                                <button 
+                                  style={{ flex: 1, padding: "8px", fontSize: "12px" }}
+                                  className="btn-action edit"
+                                  onClick={() => handleEditCardClick(catIdx, cardIdx)}
+                                >
+                                  ✏️ Edit Card
+                                </button>
+                                <button 
+                                  style={{ padding: "8px", fontSize: "12px" }}
+                                  className="btn-action delete"
+                                  onClick={() => handleDeleteCard(catIdx, cardIdx)}
+                                >
+                                  🗑️ Delete
+                                </button>
+                              </div>
+                              <div style={{ display: "flex", gap: "4px" }}>
+                                <button 
+                                  type="button"
+                                  disabled={cardIdx === 0}
+                                  onClick={() => moveCard(catIdx, cardIdx, "left")}
+                                  style={{ flex: 1, padding: "6px", fontSize: "11px", background: cardIdx === 0 ? "#cbd5e1" : "#f8fafc", border: "1px solid #cbd5e1", borderRadius: "4px", cursor: cardIdx === 0 ? "not-allowed" : "pointer", color: "#475569", fontWeight: "600" }}
+                                  title="Move Card Left"
+                                >
+                                  ◀ Left
+                                </button>
+                                <button 
+                                  type="button"
+                                  disabled={cardIdx === category.cards.length - 1}
+                                  onClick={() => moveCard(catIdx, cardIdx, "right")}
+                                  style={{ flex: 1, padding: "6px", fontSize: "11px", background: cardIdx === category.cards.length - 1 ? "#cbd5e1" : "#f8fafc", border: "1px solid #cbd5e1", borderRadius: "4px", cursor: cardIdx === category.cards.length - 1 ? "not-allowed" : "pointer", color: "#475569", fontWeight: "600" }}
+                                  title="Move Card Right"
+                                >
+                                  Right ▶
+                                </button>
+                              </div>
+                              <button 
+                                style={{ width: "100%", padding: "10px", background: "#2563eb", color: "white", border: "none", borderRadius: "6px", fontWeight: "700", fontSize: "12px", cursor: "pointer" }}
+                                onClick={() => handleEditPlansClick(card.title)}
+                              >
+                                ⚙️ Edit Plans ({plans[card.title] ? plans[card.title].length : 0})
+                              </button>
+                            </div>
+                          </div>
+                        ))}
+                        {(!category.cards || category.cards.length === 0) && (
+                          <div style={{ gridColumn: "1 / -1", textAlign: "center", padding: "30px", color: "#94a3b8", fontSize: "14px" }}>
+                            No cards in this category. Click "+ Add Card" above to create one.
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  ))}
+
+                  {/* Add Category Section */}
+                  <div style={{
+                    background: "#f8fafc",
+                    border: "2px dashed #cbd5e1",
+                    borderRadius: "12px",
+                    padding: "24px",
+                    textAlign: "center",
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "center",
+                    gap: "12px"
+                  }}>
+                    <h3 style={{ margin: "0", fontSize: "16px", color: "#475569" }}>Add New Package Category</h3>
+                    <div style={{ display: "flex", gap: "10px", width: "100%", maxWidth: "480px" }}>
+                      <input 
+                        type="text" 
+                        placeholder="e.g. SEO Packages" 
+                        value={newCategoryTitle}
+                        onChange={(e) => setNewCategoryTitle(e.target.value)}
+                        style={{
+                          flex: 1,
+                          padding: "10px 14px",
+                          border: "1px solid #cbd5e1",
+                          borderRadius: "6px",
+                          fontSize: "14px",
+                          color: "#0f172a"
+                        }}
+                      />
+                      <button 
+                        className="admin-btn btn-primary-custom"
+                        onClick={handleAddCategory}
+                        style={{ padding: "10px 20px" }}
+                      >
+                        ➕ Add Category
+                      </button>
+                    </div>
+                  </div>
+                </div>
+
+                <div style={{ display: "flex", justifyContent: "flex-end", marginTop: "30px" }}>
+                  <button 
+                    className="admin-btn btn-primary-custom"
+                    style={{ padding: "15px 30px", fontSize: "16px" }}
+                    onClick={handleSavePackages}
+                    disabled={actionLoading}
+                  >
+                    {actionLoading ? "💾 Saving Changes..." : "💾 Save All Changes"}
+                  </button>
+                </div>
+              </div>
+            )}
+
+            {/* HOMEPAGE BANNERS TAB */}
+            {activeTab === "banners" && (
+              <div className="dashboard-tab-panel animate-fade-in">
+                <div className="panel-header">
+                  <div className="panel-title-desc">
+                    <h2>Homepage Banners Manager</h2>
+                    <p>Add, edit, or remove the slideshow banners displaying at the starting of your homepage.</p>
+                  </div>
+                  <button 
+                    className="admin-btn btn-primary-custom"
+                    onClick={handleSaveBanners}
+                    disabled={actionLoading}
+                  >
+                    {actionLoading ? "💾 Saving..." : "💾 Save Banners"}
+                  </button>
+                </div>
+
+                <div style={{ display: "flex", flexDirection: "column", gap: "24px", marginTop: "20px" }}>
+                  {banners.map((slide, idx) => (
+                    <div key={idx} style={{
+                      background: "white",
+                      border: "1px solid #e2e8f0",
+                      borderRadius: "12px",
+                      padding: "24px",
+                      boxShadow: "0 1px 3px rgba(0,0,0,0.05)"
+                    }}>
+                      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "20px", borderBottom: "1px solid #f1f5f9", paddingBottom: "12px" }}>
+                        <h3 style={{ margin: 0, fontSize: "16px", color: "#1e293b", fontWeight: "700" }}>
+                          Slide #{idx + 1}
+                        </h3>
+                        <div style={{ display: "flex", gap: "6px" }}>
+                          <button 
+                            type="button"
+                            disabled={idx === 0}
+                            onClick={() => moveBanner(idx, "up")}
+                            style={{ padding: "6px 10px", background: idx === 0 ? "#cbd5e1" : "#f1f5f9", border: "1px solid #cbd5e1", borderRadius: "6px", cursor: idx === 0 ? "not-allowed" : "pointer", fontSize: "12px", color: "#475569" }}
+                          >
+                            ▲ Up
+                          </button>
+                          <button 
+                            type="button"
+                            disabled={idx === banners.length - 1}
+                            onClick={() => moveBanner(idx, "down")}
+                            style={{ padding: "6px 10px", background: idx === banners.length - 1 ? "#cbd5e1" : "#f1f5f9", border: "1px solid #cbd5e1", borderRadius: "6px", cursor: idx === banners.length - 1 ? "not-allowed" : "pointer", fontSize: "12px", color: "#475569" }}
+                          >
+                            ▼ Down
+                          </button>
+                          <button 
+                            type="button"
+                            className="btn-action delete"
+                            onClick={() => handleDeleteBanner(idx)}
+                            style={{ padding: "6px 12px", fontSize: "12px" }}
+                          >
+                            🗑️ Delete Slide
+                          </button>
+                        </div>
+                      </div>
+
+                      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "20px" }}>
+                        <div>
+                          <label style={{ display: "block", fontSize: "12px", fontWeight: "700", color: "#64748b", marginBottom: "6px" }}>Background Image URL/Path</label>
+                          <div style={{ display: "flex", gap: "8px" }}>
+                            <input 
+                              type="text" 
+                              value={slide.bgImage} 
+                              onChange={(e) => {
+                                const updated = [...banners];
+                                updated[idx].bgImage = e.target.value;
+                                setBanners(updated);
+                              }}
+                              placeholder="e.g. /images/hero/digital-marketing.png"
+                              style={{ flex: 1, padding: "10px 14px", border: "1px solid #cbd5e1", borderRadius: "6px", color: "#0f172a", fontSize: "14px" }}
+                            />
+                            <label style={{ padding: "10px 16px", background: "#f1f5f9", border: "1px solid #cbd5e1", borderRadius: "6px", cursor: "pointer", fontSize: "13px", fontWeight: "600", color: "#475569", display: "inline-flex", alignItems: "center" }}>
+                              📁 Upload
+                              <input 
+                                type="file" 
+                                accept="image/*"
+                                onChange={async (e) => {
+                                  const file = e.target.files[0];
+                                  if (!file) return;
+                                  showToast("Uploading image...", true);
+                                  const formData = new FormData();
+                                  formData.append("file", file);
+                                  try {
+                                    const res = await fetch("/api/upload", {
+                                      method: "POST",
+                                      headers: {
+                                        Authorization: `Bearer ${localStorage.getItem("ananya_admin_token")}`
+                                      },
+                                      body: formData
+                                    });
+                                    const data = await res.json();
+                                    if (res.ok && data.url) {
+                                      const updated = [...banners];
+                                      updated[idx].bgImage = data.url;
+                                      setBanners(updated);
+                                      showToast("Image uploaded successfully!", true);
+                                    } else {
+                                      showToast(data.error || "Failed to upload image", false);
+                                    }
+                                  } catch (err) {
+                                    showToast("Network error uploading image", false);
+                                    console.error(err);
+                                  }
+                                }}
+                                style={{ display: "none" }}
+                              />
+                            </label>
+                          </div>
+                        </div>
+
+                        <div>
+                          <label style={{ display: "block", fontSize: "12px", fontWeight: "700", color: "#64748b", marginBottom: "6px" }}>Navigation Link Path (Route)</label>
+                          <input 
+                            type="text" 
+                            value={slide.path} 
+                            onChange={(e) => {
+                              const updated = [...banners];
+                              updated[idx].path = e.target.value;
+                              setBanners(updated);
+                            }}
+                            placeholder="e.g. /packages or /services/digital-marketing/smm"
+                            style={{ width: "100%", padding: "10px 14px", border: "1px solid #cbd5e1", borderRadius: "6px", color: "#0f172a", fontSize: "14px" }}
+                          />
+                        </div>
+                      </div>
+
+                      <div style={{ marginTop: "15px", border: "1px solid #e2e8f0", borderRadius: "8px", overflow: "hidden", height: "140px", background: "#f8fafc", display: "flex", alignItems: "center", justifyContent: "center", position: "relative" }}>
+                        {slide.bgImage ? (
+                          <div style={{ width: "100%", height: "100%", backgroundSize: "cover", backgroundPosition: "center", backgroundImage: `url(${slide.bgImage})` }} />
+                        ) : (
+                          <span style={{ fontSize: "13px", color: "#94a3b8", fontWeight: "650" }}>No background preview</span>
+                        )}
+                      </div>
+                    </div>
+                  ))}
+
+                  {banners.length === 0 && (
+                    <div style={{ background: "white", padding: "40px", borderRadius: "12px", textAlign: "center", border: "1px solid #e2e8f0", color: "#64748b" }}>
+                      No homepage banners found. Click "+ Add Banner Slide" below to create one.
+                    </div>
+                  )}
+
+                  <button 
+                    type="button"
+                    onClick={handleAddBanner}
+                    style={{ padding: "16px", background: "white", border: "2px dashed #cbd5e1", borderRadius: "12px", color: "#475569", fontWeight: "700", cursor: "pointer", fontSize: "14px" }}
+                  >
+                    ➕ Add Banner Slide
+                  </button>
+                </div>
+
+                <div style={{ display: "flex", justifyContent: "flex-end", marginTop: "30px" }}>
+                  <button 
+                    className="admin-btn btn-primary-custom"
+                    style={{ padding: "15px 30px", fontSize: "16px" }}
+                    onClick={handleSaveBanners}
+                    disabled={actionLoading}
+                  >
+                    {actionLoading ? "💾 Saving Banners..." : "💾 Save Banners"}
+                  </button>
+                </div>
+              </div>
+            )}
+
+            {activeTab === "marquee-logos" && (
+              <div className="dashboard-tab-panel animate-fade-in">
+                <div className="panel-header">
+                  <div className="panel-title-desc">
+                    <h2>Scrolling Logos Manager</h2>
+                    <p>Add, edit, or remove the client/portfolio logos that scroll above the portfolio section on the About page.</p>
+                  </div>
+                  <button 
+                    className="admin-btn btn-primary-custom"
+                    onClick={handleSaveMarqueeLogos}
+                    disabled={actionLoading}
+                  >
+                    {actionLoading ? "💾 Saving..." : "💾 Save Changes"}
+                  </button>
+                </div>
+
+                <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))", gap: "20px", marginTop: "20px" }}>
+                  {marqueeLogos.map((logo, idx) => (
+                    <div key={idx} style={{
+                      background: "white",
+                      border: "1px solid #e2e8f0",
+                      borderRadius: "12px",
+                      padding: "20px",
+                      boxShadow: "0 1px 3px rgba(0,0,0,0.05)",
+                      display: "flex",
+                      flexDirection: "column",
+                      gap: "12px",
+                      position: "relative"
+                    }}>
+                      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                        <span style={{ fontSize: "12px", fontWeight: "800", color: "#64748b" }}>LOGO #{idx + 1}</span>
+                        <button 
+                          type="button"
+                          className="btn-action delete"
+                          onClick={() => handleDeleteMarqueeLogo(idx)}
+                          style={{ padding: "4px 8px", fontSize: "11px" }}
+                        >
+                          🗑️ Delete
+                        </button>
+                      </div>
+
+                      <div>
+                        <label style={{ display: "block", fontSize: "11px", fontWeight: "700", color: "#64748b", marginBottom: "4px" }}>Logo Image URL/Path</label>
+                        <div style={{ display: "flex", gap: "6px" }}>
+                          <input 
+                            type="text" 
+                            value={logo.src} 
+                            onChange={(e) => updateMarqueeLogo(idx, "src", e.target.value)}
+                            placeholder="/portfolio_images/logo.png"
+                            style={{ flex: 1, padding: "8px 10px", border: "1px solid #cbd5e1", borderRadius: "6px", color: "#0f172a", fontSize: "13px" }}
+                          />
+                          <label style={{ padding: "8px 12px", background: "#f1f5f9", border: "1px solid #cbd5e1", borderRadius: "6px", cursor: "pointer", fontSize: "12px", fontWeight: "600", color: "#475569", display: "inline-flex", alignItems: "center" }}>
+                            📁 Upload
+                            <input 
+                              type="file" 
+                              accept="image/*"
+                              onChange={async (e) => {
+                                const file = e.target.files[0];
+                                if (!file) return;
+                                showToast("Uploading logo...", true);
+                                const formData = new FormData();
+                                formData.append("file", file);
+                                try {
+                                  const res = await fetch("/api/upload", {
+                                    method: "POST",
+                                    headers: {
+                                      Authorization: `Bearer ${localStorage.getItem("ananya_admin_token")}`
+                                    },
+                                    body: formData
+                                  });
+                                  const data = await res.json();
+                                  if (res.ok && data.url) {
+                                    updateMarqueeLogo(idx, "src", data.url);
+                                    showToast("Logo uploaded successfully!", true);
+                                  } else {
+                                    showToast(data.error || "Failed to upload image", false);
+                                  }
+                                } catch (err) {
+                                  showToast("Network error uploading image", false);
+                                  console.error(err);
+                                }
+                              }}
+                              style={{ display: "none" }}
+                            />
+                          </label>
+                        </div>
+                      </div>
+
+                      <div>
+                        <label style={{ display: "block", fontSize: "11px", fontWeight: "700", color: "#64748b", marginBottom: "4px" }}>Company/Client Name</label>
+                        <input 
+                          type="text" 
+                          value={logo.name} 
+                          onChange={(e) => updateMarqueeLogo(idx, "name", e.target.value)}
+                          placeholder="e.g. Zuxa Beauty & Spa"
+                          style={{ width: "100%", padding: "8px 10px", border: "1px solid #cbd5e1", borderRadius: "6px", color: "#0f172a", fontSize: "13px" }}
+                        />
+                      </div>
+
+                      <div>
+                        <label style={{ display: "block", fontSize: "11px", fontWeight: "700", color: "#64748b", marginBottom: "4px" }}>Display Row / Scroll Line</label>
+                        <select 
+                          value={logo.row || 1} 
+                          onChange={(e) => updateMarqueeLogo(idx, "row", parseInt(e.target.value, 10))}
+                          style={{ width: "100%", padding: "8px 10px", border: "1px solid #cbd5e1", borderRadius: "6px", color: "#0f172a", fontSize: "13px", background: "#ffffff" }}
+                        >
+                          <option value={1}>Scroll Line 1 (Right to Left)</option>
+                          <option value={2}>Scroll Line 2 (Left to Right)</option>
+                        </select>
+                      </div>
+
+                      <div style={{ border: "1px solid #e2e8f0", borderRadius: "8px", overflow: "hidden", height: "80px", background: "#f8fafc", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                        {logo.src ? (
+                          <img src={logo.src} alt={logo.name || "Logo preview"} style={{ height: "40px", width: "auto", objectFit: "contain" }} />
+                        ) : (
+                          <span style={{ fontSize: "11px", color: "#94a3b8", fontWeight: "650" }}>No Logo Preview</span>
+                        )}
+                      </div>
+                    </div>
+                  ))}
+
+                  {/* Add Logo button */}
+                  <button 
+                    type="button"
+                    onClick={handleAddMarqueeLogo}
+                    style={{ border: "2px dashed #cbd5e1", borderRadius: "12px", background: "#f8fafc", color: "#475569", fontWeight: "700", cursor: "pointer", fontSize: "14px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: "10px", minHeight: "260px" }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.borderColor = "#0f75bc";
+                      e.currentTarget.style.color = "#0f75bc";
+                      e.currentTarget.style.background = "#ffffff";
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.borderColor = "#cbd5e1";
+                      e.currentTarget.style.color = "#475569";
+                      e.currentTarget.style.background = "#f8fafc";
+                    }}
+                  >
+                    <span style={{ fontSize: "24px" }}>➕</span>
+                    <span>Add New Logo</span>
+                  </button>
+                </div>
+
+                <div style={{ display: "flex", justifyContent: "flex-end", marginTop: "30px" }}>
+                  <button 
+                    className="admin-btn btn-primary-custom"
+                    style={{ padding: "15px 30px", fontSize: "16px" }}
+                    onClick={handleSaveMarqueeLogos}
+                    disabled={actionLoading}
+                  >
+                    {actionLoading ? "💾 Saving Changes..." : "💾 Save Changes"}
+                  </button>
                 </div>
               </div>
             )}
@@ -1076,6 +1984,314 @@ export default function AdminDashboardPage() {
                     "💾 Save to Database"
                   )}
                 </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
+
+      {/* 4. Edit Card Modal */}
+      {editingCard && (
+        <div className="admin-modal-overlay" style={{ display: "flex", alignItems: "center", justifyContent: "center", position: "fixed", inset: 0, background: "rgba(3,24,37,0.7)", backdropFilter: "blur(8px)", zIndex: 9999, padding: "20px" }}>
+          <div className="admin-modal-card glassmorphic-modal animate-slide-up" style={{ maxWidth: "560px", width: "100%", background: "white", borderRadius: "12px", padding: "24px" }}>
+            <div className="modal-header" style={{ display: "flex", justifyContent: "space-between", alignItems: "center", borderBottom: "1px solid #e2e8f0", paddingBottom: "12px" }}>
+              <h3 style={{ margin: 0, fontSize: "18px", fontWeight: "700" }}>
+                {editingCard.cardIdx === -1 ? "➕ Add New Card" : "✏️ Edit Card"}
+              </h3>
+              <button onClick={() => setEditingCard(null)} style={{ background: "none", border: "none", fontSize: "18px", cursor: "pointer", color: "#64748b" }}>✕</button>
+            </div>
+            <form onSubmit={handleSaveCard} style={{ display: "flex", flexDirection: "column", gap: "16px", padding: "20px 0" }}>
+              <div>
+                <label style={{ display: "block", fontSize: "12px", fontWeight: "700", color: "#475569", marginBottom: "6px" }}>Card Title</label>
+                <input 
+                  type="text" 
+                  required 
+                  value={editingCard.card.title} 
+                  onChange={(e) => setEditingCard({ ...editingCard, card: { ...editingCard.card, title: e.target.value } })}
+                  placeholder="e.g. Social Media Marketing" 
+                  style={{ width: "100%", padding: "10px 14px", border: "1px solid #cbd5e1", borderRadius: "6px", color: "#0f172a" }} 
+                />
+              </div>
+
+              <div>
+                <label style={{ display: "block", fontSize: "12px", fontWeight: "700", color: "#475569", marginBottom: "6px" }}>Image URL</label>
+                <div style={{ display: "flex", gap: "8px" }}>
+                  <input 
+                    type="text" 
+                    required 
+                    value={editingCard.card.image} 
+                    onChange={(e) => setEditingCard({ ...editingCard, card: { ...editingCard.card, image: e.target.value } })}
+                    placeholder="e.g. https://images.unsplash.com/..." 
+                    style={{ flex: 1, padding: "10px 14px", border: "1px solid #cbd5e1", borderRadius: "6px", color: "#0f172a" }} 
+                  />
+                  <label style={{ padding: "10px 16px", background: "#f1f5f9", border: "1px solid #cbd5e1", borderRadius: "6px", cursor: "pointer", fontSize: "13px", fontWeight: "600", color: "#475569", display: "inline-flex", alignItems: "center" }}>
+                    📁 Upload
+                    <input 
+                      type="file" 
+                      accept="image/*"
+                      onChange={async (e) => {
+                        const file = e.target.files[0];
+                        if (!file) return;
+                        showToast("Uploading image...", true);
+                        const formData = new FormData();
+                        formData.append("file", file);
+                        try {
+                          const res = await fetch("/api/upload", {
+                            method: "POST",
+                            headers: {
+                              Authorization: `Bearer ${localStorage.getItem("ananya_admin_token")}`
+                            },
+                            body: formData
+                          });
+                          const data = await res.json();
+                          if (res.ok && data.url) {
+                            setEditingCard({ ...editingCard, card: { ...editingCard.card, image: data.url } });
+                            showToast("Image uploaded successfully!", true);
+                          } else {
+                            showToast(data.error || "Failed to upload image", false);
+                          }
+                        } catch (err) {
+                          showToast("Network error uploading image", false);
+                          console.error(err);
+                        }
+                      }}
+                      style={{ display: "none" }}
+                    />
+                  </label>
+                </div>
+              </div>
+
+              <div>
+                <label style={{ display: "block", fontSize: "12px", fontWeight: "700", color: "#475569", marginBottom: "6px" }}>Frontend Route Link</label>
+                <input 
+                  type="text" 
+                  required 
+                  value={editingCard.card.link} 
+                  onChange={(e) => setEditingCard({ ...editingCard, card: { ...editingCard.card, link: e.target.value } })}
+                  placeholder="e.g. /services/digital-marketing/smm" 
+                  style={{ width: "100%", padding: "10px 14px", border: "1px solid #cbd5e1", borderRadius: "6px", color: "#0f172a" }} 
+                />
+              </div>
+
+              <div>
+                <label style={{ display: "block", fontSize: "12px", fontWeight: "700", color: "#475569", marginBottom: "6px" }}>Visible Points (4 items, one per line)</label>
+                <textarea 
+                  rows={4} 
+                  required
+                  value={editingCard.card.features ? editingCard.card.features.join("\n") : ""} 
+                  onChange={(e) => setEditingCard({ ...editingCard, card: { ...editingCard.card, features: e.target.value.split("\n") } })}
+                  placeholder="Point 1&#10;Point 2&#10;Point 3&#10;Point 4" 
+                  style={{ width: "100%", padding: "10px 14px", border: "1px solid #cbd5e1", borderRadius: "6px", fontFamily: "monospace", color: "#0f172a" }} 
+                />
+              </div>
+
+              <div style={{ display: "flex", gap: "12px", marginTop: "12px" }}>
+                <button type="button" className="admin-btn btn-secondary-custom" style={{ flex: 1 }} onClick={() => setEditingCard(null)}>
+                  Cancel
+                </button>
+                 <button type="submit" className="admin-btn btn-primary-custom" style={{ flex: 1 }}>
+                  Save Card
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
+
+      {/* 5. Edit Plans Modal */}
+      {editingPlansCardTitle && (
+        <div className="admin-modal-overlay" style={{ display: "flex", alignItems: "center", justifyContent: "center", position: "fixed", inset: 0, background: "rgba(3,24,37,0.7)", backdropFilter: "blur(8px)", zIndex: 9999, padding: "20px" }}>
+          <div className="admin-modal-card glassmorphic-modal animate-slide-up" style={{ maxWidth: "1000px", width: "95%", background: "white", borderRadius: "12px", padding: "24px" }}>
+            <div className="modal-header" style={{ display: "flex", justifyContent: "space-between", alignItems: "center", borderBottom: "1px solid #e2e8f0", paddingBottom: "12px" }}>
+              <h3 style={{ margin: 0, fontSize: "18px", fontWeight: "700" }}>
+                ⚙️ Manage Plans for: {editingPlansCardTitle}
+              </h3>
+              <button onClick={() => setEditingPlansCardTitle(null)} style={{ background: "none", border: "none", fontSize: "18px", cursor: "pointer", color: "#64748b" }}>✕</button>
+            </div>
+            <form onSubmit={handleSavePlansTemp} style={{ padding: "10px 0" }}>
+              <div style={{
+                display: "grid",
+                gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
+                gap: "20px",
+                maxHeight: "60vh",
+                overflowY: "auto",
+                paddingRight: "10px",
+                marginBottom: "20px",
+                paddingTop: "10px"
+              }}>
+                {tempPlans.map((plan, pIdx) => (
+                  <div key={pIdx} style={{
+                    border: "1px solid #e2e8f0",
+                    borderRadius: "8px",
+                    padding: "20px",
+                    background: plan.isPopular ? "#eff6ff" : "white",
+                    borderColor: plan.isPopular ? "#bfdbfe" : "#e2e8f0"
+                  }}>
+                    <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", marginBottom: "12px", gap: "10px" }}>
+                      <div style={{ flex: 1 }}>
+                        <label style={{ display: "block", fontSize: "11px", fontWeight: "700", color: "#64748b", marginBottom: "4px" }}>Plan Name</label>
+                        <input 
+                          type="text" 
+                          required
+                          value={plan.name} 
+                          onChange={(e) => {
+                            const updated = [...tempPlans];
+                            updated[pIdx].name = e.target.value;
+                            setTempPlans(updated);
+                          }}
+                          placeholder="e.g. Basic Plan"
+                          style={{ width: "100%", padding: "6px 10px", border: "1px solid #cbd5e1", borderRadius: "6px", fontWeight: "700", color: "#1e3a8a", fontSize: "13px" }}
+                        />
+                      </div>
+                      <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-end", gap: "6px" }}>
+                        {tempPlans.length > 1 && (
+                          <button
+                            type="button"
+                            onClick={() => {
+                              const updated = tempPlans.filter((_, idx) => idx !== pIdx);
+                              setTempPlans(updated);
+                            }}
+                            style={{
+                              background: "#fef2f2",
+                              border: "1px solid #fee2e2",
+                              color: "#ef4444",
+                              fontSize: "11px",
+                              fontWeight: "700",
+                              cursor: "pointer",
+                              padding: "4px 8px",
+                              borderRadius: "4px"
+                            }}
+                          >
+                            ✕ Delete
+                          </button>
+                        )}
+                        <label style={{ display: "flex", alignItems: "center", gap: "6px", fontSize: "12px", cursor: "pointer", fontWeight: "600", color: "#475569" }}>
+                          <input 
+                            type="checkbox" 
+                            checked={plan.isPopular} 
+                            onChange={(e) => {
+                              const updated = [...tempPlans];
+                              updated[pIdx].isPopular = e.target.checked;
+                              setTempPlans(updated);
+                            }}
+                          />
+                          Popular
+                        </label>
+                      </div>
+                    </div>
+
+                    <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
+                      <div style={{ display: "flex", gap: "10px" }}>
+                        <div style={{ width: "30%" }}>
+                          <label style={{ display: "block", fontSize: "11px", fontWeight: "700", color: "#64748b", marginBottom: "4px" }}>Icon</label>
+                          <input 
+                            type="text" 
+                            value={plan.icon || ""} 
+                            onChange={(e) => {
+                              const updated = [...tempPlans];
+                              updated[pIdx].icon = e.target.value;
+                              setTempPlans(updated);
+                            }}
+                            placeholder="🎯"
+                            style={{ width: "100%", padding: "8px 10px", border: "1px solid #cbd5e1", borderRadius: "6px", color: "#0f172a" }}
+                          />
+                        </div>
+                        <div style={{ flex: 1 }}>
+                          <label style={{ display: "block", fontSize: "11px", fontWeight: "700", color: "#64748b", marginBottom: "4px" }}>Price String</label>
+                          <input 
+                            type="text" 
+                            required
+                            value={plan.price} 
+                            onChange={(e) => {
+                              const updated = [...tempPlans];
+                              updated[pIdx].price = e.target.value;
+                              setTempPlans(updated);
+                            }}
+                            placeholder="e.g. ₹16,999"
+                            style={{ width: "100%", padding: "8px 10px", border: "1px solid #cbd5e1", borderRadius: "6px", color: "#0f172a" }}
+                          />
+                        </div>
+                      </div>
+
+                      <div>
+                        <label style={{ display: "block", fontSize: "11px", fontWeight: "700", color: "#64748b", marginBottom: "4px" }}>Billing Suffix</label>
+                        <input 
+                          type="text" 
+                          required
+                          value={plan.billing} 
+                          onChange={(e) => {
+                            const updated = [...tempPlans];
+                            updated[pIdx].billing = e.target.value;
+                            setTempPlans(updated);
+                          }}
+                          placeholder="e.g. + GST/Month"
+                          style={{ width: "100%", padding: "8px 10px", border: "1px solid #cbd5e1", borderRadius: "6px", color: "#0f172a" }}
+                        />
+                      </div>
+
+                      <div>
+                        <label style={{ display: "block", fontSize: "11px", fontWeight: "700", color: "#64748b", marginBottom: "4px" }}>Plan Features (one per line)</label>
+                        <textarea 
+                          rows={6} 
+                          required
+                          value={plan.features ? plan.features.join("\n") : ""} 
+                          onChange={(e) => {
+                            const updated = [...tempPlans];
+                            updated[pIdx].features = e.target.value.split("\n").map(f => f.trim()).filter(f => f.length > 0);
+                            setTempPlans(updated);
+                          }}
+                          placeholder="Feature 1&#10;Feature 2&#10;Feature 3" 
+                          style={{ width: "100%", padding: "8px 10px", border: "1px solid #cbd5e1", borderRadius: "6px", fontFamily: "monospace", fontSize: "11px", color: "#0f172a" }}
+                        />
+                      </div>
+
+                      <div>
+                        <label style={{ display: "block", fontSize: "11px", fontWeight: "700", color: "#64748b", marginBottom: "4px" }}>Note Box Warning Text</label>
+                        <input 
+                          type="text" 
+                          value={plan.note || ""} 
+                          onChange={(e) => {
+                            const updated = [...tempPlans];
+                            updated[pIdx].note = e.target.value;
+                            setTempPlans(updated);
+                          }}
+                          placeholder="e.g. Campaign charge not included."
+                          style={{ width: "100%", padding: "8px 10px", border: "1px solid #cbd5e1", borderRadius: "6px", color: "#0f172a" }}
+                        />
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              <div style={{ display: "flex", gap: "12px", justifyContent: "space-between", alignItems: "center" }}>
+                <button 
+                  type="button" 
+                  className="admin-btn btn-primary-custom" 
+                  style={{ padding: "10px 20px", display: "flex", alignItems: "center", gap: "6px", background: "#10b981", borderColor: "#10b981" }}
+                  onClick={() => {
+                    const newPlan = { 
+                      name: `Plan ${tempPlans.length + 1}`, 
+                      icon: "🎯", 
+                      price: "₹9,999", 
+                      billing: "+ GST/Month", 
+                      isPopular: false, 
+                      features: ["Setup Ads Campaign"], 
+                      note: "" 
+                    };
+                    setTempPlans([...tempPlans, newPlan]);
+                  }}
+                >
+                  ➕ Add New Plan
+                </button>
+                <div style={{ display: "flex", gap: "12px" }}>
+                  <button type="button" className="admin-btn btn-secondary-custom" style={{ padding: "10px 20px" }} onClick={() => setEditingPlansCardTitle(null)}>
+                    Cancel
+                  </button>
+                   <button type="submit" className="admin-btn btn-primary-custom" style={{ padding: "10px 25px" }}>
+                    Save Plans
+                  </button>
+                </div>
               </div>
             </form>
           </div>

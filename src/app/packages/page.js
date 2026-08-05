@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import Header from "../components/Header";
 
@@ -57,6 +57,28 @@ const PACKAGE_CATEGORIES = [
           "High-Quality Backlink Building."
         ],
         link: "/services/digital-marketing/seo"
+      },
+      {
+        title: "YouTube Production",
+        image: "/images/hero/youtube-seo.png",
+        features: [
+          "Basic, Standard & Premium Plans.",
+          "Channel Setup & Optimisation.",
+          "Cinematic 4K Video Shoots.",
+          "YouTube SEO & Audience Building."
+        ],
+        link: "/services/youtube-seo"
+      },
+      {
+        title: "AEO, GEO, AIO, SXO",
+        image: "/images/hero/aio.jpg",
+        features: [
+          "Complete Website SEO & Audit.",
+          "Answer Engine & AI Visibility.",
+          "Search Experience Optimisation (SXO).",
+          "Social Profile & Brand Mentions."
+        ],
+        link: "/services/aeo"
       }
     ]
   },
@@ -66,7 +88,7 @@ const PACKAGE_CATEGORIES = [
     cards: [
       {
         title: "Static Website Design",
-        image: "https://images.unsplash.com/photo-1541462608143-67571c6738dd?auto=format&fit=crop&w=800&q=80",
+        image: "/images/static_website_mockup.jpg",
         features: [
           "Delivery Within 3 Working Days.",
           "FREE Web Hosting & SSL for 1 year.",
@@ -100,6 +122,24 @@ const PACKAGE_CATEGORIES = [
     ]
   },
   {
+    title: "App Development Packages",
+    key: "app-development",
+    isSingleCard: true,
+    cards: [
+      {
+        title: "App Development",
+        image: "/images/subservices/ios_app_detail.jpg",
+        features: [
+          "Basic, Standard & Premium Plans.",
+          "Android & iOS App Development.",
+          "Play Store & App Store Publishing.",
+          "6 Months Support & Maintenance."
+        ],
+        link: "/services/mobile-app"
+      }
+    ]
+  },
+  {
     title: "Special Packages",
     key: "special",
     isSingleCard: true,
@@ -121,10 +161,28 @@ const PACKAGE_CATEGORIES = [
 
 export default function PackagesPage() {
   const router = require("next/navigation").useRouter();
+  const [categories, setCategories] = useState(PACKAGE_CATEGORIES);
   const [modalOpen, setModalOpen] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [selectedPackage, setSelectedPackage] = useState({ category: "", plan: "" });
   const [formData, setFormData] = useState({ name: "", email: "", phone: "", company: "" });
+
+  useEffect(() => {
+    const fetchPackages = async () => {
+      try {
+        const res = await fetch("/api/packages");
+        if (res.ok) {
+          const data = await res.json();
+          if (data.packages) {
+            setCategories(data.packages);
+          }
+        }
+      } catch (err) {
+        console.error("Error fetching packages:", err);
+      }
+    };
+    fetchPackages();
+  }, []);
 
   const openModal = (category, plan) => {
     setSelectedPackage({ category, plan });
@@ -134,8 +192,15 @@ export default function PackagesPage() {
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
+    setFormData((prev) => {
+      const updated = { ...prev, [name]: value };
+      if (typeof window !== "undefined") {
+        localStorage.setItem("ahs_lead_info", JSON.stringify(updated));
+      }
+      return updated;
+    });
   };
+
 
   const handleUnlockSubmit = async (e) => {
     e.preventDefault();
@@ -160,7 +225,44 @@ export default function PackagesPage() {
       const result = await response.json();
       if (!response.ok) throw new Error(result.error || "Failed to unlock.");
       
-      router.push(`/packages/plans?package=${encodeURIComponent(selectedPackage.plan)}`);
+      if (typeof window !== "undefined") {
+        localStorage.setItem("ahs_lead_info", JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          company: formData.company
+        }));
+
+        // Log package unlock
+        try {
+          const existing = localStorage.getItem("ahs_actions_history");
+          const list = existing ? JSON.parse(existing) : [];
+          list.push({
+            type: "UNLOCK_PACKAGE",
+            timestamp: new Date().toISOString(),
+            details: {
+              name: formData.name,
+              email: formData.email,
+              phone: formData.phone,
+              company: formData.company,
+              packageTitle: selectedPackage.category,
+              plan: selectedPackage.plan
+            }
+          });
+          localStorage.setItem("ahs_actions_history", JSON.stringify(list));
+        } catch (e) {
+          console.error("Error logging package unlock to localStorage:", e);
+        }
+      }
+      
+      const queryParams = new URLSearchParams({
+        package: selectedPackage.plan,
+        name: formData.name,
+        email: formData.email,
+        phone: formData.phone,
+        company: formData.company || ""
+      });
+      router.push(`/packages/plans?${queryParams.toString()}`);
     } catch (err) {
       alert(err.message);
     } finally {
@@ -190,21 +292,21 @@ export default function PackagesPage() {
       </section>
 
       {/* 3. Package Sections */}
-      {PACKAGE_CATEGORIES.map((category, index) => {
+      {categories.map((category, index) => {
         // Alternate background colors (Light Gray -> White -> Light Gray)
         const isAltBg = index % 2 === 0;
         const bgClass = isAltBg ? "section section-bg-alt" : "section";
         const bgStyle = isAltBg ? {} : { backgroundColor: "var(--white)" };
 
         return (
-          <section key={category.key} className={bgClass} style={bgStyle}>
+          <section key={category.key} id={category.key} className={bgClass} style={bgStyle}>
             <div className="container">
               <div className="package-category-header">
                 <h2 className="package-category-title">{category.title}</h2>
                 <div className="package-category-underline"></div>
               </div>
 
-              <div className={category.isSingleCard ? "packages-grid-single" : "packages-grid"}>
+              <div className={(category.isSingleCard || (category.cards && category.cards.length === 1)) ? "packages-grid-single" : "packages-grid"}>
                 {category.cards.map((card, cIdx) => (
                   <div key={cIdx} className="package-card-premium">
                     {/* Default Background Image */}
@@ -359,6 +461,40 @@ export default function PackagesPage() {
           </div>
         </div>
       )}
+      {/* Sticky floating Combo Button */}
+      <div style={{ position: "fixed", bottom: "30px", right: "30px", zIndex: 999 }}>
+        <Link href="/packages/compare" style={{ textDecoration: "none" }}>
+          <button 
+            style={{ 
+              display: "flex", 
+              alignItems: "center", 
+              gap: "10px", 
+              padding: "16px 24px", 
+              background: "#0f75bc", 
+              border: "none", 
+              borderRadius: "50px", 
+              color: "#ffffff", 
+              fontWeight: "800", 
+              fontSize: "0.95rem", 
+              boxShadow: "0 10px 25px -5px rgba(15, 117, 188, 0.4)", 
+              cursor: "pointer", 
+              transition: "all 0.3s cubic-bezier(0.16, 1, 0.3, 1)",
+              backdropFilter: "blur(4px)"
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.transform = "translateY(-4px) scale(1.05)";
+              e.currentTarget.style.boxShadow = "0 20px 35px -5px rgba(15, 117, 188, 0.5)";
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.transform = "translateY(0) scale(1)";
+              e.currentTarget.style.boxShadow = "0 10px 25px -5px rgba(15, 117, 188, 0.4)";
+            }}
+          >
+            <span style={{ fontSize: "1.2rem" }}>📦</span>
+            <span>Combo Plans</span>
+          </button>
+        </Link>
+      </div>
     </div>
   );
 }

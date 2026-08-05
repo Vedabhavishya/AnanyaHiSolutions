@@ -23,6 +23,33 @@ function Logo({ className = "", light = false }) {
   );
 }
 
+// Portfolio Showcase Constants
+const COLUMN_1_IMAGES = Array.from({ length: 12 }, (_, i) => `/portfolio_images/spa_page_${i + 1}.png`);
+const COLUMN_2_IMAGES = Array.from({ length: 5 }, (_, i) => `/portfolio_images/mad_academy_page_${i + 1}.png`);
+const COLUMN_3_IMAGES = Array.from({ length: 7 }, (_, i) => `/portfolio_images/qpath_page_${i + 1}.png`);
+const COLUMN_4_IMAGES = Array.from({ length: 4 }, (_, i) => `/portfolio_images/shanmukha_gold_portfolio_page_${i + 1}.png`);
+
+const padLogosArray = (logosList, minItems = 12) => {
+  if (!logosList || logosList.length === 0) return [];
+  let padded = [...logosList];
+  while (padded.length < minItems) {
+    padded = [...padded, ...logosList];
+  }
+  return padded;
+};
+
+const MARQUEE_LOGOS = [
+  { src: "/portfolio_images/zuxa_logo.png", name: "Zuxa Beauty & Spa" },
+  { src: "/portfolio_images/mad_academy_logo.png", name: "Mad Academy" },
+  { src: "/portfolio_images/qpath_logo.png", name: "Q Path Diagnostics" },
+  { src: "/portfolio_images/shanmukha_logo.png", name: "Shanmukha Gold" },
+  { src: "/portfolio_images/zuxa_logo.png", name: "Zuxa Beauty & Spa" },
+  { src: "/portfolio_images/mad_academy_logo.png", name: "Mad Academy" },
+  { src: "/portfolio_images/qpath_logo.png", name: "Q Path Diagnostics" },
+  { src: "/portfolio_images/shanmukha_logo.png", name: "Shanmukha Gold" }
+];
+
+
 // Service Icon SVG Mapper Helper
 function renderServiceIcon(iconName) {
   switch (iconName) {
@@ -296,46 +323,136 @@ const specializationCategories = [
   }
 ];
 
+const BUBBLE_ICONS = [
+  // 1. Chart / SEO growth
+  <svg key="1" width="100%" height="100%" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>,
+  // 2. Chip / AI / Tech
+  <svg key="2" width="100%" height="100%" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><rect x="4" y="4" width="16" height="16" rx="2" ry="2"></rect><rect x="9" y="9" width="6" height="6"></rect><line x1="9" y1="1" x2="9" y2="4"></line><line x1="15" y1="1" x2="15" y2="4"></line><line x1="9" y1="20" x2="9" y2="23"></line><line x1="15" y1="20" x2="15" y2="23"></line><line x1="20" y1="9" x2="23" y2="9"></line><line x1="20" y1="15" x2="23" y2="15"></line><line x1="1" y1="9" x2="4" y2="9"></line><line x1="1" y1="15" x2="4" y2="15"></line></svg>,
+  // 3. Code / Web Dev
+  <svg key="3" width="100%" height="100%" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>,
+  // 4. Gear / System Settings
+  <svg key="4" width="100%" height="100%" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>,
+  // 5. Globe / World / GEO
+  <svg key="5" width="100%" height="100%" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>,
+  // 6. Search / SEO
+  <svg key="6" width="100%" height="100%" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>,
+  // 7. Chat / AEO / Support
+  <svg key="7" width="100%" height="100%" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>,
+  // 8. Pulse / UX Conversion / SXO
+  <svg key="8" width="100%" height="100%" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>,
+  // 9. Cloud / Database / Networks
+  <svg key="9" width="100%" height="100%" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M18 10h-.79A4.8 4.8 0 0 0 12 8a4.8 4.8 0 0 0-5.21 2H6a5 5 0 0 0 0 10h12a5 5 0 0 0 0-10z"></path></svg>
+];
+
 export default function Home() {
+  // Intro Splash State
+  const [showSplash, setShowSplash] = useState(true);
+  const [fadeSplash, setFadeSplash] = useState(false);
+
+  const [marqueeLogos, setMarqueeLogos] = useState(MARQUEE_LOGOS);
+  
+  useEffect(() => {
+    const fetchMarqueeLogos = async () => {
+      try {
+        const res = await fetch("/api/marquee-logos");
+        if (res.ok) {
+          const data = await res.json();
+          setMarqueeLogos(data);
+        } else {
+          setMarqueeLogos(MARQUEE_LOGOS);
+        }
+      } catch (err) {
+        console.error("Error loading marquee logos:", err);
+        setMarqueeLogos(MARQUEE_LOGOS);
+      }
+    };
+    fetchMarqueeLogos();
+  }, []);
+
+
+  // Splash Screen Intro Timer
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const shown = sessionStorage.getItem("ahs_splash_shown");
+      if (shown) {
+        setShowSplash(false);
+        return;
+      }
+      
+      // First visit in session
+      sessionStorage.setItem("ahs_splash_shown", "true");
+      
+      // Start fading out after 3.4 seconds (0.5s after Ananya Hi Solutions text fully renders)
+      const fadeTimer = setTimeout(() => {
+        setFadeSplash(true);
+      }, 3400);
+
+      // Completely unmount the splash screen after the transition completes
+      const removeTimer = setTimeout(() => {
+        setShowSplash(false);
+      }, 3800);
+
+      return () => {
+        clearTimeout(fadeTimer);
+        clearTimeout(removeTimer);
+      };
+    }
+  }, []);
+
+  // Prevent scroll during splash intro
+  useEffect(() => {
+    if (showSplash) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [showSplash]);
+
   // Hero Carousel State
   const [activeSlide, setActiveSlide] = useState(0);
-  const carouselSlides = [
+  const [carouselSlides, setCarouselSlides] = useState([
     {
-      title: "Crafting Digital Success with <span>Ananya Solutions</span>",
-      desc: "Learn how our creative design and scalable software engineering solutions empower brands to dominate their markets globally.",
-      path: "/about",
-      bgImage: "/images/hero/web-design.png",
-      btnText: "Learn About Us",
+      title: "",
+      desc: "",
+      path: "/contact#contact-form",
+      bgImage: "/images/banner1.png",
+      btnText: ""
     },
     {
-      title: "Insights, Trends & <span>Technical Strategy</span>",
-      desc: "Explore our blog containing expert web development tutorials, local SEO guides, and result-oriented advertising case studies.",
-      path: "/blog",
-      bgImage: "/images/hero/digital-marketing.png",
-      btnText: "Read Our Blog",
-    },
+       title: "",
+       desc: "",
+       path: "/packages",
+       bgImage: "/images/banner2.png",
+       btnText: ""
+     },
     {
-      title: "Choose the Perfect <span>Service Package</span>",
-      desc: "We offer flexible, transparent, and tailor-made pricing packages tailored to your business goals. Get a custom proposal today.",
-      path: "/packages",
-      bgImage: "/images/hero/advanced-marketing.png",
-      btnText: "Select a Package",
-    },
-    {
-      title: "Let's Build <span>Something Amazing Together</span>",
-      desc: "Have a project in mind or want to accelerate your digital growth? Reach out to our consultants in Begumpet, Hyderabad.",
-      path: "/contact",
-      bgImage: "/images/hero/video-production.png",
-      btnText: "Get Free Consultation",
-    },
-    {
-      title: "Explore Our <span>Core Technology Services</span>",
-      desc: "From high-performance Website Design and Mobile Applications to custom Software Engineering, we build platforms that scale.",
-      path: "#services",
-      bgImage: "/images/hero/software-development.png",
-      btnText: "View Our Services",
+      title: "",
+      desc: "",
+      path: "/packages/plans?package=E-Commerce Website",
+      bgImage: "/images/banner3.png",
+      btnText: ""
     }
-  ];
+  ]);
+
+  useEffect(() => {
+    const fetchBanners = async () => {
+      try {
+        const res = await fetch("/api/banners");
+        if (res.ok) {
+          const data = await res.json();
+          if (Array.isArray(data) && data.length > 0) {
+            setCarouselSlides(data);
+          }
+        }
+      } catch (err) {
+        console.error("Error fetching banners:", err);
+      }
+    };
+    fetchBanners();
+  }, []);
 
   // Auto scroll carousel
   useEffect(() => {
@@ -451,27 +568,27 @@ export default function Home() {
     if (cat.title === "Paid Marketing Tools") {
       // Split Paid Marketing Into 2 Orbit Layers: Inner (9 ads tools), Outer (5 analytics/SEO tools)
       if (tIdx < 9) {
-        // Inner Orbit: 9 core advertising platforms, r = 160px
+        // Inner Orbit: 9 core advertising platforms, r = 135px
         const angle = (tIdx * 2 * Math.PI) / 9;
         return {
-          x: Math.round(Math.cos(angle) * 160),
-          y: Math.round(Math.sin(angle) * 160)
+          x: Math.round(Math.cos(angle) * 135),
+          y: Math.round(Math.sin(angle) * 135)
         };
       } else {
-        // Outer Orbit: 5 analytics & SEO tools, r = 240px
+        // Outer Orbit: 5 analytics & SEO tools, r = 205px
         const offsetAngle = Math.PI / 5;
         const angle = ((tIdx - 9) * 2 * Math.PI) / 5 + offsetAngle;
         return {
-          x: Math.round(Math.cos(angle) * 240),
-          y: Math.round(Math.sin(angle) * 240)
+          x: Math.round(Math.cos(angle) * 205),
+          y: Math.round(Math.sin(angle) * 205)
         };
       }
     } else {
-      // Designing Tools & Certifications: 5 tools, r = 180px
+      // Designing Tools & Certifications: 5 tools, r = 145px
       const angle = (tIdx * 2 * Math.PI) / 5;
       return {
-        x: Math.round(Math.cos(angle) * 180),
-        y: Math.round(Math.sin(angle) * 180)
+        x: Math.round(Math.cos(angle) * 145),
+        y: Math.round(Math.sin(angle) * 145)
       };
     }
   };
@@ -596,51 +713,109 @@ export default function Home() {
 
   return (
     <div className="flex flex-col min-h-screen">
+      {showSplash && (
+        <div className={`splash-screen ${fadeSplash ? "fade-out" : ""}`}>
+          <div className="splash-bg-glow splash-glow-1"></div>
+          <div className="splash-bg-glow splash-glow-2"></div>
+          <div className="splash-bg-glow splash-glow-3"></div>
+          
+          {/* Animated 3D cyber perspective grid */}
+          <div className="splash-grid"></div>
+          
+          {/* Dynamic glassmorphic neon hexagon falling service elements */}
+          <div className="splash-bubbles">
+            {Array.from({ length: 28 }).map((_, i) => {
+              const left = `${5 + (i * 7.7) % 90}%`;
+              const size = `${38 + (i * 13) % 25}px`;
+              const delay = `${(i * 0.15) % 3.5}s`;
+              const drift = `${-25 + (i * 17) % 50}px`;
+              const duration = `${4.5 + (i * 0.5) % 2.5}s`;
+              const startY = `${-15 + (i * 2.3) % 8}%`;
+              const travelY = `${112 + (i * 1.5) % 6}vh`;
+              
+              const NEON_COLORS = ["#0f75bc", "#10b981", "#f58220", "#a855f7", "#06b6d4"];
+              const neonColor = NEON_COLORS[i % NEON_COLORS.length];
+              
+              const iconIndex = i % BUBBLE_ICONS.length;
+              const IconComponent = BUBBLE_ICONS[iconIndex];
+              return (
+                <div
+                  key={i}
+                  className="splash-hexagon"
+                  style={{
+                    left,
+                    width: size,
+                    height: size,
+                    animationDelay: delay,
+                    animationDuration: duration,
+                    "--bubble-left": left,
+                    "--bubble-drift": drift,
+                    "--bubble-start-y": startY,
+                    "--bubble-travel-y": travelY,
+                    "--neon-color": neonColor,
+                  }}
+                >
+                  <div className="bubble-icon" style={{ color: neonColor, width: "55%", height: "55%" }}>
+                    {IconComponent}
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+
+          <div className="splash-content">
+            <h2 className="splash-welcome-text">Welcome to</h2>
+            <h1 className="splash-brand-title">
+              <span>Ananya Hi</span> Solutions
+            </h1>
+            <div className="splash-line"></div>
+          </div>
+        </div>
+      )}
+
       {/* 1. Header & Navigation Bar */}
       <Header activePage="home" />
 
       {/* 2. Hero Carousel Banners */}
       <section id="home" className="hero-carousel">
-        {carouselSlides.map((slide, index) => (
-          <Link
-            key={index}
-            href={slide.path}
-            className={`carousel-slide ${index === activeSlide ? "active" : ""}`}
-            style={{ textDecoration: 'none' }}
-          >
-            <div 
-              className="carousel-bg" 
-              style={{ backgroundImage: `url(${slide.bgImage})` }}
-            />
-            <div className="carousel-overlay"></div>
-            <div className="carousel-content">
-              <h1
-                className="carousel-title"
-                dangerouslySetInnerHTML={{ __html: slide.title }}
+        {carouselSlides.map((slide, index) => {
+          const hasText = !!(slide.title || slide.desc);
+          return (
+            <Link
+              key={index}
+              href={slide.path}
+              className={`carousel-slide ${index === activeSlide ? "active" : ""}`}
+              style={{ textDecoration: 'none' }}
+            >
+              <div 
+                className="carousel-bg" 
+                style={{ 
+                  backgroundImage: `url(${slide.bgImage})`,
+                  opacity: hasText ? undefined : 1
+                }}
               />
-              <p className="carousel-desc">{slide.desc}</p>
-              <div className="carousel-buttons">
-                <span className="btn btn-accent">{slide.btnText}</span>
-              </div>
-            </div>
-          </Link>
-        ))}
+              {hasText && <div className="carousel-overlay"></div>}
+              {hasText && (
+                <div className="carousel-content">
+                  {slide.title && (
+                    <h1
+                      className="carousel-title"
+                      dangerouslySetInnerHTML={{ __html: slide.title }}
+                    />
+                  )}
+                  {slide.desc && <p className="carousel-desc">{slide.desc}</p>}
+                  {slide.btnText && (
+                    <div className="carousel-buttons">
+                      <span className="btn btn-accent">{slide.btnText}</span>
+                    </div>
+                  )}
+                </div>
+              )}
+            </Link>
+          );
+        })}
 
-        {/* Controls */}
-        <button
-          className="carousel-nav-btn carousel-prev"
-          onClick={() => setActiveSlide((prev) => (prev === 0 ? carouselSlides.length - 1 : prev - 1))}
-          aria-label="Previous Slide"
-        >
-          ‹
-        </button>
-        <button
-          className="carousel-nav-btn carousel-next"
-          onClick={() => setActiveSlide((prev) => (prev + 1) % carouselSlides.length)}
-          aria-label="Next Slide"
-        >
-          ›
-        </button>
+
 
         {/* Indicators */}
         <div className="carousel-dots">
@@ -671,16 +846,18 @@ export default function Home() {
               </div>
             ) : (
               services.map((item) => (
-                <div key={item.id} className="service-card glass">
+                <Link 
+                  key={item.id} 
+                  href={`/services/${item.id}`} 
+                  className="service-card glass"
+                  style={{ textDecoration: 'none' }}
+                >
                   <div className="service-icon-wrapper">
                     {renderServiceIcon(item.iconName)}
                   </div>
                   <h3 className="service-title">{item.title}</h3>
                   <p className="service-desc">{item.desc}</p>
-                  <Link href={`/services/${item.id}`} className="service-learn-more">
-                    Learn More <span>→</span>
-                  </Link>
-                </div>
+                </Link>
               ))
             )}
           </div>
@@ -688,7 +865,7 @@ export default function Home() {
       </section>
 
       {/* 4. Client Onboarding Process Section (Curvy SVG Path) */}
-      <section id="process" className="process-section">
+      <section id="process" className="process-section" style={{ paddingBottom: "20px" }}>
         <div className="container">
           <div className="section-header">
             <h2>Client Onboarding Process</h2>
@@ -746,6 +923,147 @@ export default function Home() {
         </div>
       </section>
 
+      {/* 4.5. Portfolio Showcase Section */}
+      <section className="section portfolio-showcase-section bg-white border-t border-slate-100" style={{ paddingTop: "20px" }}>
+        <div className="container">
+          <div className="section-header">
+            <h2>Our Clients</h2>
+            <p>
+              Every project in our portfolio represents a business that trusted us to grow online.
+            </p>
+          </div>
+
+          {/* Minimalist Logo Marquee (2 rows scroll!) */}
+          <div className="portfolio-marquee-container mb-12" style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+            {/* Row 1: Right to Left */}
+            <div className="marquee-wrapper">
+              <div className="marquee-content rtl">
+                {/* First Set of Logos */}
+                {padLogosArray(marqueeLogos.filter(l => !l.row || l.row === 1 || l.row === '1')).map((logo, idx) => (
+                  <div className="marquee-logo-item" key={`logo-r1-1-${idx}`}>
+                    <img src={logo.src} alt={logo.name} className="marquee-logo" />
+                  </div>
+                ))}
+                {/* Second Set of Logos */}
+                {padLogosArray(marqueeLogos.filter(l => !l.row || l.row === 1 || l.row === '1')).map((logo, logoIdx) => (
+                  <div className="marquee-logo-item" key={`logo-r1-2-${logoIdx}`}>
+                    <img src={logo.src} alt={logo.name} className="marquee-logo" />
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Row 2: Left to Right */}
+            <div className="marquee-wrapper">
+              <div className="marquee-content ltr">
+                {/* First Set of Logos */}
+                {padLogosArray(marqueeLogos.filter(l => l.row === 2 || l.row === '2')).map((logo, idx) => (
+                  <div className="marquee-logo-item" key={`logo-r2-1-${idx}`}>
+                    <img src={logo.src} alt={logo.name} className="marquee-logo" />
+                  </div>
+                ))}
+                {/* Second Set of Logos */}
+                {padLogosArray(marqueeLogos.filter(l => l.row === 2 || l.row === '2')).map((logo, logoIdx) => (
+                  <div className="marquee-logo-item" key={`logo-r2-2-${logoIdx}`}>
+                    <img src={logo.src} alt={logo.name} className="marquee-logo" />
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* High-Fidelity UI Mock-up Frame */}
+          <div className="portfolio-mockup-frame">
+
+
+            {/* Scrollable Column Grid */}
+            <div className="portfolio-columns-container">
+
+              {/* Column 1: Spa.pdf - Infinitely scrolls Down (top-to-bottom) */}
+              <div className="portfolio-column">
+                <div className="portfolio-scroll-container scroll-down" style={{ animationDuration: '80s' }}>
+                  <div className="portfolio-page-list">
+                    {COLUMN_1_IMAGES.map((img, idx) => (
+                      <div className="portfolio-page-card" key={`col1-g1-${idx}`}>
+                        <img src={img} alt={`Spa Project Page ${idx + 1}`} className="portfolio-page-img" />
+                      </div>
+                    ))}
+                  </div>
+                  <div className="portfolio-page-list">
+                    {COLUMN_1_IMAGES.map((img, idx) => (
+                      <div className="portfolio-page-card" key={`col1-g2-${idx}`}>
+                        <img src={img} alt={`Spa Project Page ${idx + 1}`} className="portfolio-page-img" />
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+              {/* Column 2: mad-academy.pdf - Infinitely scrolls Up (bottom-to-top) */}
+              <div className="portfolio-column">
+                <div className="portfolio-scroll-container scroll-up" style={{ animationDuration: '50s' }}>
+                  <div className="portfolio-page-list">
+                    {COLUMN_2_IMAGES.map((img, idx) => (
+                      <div className="portfolio-page-card" key={`col2-g1-${idx}`}>
+                        <img src={img} alt={`Mad Academy Page ${idx + 1}`} className="portfolio-page-img" />
+                      </div>
+                    ))}
+                  </div>
+                  <div className="portfolio-page-list">
+                    {COLUMN_2_IMAGES.map((img, idx) => (
+                      <div className="portfolio-page-card" key={`col2-g2-${idx}`}>
+                        <img src={img} alt={`Mad Academy Page ${idx + 1}`} className="portfolio-page-img" />
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+              {/* Column 3: qpath.pdf - Infinitely scrolls Down (top-to-bottom) */}
+              <div className="portfolio-column">
+                <div className="portfolio-scroll-container scroll-down" style={{ animationDuration: '60s' }}>
+                  <div className="portfolio-page-list">
+                    {COLUMN_3_IMAGES.map((img, idx) => (
+                      <div className="portfolio-page-card" key={`col3-g1-${idx}`}>
+                        <img src={img} alt={`QPath Page ${idx + 1}`} className="portfolio-page-img" />
+                      </div>
+                    ))}
+                  </div>
+                  <div className="portfolio-page-list">
+                    {COLUMN_3_IMAGES.map((img, idx) => (
+                      <div className="portfolio-page-card" key={`col3-g2-${idx}`}>
+                        <img src={img} alt={`QPath Page ${idx + 1}`} className="portfolio-page-img" />
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+              {/* Column 4: shanmukha-gold-portfolio.pdf - Infinitely scrolls Up (bottom-to-top) */}
+              <div className="portfolio-column">
+                <div className="portfolio-scroll-container scroll-up" style={{ animationDuration: '40s' }}>
+                  <div className="portfolio-page-list">
+                    {COLUMN_4_IMAGES.map((img, idx) => (
+                      <div className="portfolio-page-card" key={`col4-g1-${idx}`}>
+                        <img src={img} alt={`Shanmukha Gold Page ${idx + 1}`} className="portfolio-page-img" />
+                      </div>
+                    ))}
+                  </div>
+                  <div className="portfolio-page-list">
+                    {COLUMN_4_IMAGES.map((img, idx) => (
+                      <div className="portfolio-page-card" key={`col4-g2-${idx}`}>
+                        <img src={img} alt={`Shanmukha Gold Page ${idx + 1}`} className="portfolio-page-img" />
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* 5. Platforms & Tools We Specialize In (Futuristic Premium Section) */}
       <section
         id="specialization"
@@ -787,97 +1105,30 @@ export default function Home() {
             <p>Powering digital growth with industry-leading platforms, marketing technologies, creative tools, and certified expertise.</p>
           </div>
 
-          <div className="categories-orbit-grid">
-            {specializationCategories.map((cat, idx) => {
-              const isCatActive = hoveredCategory === idx || activeCategory === idx;
-              const isAnyCatActive = hoveredCategory !== null || activeCategory !== null;
-              const isCatDimmed = isAnyCatActive && !isCatActive;
-
-              return (
-                <div
-                  key={idx}
-                  className={`category-circle-wrapper ${isCatActive ? "active" : ""} ${isCatDimmed ? "dimmed" : ""}`}
-                  onMouseEnter={() => setHoveredCategory(idx)}
-                  onMouseLeave={() => {
-                    setHoveredCategory(null);
-                    setHoveredBadge(null);
-                  }}
-                  onFocus={() => setHoveredCategory(idx)}
-                  onBlur={() => {
-                    setHoveredCategory(null);
-                    setHoveredBadge(null);
-                  }}
-                  onClick={() => handleCategoryClick(idx)}
-                  tabIndex={0}
-                  onKeyDown={(e) => handleCategoryKeyDown(e, idx)}
-                  role="button"
-                  aria-expanded={isCatActive}
-                  aria-label={`${cat.title}. Contains ${cat.count} tools. Click to toggle.`}
-                  style={{
-                    "--entry-delay": `${idx * 200}ms`
-                  }}
-                >
-                  {/* Category Circle Card */}
-                  <div className="category-circle-card" style={{ zIndex: 4 }}>
-                    <div className="category-glow-pulse" style={{ backgroundColor: cat.color }}></div>
-                    <div className="category-circle-border"></div>
-                    <div className="category-content">
-                      <div className="category-icon-box" style={{ color: cat.color }}>
-                        {cat.icon}
-                      </div>
-                      <h3 className="category-title">{cat.title}</h3>
-                      <span className="category-count">{cat.count} Tools</span>
-                    </div>
-                  </div>
-
-                  {/* Desktop Orbits (Hidden/disabled on mobile via media queries) */}
-                  <div className="orbit-badges-container">
-                    {cat.tools.map((tool, tIdx) => {
-                      const coords = getToolCoords(cat, tIdx);
-                      const isBadgeActive = hoveredBadge?.catIdx === idx && hoveredBadge?.toolIdx === tIdx;
-                      return (
-                        <div
-                          key={tIdx}
-                          className={`orbit-badge-item ${isBadgeActive ? "badge-hovered" : ""}`}
-                          style={{
-                            "--x": `${coords.x}px`,
-                            "--y": `${coords.y}px`,
-                            transitionDelay: isCatActive ? `${tIdx * 40}ms` : "0ms",
-                            zIndex: 5
-                          }}
-                          onMouseEnter={() => setHoveredBadge({ catIdx: idx, toolIdx: tIdx })}
-                          onMouseLeave={() => setHoveredBadge(null)}
-                          tabIndex={isCatActive ? 0 : -1}
-                          aria-label={tool.name}
-                        >
-                          <div className="orbit-badge-icon">
-                            <ToolLogo type={tool.logo} name={tool.name} />
-                          </div>
-                          {/* Rich SaaS Tooltip */}
-                          <div className="orbit-tooltip" style={{ zIndex: 6 }}>
-                            <span className="tooltip-title">{tool.name}</span>
-                          </div>
-                        </div>
-                      );
-                    })}
-                  </div>
-
-                  {/* Mobile Accordion Panel */}
-                  <div className="mobile-accordion-content">
-                    <div className="mobile-tools-grid">
-                      {cat.tools.map((tool, tIdx) => (
-                        <div key={tIdx} className="mobile-tool-card" aria-label={tool.name}>
-                          <div className="mobile-tool-icon">
-                            <ToolLogo type={tool.logo} name={tool.name} isMobile={true} />
-                          </div>
-                          <span className="mobile-tool-name">{tool.name}</span>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
+          <div className="specialization-bento-grid">
+            {specializationCategories.map((cat, idx) => (
+              <div key={idx} className="spec-bento-column">
+                <div className="spec-category-header" style={{ borderColor: cat.color }}>
+                  <div className="spec-category-icon" style={{ color: cat.color }}>{cat.icon}</div>
+                  <h3 className="spec-category-title">{cat.title}</h3>
                 </div>
-              );
-            })}
+                <div className="spec-tools-flex">
+                  {cat.tools.map((tool, tIdx) => {
+                    const isLong = tool.name.length > 15;
+                    const sizeClass = isLong ? "spec-card-lg" : (tIdx % 2 === 0 ? "spec-card-md" : "spec-card-sm");
+                    
+                    return (
+                      <div key={tIdx} className={`spec-tool-rect-card ${sizeClass}`}>
+                        <div className="spec-tool-logo-wrapper">
+                          <ToolLogo type={tool.logo} name={tool.name} />
+                        </div>
+                        <span className="spec-tool-name-label">{tool.name}</span>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -960,33 +1211,11 @@ export default function Home() {
 
           <div className="map-container" style={{ position: 'relative' }}>
             <img 
-              src="/world-map.svg?v=3" 
+              src="/images/world_map.png" 
               alt="World Map" 
               className="map-svg" 
               style={{ width: '100%', height: 'auto', display: 'block', opacity: 1 }} 
             />
-
-            {/* Headquarters Node - Hyderabad (Pulsing tech blue glow) */}
-            <div 
-              className="map-pin" 
-              style={{ 
-                position: 'absolute', 
-                left: '73.24%', 
-                top: '53.07%', 
-                transform: 'translate(-50%, -50%)',
-                zIndex: 10
-              }}
-            >
-              <svg width="60" height="60" viewBox="-30 -30 60 60" style={{ overflow: 'visible', display: 'block' }} xmlns="http://www.w3.org/2000/svg">
-                <circle cx="0" cy="0" r="25" className="map-pin-pulse-blue" />
-                <circle cx="0" cy="0" r="8" className="map-pin-core-blue" />
-                {/* Visual Label */}
-                <g transform="translate(12, -12)">
-                  <rect x="0" y="0" width="82" height="24" rx="4" fill="var(--dark-deep)" opacity="0.9" />
-                  <text x="6" y="16" fill="#ffffff" fontFamily="var(--font-sans)" fontWeight="700" fontSize="10">HYDERABAD</text>
-                </g>
-              </svg>
-            </div>
           </div>
         </div>
       </section>

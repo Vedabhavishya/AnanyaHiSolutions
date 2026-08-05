@@ -59,6 +59,18 @@
       "title": "YouTube Ads",
       "desc": "High-impact video ad scripts, TrueView bumper placement architectures, and laser-targeted campaigns that convert viewers into clients.",
       "iconName": "award"
+    },
+    {
+      "id": "aio",
+      "title": "AIO (AI Optimization)",
+      "desc": "Optimize your brand footprint so that leading conversational AI models (like ChatGPT, Claude, and Gemini) recommend your business.",
+      "iconName": "cpu"
+    },
+    {
+      "id": "sxo",
+      "title": "SXO (Search Experience)",
+      "desc": "Merge search engine optimization with high-converting user experience design to turn search traffic into active leads and buyers.",
+      "iconName": "target"
     }
   ],
   "jobs": [
@@ -159,14 +171,1538 @@
   ],
   "unlockedPackages": [
     {
-      "id": "lead-1779945247168",
+      "id": "lead-1784217345400",
       "name": "P.Pavani Swetha",
       "email": "swethapavani36@gmail.com",
       "phone": "07207059273",
-      "company": "rtyghvb ",
+      "company": "",
+      "packageTitle": "Digital Marketing Packages",
+      "subId": "AEO, GEO, AIO, SXO",
+      "submittedAt": "2026-07-16T15:55:45.400Z"
+    },
+    {
+      "id": "lead-1784217359337",
+      "name": "P.Pavani Swetha",
+      "email": "swethapavani36@gmail.com",
+      "phone": "07207059273",
+      "company": "",
+      "packageTitle": "Digital Marketing Packages",
+      "subId": "YouTube Production",
+      "submittedAt": "2026-07-16T15:55:59.337Z"
+    },
+    {
+      "id": "lead-1784283272431",
+      "name": "P.Pavani Swetha",
+      "email": "swethapavani36@gmail.com",
+      "phone": "07207059273",
+      "company": "",
+      "packageTitle": "Digital Marketing Packages",
+      "subId": "Google Ads/PPC Ads",
+      "submittedAt": "2026-07-17T10:14:32.432Z"
+    },
+    {
+      "id": "lead-1784283608437",
+      "name": "P.Pavani Swetha",
+      "email": "swethapavani36@gmail.com",
+      "phone": "07207059273",
+      "company": "",
+      "packageTitle": "Digital Marketing Packages",
+      "subId": "AEO, GEO, AIO, SXO",
+      "submittedAt": "2026-07-17T10:20:08.437Z"
+    },
+    {
+      "id": "lead-1784291808463",
+      "name": "Veda Bhavishya Gudivaka",
+      "email": "vedabhavishya.gudivaka@gmail.com",
+      "phone": "919951484472",
+      "company": "",
+      "packageTitle": "Digital Marketing Packages",
+      "subId": "AEO, GEO, AIO, SXO",
+      "submittedAt": "2026-07-17T12:36:48.463Z"
+    },
+    {
+      "id": "lead-1784291844587",
+      "name": "Veda Bhavishya Gudivaka",
+      "email": "vedabhavishya.gudivaka@gmail.com",
+      "phone": "919951484472",
+      "company": "",
+      "packageTitle": "Digital Marketing Packages",
+      "subId": "YouTube Production",
+      "submittedAt": "2026-07-17T12:37:24.588Z"
+    },
+    {
+      "id": "lead-1784291853714",
+      "name": "Veda Bhavishya Gudivaka",
+      "email": "vedabhavishya.gudivaka@gmail.com",
+      "phone": "919951484472",
+      "company": "",
+      "packageTitle": "Digital Marketing Packages",
+      "subId": "Search Engine Optimization (SEO)",
+      "submittedAt": "2026-07-17T12:37:33.714Z"
+    },
+    {
+      "id": "lead-1784291865140",
+      "name": "Veda Bhavishya Gudivaka",
+      "email": "vedabhavishya.gudivaka@gmail.com",
+      "phone": "919951484472",
+      "company": "",
+      "packageTitle": "Digital Marketing Packages",
+      "subId": "Google Ads/PPC Ads",
+      "submittedAt": "2026-07-17T12:37:45.140Z"
+    },
+    {
+      "id": "lead-1784293267130",
+      "name": "Veda Bhavishya Gudivaka",
+      "email": "vedabhavishya.gudivaka@gmail.com",
+      "phone": "919951484472",
+      "company": "",
+      "packageTitle": "Video Production",
+      "subId": "Video Production",
+      "submittedAt": "2026-07-17T13:01:07.131Z"
+    },
+    {
+      "id": "lead-1784293459306",
+      "name": "Veda Bhavishya Gudivaka",
+      "email": "vedabhavishya.gudivaka@gmail.com",
+      "phone": "919951484472",
+      "company": "",
       "packageTitle": "Digital Marketing Packages",
       "subId": "Social Media Marketing",
-      "submittedAt": "2026-05-28T05:14:07.168Z"
+      "submittedAt": "2026-07-17T13:04:19.306Z"
+    },
+    {
+      "id": "lead-1784293466987",
+      "name": "Veda Bhavishya Gudivaka",
+      "email": "vedabhavishya.gudivaka@gmail.com",
+      "phone": "919951484472",
+      "company": "",
+      "packageTitle": "Digital Marketing Packages",
+      "subId": "AEO, GEO, AIO, SXO",
+      "submittedAt": "2026-07-17T13:04:26.987Z"
+    },
+    {
+      "id": "lead-1785900637324",
+      "name": "P.Pavani Swetha",
+      "email": "swethapavani36@gmail.com",
+      "phone": "07207059273",
+      "company": "",
+      "packageTitle": "Digital Marketing Packages",
+      "subId": "Google Ads/PPC Ads",
+      "submittedAt": "2026-08-05T03:30:37.324Z"
+    },
+    {
+      "id": "lead-1785904308218",
+      "name": "P.Pavani Swetha",
+      "email": "swethapavani36@gmail.com",
+      "phone": "07207059273",
+      "company": "",
+      "packageTitle": "Digital Marketing Packages",
+      "subId": "Social Media Marketing",
+      "submittedAt": "2026-08-05T04:31:48.218Z"
+    },
+    {
+      "id": "lead-1785904323547",
+      "name": "P.Pavani Swetha",
+      "email": "swethapavani36@gmail.com",
+      "phone": "07207059273",
+      "company": "",
+      "packageTitle": "Digital Marketing Packages",
+      "subId": "AEO, GEO, AIO, SXO",
+      "submittedAt": "2026-08-05T04:32:03.547Z"
+    },
+    {
+      "id": "lead-1785904347905",
+      "name": "P.Pavani Swetha",
+      "email": "swethapavani36@gmail.com",
+      "phone": "07207059273",
+      "company": "",
+      "packageTitle": "Digital Marketing Packages",
+      "subId": "YouTube Production",
+      "submittedAt": "2026-08-05T04:32:27.905Z"
+    },
+    {
+      "id": "lead-1785904360192",
+      "name": "P.Pavani Swetha",
+      "email": "swethapavani36@gmail.com",
+      "phone": "07207059273",
+      "company": "",
+      "packageTitle": "Digital Marketing Packages",
+      "subId": "Search Engine Optimization (SEO)",
+      "submittedAt": "2026-08-05T04:32:40.192Z"
+    },
+    {
+      "id": "lead-1785904373628",
+      "name": "P.Pavani Swetha",
+      "email": "swethapavani36@gmail.com",
+      "phone": "07207059273",
+      "company": "",
+      "packageTitle": "Website Packages",
+      "subId": "E-Commerce Website",
+      "submittedAt": "2026-08-05T04:32:53.628Z"
+    },
+    {
+      "id": "lead-1785933395895",
+      "name": "P.Pavani Swetha",
+      "email": "swethapavani36@gmail.com",
+      "phone": "07207059273",
+      "company": "",
+      "packageTitle": "App Development Packages",
+      "subId": "App Development",
+      "submittedAt": "2026-08-05T12:36:35.896Z"
+    }
+  ],
+  "audits": [
+    {
+      "id": "audit-1782653559848",
+      "name": "Veda Bhavishya Gudivaka",
+      "email": "vedabhavishya.gudivaka@gmail.com",
+      "phone": "919951484472",
+      "company": "",
+      "website": "",
+      "submittedAt": "2026-06-28T13:32:39.848Z"
+    }
+  ],
+  "packages": [
+    {
+      "title": "Digital Marketing Packages",
+      "key": "digital-marketing",
+      "cards": [
+        {
+          "title": "Social Media Marketing",
+          "image": "https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?auto=format&fit=crop&w=800&q=80",
+          "features": [
+            "15-18 High-Quality Creative Posts.",
+            "Competitor Analysis.",
+            "Paid Meta Ads.",
+            "Strategy & Content Calendar"
+          ],
+          "link": "/services/digital-marketing/smm"
+        },
+        {
+          "title": "Google Ads/PPC Ads",
+          "image": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80",
+          "features": [
+            "Ads Account Setup & Audit.",
+            "Advanced Keyword Research.",
+            "Conversion Tracking.",
+            "Audience Targeting Strategies."
+          ],
+          "link": "/services/digital-marketing/google-ads"
+        },
+        {
+          "title": "Search Engine Optimization (SEO)",
+          "image": "https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?auto=format&fit=crop&w=800&q=80",
+          "features": [
+            "Free Website Audit.",
+            "Keyword Research & Strategy.",
+            "Competitor Analysis & Reporting.",
+            "High-Quality Backlink Building."
+          ],
+          "link": "/services/digital-marketing/seo"
+        },
+        {
+          "title": "YouTube Production",
+          "image": "/images/hero/youtube-seo.png",
+          "features": [
+            "Basic, Standard & Premium Plans.",
+            "Channel Setup & Optimisation.",
+            "Cinematic 4K Video Shoots.",
+            "YouTube SEO & Audience Building."
+          ],
+          "link": "/services/youtube-seo"
+        },
+        {
+          "title": "AEO, GEO, AIO, SXO",
+          "image": "/images/hero/aio.jpg",
+          "features": [
+            "Complete Website SEO & Audit.",
+            "Answer Engine & AI Visibility.",
+            "Search Experience Optimisation (SXO).",
+            "Social Profile & Brand Mentions."
+          ],
+          "link": "/services/aeo"
+        }
+      ]
+    },
+    {
+      "title": "Website Packages",
+      "key": "websites",
+      "cards": [
+        {
+          "title": "Static Website Design",
+          "image": "/images/static_website_mockup.jpg",
+          "features": [
+            "Delivery Within 3 Working Days.",
+            "FREE Web Hosting & SSL for 1 year.",
+            "1 Week FREE Support After Deployment.",
+            "Responsive Design."
+          ],
+          "link": "/services/web-design/static"
+        },
+        {
+          "title": "Dynamic Website",
+          "image": "https://images.unsplash.com/photo-1531403009284-440f080d1e12?auto=format&fit=crop&w=800&q=80",
+          "features": [
+            "Unlimited Dynamic Web Pages Website.",
+            "FREE Web Hosting & SSL for 1 year.",
+            "1 Week FREE Support After Deployment.",
+            "Responsive Design."
+          ],
+          "link": "/services/web-design/dynamic"
+        },
+        {
+          "title": "E-Commerce Website",
+          "image": "https://images.unsplash.com/photo-1557821552-17105176677c?auto=format&fit=crop&w=800&q=80",
+          "features": [
+            "Add & Manage Unlimited Store Products.",
+            "Shopping Cart System.",
+            "Easy Checkout System.",
+            "Secure Payment Gateway Integration."
+          ],
+          "link": "/services/web-design/ecommerce"
+        }
+      ]
+    },
+    {
+      "title": "App Development Packages",
+      "key": "app-development",
+      "isSingleCard": true,
+      "cards": [
+        {
+          "title": "App Development",
+          "image": "/images/subservices/ios_app_detail.jpg",
+          "features": [
+            "Basic, Standard & Premium Plans.",
+            "Android & iOS App Development.",
+            "Play Store & App Store Publishing.",
+            "6 Months Support & Maintenance."
+          ],
+          "link": "/services/mobile-app"
+        }
+      ]
+    },
+    {
+      "title": "Video Production",
+      "key": "video-production",
+      "cards": [
+        {
+          "title": "Video Production",
+          "image": "/images/video_production_package.jpg",
+          "features": [
+            "Professional Video Production Services.",
+            "High-Quality Cinematic Content.",
+            "Creative Direction & Shoot Planning.",
+            "Fast Editing & Timely Delivery."
+          ],
+          "link": "/services/video-production"
+        }
+      ]
+    },
+    {
+      "title": "Special Packages",
+      "key": "special",
+      "isSingleCard": true,
+      "cards": [
+        {
+          "title": "Spa Packages",
+          "image": "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=800&q=80",
+          "features": [
+            "Performance Insights Report.",
+            "Social Media Setup (Instagram & Facebook).",
+            "Social Media Management.",
+            "Content Strategy & Planning."
+          ],
+          "link": "/services/web-design/spa"
+        }
+      ]
+    }
+  ],
+  "plans": {
+    "Social Media Marketing": [
+      {
+        "name": "Basic Plan",
+        "icon": "🎯",
+        "price": "₹16,999",
+        "billing": "+ GST/Month",
+        "isPopular": false,
+        "features": [
+          "Facebook, Instagram Platform",
+          "Social Media Audit for All Platforms",
+          "Basic 8 to 10 Creative Design Per Month",
+          "1 Revision per Post",
+          "5 to 6 Reels Per Month",
+          "Monthly Performance Report",
+          "Trending-Based Creative Posts",
+          "Description, Hashtag Research & Optimization",
+          "AI-Powered Creative",
+          "Profile Optimization",
+          "Meta Business Suite (Setup)",
+          "Ad Manager (Setup)",
+          "Paid Ad Campaigns (Setup & Manage FB/IG Ads Campaigns)",
+          "Only 2 Ads Campaign Setup",
+          "Audience Targeting",
+          "Ad Budget Management (Daily/weekly Budget Allocation & Ad Optimization)",
+          "Audience Research (Demographics, Interests & Behavior Insights)",
+          "Best ROI",
+          "Campaign Objectives",
+          "All the festival posters are included in the given commitment."
+        ],
+        "note": "Campaign charge not included."
+      },
+      {
+        "name": "Standard Plan",
+        "icon": "🚀",
+        "price": "₹22,999",
+        "billing": "+ GST/Month",
+        "isPopular": true,
+        "features": [
+          "Everything in Basic",
+          "Facebook, Instagram Platforms & Google Business Profile",
+          "Social Media Audit for All Platforms",
+          "Standard 10 to 12 Creative Design Per Month",
+          "2 Revision per Post",
+          "8 to 10 Reels Per Month",
+          "Weekly Performance Report",
+          "Trending-Based Creative Posts",
+          "Description, Hashtag Research & Optimization",
+          "AI-Powered Creative",
+          "Profile Optimization",
+          "Meta Business Suite (Setup)",
+          "Ad Manager (Setup)",
+          "Paid Ad Campaigns (Setup & Manage FB/IG Ads Campaigns)",
+          "3 Ads Campaign Setup",
+          "Audience Targeting",
+          "Ad Budget Management (Daily/weekly Budget Allocation & Ad Optimization)",
+          "Audience Research (Demographics, Interests & Behavior Insights)",
+          "ROI Funnel Strategy",
+          "Campaign Objectives",
+          "Brand Health Check Across All Platforms",
+          "Competitor & Market Research",
+          "Community Building",
+          "Analytics, Performance Monitoring & Reporting",
+          "Business Manager (Setup)",
+          "Remarketing",
+          "Pixel Setup",
+          "Ads A/B Testing (Testing Different Creatives, Copies, CTA)",
+          "Conversion & ROI Tracking",
+          "Ad Creative Design (Images, Videos, Carousel Ads)",
+          "Strategy & Planning",
+          "High Conversion",
+          "Ad Placement (Optimize Auto/Manual Placements Across Mobile/ Tablet and Computer)",
+          "All the festival posters are included in the given commitment."
+        ],
+        "note": "Campaign charge not included."
+      },
+      {
+        "name": "Premium Plan",
+        "icon": "👑",
+        "price": "₹49,999",
+        "billing": "+ GST/Month",
+        "isPopular": false,
+        "features": [
+          "Everything in Standard",
+          "Facebook, Instagram, Google Business Profile & YouTube",
+          "Social Media Audit for All Platforms",
+          "Premium 12 to 15 Creative Design Per Month",
+          "3 Revision per Post",
+          "20 to 25 Reels Per Month",
+          "2 shoots ( camera shoot) - each shoot duration 6 hours",
+          "Premium Content Calendar Creation",
+          "Youtube SEO",
+          "Weekly Performance Report",
+          "Trending-Based Creative Posts",
+          "Festival & National Day Posts (creative posters for special occasions)",
+          "Description, Hashtag Research & Optimization",
+          "AI-Powered Creative",
+          "Profile Optimization",
+          "Meta Business Suite (Setup)",
+          "Ad Manager (Setup)",
+          "Paid Ad Campaigns (Setup & Manage FB/IG Ads Campaigns)",
+          "4 Ads Campaign Setup",
+          "Audience Targeting",
+          "Ad Budget Management (Daily/weekly Budget Allocation & Ad Optimization)",
+          "Audience Research (Demographics, Interests & Behavior Insights)",
+          "ROI Funnel Strategy",
+          "Campaign Objectives",
+          "Community Building",
+          "Analytics, Performance Monitoring & Reporting",
+          "Remarketing",
+          "Pixel Setup",
+          "Ads A/B Testing (Testing Different Creatives, Copies, CTA)",
+          "Conversion & ROI Tracking",
+          "Ad Creative Design (Images, Videos, Carousel Ads)",
+          "Strategy & Planning",
+          "High Conversion",
+          "Ad Placement (Optimize Auto/Manual Placements Across Mobile/ Tablet and Computer)",
+          "All the festival posters are included in the given commitment."
+        ],
+        "note": "Campaign charge not included."
+      }
+    ],
+    "Static Website Design": [
+      {
+        "name": "Basic Plan",
+        "icon": "🎯",
+        "price": "₹5,999",
+        "billing": "+ GST",
+        "isPopular": false,
+        "features": [
+          "Single Page Website (Scrolling Layout)",
+          "Modern Mobile-Friendly Design",
+          "Eye-Catching Hero Banner with CTA Button",
+          "Business Info, Services, Gallery & Contact Section",
+          "WhatsApp & Call Button Integration",
+          "Free Contact Form Setup (Email or WhatsApp Lead)",
+          "Social Media Links Integration",
+          "Basic SEO Setup (Meta Title, Description, Keywords)",
+          "Google Map Embed for Location",
+          "Delivery Within 3 Working Days",
+          "1 Free Revision",
+          "Perfect for Startups, Freelancers & Local Businesses",
+          "Mobile-Friendly/Responsive Design",
+          "Effective Call-To-Actions & Easy Navigation",
+          "Brand Typography & Color Code",
+          "Complete Deployment"
+        ],
+        "note": ""
+      },
+      {
+        "name": "Standard Plan",
+        "icon": "🚀",
+        "price": "₹9,999",
+        "billing": "+ GST",
+        "isPopular": true,
+        "features": [
+          "Everything in Basic",
+          "Free Hosting & SSL for 1 Year",
+          "Up to 5 Pages, Extra Per Page Cost not Included (Home, About, Services, Gallery, Contact)",
+          "Custom Brand-Based Design & Color Theme",
+          "Optimized Image & Banner Design",
+          "Basic On-Page SEO Optimization",
+          "Google Analytics & Search Console Integration",
+          "Faster Loading (Speed Optimization)",
+          "Lead Capture Form with Email Alerts",
+          "1 Month Free Maintenance Support",
+          "Delivery Within 5–7 Working Days",
+          "Great for Local Businesses & Agencies"
+        ],
+        "note": ""
+      },
+      {
+        "name": "Premium Plan",
+        "icon": "👑",
+        "price": "₹11,999",
+        "billing": "+ GST",
+        "isPopular": false,
+        "features": [
+          "Everything in Standard",
+          "Up to 8 Static Website Pages (Extra Per Page Cost not Included)",
+          "Advanced UI/UX Design with Animation & Motion Effects",
+          "SEO-Optimized Structure for Higher Google Ranking",
+          "Content Writing Support (Up to 800 Words)",
+          "Interactive Elements (Counters, Sliders, Reviews, etc.)",
+          "Call-to-Action Strategy for More Leads",
+          "Google Business Profile Setup Assistance",
+          "Priority Support with Faster Delivery",
+          "Delivery Within 10–15 Working Days",
+          "Google Page Speed Optimized (Loads Fast Even on Weak Networks)",
+          "Unlimited Copyright-Free Stock Images",
+          "Copyright-Free Unique Website Content",
+          "SEO Optimized Code (Semantic Tags & Meta Tags)",
+          "Secure & Error-Free Coding",
+          "Unique User Interactive UI/UX",
+          "UI/UX Testing",
+          "Browser Compatibility Testing",
+          "Less Scroll for Better User Experience",
+          "Minified CSS/JS",
+          "Perfect for Professionals & Established Businesses"
+        ],
+        "note": ""
+      }
+    ],
+    "Google Ads/PPC Ads": [
+      {
+        "name": "Basic Plan",
+        "icon": "🎯",
+        "price": "₹9,999",
+        "billing": "+ GST/Month",
+        "isPopular": false,
+        "features": [
+          "Campaign Setup for Search Ads",
+          "Daily Ads Optimization",
+          "Budget Optimization Guidance",
+          "Basic Keyword Research (8–10 keywords)",
+          "Ad Copywriting (Up to 3 Ad Variations)",
+          "Location Targeting Setup",
+          "Ad Extensions Setup (Call, Location, Sitelink)",
+          "Conversion Tracking Setup",
+          "Weekly Performance Report",
+          "Budget Optimization Guidance",
+          "Click & Conversion Analysis",
+          "Monthly Report & Insights"
+        ],
+        "note": ""
+      },
+      {
+        "name": "Standard Plan",
+        "icon": "🚀",
+        "price": "₹16,999",
+        "billing": "+ GST/Month",
+        "isPopular": true,
+        "features": [
+          "Everything in Basic",
+          "Campaign Setup for Search & Display Ads",
+          "Advanced Keyword Research (15–20 keywords)",
+          "Ad Copywriting (Up to 5 Ad Variations)",
+          "Location & Device Targeting Setup",
+          "Ad Extensions Setup (Call, Location, Sitelink, Callout)",
+          "Conversion Tracking Setup",
+          "Daily Ads Optimization & Bid Adjustments",
+          "A/B Testing for Ads & Landing Pages",
+          "Competitor Ads Analysis",
+          "Advanced Negative Keywords Optimization",
+          "Monthly Performance Report & ROI Insights",
+          "Dedicated Google Ads Manager"
+        ],
+        "note": ""
+      },
+      {
+        "name": "Premium Plan",
+        "icon": "👑",
+        "price": "₹26,999",
+        "billing": "+ GST/Month",
+        "isPopular": false,
+        "features": [
+          "Everything in Standard",
+          "Campaign Setup for Search, Display & Shopping Ads",
+          "Comprehensive Keyword Research (50+ keywords)",
+          "Ad Copywriting & Creative Banner Design",
+          "Audience Segmentation & Demographic Targeting",
+          "A/B Testing for Ads, Landing Pages & CTAs",
+          "CRO Suggestions",
+          "Remarketing Setup (Visitors Retargeting)",
+          "Conversion Rate Optimization Suggestions",
+          "Advanced Negative Keywords Optimization",
+          "Pixel & Conversion Tracking Setup",
+          "Daily Ads Optimization & Bid Management",
+          "Competitor & Market Analysis",
+          "Weekly Performance Reports & Recommendations",
+          "ROI Funnel Strategy & Scaling Consultation",
+          "Shopping Ads (for eCommerce)",
+          "YouTube Video Ads Setup (Optional)",
+          "Dedicated Senior Google Ads Specialist",
+          "High Conversion Strategy & Planning"
+        ],
+        "note": ""
+      }
+    ],
+    "Search Engine Optimization (SEO)": [
+      {
+        "name": "Basic Plan",
+        "icon": "🎯",
+        "price": "₹11,999",
+        "billing": "+ GST/Month",
+        "isPopular": false,
+        "features": [
+          "Website SEO Audit & Report",
+          "Basic Keyword Research (10–15 Keywords)",
+          "On-Page Optimization (Meta Tags, Titles, Descriptions)",
+          "Technical SEO Setup (Robots.txt, Sitemap, Canonical Tags)",
+          "Google Search Console & Analytics Setup",
+          "Mobile & Page Speed Optimization",
+          "Image Optimization (Alt Tags & Compression)",
+          "Internal Linking Optimization",
+          "Local SEO Setup (Google My Business Optimization)",
+          "Monthly Ranking Performance Report",
+          "Basic Backlink Suggestions",
+          "Competitor Keyword Overview",
+          "Best ROI-Focused SEO Strategy"
+        ],
+        "note": ""
+      },
+      {
+        "name": "Standard Plan",
+        "icon": "🚀",
+        "price": "₹16,999",
+        "billing": "+ GST/Month",
+        "isPopular": true,
+        "features": [
+          "Everything in Basic",
+          "Advanced Keyword Research (20–30 Keywords)",
+          "Comprehensive On-Page SEO (Schema, Structured Data, OG Tags)",
+          "Technical SEO Audit & Fixes",
+          "Off-Page SEO",
+          "High-Quality Backlink Building (10–15 Links/Month)",
+          "Local SEO Optimization",
+          "Google My Business Optimization & Posting (4 Posts/Month)",
+          "Content Optimization for Existing Pages",
+          "Landing Page SEO Recommendations",
+          "Monthly Keyword Ranking Report",
+          "Competitor SEO Analysis & Strategy",
+          "Image, Video & Blog SEO Optimization",
+          "Dedicated SEO Account Manager",
+          "Best ROI-Focused SEO Strategy"
+        ],
+        "note": ""
+      },
+      {
+        "name": "Premium Plan",
+        "icon": "👑",
+        "price": "₹24,999",
+        "billing": "+ GST/Month",
+        "isPopular": false,
+        "features": [
+          "Everything in Standard",
+          "Advanced Keyword Research (40+ Keywords)",
+          "Content Strategy & Blog Writing (Up to 4 Blogs/Month)",
+          "Authority Backlink Building (30+ High-DA Links/Month)",
+          "Guest Posting & Outreach Campaigns",
+          "Advanced Technical SEO (Core Web Vitals, Crawl Budget Optimization)",
+          "Local SEO Domination for Hyderabad (Citations, Reviews, NAP Consistency)",
+          "Competitor Gap Analysis & Content Clusters",
+          "Conversion Rate Optimization (CRO) Suggestions",
+          "Schema Markup Implementation (FAQ, Product, Review, Local)",
+          "Monthly Detailed SEO Reports & Growth Insights",
+          "E-commerce / Service Page SEO Optimization",
+          "Brand Visibility & Reputation Management",
+          "Dedicated Senior SEO Expert & Strategy Consultation",
+          "High Conversion SEO Strategy & Continuous Monitoring",
+          "Best ROI-Focused SEO Campaign"
+        ],
+        "note": ""
+      }
+    ],
+    "Dynamic Website": [
+      {
+        "name": "Basic Plan",
+        "icon": "🎯",
+        "price": "₹15,999",
+        "billing": "+ GST",
+        "isPopular": false,
+        "features": [
+          "Dynamic 4–5 Page Website",
+          "Free SSL Certificate for 1 Year",
+          "Free Web Hosting for 1 Year",
+          "Effective Call-To-Actions & Easy Navigation",
+          "Mobile-Friendly / Responsive Design",
+          "Google PageSpeed Optimized",
+          "Google Map, WhatsApp & Social Media Integration",
+          "SEO Optimized Code (Meta Title, Description, Keywords)",
+          "Copyright-Free Stock Images",
+          "Contact Form for Capturing Business Leads",
+          "Secure & Error-Free Coding",
+          "Fast Loading Speed Optimization",
+          "1 Week Free Support After Deployment",
+          "Delivery Within 10–15 Working Days",
+          "Complete Deployment",
+          "Perfect for Local Businesses & Startups"
+        ],
+        "note": ""
+      },
+      {
+        "name": "Standard Plan",
+        "icon": "🚀",
+        "price": "₹26,999",
+        "billing": "+ GST",
+        "isPopular": true,
+        "features": [
+          "Everything in Basic",
+          "Up to 10 Dynamic Pages (Extra Page Cost ₹800/Page)",
+          "Advanced Admin Panel with User Management",
+          "Unlimited Dynamic Web Pages (CMS Ready)",
+          "Dynamic Content Rendering (Real-Time Updates)",
+          "Brand Typography & Color Code Customization",
+          "Google Analytics & Search Console Integration",
+          "Effective Call-To-Actions & Lead Conversion Layouts",
+          "Content Optimization for Better Search Ranking",
+          "Browser Compatibility Testing (All Devices)",
+          "Minified CSS/JS for Faster Performance",
+          "Database Integration with Error-Free Validation",
+          "Secure Admin Authentication & Authorization",
+          "2 Weeks Free Support After Deployment",
+          "Ideal for Growing Businesses & Agencies"
+        ],
+        "note": ""
+      },
+      {
+        "name": "Premium Plan",
+        "icon": "👑",
+        "price": "₹39,999",
+        "billing": "+ GST",
+        "isPopular": false,
+        "features": [
+          "Everything in Standard",
+          "Custom UI/UX Design with Interactive Animations",
+          "Dynamic Modules (Blogs, Services, Testimonials, Gallery, etc.)",
+          "Admin Dashboard with Full CRUD Functionality",
+          "Role-Based Admin Access (Multiple User Levels)",
+          "SEO-Friendly URL Structure & Schema Markup",
+          "Unlimited Dynamic Content & Media Uploads",
+          "Comprehensive Security (Form Validation, CSRF, XSS Protection)",
+          "Website UI/UX Testing for Better User Experience",
+          "Less Scroll, Better Engagement Layout",
+          "Conversion-Focused Call-To-Action Strategy",
+          "Copyright-Free Unique Website Content",
+          "Analytics & Performance Monitoring Dashboard",
+          "1 Month Free Maintenance & Technical Support",
+          "Unique UI/UX",
+          "Faster Delivery (Within 15–20 Working Days)",
+          "Dynamic Content Rendering",
+          "Error-Free, Well-Commented Code",
+          "Best for Professional & Corporate Websites"
+        ],
+        "note": ""
+      }
+    ],
+    "E-Commerce Website": [
+      {
+        "name": "Basic Plan",
+        "icon": "🎯",
+        "price": "₹29,999",
+        "billing": "+ GST",
+        "isPopular": false,
+        "features": [
+          "Dynamic eCommerce Website with 5–10 Products",
+          "Wordpress Technology",
+          "Free SSL Certificate for 1 Year",
+          "Free Web Hosting for 1 Year",
+          "Copyright-Free Unique Website Content & Stock Images",
+          "Unique & User Interactive UI/UX",
+          "Effective Call-To-Actions & Easy Navigation",
+          "Mobile-Friendly / Responsive Design",
+          "Google Page Speed Optimized",
+          "Shopping Cart & Checkout System",
+          "Customer Login / Signup",
+          "Admin Dashboard for Basic Store Management",
+          "1 Contact Form for Capturing Leads",
+          "Social Media & WhatsApp Integration",
+          "SEO Optimized Code for Homepage & Product Pages",
+          "Secure & Error-Free Coding",
+          "Browser Compatibility Testing",
+          "1 Week Free Support After Deployment",
+          "Delivery Within 15–20 Working Days",
+          "Complete Deployment",
+          "Perfect for Small Businesses & Startups"
+        ],
+        "note": ""
+      },
+      {
+        "name": "Standard Plan",
+        "icon": "🚀",
+        "price": "₹44,999",
+        "billing": "+ GST",
+        "isPopular": true,
+        "features": [
+          "Everything in Basic",
+          "Up to 50 Products",
+          "Framework Technology",
+          "Advanced Admin Dashboard (Add/Edit/Delete Products, Categories)",
+          "Payment Gateway Integration (Razorpay, PayPal, etc.)",
+          "Order & Customer Management System",
+          "Discount Coupons & Promo Code Setup",
+          "Product Filters & Search Functionality",
+          "Google Analytics & Search Console Integration",
+          "SEO Optimized Product & Category Pages",
+          "Brand Typography & Color Customization",
+          "Unlimited Stock Images for Products",
+          "Lead Capture Forms for Marketing",
+          "2 Weeks Free Support After Deployment",
+          "Delivery Within 20–30 Working Days",
+          "Ideal for Growing Online Stores & Local Businesses"
+        ],
+        "note": ""
+      },
+      {
+        "name": "Premium Plan (Multi Vendor)",
+        "icon": "👑",
+        "price": "₹2,21,999",
+        "billing": "+ GST",
+        "isPopular": false,
+        "features": [
+          "Everything in Standard",
+          "Unlimited Products & Categories",
+          "React JS & NextJS",
+          "Advanced UI/UX Design with Animations",
+          "Multiple Payment & Shipping Options",
+          "Delivery Order Confirmation",
+          "Customer Wishlist & Reviews Integration",
+          "Advanced Product Filters & Sorting",
+          "Dynamic Offers",
+          "Inventory & Stock Management Automation",
+          "Email/SMS Notifications for Orders",
+          "Analytics Dashboard for Sales & Revenue",
+          "Conversion-Oriented Landing Pages for Products",
+          "Advanced SEO (On-Page + Schema Markup)",
+          "Security & Backup Setup",
+          "UI/UX Testing",
+          "1 Month Free Maintenance & Support",
+          "Shopping Cart & Checkout System",
+          "Customer, Delivery Boy & Owner Login / Signup",
+          "Minified CSS/JS",
+          "Perfect for Professional Businesses & Growing eCommerce Stores"
+        ],
+        "note": ""
+      }
+    ],
+    "Spa Packages": [
+      {
+        "name": "Basic Plan",
+        "icon": "🎯",
+        "price": "₹9,999",
+        "billing": "+ GST/Month",
+        "isPopular": false,
+        "features": [
+          "Facebook & Instagram Platforms",
+          "8 posters",
+          "1 Ad Setup",
+          "1 Revision per Post",
+          "Monthly Performance Report",
+          "Trending-Based Creative Posts",
+          "Description, Hashtag Research & Optimization",
+          "AI-Powered Creative",
+          "Profile Optimization",
+          "Ad Manager (Setup)",
+          "Audience Targeting",
+          "Ad Budget Management(Daily/weekly Budget Allocation & Ad Optimization)",
+          "Audience Research(Demographics, Interests & Behavior Insights)",
+          "Best ROI & Campaign Objectives",
+          "Social Media Audit for All Platforms"
+        ],
+        "note": ""
+      },
+      {
+        "name": "Standard Plan",
+        "icon": "🚀",
+        "price": "₹12,999",
+        "billing": "+ GST/Month",
+        "isPopular": true,
+        "features": [
+          "Everything in Basic",
+          "Facebook & Instagram Platforms",
+          "10 posters",
+          "2 Ads Setup",
+          "1 Revision per Post",
+          "Monthly Performance Report",
+          "Trending-Based Creative Posts",
+          "Description, Hashtag Research & Optimization",
+          "AI-Powered Creative",
+          "Profile Optimization",
+          "Ad Manager (Setup)",
+          "Audience Targeting",
+          "Ad Budget Management(Daily/weekly Budget Allocation & Ad Optimization)",
+          "Audience Research(Demographics, Interests & Behavior Insights)",
+          "Best ROI & Campaign Objectives",
+          "Social Media Audit for All Platforms"
+        ],
+        "note": ""
+      },
+      {
+        "name": "Premium Plan",
+        "icon": "👑",
+        "price": "₹15,999",
+        "billing": "+ GST/Month",
+        "isPopular": false,
+        "features": [
+          "Everything in Standard",
+          "Facebook & Instagram Platforms",
+          "12 posters",
+          "3 Ads Setup",
+          "1 AI Reels",
+          "1 Revision per Post",
+          "Monthly Performance Report",
+          "Trending-Based Creative Posts",
+          "Description, Hashtag Research & Optimization",
+          "AI-Powered Creative",
+          "Profile Optimization",
+          "Ad Manager (Setup)",
+          "Audience Targeting",
+          "Ad Budget Management(Daily/weekly Budget Allocation & Ad Optimization)",
+          "Audience Research(Demographics, Interests & Behavior Insights)",
+          "Best ROI & Campaign Objectives",
+          "Social Media Audit for All Platforms"
+        ],
+        "note": ""
+      }
+    ],
+    "YouTube Production": [
+      {
+        "name": "Basic Plan",
+        "icon": "🎯",
+        "price": "₹6,999",
+        "billing": "+ GST/Month",
+        "isPopular": false,
+        "features": [
+          "High-Engaging Reels / Shorts",
+          "Video Posting",
+          "YouTube SEO Optimisation",
+          "Channel Setup & Professional Optimisation",
+          "Community Management",
+          "Performance Analytics & Monthly Reporting",
+          "Monetisation Strategy & Guidance",
+          "Custom Thumbnails",
+          "Hashtag Strategy",
+          "Content Calendar Planning",
+          "Strategy Planning"
+        ],
+        "note": ""
+      },
+      {
+        "name": "Standard Plan",
+        "icon": "🚀",
+        "price": "₹39,999",
+        "billing": "+ GST/Month",
+        "isPopular": true,
+        "features": [
+          "4K Shoots (2 Professional shoots with Mic & Camera)",
+          "12-15 Edited YouTube Videos",
+          "16-20 Engaging Reels / Shorts",
+          "Custom Thumbnails",
+          "YouTube SEO + Content Promotion & Distribution",
+          "Performance Analytics & Monthly Reporting",
+          "Channel Setup & Optimisation",
+          "Community Management",
+          "Monetisation Strategy & Guidance",
+          "Free & Paid Traffic Strategy"
+        ],
+        "note": ""
+      },
+      {
+        "name": "Premium Plan",
+        "icon": "👑",
+        "price": "₹79,999",
+        "billing": "+ GST/Month",
+        "isPopular": false,
+        "features": [
+          "4 Professional 4K Shoots",
+          "20-25 Edited YouTube Videos",
+          "25-30 High-Engaging Reels / Shorts",
+          "Advanced Video Production & Editing",
+          "Premium Custom Thumbnails",
+          "Complete Content Calendar Planning",
+          "Advanced YouTube SEO Optimisation",
+          "Channel Setup & Professional Optimisation",
+          "Competitor Analysis & Growth Strategy",
+          "Content Promotion & Distribution",
+          "Community Management",
+          "Weekly Performance Review Meetings",
+          "Detailed Performance Analytics",
+          "Monetisation & Revenue Growth Guidance",
+          "Free & Paid Traffic Strategy",
+          "Keyword Research & Hashtag Strategy",
+          "YouTube Shorts Growth Strategy",
+          "Brand Positioning & Audience Building"
+        ],
+        "note": ""
+      }
+    ],
+    "App Development": [
+      {
+        "name": "Basic Package",
+        "icon": "📱",
+        "price": "₹1,75,000",
+        "billing": "+ GST",
+        "isPopular": false,
+        "features": [
+          "Android & iOS App",
+          "Email OTP Login",
+          "Product Catalog",
+          "Categories",
+          "Search",
+          "Cart",
+          "Checkout",
+          "One Payment Gateway (Razorpay/PhonePe)",
+          "Order Management",
+          "Basic Admin Panel",
+          "Play Store Deployment",
+          "1 Month Support"
+        ]
+      },
+      {
+        "name": "Standard Package",
+        "icon": "⚡",
+        "price": "₹2,50,000",
+        "billing": "+ GST",
+        "isPopular": true,
+        "features": [
+          "Everything in Basic Package",
+          "Android + iOS",
+          "Wishlist",
+          "Coupons",
+          "Product Reviews",
+          "Push Notifications",
+          "Advanced Admin Panel",
+          "Inventory Management",
+          "WhatsApp Chat",
+          "Firebase Analytics",
+          "Multiple Payment Options",
+          "Advanced Order Tracking",
+          "3 Months Support"
+        ]
+      },
+      {
+        "name": "Premium Package",
+        "icon": "💎",
+        "price": "₹7,80,000",
+        "billing": "+ GST",
+        "isPopular": false,
+        "features": [
+          "Everything in Standard Package",
+          "Premium UI/UX",
+          "Social Login (Google, Apple)",
+          "Loyalty Rewards",
+          "Referral Program",
+          "Multi-language",
+          "Multi-currency",
+          "Delivery Partner Integration",
+          "Advanced Reports & Analytics",
+          "Personalized Push Notifications",
+          "Live Chat Support",
+          "Source Code Included",
+          "App Store & Play Store Publishing",
+          "6 Months Support"
+        ]
+      }
+    ],
+    "AEO, GEO, AIO, SXO": [
+      {
+        "name": "Basic Plan",
+        "icon": "🎯",
+        "price": "₹18,999",
+        "billing": "+ GST/Month",
+        "isPopular": false,
+        "features": [
+          "Complete Website SEO Audit",
+          "Keyword Research (10–15 Target Keywords)",
+          "Meta Title & Description Optimization",
+          "Header Tag Optimization (H1–H6)",
+          "Image Alt Tag Optimization",
+          "XML Sitemap Setup & Submission",
+          "Robots.txt Setup",
+          "Google Search Console Setup",
+          "Google Analytics Setup",
+          "Internal Linking Optimization",
+          "FAQ Optimization",
+          "FAQ Schema Implementation",
+          "Basic Featured Snippet Optimization",
+          "AI-Friendly Content Structure Optimization",
+          "Entity-Based SEO Optimization",
+          "Mobile Usability Optimization",
+          "Basic Page Experience Review",
+          "Social Profile Optimization",
+          "Monthly Ranking Report",
+          "Best For: Small Businesses, Startups & Local Service Providers"
+        ],
+        "note": ""
+      },
+      {
+        "name": "Standard Plan",
+        "icon": "🚀",
+        "price": "₹28,999",
+        "billing": "+ GST/Month",
+        "isPopular": true,
+        "features": [
+          "Complete Website SEO Audit",
+          "Keyword Research (20–30 Target Keywords)",
+          "Advanced On-Page SEO Optimization",
+          "Meta Title & Description Optimization",
+          "Header Tag Optimization (H1–H6)",
+          "Image Alt Tag Optimization",
+          "XML Sitemap Setup & Submission",
+          "Robots.txt Setup",
+          "Google Search Console Setup",
+          "Google Analytics Setup",
+          "Internal Linking Optimization",
+          "Technical SEO Audit & Fix Recommendations",
+          "Local SEO Optimization",
+          "Google Business Profile Optimization",
+          "Citation Building (10–15 Business Listings)",
+          "Quality Backlink Building (10 Links/Month)",
+          "FAQ Optimization",
+          "FAQ Content Development",
+          "FAQ Schema Implementation",
+          "Advanced Featured Snippet Optimization",
+          "People Also Ask (PAA) Optimization",
+          "AI-Friendly Content Structure Optimization",
+          "Entity-Based SEO Optimization",
+          "AI Search Visibility Optimization",
+          "ChatGPT, Gemini & Perplexity-Friendly Content Structuring",
+          "Mobile Usability Optimization",
+          "Core Web Vitals Analysis",
+          "User Journey & UX Recommendations",
+          "Social Profile Optimization",
+          "Social Sharing Optimization",
+          "4 SEO-Optimized Blog Posts / Month",
+          "Monthly SEO Performance Report",
+          "Best For: Clinics, Educational Institutes, Real Estate & Service Businesses"
+        ],
+        "note": ""
+      },
+      {
+        "name": "Premium Plan",
+        "icon": "👑",
+        "price": "₹48,999",
+        "billing": "+ GST/Month",
+        "isPopular": false,
+        "features": [
+          "Complete Website SEO Audit",
+          "Keyword Research (40+ Target Keywords)",
+          "Advanced On-Page SEO Optimization",
+          "Meta Title & Description Optimization",
+          "Header Tag Optimization (H1–H6)",
+          "Image Alt Tag Optimization",
+          "XML Sitemap Setup & Submission",
+          "Robots.txt Setup",
+          "Google Search Console Setup",
+          "Google Analytics Setup",
+          "Internal Linking Optimization",
+          "Advanced Technical SEO Optimization",
+          "Competitor Gap Analysis",
+          "Local SEO Growth Strategy",
+          "Google Business Profile Optimization",
+          "Citation Building (20–30 Business Listings)",
+          "High Authority Backlink Building (15–20 Links/Month)",
+          "Service Page / E-Commerce SEO Optimization",
+          "FAQ Optimization",
+          "Comprehensive FAQ Ecosystem",
+          "FAQ Schema Implementation",
+          "Advanced Featured Snippet Strategy",
+          "People Also Ask (PAA) Optimization",
+          "Topic Cluster Development",
+          "AI-Friendly Content Structure Optimization",
+          "Entity-Based SEO Optimization",
+          "AI Citation Optimization",
+          "AI Search Visibility Strategy",
+          "ChatGPT, Gemini & Perplexity-Friendly Content Structuring",
+          "Generative Engine Optimization (GEO)",
+          "Mobile Usability Optimization",
+          "Continuous Core Web Vitals Monitoring",
+          "Conversion Rate Optimization (CRO) Recommendations",
+          "Advanced UX Improvement Strategy",
+          "Complete Social Presence Optimization",
+          "Brand Mention Monitoring",
+          "4 SEO-Optimized Blog Posts / Month",
+          "Landing Page Optimization",
+          "Detailed Monthly SEO Growth Report",
+          "Monthly Strategy Review Call",
+          "Best For: E-Commerce Stores, Multi-Location Businesses & Competitive Niches"
+        ],
+        "note": ""
+      }
+    ],
+    "Video Production": [
+      {
+        "name": "iPhone Shoot",
+        "icon": "🎯",
+        "price": "₹3,000",
+        "billing": "+ GST/Month",
+        "isPopular": false,
+        "features": [
+          "3–4 Hours On-Site Shoot",
+          "High-Quality iPhone 4K Recording",
+          "Basic Color Correction",
+          "Optimized for Social Media Platforms"
+        ],
+        "note": ""
+      },
+      {
+        "name": "Professional DSLR Shoot ",
+        "icon": "🚀",
+        "price": "₹10,000",
+        "billing": "+ GST/Month",
+        "isPopular": true,
+        "features": [
+          "Up to 6 Hours Professional Shoot",
+          "DSLR Camera with Cinematic Quality",
+          "Advanced Color Grading",
+          "Multiple Angles & Creative Shots"
+        ],
+        "note": ""
+      }
+    ]
+  },
+  "marqueeLogos": [
+    {
+      "src": "/client_logos/Adrustar/Adrustar logo.png",
+      "name": "Adrustar",
+      "row": 1
+    },
+    {
+      "src": "/client_logos/AHC logo/AHS Course Logo (1).png",
+      "name": "AHC logo",
+      "row": 1
+    },
+    {
+      "src": "/client_logos/AHS logo/AHS LOGO (1).png",
+      "name": "AHS logo",
+      "row": 1
+    },
+    {
+      "src": "/client_logos/ANNU SPA LOGO/Annu Spa logo.jpg",
+      "name": "ANNU SPA LOGO",
+      "row": 1
+    },
+    {
+      "src": "/client_logos/Anvesh Group Logo/Anvesh Logo.png",
+      "name": "Anvesh Group Logo",
+      "row": 1
+    },
+    {
+      "src": "/client_logos/AR unisex spa/AR unisex spa logo.jpg",
+      "name": "AR unisex spa",
+      "row": 1
+    },
+    {
+      "src": "/client_logos/Ashwaah logo/Ashwaah Logo 1.jpg",
+      "name": "Ashwaah logo",
+      "row": 1
+    },
+    {
+      "src": "/client_logos/AYBIL LOGO/AYBIL Logo 3d 1.jpg",
+      "name": "AYBIL LOGO",
+      "row": 1
+    },
+    {
+      "src": "/client_logos/B3 Communications/B3 Communications logo 1.jpg",
+      "name": "B3 Communications",
+      "row": 1
+    },
+    {
+      "src": "/client_logos/Bhuvana dharmi logo png/bhuvana dhaarmi final logo (1).png",
+      "name": "Bhuvana dharmi logo png",
+      "row": 1
+    },
+    {
+      "src": "/client_logos/Blueridge logo/Blueridge Logo 2.png",
+      "name": "Blueridge logo",
+      "row": 1
+    },
+    {
+      "src": "/client_logos/BRIGHTSTONE LOGO/Brightstone logo 2.jpg",
+      "name": "BRIGHTSTONE LOGO",
+      "row": 1
+    },
+    {
+      "src": "/client_logos/career edu group/WhatsApp Image 2026-02-09 at 12.57.33 (1).jpeg",
+      "name": "career edu group",
+      "row": 1
+    },
+    {
+      "src": "/client_logos/Dhanateja logo/dhanateja logo.png",
+      "name": "Dhanateja logo",
+      "row": 1
+    },
+    {
+      "src": "/client_logos/Dr Rajeshwari logo/dr logo (1).jpg",
+      "name": "Dr Rajeshwari logo",
+      "row": 1
+    },
+    {
+      "src": "/client_logos/Feel good spa/Feel good spa logo png.png",
+      "name": "Feel good spa",
+      "row": 1
+    },
+    {
+      "src": "/client_logos/fermilet logo/fermillet kitchen logo.jpg",
+      "name": "fermilet logo",
+      "row": 1
+    },
+    {
+      "src": "/client_logos/Iconic infra logo/Iconic Logo.png",
+      "name": "Iconic infra logo",
+      "row": 1
+    },
+    {
+      "src": "/client_logos/IGF LOGO/IGF LOGO.png",
+      "name": "IGF LOGO",
+      "row": 1
+    },
+    {
+      "src": "/client_logos/Jai hanuman logo/Jai hanuman logo.png",
+      "name": "Jai hanuman logo",
+      "row": 1
+    },
+    {
+      "src": "/client_logos/Kavitha Logo/kavitha logo.png",
+      "name": "Kavitha Logo",
+      "row": 1
+    },
+    {
+      "src": "/client_logos/kunnath logo/3377_261125_Kunnath House_BS-JPG-06.jpg",
+      "name": "kunnath logo",
+      "row": 1
+    },
+    {
+      "src": "/client_logos/Luxe Glow Logo/Luxe Glow.jpg",
+      "name": "Luxe Glow Logo",
+      "row": 1
+    },
+    {
+      "src": "/client_logos/Luxera logo/Luxera Logo.jpg",
+      "name": "Luxera logo",
+      "row": 1
+    },
+    {
+      "src": "/portfolio_images/zuxa_logo.png",
+      "name": "Zuxa Beauty & Spa",
+      "row": 1
+    },
+    {
+      "src": "/portfolio_images/mad_academy_logo.png",
+      "name": "Mad Academy",
+      "row": 1
+    },
+    {
+      "src": "/client_logos/Mahadari/Mahadhari logo png.png",
+      "name": "Mahadari",
+      "row": 2
+    },
+    {
+      "src": "/client_logos/maverick spa logo/marverick spa logo png.png",
+      "name": "maverick spa logo",
+      "row": 2
+    },
+    {
+      "src": "/client_logos/Mr Properties/mr Properties Logo.png",
+      "name": "Mr Properties",
+      "row": 2
+    },
+    {
+      "src": "/client_logos/Neom School/Neoam school logo.png",
+      "name": "Neom School",
+      "row": 2
+    },
+    {
+      "src": "/client_logos/nirantara spa logo/557590655_122095991103054567_3669368729955744710_n (1).jpg",
+      "name": "nirantara spa logo",
+      "row": 2
+    },
+    {
+      "src": "/client_logos/nut spices logo/Nutspice co Logo.png",
+      "name": "nut spices logo",
+      "row": 2
+    },
+    {
+      "src": "/client_logos/OAK spa/OAK logo.jpg.jpeg",
+      "name": "OAK spa",
+      "row": 2
+    },
+    {
+      "src": "/client_logos/Ohrange/WhatsApp Image 2026-03-18 at 4.06.09 PM.jpeg",
+      "name": "Ohrange",
+      "row": 2
+    },
+    {
+      "src": "/client_logos/pink spa logo/WhatsApp Image 2025-11-07 at 12.12.31 PM (1).jpeg",
+      "name": "pink spa logo",
+      "row": 2
+    },
+    {
+      "src": "/client_logos/Pragathi yoga logo/Pragathi yoga logo.png",
+      "name": "Pragathi yoga logo",
+      "row": 2
+    },
+    {
+      "src": "/client_logos/Rich Look spa/Rich Look Spa logo.png",
+      "name": "Rich Look spa",
+      "row": 2
+    },
+    {
+      "src": "/client_logos/Shubham shoppee/Shubham shoppee Logo 133.png",
+      "name": "Shubham shoppee",
+      "row": 2
+    },
+    {
+      "src": "/client_logos/Silk touch spa/Logo (3).png",
+      "name": "Silk touch spa",
+      "row": 2
+    },
+    {
+      "src": "/client_logos/Spring board/Spring Board logo.png",
+      "name": "Spring board",
+      "row": 2
+    },
+    {
+      "src": "/client_logos/SR Properties/sr projects-logo.png",
+      "name": "SR Properties",
+      "row": 2
+    },
+    {
+      "src": "/client_logos/Sri vayuputra logo/SRI VAYUPUTRA LOGO 2.png",
+      "name": "Sri vayuputra logo",
+      "row": 2
+    },
+    {
+      "src": "/client_logos/touch & bliss spa logo/touch wellness spa logo (2).png",
+      "name": "touch & bliss spa logo",
+      "row": 2
+    },
+    {
+      "src": "/client_logos/TRB logo/TRB Events Logo (2).jpg",
+      "name": "TRB logo",
+      "row": 2
+    },
+    {
+      "src": "/client_logos/Tripura infra/Tripura infra logo.jpg",
+      "name": "Tripura infra",
+      "row": 2
+    },
+    {
+      "src": "/client_logos/TVYYAA Interiors logo/TVYYAA interiors.png",
+      "name": "TVYYAA Interiors logo",
+      "row": 2
+    },
+    {
+      "src": "/client_logos/Uni planet/A4 size.pdf_25.png",
+      "name": "Uni planet",
+      "row": 2
+    },
+    {
+      "src": "/client_logos/vsoft logo/LOGONEW.png",
+      "name": "vsoft logo",
+      "row": 2
+    },
+    {
+      "src": "/client_logos/world wellness spa logo/unnamed.png",
+      "name": "world wellness spa logo",
+      "row": 2
+    },
+    {
+      "src": "/client_logos/Xtraliving logo/Xtraliving Logo.png",
+      "name": "Xtraliving logo",
+      "row": 2
+    },
+    {
+      "src": "/portfolio_images/qpath_logo.png",
+      "name": "Q Path Diagnostics",
+      "row": 2
+    },
+    {
+      "src": "/portfolio_images/shanmukha_logo.png",
+      "name": "Shanmukha Gold",
+      "row": 2
+    }
+  ],
+  "banners": [
+    {
+      "title": "",
+      "desc": "",
+      "path": "/contact#contact-form",
+      "bgImage": "/images/banner1.png",
+      "btnText": ""
+    },
+    {
+      "title": "",
+      "desc": "",
+      "path": "/packages",
+      "bgImage": "/images/banner2.png",
+      "btnText": ""
+    },
+    {
+      "title": "",
+      "desc": "",
+      "path": "/packages/plans?package=E-Commerce Website",
+      "bgImage": "/images/banner3.png",
+      "btnText": ""
     }
   ]
 }

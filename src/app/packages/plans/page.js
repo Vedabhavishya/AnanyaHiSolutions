@@ -97,6 +97,26 @@ function PlansContent() {
   const [loading, setLoading] = useState(true);
   const [whiteLogoSrc, setWhiteLogoSrc] = useState("");
 
+  const [leadInfo, setLeadInfo] = useState({
+    name: "Client Name",
+    company: "",
+    phone: "",
+    email: ""
+  });
+  const [downloadDateTime, setDownloadDateTime] = useState("");
+  const [issueDate, setIssueDate] = useState("");
+  const [generatingPdfId, setGeneratingPdfId] = useState(null);
+  const [proposalCount, setProposalCount] = useState(135);
+
+  // Reset state during render when packageTitle changes to avoid displaying stale data
+  const [prevPackageTitle, setPrevPackageTitle] = useState(packageTitle);
+  if (packageTitle !== prevPackageTitle) {
+    setPrevPackageTitle(packageTitle);
+    setPlansData(PACKAGE_PLANS_DATA[packageTitle] || []);
+    setLoading(true);
+    setGeneratingPdfId(null);
+  }
+
   useEffect(() => {
     if (typeof window !== "undefined") {
       const img = new Image();
@@ -177,18 +197,7 @@ function PlansContent() {
     };
   }, [packageTitle]);
 
-  // Client Details state (pulls dynamically from localStorage/URL parameters if populated)
-  const [leadInfo, setLeadInfo] = useState({
-    name: "Client Name",
-    company: "",
-    phone: "",
-    email: ""
-  });
 
-  const [downloadDateTime, setDownloadDateTime] = useState("");
-  const [issueDate, setIssueDate] = useState("");
-  const [generatingPdfId, setGeneratingPdfId] = useState(null);
-  const [proposalCount, setProposalCount] = useState(135);
 
   useEffect(() => {
     if (typeof window !== "undefined") {

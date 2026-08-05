@@ -129,30 +129,52 @@ function PlansContent() {
   }, []);
 
   useEffect(() => {
+    let active = true;
+
+    // If it's the initial default fallback, let's wait for query parameters to hydrate.
+    // However, if it doesn't change after a while, we should stop loading.
+    if (packageTitle === "Selected Package") {
+      const timer = setTimeout(() => {
+        if (active) {
+          setLoading(false);
+          setPlansData([]);
+        }
+      }, 500);
+      return () => {
+        active = false;
+        clearTimeout(timer);
+      };
+    }
+
     setLoading(true);
     setPlansData(PACKAGE_PLANS_DATA[packageTitle] || []);
 
     const fetchPlans = async () => {
       try {
         const res = await fetch("/api/packages");
+        if (!active) return;
         if (res.ok) {
           const data = await res.json();
           if (data.plans && data.plans[packageTitle]) {
-            setPlansData(data.plans[packageTitle]);
+            if (active) setPlansData(data.plans[packageTitle]);
           } else {
-            setPlansData(PACKAGE_PLANS_DATA[packageTitle] || []);
+            if (active) setPlansData(PACKAGE_PLANS_DATA[packageTitle] || []);
           }
         } else {
-          setPlansData(PACKAGE_PLANS_DATA[packageTitle] || []);
+          if (active) setPlansData(PACKAGE_PLANS_DATA[packageTitle] || []);
         }
       } catch (err) {
         console.error("Error fetching plans:", err);
-        setPlansData(PACKAGE_PLANS_DATA[packageTitle] || []);
+        if (active) setPlansData(PACKAGE_PLANS_DATA[packageTitle] || []);
       } finally {
-        setLoading(false);
+        if (active) setLoading(false);
       }
     };
     fetchPlans();
+
+    return () => {
+      active = false;
+    };
   }, [packageTitle]);
 
   // Client Details state (pulls dynamically from localStorage/URL parameters if populated)
@@ -325,7 +347,9 @@ function PlansContent() {
         {loading && plansData.length === 0 ? (
           <div className="plans-loading-state" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', minHeight: '300px', gap: '20px' }}>
             <div className="spinner-dashboard" style={{ width: '50px', height: '50px', borderTopColor: 'var(--accent-orange)' }}></div>
-            <p style={{ color: 'var(--secondary-slate)', fontSize: '1.1rem', fontWeight: '500' }}>Loading plans for {packageTitle}...</p>
+            <p style={{ color: 'var(--secondary-slate)', fontSize: '1.1rem', fontWeight: '500' }}>
+              {packageTitle === "Selected Package" ? "Loading plans..." : `Loading plans for ${packageTitle}...`}
+            </p>
           </div>
         ) : plansData.length > 0 ? (
           <div className="plans-grid">

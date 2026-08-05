@@ -225,7 +225,7 @@ export default function AdminDashboardPage() {
     setPlans(updatedPlans);
   };
 
-  const handleSaveCard = (e) => {
+  const handleSaveCard = async (e) => {
     e.preventDefault();
     const { categoryIdx, cardIdx, card } = editingCard;
     
@@ -274,6 +274,31 @@ export default function AdminDashboardPage() {
     setPackages(updatedCats);
     setPlans(updatedPlans);
     setEditingCard(null);
+
+    // Save directly to the database!
+    setActionLoading(true);
+    try {
+      const response = await fetch("/api/packages", {
+        method: "POST",
+        headers: getAuthHeaders(),
+        body: JSON.stringify({
+          packages: updatedCats,
+          plans: updatedPlans
+        })
+      });
+      const data = await response.json();
+      if (response.ok && data.success) {
+        showToast("Card saved to database successfully!");
+        fetchData();
+      } else {
+        showToast(data.error || "Failed to save card to database", false);
+      }
+    } catch (err) {
+      showToast("Network error saving card", false);
+      console.error(err);
+    } finally {
+      setActionLoading(false);
+    }
   };
 
   const handleEditPlansClick = (cardTitle) => {
@@ -286,12 +311,37 @@ export default function AdminDashboardPage() {
     setTempPlans(JSON.parse(JSON.stringify(existingPlans)));
   };
 
-  const handleSavePlansTemp = (e) => {
+  const handleSavePlansTemp = async (e) => {
     e.preventDefault();
     const updatedPlans = { ...plans };
     updatedPlans[editingPlansCardTitle] = tempPlans;
     setPlans(updatedPlans);
     setEditingPlansCardTitle(null);
+
+    // Save directly to the database!
+    setActionLoading(true);
+    try {
+      const response = await fetch("/api/packages", {
+        method: "POST",
+        headers: getAuthHeaders(),
+        body: JSON.stringify({
+          packages: packages,
+          plans: updatedPlans
+        })
+      });
+      const data = await response.json();
+      if (response.ok && data.success) {
+        showToast("Plans saved directly to database successfully!");
+        fetchData();
+      } else {
+        showToast(data.error || "Failed to save plans to database", false);
+      }
+    } catch (err) {
+      showToast("Network error saving plans", false);
+      console.error(err);
+    } finally {
+      setActionLoading(false);
+    }
   };
 
   const handleSavePackages = async () => {
@@ -2039,8 +2089,8 @@ export default function AdminDashboardPage() {
                 <button type="button" className="admin-btn btn-secondary-custom" style={{ flex: 1 }} onClick={() => setEditingCard(null)}>
                   Cancel
                 </button>
-                <button type="submit" className="admin-btn btn-primary-custom" style={{ flex: 1 }}>
-                  Keep Changes
+                 <button type="submit" className="admin-btn btn-primary-custom" style={{ flex: 1 }}>
+                  Save Card
                 </button>
               </div>
             </form>
@@ -2238,8 +2288,8 @@ export default function AdminDashboardPage() {
                   <button type="button" className="admin-btn btn-secondary-custom" style={{ padding: "10px 20px" }} onClick={() => setEditingPlansCardTitle(null)}>
                     Cancel
                   </button>
-                  <button type="submit" className="admin-btn btn-primary-custom" style={{ padding: "10px 25px" }}>
-                    Save Plans in State
+                   <button type="submit" className="admin-btn btn-primary-custom" style={{ padding: "10px 25px" }}>
+                    Save Plans
                   </button>
                 </div>
               </div>

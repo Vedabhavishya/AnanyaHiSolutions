@@ -109,7 +109,7 @@ export default function PackageComparePage() {
     const selectedPlan = categoryPlans.find(p => p.name === item.planName);
     const expandedFeatures = selectedPlan ? getExpandedFeatures(selectedPlan, categoryPlans) : [];
     const numFeat = expandedFeatures.length;
-    const rows = Math.ceil(numFeat / 3); // 3-column grid
+    const rows = numFeat; // 1-column list (single column)
     const deliverablesHeight = 40 + rows * 20; // Title header (40px) + rows * 20px
     const pricingHeight = 100; // Pricing box height
     return deliverablesHeight + pricingHeight + 16; // +16px margin
@@ -977,9 +977,9 @@ export default function PackageComparePage() {
                               </span>
                             </div>
 
-                            {/* Features grid (3 columns) */}
+                            {/* Features list (single column) */}
                             <div style={{ background: "#f8fafc", border: "1px solid #e2e8f0", borderRadius: "6px", padding: "12px 16px" }}>
-                              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: "8px 16px" }}>
+                              <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
                                 {expandedFeatures.map((feat, fIdx) => (
                                   <div key={fIdx} style={{ fontSize: "10.5px", color: "#334155", display: "flex", alignItems: "flex-start", gap: "4px", lineHeight: "1.25" }}>
                                     <span style={{ color: "#10b981", fontWeight: "bold" }}>✓</span>

@@ -165,7 +165,7 @@ function PlansContent() {
     }
 
     setLoading(true);
-    setPlansData(PACKAGE_PLANS_DATA[packageTitle] || []);
+    setPlansData([]);
 
     const fetchPlans = async () => {
       try {
@@ -176,14 +176,14 @@ function PlansContent() {
           if (data.plans && data.plans[packageTitle]) {
             if (active) setPlansData(data.plans[packageTitle]);
           } else {
-            if (active) setPlansData(PACKAGE_PLANS_DATA[packageTitle] || []);
+            if (active) setPlansData([]);
           }
         } else {
-          if (active) setPlansData(PACKAGE_PLANS_DATA[packageTitle] || []);
+          if (active) setPlansData([]);
         }
       } catch (err) {
         console.error("Error fetching plans:", err);
-        if (active) setPlansData(PACKAGE_PLANS_DATA[packageTitle] || []);
+        if (active) setPlansData([]);
       } finally {
         if (active) setLoading(false);
       }

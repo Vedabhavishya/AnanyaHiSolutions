@@ -90,8 +90,11 @@ function PlansContent() {
   const searchParams = useSearchParams();
   const packageTitle = searchParams.get("package") || "Selected Package";
   
-  // Default to empty array if no specific data exists yet for the package
-  const [plansData, setPlansData] = useState([]);
+  // Initialize with local plans data to load instantly, then revalidate from database
+  const [plansData, setPlansData] = useState(() => {
+    return PACKAGE_PLANS_DATA[packageTitle] || [];
+  });
+  const [loading, setLoading] = useState(true);
   const [whiteLogoSrc, setWhiteLogoSrc] = useState("");
 
   useEffect(() => {
@@ -126,6 +129,9 @@ function PlansContent() {
   }, []);
 
   useEffect(() => {
+    setLoading(true);
+    setPlansData(PACKAGE_PLANS_DATA[packageTitle] || []);
+
     const fetchPlans = async () => {
       try {
         const res = await fetch("/api/packages");
@@ -142,6 +148,8 @@ function PlansContent() {
       } catch (err) {
         console.error("Error fetching plans:", err);
         setPlansData(PACKAGE_PLANS_DATA[packageTitle] || []);
+      } finally {
+        setLoading(false);
       }
     };
     fetchPlans();
@@ -314,7 +322,12 @@ function PlansContent() {
           Choose the plan that fits your vision — and let’s build your digital success story together for <strong>{packageTitle}</strong>!
         </p>
         
-        {plansData.length > 0 ? (
+        {loading && plansData.length === 0 ? (
+          <div className="plans-loading-state" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', minHeight: '300px', gap: '20px' }}>
+            <div className="spinner-dashboard" style={{ width: '50px', height: '50px', borderTopColor: 'var(--accent-orange)' }}></div>
+            <p style={{ color: 'var(--secondary-slate)', fontSize: '1.1rem', fontWeight: '500' }}>Loading plans for {packageTitle}...</p>
+          </div>
+        ) : plansData.length > 0 ? (
           <div className="plans-grid">
             {plansData.map((plan, idx) => (
               <div 

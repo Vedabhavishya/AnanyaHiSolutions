@@ -23,6 +23,33 @@ function Logo({ className = "", light = false }) {
   );
 }
 
+// Portfolio Showcase Constants
+const COLUMN_1_IMAGES = Array.from({ length: 12 }, (_, i) => `/portfolio_images/spa_page_${i + 1}.png`);
+const COLUMN_2_IMAGES = Array.from({ length: 5 }, (_, i) => `/portfolio_images/mad_academy_page_${i + 1}.png`);
+const COLUMN_3_IMAGES = Array.from({ length: 7 }, (_, i) => `/portfolio_images/qpath_page_${i + 1}.png`);
+const COLUMN_4_IMAGES = Array.from({ length: 4 }, (_, i) => `/portfolio_images/shanmukha_gold_portfolio_page_${i + 1}.png`);
+
+const padLogosArray = (logosList, minItems = 12) => {
+  if (!logosList || logosList.length === 0) return [];
+  let padded = [...logosList];
+  while (padded.length < minItems) {
+    padded = [...padded, ...logosList];
+  }
+  return padded;
+};
+
+const MARQUEE_LOGOS = [
+  { src: "/portfolio_images/zuxa_logo.png", name: "Zuxa Beauty & Spa" },
+  { src: "/portfolio_images/mad_academy_logo.png", name: "Mad Academy" },
+  { src: "/portfolio_images/qpath_logo.png", name: "Q Path Diagnostics" },
+  { src: "/portfolio_images/shanmukha_logo.png", name: "Shanmukha Gold" },
+  { src: "/portfolio_images/zuxa_logo.png", name: "Zuxa Beauty & Spa" },
+  { src: "/portfolio_images/mad_academy_logo.png", name: "Mad Academy" },
+  { src: "/portfolio_images/qpath_logo.png", name: "Q Path Diagnostics" },
+  { src: "/portfolio_images/shanmukha_logo.png", name: "Shanmukha Gold" }
+];
+
+
 // Service Icon SVG Mapper Helper
 function renderServiceIcon(iconName) {
   switch (iconName) {
@@ -321,6 +348,27 @@ export default function Home() {
   // Intro Splash State
   const [showSplash, setShowSplash] = useState(true);
   const [fadeSplash, setFadeSplash] = useState(false);
+
+  const [marqueeLogos, setMarqueeLogos] = useState(MARQUEE_LOGOS);
+  
+  useEffect(() => {
+    const fetchMarqueeLogos = async () => {
+      try {
+        const res = await fetch("/api/marquee-logos");
+        if (res.ok) {
+          const data = await res.json();
+          setMarqueeLogos(data);
+        } else {
+          setMarqueeLogos(MARQUEE_LOGOS);
+        }
+      } catch (err) {
+        console.error("Error loading marquee logos:", err);
+        setMarqueeLogos(MARQUEE_LOGOS);
+      }
+    };
+    fetchMarqueeLogos();
+  }, []);
+
 
   // Splash Screen Intro Timer
   useEffect(() => {
@@ -817,7 +865,7 @@ export default function Home() {
       </section>
 
       {/* 4. Client Onboarding Process Section (Curvy SVG Path) */}
-      <section id="process" className="process-section">
+      <section id="process" className="process-section" style={{ paddingBottom: "20px" }}>
         <div className="container">
           <div className="section-header">
             <h2>Client Onboarding Process</h2>
@@ -871,6 +919,147 @@ export default function Home() {
                 <h4 className="process-step-title">{step.title}</h4>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 4.5. Portfolio Showcase Section */}
+      <section className="section portfolio-showcase-section bg-white border-t border-slate-100" style={{ paddingTop: "20px" }}>
+        <div className="container">
+          <div className="section-header">
+            <h2>Our Clients</h2>
+            <p>
+              Every project in our portfolio represents a business that trusted us to grow online.
+            </p>
+          </div>
+
+          {/* Minimalist Logo Marquee (2 rows scroll!) */}
+          <div className="portfolio-marquee-container mb-12" style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+            {/* Row 1: Right to Left */}
+            <div className="marquee-wrapper">
+              <div className="marquee-content rtl">
+                {/* First Set of Logos */}
+                {padLogosArray(marqueeLogos.filter(l => !l.row || l.row === 1 || l.row === '1')).map((logo, idx) => (
+                  <div className="marquee-logo-item" key={`logo-r1-1-${idx}`}>
+                    <img src={logo.src} alt={logo.name} className="marquee-logo" />
+                  </div>
+                ))}
+                {/* Second Set of Logos */}
+                {padLogosArray(marqueeLogos.filter(l => !l.row || l.row === 1 || l.row === '1')).map((logo, logoIdx) => (
+                  <div className="marquee-logo-item" key={`logo-r1-2-${logoIdx}`}>
+                    <img src={logo.src} alt={logo.name} className="marquee-logo" />
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Row 2: Left to Right */}
+            <div className="marquee-wrapper">
+              <div className="marquee-content ltr">
+                {/* First Set of Logos */}
+                {padLogosArray(marqueeLogos.filter(l => l.row === 2 || l.row === '2')).map((logo, idx) => (
+                  <div className="marquee-logo-item" key={`logo-r2-1-${idx}`}>
+                    <img src={logo.src} alt={logo.name} className="marquee-logo" />
+                  </div>
+                ))}
+                {/* Second Set of Logos */}
+                {padLogosArray(marqueeLogos.filter(l => l.row === 2 || l.row === '2')).map((logo, logoIdx) => (
+                  <div className="marquee-logo-item" key={`logo-r2-2-${logoIdx}`}>
+                    <img src={logo.src} alt={logo.name} className="marquee-logo" />
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* High-Fidelity UI Mock-up Frame */}
+          <div className="portfolio-mockup-frame">
+
+
+            {/* Scrollable Column Grid */}
+            <div className="portfolio-columns-container">
+
+              {/* Column 1: Spa.pdf - Infinitely scrolls Down (top-to-bottom) */}
+              <div className="portfolio-column">
+                <div className="portfolio-scroll-container scroll-down" style={{ animationDuration: '80s' }}>
+                  <div className="portfolio-page-list">
+                    {COLUMN_1_IMAGES.map((img, idx) => (
+                      <div className="portfolio-page-card" key={`col1-g1-${idx}`}>
+                        <img src={img} alt={`Spa Project Page ${idx + 1}`} className="portfolio-page-img" />
+                      </div>
+                    ))}
+                  </div>
+                  <div className="portfolio-page-list">
+                    {COLUMN_1_IMAGES.map((img, idx) => (
+                      <div className="portfolio-page-card" key={`col1-g2-${idx}`}>
+                        <img src={img} alt={`Spa Project Page ${idx + 1}`} className="portfolio-page-img" />
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+              {/* Column 2: mad-academy.pdf - Infinitely scrolls Up (bottom-to-top) */}
+              <div className="portfolio-column">
+                <div className="portfolio-scroll-container scroll-up" style={{ animationDuration: '50s' }}>
+                  <div className="portfolio-page-list">
+                    {COLUMN_2_IMAGES.map((img, idx) => (
+                      <div className="portfolio-page-card" key={`col2-g1-${idx}`}>
+                        <img src={img} alt={`Mad Academy Page ${idx + 1}`} className="portfolio-page-img" />
+                      </div>
+                    ))}
+                  </div>
+                  <div className="portfolio-page-list">
+                    {COLUMN_2_IMAGES.map((img, idx) => (
+                      <div className="portfolio-page-card" key={`col2-g2-${idx}`}>
+                        <img src={img} alt={`Mad Academy Page ${idx + 1}`} className="portfolio-page-img" />
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+              {/* Column 3: qpath.pdf - Infinitely scrolls Down (top-to-bottom) */}
+              <div className="portfolio-column">
+                <div className="portfolio-scroll-container scroll-down" style={{ animationDuration: '60s' }}>
+                  <div className="portfolio-page-list">
+                    {COLUMN_3_IMAGES.map((img, idx) => (
+                      <div className="portfolio-page-card" key={`col3-g1-${idx}`}>
+                        <img src={img} alt={`QPath Page ${idx + 1}`} className="portfolio-page-img" />
+                      </div>
+                    ))}
+                  </div>
+                  <div className="portfolio-page-list">
+                    {COLUMN_3_IMAGES.map((img, idx) => (
+                      <div className="portfolio-page-card" key={`col3-g2-${idx}`}>
+                        <img src={img} alt={`QPath Page ${idx + 1}`} className="portfolio-page-img" />
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+              {/* Column 4: shanmukha-gold-portfolio.pdf - Infinitely scrolls Up (bottom-to-top) */}
+              <div className="portfolio-column">
+                <div className="portfolio-scroll-container scroll-up" style={{ animationDuration: '40s' }}>
+                  <div className="portfolio-page-list">
+                    {COLUMN_4_IMAGES.map((img, idx) => (
+                      <div className="portfolio-page-card" key={`col4-g1-${idx}`}>
+                        <img src={img} alt={`Shanmukha Gold Page ${idx + 1}`} className="portfolio-page-img" />
+                      </div>
+                    ))}
+                  </div>
+                  <div className="portfolio-page-list">
+                    {COLUMN_4_IMAGES.map((img, idx) => (
+                      <div className="portfolio-page-card" key={`col4-g2-${idx}`}>
+                        <img src={img} alt={`Shanmukha Gold Page ${idx + 1}`} className="portfolio-page-img" />
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+            </div>
           </div>
         </div>
       </section>

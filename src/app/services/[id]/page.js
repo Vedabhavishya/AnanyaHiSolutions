@@ -381,12 +381,19 @@ const SERVICES_DETAIL_DATA = {
     bannerDesc: "Optimize your digital presence for conversational search tools. Ananya Hi Solutions structures your site to rank as a cited reference within ChatGPT, Claude, and Gemini.",
     bannerBadge: "✓ AI-Search Indexing Ready | ⭐️ Rated 5/5 by Tech Startups",
     heroVisual: "/images/hero/aeo.png",
-    subtypesTitle: "",
-    subtypesDesc: "",
+    subtypesTitle: "AEO Services in Hyderabad",
+    subtypesDesc: "Structure your site to get cited as a primary reference within ChatGPT Search, Gemini, and Claude.",
     row1Image: "/images/subservices/aeo-overview.jpg",
     row2Image: "/images/subservices/aeo-capabilities.jpg",
     row2Title: "Maximize AI Search Engine Visibility",
-    types: [],
+    types: [
+      {
+        id: "aeo",
+        title: "AEO, GEO, AIO, SXO Package",
+        bgImage: "/images/subservices/aeo-capabilities.jpg",
+        desc: "Unlock comprehensive AEO, GEO, AIO, and SXO pricing models designed for startups and modern tech brands."
+      }
+    ],
     overviewTitle: "Pioneering Answer Engine Optimization",
     paragraphs: [
       "Traditional search behavior is transitioning rapidly from basic links to direct conversational answers. Answer Engine Optimization (AEO) structures and optimizes your content footprint so that conversational AI platforms select your business as the definitive source.",
@@ -405,11 +412,18 @@ const SERVICES_DETAIL_DATA = {
     bannerDesc: "Secure SGE citations. We optimize your website content and structure to occupy AI summary panels and snapshot recommendations in Google SGE.",
     bannerBadge: "✓ Google SGE Citations Strategy | ⭐️ Rated 4.9/5 by Brand Managers",
     heroVisual: "/images/hero/geo.jpg",
-    subtypesTitle: "",
-    subtypesDesc: "",
+    subtypesTitle: "GEO Services in Hyderabad",
+    subtypesDesc: "Secure SGE citations and snapshot recommendations in Google's Search Generative Experience.",
     row1Image: "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=800&q=80",
     row2Image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80",
-    types: [],
+    types: [
+      {
+        id: "geo",
+        title: "AEO, GEO, AIO, SXO Package",
+        bgImage: "/images/subservices/aeo-capabilities.jpg",
+        desc: "Unlock comprehensive AEO, GEO, AIO, and SXO pricing models designed for startups and modern tech brands."
+      }
+    ],
     overviewTitle: "Dominating Google Search Generative Experience",
     paragraphs: [
       "Google's Search Generative Experience (SGE) represents the biggest shift in search engine history. SGE presents AI-synthesized responses at the top of results, citing only a select few websites. GEO is the practice of optimizing your site to be one of those citations.",
@@ -428,12 +442,19 @@ const SERVICES_DETAIL_DATA = {
     bannerDesc: "Optimize your brand's digital footprint so that leading AI models (like ChatGPT, Claude, Perplexity, and Gemini) cite and recommend your services.",
     bannerBadge: "✓ AI Recommendation Engine Optimization | ⭐️ Rated 5/5 by Tech Brands",
     heroVisual: "/images/hero/aio.jpg",
-    subtypesTitle: "",
-    subtypesDesc: "",
+    subtypesTitle: "AIO Services in Hyderabad",
+    subtypesDesc: "Optimize your brand's digital footprint so that leading AI models recommend your services.",
     row1Image: "/images/subservices/aio-detail.jpg",
     row2Image: "/images/subservices/aio-capabilities.jpg",
     row2Title: "Driving AI-Powered Business Growth",
-    types: [],
+    types: [
+      {
+        id: "aio",
+        title: "AEO, GEO, AIO, SXO Package",
+        bgImage: "/images/subservices/aio-capabilities.jpg",
+        desc: "Unlock comprehensive AEO, GEO, AIO, and SXO pricing models designed for startups and modern tech brands."
+      }
+    ],
     overviewTitle: "Optimize for AI Search Recommendations",
     paragraphs: [
       "We optimize your brand's digital presence to ensure conversational AI engines (like ChatGPT, Claude, Perplexity, and Gemini) cite and recommend your services. By structuring semantic content and building trusted citations, we position your business as a preferred answer for high-intent queries.",
@@ -452,11 +473,18 @@ const SERVICES_DETAIL_DATA = {
     bannerDesc: "Merge traditional search engine optimization with high-fidelity UX design to capture search traffic and convert visitors into active leads.",
     bannerBadge: "✓ Higher Search CTR & Conversions | ⭐️ Rated 4.9/5 by Growth Marketers",
     heroVisual: "/images/hero/sxo.jpg",
-    subtypesTitle: "",
-    subtypesDesc: "",
+    subtypesTitle: "SXO Services in Hyderabad",
+    subtypesDesc: "Merge traditional search engine optimization with user experience design to convert traffic.",
     row1Image: "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=800&q=80",
     row2Image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80",
-    types: [],
+    types: [
+      {
+        id: "sxo",
+        title: "AEO, GEO, AIO, SXO Package",
+        bgImage: "/images/subservices/aeo-capabilities.jpg",
+        desc: "Unlock comprehensive AEO, GEO, AIO, and SXO pricing models designed for startups and modern tech brands."
+      }
+    ],
     overviewTitle: "Merging Search Performance and User Experience",
     paragraphs: [
       "Traditional SEO gets visitors to your website; SXO ensures they stay there and convert. Search Experience Optimization bridges search engine rankings with user experience engineering to align with Google's Core Web Vitals and user-satisfaction signals.",
@@ -475,11 +503,18 @@ const SERVICES_DETAIL_DATA = {
     bannerDesc: "Dominate video recommendation algorithms. We optimize metadata, playlists, descriptions, and closed captions to rank your channel organically.",
     bannerBadge: "✓ YouTube Search Domination | ⭐️ Rated 5/5 by Creators & Brands",
     heroVisual: "/images/hero/youtube-seo.jpg",
-    subtypesTitle: "",
-    subtypesDesc: "",
+    subtypesTitle: "YouTube SEO Services in Hyderabad",
+    subtypesDesc: "Rank your channel organically and drive long-term video views and subscribers.",
     row1Image: "https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?auto=format&fit=crop&w=800&q=80",
     row2Image: "https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?auto=format&fit=crop&w=800&q=80",
-    types: [],
+    types: [
+      {
+        id: "youtube-seo",
+        title: "YouTube Production Package",
+        bgImage: "/images/hero/youtube-seo.jpg",
+        desc: "Unlock comprehensive YouTube optimization, content planning, and audience building packages."
+      }
+    ],
     overviewTitle: "Unlocking Algorithmic Video Reach",
     paragraphs: [
       "YouTube is the second largest search engine globally. To rank organically, your videos must satisfy both user retention metrics and search indexing algorithms. Our YouTube SEO services optimize your videos from script to upload.",
@@ -498,11 +533,18 @@ const SERVICES_DETAIL_DATA = {
     bannerDesc: "Build and scale high-ROAS visual video campaigns. We manage scripthooks, precise channel placements, and landing page conversion funnels.",
     bannerBadge: "✓ High-ROI YouTube Ads Setup | ⭐️ Rated 5/5 by E-commerce Brands",
     heroVisual: "/images/hero/youtube-ads.jpg",
-    subtypesTitle: "",
-    subtypesDesc: "",
+    subtypesTitle: "YouTube Ads Services in Hyderabad",
+    subtypesDesc: "Build and scale high-ROI video campaign strategies to drive conversions.",
     row1Image: "https://images.unsplash.com/photo-1551836022-8b2858c9c69b?auto=format&fit=crop&w=800&q=80",
     row2Image: "https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?auto=format&fit=crop&w=800&q=80",
-    types: [],
+    types: [
+      {
+        id: "youtube-ads",
+        title: "YouTube Production Package",
+        bgImage: "/images/hero/youtube-ads.jpg",
+        desc: "Unlock comprehensive YouTube advertising, channel setups, and growth packages."
+      }
+    ],
     overviewTitle: "High-Performance Video Advertising",
     paragraphs: [
       "Video ads offer unparalleled narrative persuasion. We design, write, target, and monitor custom YouTube ad campaigns (In-Stream, Bumper, Display) that capture buyer interest and multiply ROAS.",
@@ -529,7 +571,9 @@ const PACKAGE_MAPPING = {
   "aeo": { category: "Digital Marketing Packages", plan: "AEO, GEO, AIO, SXO" },
   "geo": { category: "Digital Marketing Packages", plan: "AEO, GEO, AIO, SXO" },
   "aio": { category: "Digital Marketing Packages", plan: "AEO, GEO, AIO, SXO" },
-  "sxo": { category: "Digital Marketing Packages", plan: "AEO, GEO, AIO, SXO" }
+  "sxo": { category: "Digital Marketing Packages", plan: "AEO, GEO, AIO, SXO" },
+  "youtube-seo": { category: "Digital Marketing Packages", plan: "YouTube Production" },
+  "youtube-ads": { category: "Digital Marketing Packages", plan: "YouTube Production" }
 };
 
 export default function ServiceDetailPage() {
